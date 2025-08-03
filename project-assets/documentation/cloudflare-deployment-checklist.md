@@ -58,7 +58,6 @@ In the Environment Variables section, add these **exactly**:
 **Essential Bot Variables:**
 ```
 NODE_ENV = production
-TELEGRAM_GROUP_BOT_TOKEN = 7871836109:AAHu4uHUol80kN-iWzkpgdZRkMm8_ySAMx4
 TELEGRAM_OWNER_ID = 7742418800
 ```
 

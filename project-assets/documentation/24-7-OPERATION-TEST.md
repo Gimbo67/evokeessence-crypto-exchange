@@ -54,7 +54,6 @@ Once deployed, the bot will automatically:
 ### Step 3: Verification (After Deployment)
 ```bash
 # Check webhook status
-curl "https://api.telegram.org/bot7871836109:AAHu4uHUol80kN-iWzkpgdZRkMm8_ySAMx4/getWebhookInfo"
 
 # Should show:
 # "url": "https://evo-exchange.com/api/webhook/telegram"

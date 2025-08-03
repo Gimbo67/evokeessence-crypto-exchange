@@ -13,8 +13,8 @@ class TelegramService {
   private transactionChatId: string;
 
   constructor() {
-    this.registrationBotToken = '7812448148:AAEkcDEO-XIsqDM2MnpTZ5-OICs_85JqTHY';
-    this.transactionBotToken = '7750607634:AAGQQkN-nxJFvYJdXg_XVvsSm8EWJagG8yk';
+    this.registrationBotToken = '${TELEGRAM_BOT_TOKEN}';
+    this.transactionBotToken = '${TELEGRAM_TRANSACTION_BOT_TOKEN}';
     this.registrationChatId = '-4831579002';
     this.transactionChatId = '-4883007793';
   }

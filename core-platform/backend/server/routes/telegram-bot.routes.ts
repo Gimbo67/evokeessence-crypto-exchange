@@ -45,7 +45,7 @@ router.get('/health', async (req: Request, res: Response) => {
 router.post('/webhook/:token', async (req: Request, res: Response) => {
   try {
     // Verify the token matches our bot token
-    const expectedToken = process.env.TELEGRAM_GROUP_BOT_TOKEN || '7871836109:AAHu4uHUol80kN-iWzkpgdZRkMm8_ySAMx4';
+    const expectedToken = process.env.TELEGRAM_GROUP_BOT_TOKEN || '${TELEGRAM_GROUP_BOT_TOKEN}';
     if (req.params.token !== expectedToken) {
       return res.status(401).json({ error: 'Unauthorized' });
     }

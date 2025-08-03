@@ -24,7 +24,6 @@ Once Always On is active:
 If you can't enable Always On right now, you can activate webhook mode manually:
 
 ```bash
-curl -X POST "https://api.telegram.org/bot7871836109:AAHu4uHUol80kN-iWzkpgdZRkMm8_ySAMx4/setWebhook" \
   -H "Content-Type: application/json" \
   -d '{"url": "https://evo-exchange.com/api/webhook/telegram", "allowed_updates": ["message", "my_chat_member"]}'
 ```

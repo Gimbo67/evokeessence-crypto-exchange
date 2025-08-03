@@ -23,7 +23,6 @@ git push origin main
 
 3. **Add Environment Variables** in Cloudflare:
    - `DATABASE_URL` (your current database)
-   - `TELEGRAM_GROUP_BOT_TOKEN=7871836109:AAHu4uHUol80kN-iWzkpgdZRkMm8_ySAMx4`
    - `TELEGRAM_OWNER_ID=7742418800`
    - All your other environment variables
 

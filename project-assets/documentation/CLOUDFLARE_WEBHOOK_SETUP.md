@@ -47,7 +47,6 @@ const isProduction = true; // Enable webhook mode
 ## Verification Commands
 ```bash
 # Check webhook status
-curl -X POST "https://api.telegram.org/bot7871836109:AAHu4uHUol80kN-iWzkpgdZRkMm8_ySAMx4/getWebhookInfo"
 
 # Test webhook endpoint
 curl -X POST "https://evo-exchange.com/api/webhook/telegram" \

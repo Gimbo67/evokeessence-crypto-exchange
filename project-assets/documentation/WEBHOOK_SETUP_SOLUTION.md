@@ -36,7 +36,6 @@ For development/testing, use polling mode:
 
 ```bash
 # Clear webhook to enable polling
-curl -X POST "https://api.telegram.org/bot7871836109:AAHu4uHUol80kN-iWzkpgdZRkMm8_ySAMx4/deleteWebhook"
 
 # Bot will automatically switch to polling mode
 # Works while your Replit is open
@@ -50,7 +49,6 @@ Configure your domain to route webhook traffic to your current Replit instance (
 **For Development/Testing Right Now:**
 ```bash
 # Clear webhook
-curl -X POST "https://api.telegram.org/bot7871836109:AAHu4uHUol80kN-iWzkpgdZRkMm8_ySAMx4/deleteWebhook"
 
 # Bot responds while Replit is open
 ```

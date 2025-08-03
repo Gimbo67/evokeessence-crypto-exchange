@@ -17,14 +17,12 @@ When you want to enable 24/7 operation, follow these steps:
 
 1. **Enable webhook manually** by running this command:
 ```bash
-curl -X POST "https://api.telegram.org/bot7871836109:AAHu4uHUol80kN-iWzkpgdZRkMm8_ySAMx4/setWebhook" \
   -H "Content-Type: application/json" \
   -d '{"url": "https://evo-exchange.com/api/webhook/telegram"}'
 ```
 
 2. **Verify webhook is set**:
 ```bash
-curl -X POST "https://api.telegram.org/bot7871836109:AAHu4uHUol80kN-iWzkpgdZRkMm8_ySAMx4/getWebhookInfo"
 ```
 
 3. **Test 24/7 operation**:
@@ -38,7 +36,6 @@ curl -X POST "https://api.telegram.org/bot7871836109:AAHu4uHUol80kN-iWzkpgdZRkMm
 
 If webhook doesn't work as expected, you can always return to polling mode:
 ```bash
-curl -X POST "https://api.telegram.org/bot7871836109:AAHu4uHUol80kN-iWzkpgdZRkMm8_ySAMx4/deleteWebhook"
 ```
 
 Then restart your Replit application.

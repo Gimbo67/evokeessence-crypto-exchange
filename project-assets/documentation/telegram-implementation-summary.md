@@ -6,7 +6,6 @@ Successfully implemented a comprehensive Telegram notification system for the Ev
 ## Bot Configuration
 
 ### Bot 1: Registration Bot
-- **Token**: `7812448148:AAEkcDEO-XIsqDM2MnpTZ5-OICs_85JqTHY`
 - **Chat ID**: `-4831579002`
 - **Purpose**: Handles user registration and verification notifications
 - **Notifications**:
@@ -14,7 +13,6 @@ Successfully implemented a comprehensive Telegram notification system for the Ev
   - KYC verification status updates (approved/rejected/pending)
 
 ### Bot 2: Transaction Bot
-- **Token**: `7750607634:AAGQQkN-nxJFvYJdXg_XVvsSm8EWJagG8yk`
 - **Chat ID**: `-4883007793`
 - **Purpose**: Handles transaction notifications
 - **Notifications**:

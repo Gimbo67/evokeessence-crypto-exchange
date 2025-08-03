@@ -41,7 +41,7 @@ export class TelegramWebhookService {
    */
   static async setWebhook(webhookUrl: string): Promise<boolean> {
     try {
-      const botToken = process.env.TELEGRAM_GROUP_BOT_TOKEN || '7871836109:AAHu4uHUol80kN-iWzkpgdZRkMm8_ySAMx4';
+      const botToken = process.env.TELEGRAM_GROUP_BOT_TOKEN || '${TELEGRAM_GROUP_BOT_TOKEN}';
       const response = await fetch(`https://api.telegram.org/bot${botToken}/setWebhook`, {
         method: 'POST',
         headers: {
@@ -73,7 +73,7 @@ export class TelegramWebhookService {
    */
   static async deleteWebhook(): Promise<boolean> {
     try {
-      const botToken = process.env.TELEGRAM_GROUP_BOT_TOKEN || '7871836109:AAHu4uHUol80kN-iWzkpgdZRkMm8_ySAMx4';
+      const botToken = process.env.TELEGRAM_GROUP_BOT_TOKEN || '${TELEGRAM_GROUP_BOT_TOKEN}';
       const response = await fetch(`https://api.telegram.org/bot${botToken}/deleteWebhook`, {
         method: 'POST'
       });
@@ -98,7 +98,7 @@ export class TelegramWebhookService {
    */
   static async getWebhookInfo(): Promise<any> {
     try {
-      const botToken = process.env.TELEGRAM_GROUP_BOT_TOKEN || '7871836109:AAHu4uHUol80kN-iWzkpgdZRkMm8_ySAMx4';
+      const botToken = process.env.TELEGRAM_GROUP_BOT_TOKEN || '${TELEGRAM_GROUP_BOT_TOKEN}';
       const response = await fetch(`https://api.telegram.org/bot${botToken}/getWebhookInfo`);
       const result = await response.json();
       

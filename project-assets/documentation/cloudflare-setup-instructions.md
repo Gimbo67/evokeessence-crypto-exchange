@@ -45,7 +45,6 @@ git push origin main
    In Cloudflare Pages settings → Environment variables, add:
    ```
    DATABASE_URL=your_database_url
-   TELEGRAM_GROUP_BOT_TOKEN=7871836109:AAHu4uHUol80kN-iWzkpgdZRkMm8_ySAMx4
    TELEGRAM_OWNER_ID=7742418800
    NODE_ENV=production
    ```

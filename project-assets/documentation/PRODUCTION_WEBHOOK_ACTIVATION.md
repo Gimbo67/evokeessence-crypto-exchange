@@ -12,7 +12,6 @@ You're absolutely correct that **polling cannot work without Replit running**. H
 
 **Option 1: Manual Webhook Setup (Immediate)**
 ```bash
-curl -X POST "https://api.telegram.org/bot7871836109:AAHu4uHUol80kN-iWzkpgdZRkMm8_ySAMx4/setWebhook" \
   -H "Content-Type: application/json" \
   -d '{"url": "https://evo-exchange.com/api/webhook/telegram", "allowed_updates": ["message", "my_chat_member"]}'
 ```

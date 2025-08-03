@@ -52,7 +52,7 @@ class TelegramGroupBot {
 
   constructor() {
     // Use environment variable or the correct group bot token (EvokeEssenceBot that can join groups)
-    this.botToken = process.env.TELEGRAM_GROUP_BOT_TOKEN || '7871836109:AAHu4uHUol80kN-iWzkpgdZRkMm8_ySAMx4';
+    this.botToken = process.env.TELEGRAM_GROUP_BOT_TOKEN || '${TELEGRAM_GROUP_BOT_TOKEN}';
     this.ownerTelegramId = process.env.TELEGRAM_OWNER_ID || '7742418800';
     
     // Handle process termination gracefully

@@ -34,10 +34,7 @@ Make sure these variables are set in your Replit environment:
 
 ```
 NODE_ENV=production (for production deployment)
-TELEGRAM_GROUP_BOT_TOKEN=7871836109:AAHu4uHUol80kN-iWzkpgdZRkMm8_ySAMx4
 TELEGRAM_OWNER_ID=7742418800
-TELEGRAM_BOT_TOKEN=7812448148:AAEkcDEO-XIsqDM2MnpTZ5-OICs_85JqTHY
-TELEGRAM_TRANSACTION_BOT_TOKEN=7750607634:AAGQQkN-nxJFvYJdXg_XVvsSm8EWJagG8yk
 ```
 
 ### Step 3: Deploy to Cloudflare
