@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connectivity Test Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f8f9fa;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: white;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      color: #0066cc;
+    }
+    .status {
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+    }
+    .success {
+      background-color: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+    }
+    button {
+      background-color: #0066cc;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Connectivity Test Page</h1>
+    <p>This page tests that the application server is functioning properly.</p>
+    
+    <h2>Server Status</h2>
+    <div class="status success" id="serverStatus">
+      Server is running successfully!
+    </div>
+    
+    <h2>Time Information</h2>
+    <div id="timestamp"></div>
+    
+    <p>
+      <button id="testButton">Test Connection</button>
+    </p>
+  </div>
+
+  <script>
+    document.getElementById('timestamp').innerText = 'Current server time: ' + new Date().toLocaleString();
+    
+    document.getElementById('testButton').addEventListener('click', function() {
+      fetch('/api/health')
+        .then(response => response.json())
+        .then(data => {
+          alert('Server connection successful!\n\nServer status: ' + data.status + 
+                '\nTimestamp: ' + data.timestamp);
+        })
+        .catch(error => {
+          alert('Error connecting to server: ' + error.message);
+        });
+    });
+  </script>
+</body>
+</html>

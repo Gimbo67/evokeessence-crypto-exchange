@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96">
+  <rect width="96" height="96" rx="20" fill="#0066FF"/>
+  <g transform="translate(20, 20) scale(0.58)">
+    <!-- Cryptocurrency Symbol -->
+    <path d="M51.2 12.8L32 51.2L51.2 89.6L70.4 51.2L51.2 12.8Z" fill="#FFFFFF"/>
+    <path d="M51.2 64L32 51.2L51.2 38.4L70.4 51.2L51.2 64Z" fill="#FFFFFF"/>
+    <circle cx="51.2" cy="51.2" r="36" fill="none" stroke="#FFFFFF" stroke-width="3.6"/>
+  </g>
+</svg>

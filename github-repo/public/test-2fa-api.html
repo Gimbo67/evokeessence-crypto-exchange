@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>2FA Test API</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      max-width: 800px;
+    }
+    button {
+      margin: 5px;
+      padding: 8px 12px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    pre {
+      background-color: #f5f5f5;
+      padding: 10px;
+      border-radius: 4px;
+      overflow-x: auto;
+    }
+    .response {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>2FA Test API</h1>
+  <p>This page tests the 2FA API functionality using test endpoints that don't require authentication.</p>
+  
+  <div>
+    <h2>Test 2FA Status</h2>
+    <button id="statusBtn">Check 2FA Status</button>
+    <div class="response">
+      <pre id="statusResponse">Response will appear here</pre>
+    </div>
+  </div>
+  
+  <div>
+    <h2>Test 2FA Setup</h2>
+    <button id="setupBtn">Setup 2FA</button>
+    <div class="response">
+      <pre id="setupResponse">Response will appear here</pre>
+    </div>
+    <div id="qrCodeDisplay" style="margin-top: 10px;"></div>
+  </div>
+  
+  <div>
+    <h2>Test 2FA Validation</h2>
+    <input type="text" id="validationToken" placeholder="Enter 6-digit code">
+    <button id="validateBtn">Validate 2FA</button>
+    <div class="response">
+      <pre id="validateResponse">Response will appear here</pre>
+    </div>
+  </div>
+  
+  <script>
+    // Helper function to make API requests
+    async function makeRequest(url, method, body) {
+      try {
+        const options = {
+          method,
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          }
+        };
+        
+        if (body) {
+          options.body = JSON.stringify(body);
+        }
+        
+        const response = await fetch(url, options);
+        
+        // Log response metadata
+        console.log('Response status:', response.status);
+        console.log('Response content-type:', response.headers.get('Content-Type'));
+        
+        try {
+          return await response.json();
+        } catch (e) {
+          return { error: `Failed to parse JSON: ${e.message}` };
+        }
+      } catch (error) {
+        console.error('Error making request:', error);
+        return { error: error.message };
+      }
+    }
+    
+    // Check 2FA Status
+    document.getElementById('statusBtn').addEventListener('click', async () => {
+      const responseElement = document.getElementById('statusResponse');
+      responseElement.textContent = 'Loading...';
+      
+      try {
+        const result = await makeRequest('/test-api/2fa/status', 'GET');
+        responseElement.textContent = JSON.stringify(result, null, 2);
+      } catch (error) {
+        responseElement.textContent = `Error: ${error.message}`;
+      }
+    });
+    
+    // Setup 2FA
+    document.getElementById('setupBtn').addEventListener('click', async () => {
+      const responseElement = document.getElementById('setupResponse');
+      const qrCodeDisplay = document.getElementById('qrCodeDisplay');
+      responseElement.textContent = 'Loading...';
+      qrCodeDisplay.innerHTML = '';
+      
+      try {
+        const result = await makeRequest('/test-api/2fa/setup', 'POST');
+        responseElement.textContent = JSON.stringify(result, null, 2);
+        
+        // Display QR code if available
+        if (result.qrCode) {
+          qrCodeDisplay.innerHTML = result.qrCode;
+        }
+      } catch (error) {
+        responseElement.textContent = `Error: ${error.message}`;
+      }
+    });
+    
+    // Validate 2FA code
+    document.getElementById('validateBtn').addEventListener('click', async () => {
+      const responseElement = document.getElementById('validateResponse');
+      const token = document.getElementById('validationToken').value;
+      
+      if (!token || token.length !== 6 || !/^\d+$/.test(token)) {
+        responseElement.textContent = 'Error: Please enter a valid 6-digit code';
+        return;
+      }
+      
+      responseElement.textContent = 'Loading...';
+      
+      try {
+        const result = await makeRequest('/test-api/2fa/validate', 'POST', { token });
+        responseElement.textContent = JSON.stringify(result, null, 2);
+      } catch (error) {
+        responseElement.textContent = `Error: ${error.message}`;
+      }
+    });
+  </script>
+</body>
+</html>

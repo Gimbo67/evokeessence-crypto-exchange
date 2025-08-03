@@ -1,0 +1,4488 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "EvokeEssence Exchange API",
+    "description": "API schema for EvokeEssence cryptocurrency exchange",
+    "version": "1.0.0",
+    "contact": {
+      "name": "EvokeEssence s.r.o",
+      "url": "https://evo-exchange.com",
+      "email": "contact@evo-exchange.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://evo-exchange.com",
+      "description": "Production server"
+    }
+  ],
+  "paths": {
+    "/api/2fa/validate": {
+      "post": {
+        "summary": "Validate 2FA token",
+        "description": "Validates a two-factor authentication token for a user",
+        "operationId": "validate2FA",
+        "tags": [
+          "2FA"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "token",
+                  "username"
+                ],
+                "properties": {
+                  "token": {
+                    "type": "string",
+                    "description": "The 2FA token to validate",
+                    "example": "123456"
+                  },
+                  "username": {
+                    "type": "string",
+                    "description": "Username of the account",
+                    "example": "user123"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Token validated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "2FA validation successful"
+                    },
+                    "timestamp": {
+                      "type": "string",
+                      "format": "date-time",
+                      "example": "2025-03-25T12:00:00Z"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Invalid token"
+                    },
+                    "timestamp": {
+                      "type": "string",
+                      "format": "date-time",
+                      "example": "2025-03-25T12:00:00Z"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "example": "Server error"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "An unexpected error occurred. Please try again."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/2fa/status": {
+      "get": {
+        "summary": "Get 2FA status",
+        "description": "Returns the current 2FA status for the authenticated user",
+        "operationId": "get2FAStatus",
+        "tags": [
+          "2FA"
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "2FA status",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "enabled": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "username": {
+                      "type": "string",
+                      "example": "user123"
+                    },
+                    "userId": {
+                      "type": "integer",
+                      "example": 1
+                    },
+                    "method": {
+                      "type": "string",
+                      "example": "totp"
+                    },
+                    "backupCodesAvailable": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "backupCodesCount": {
+                      "type": "integer",
+                      "example": 10
+                    },
+                    "timestamp": {
+                      "type": "string",
+                      "format": "date-time",
+                      "example": "2025-03-25T12:00:00Z"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/2fa/setup": {
+      "post": {
+        "summary": "Setup 2FA",
+        "description": "Initiates 2FA setup for a user",
+        "operationId": "setup2FA",
+        "tags": [
+          "2FA"
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "2FA setup information",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "secret": {
+                      "type": "string",
+                      "example": "JBSWY3DPEHPK3PXP"
+                    },
+                    "otpauth_url": {
+                      "type": "string",
+                      "example": "otpauth://totp/EvoExchange:user123?secret=JBSWY3DPEHPK3PXP&issuer=EvoExchange"
+                    },
+                    "qrcode": {
+                      "type": "string",
+                      "description": "Base64-encoded QR code image"
+                    },
+                    "backupCodes": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "example": [
+                        "12345678",
+                        "87654321"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authenticated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Not authenticated"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/2fa/verify": {
+      "post": {
+        "summary": "Verify 2FA setup",
+        "description": "Verifies a token to complete 2FA setup",
+        "operationId": "verify2FASetup",
+        "tags": [
+          "2FA"
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "token"
+                ],
+                "properties": {
+                  "token": {
+                    "type": "string",
+                    "description": "The 2FA token to verify",
+                    "example": "123456"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "2FA setup verified",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Two-factor authentication has been enabled"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Invalid token"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/2fa/disable": {
+      "post": {
+        "summary": "Disable 2FA",
+        "description": "Disables two-factor authentication for the user",
+        "operationId": "disable2FA",
+        "tags": [
+          "2FA"
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "2FA disabled",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Two-factor authentication has been disabled"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authenticated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Not authenticated"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/password-reset/request": {
+      "post": {
+        "summary": "Request password reset",
+        "description": "Requests a password reset for a user account",
+        "operationId": "requestPasswordReset",
+        "tags": [
+          "Authentication"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "email"
+                ],
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "format": "email",
+                    "description": "Email of the user requesting password reset",
+                    "example": "user@example.com"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Password reset request processed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "If your email is registered, you will receive a verification code shortly"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Email is required"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "An error occurred while processing your request"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/password-reset/verify": {
+      "post": {
+        "summary": "Verify password reset",
+        "description": "Verifies the password reset code and sets a new password",
+        "operationId": "verifyPasswordReset",
+        "tags": [
+          "Authentication"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "email",
+                  "code",
+                  "newPassword"
+                ],
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "format": "email",
+                    "description": "Email of the user",
+                    "example": "user@example.com"
+                  },
+                  "code": {
+                    "type": "string",
+                    "description": "Verification code received by email",
+                    "example": "123456"
+                  },
+                  "newPassword": {
+                    "type": "string",
+                    "format": "password",
+                    "description": "New password",
+                    "example": "SecurePassword123"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Password reset successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Password has been reset successfully"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Invalid or expired verification code"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "User not found"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "An error occurred while processing your request"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/app-config": {
+      "get": {
+        "summary": "Get application configuration",
+        "description": "Returns the application configuration for mobile apps",
+        "operationId": "getAppConfig",
+        "tags": [
+          "AppConfig"
+        ],
+        "responses": {
+          "200": {
+            "description": "Application configuration retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "app": {
+                          "type": "object",
+                          "properties": {
+                            "version": {
+                              "type": "string",
+                              "example": "1.0.0"
+                            },
+                            "minSupportedVersion": {
+                              "type": "string",
+                              "example": "1.0.0"
+                            },
+                            "latestVersion": {
+                              "type": "string",
+                              "example": "1.0.0"
+                            },
+                            "forceUpdate": {
+                              "type": "boolean",
+                              "example": false
+                            },
+                            "platforms": {
+                              "type": "object",
+                              "properties": {
+                                "ios": {
+                                  "type": "object",
+                                  "properties": {
+                                    "version": {
+                                      "type": "string",
+                                      "example": "1.0.0"
+                                    },
+                                    "minVersion": {
+                                      "type": "string",
+                                      "example": "1.0.0"
+                                    },
+                                    "storeUrl": {
+                                      "type": "string",
+                                      "example": "https://apps.apple.com/app/evokeexchange/id123456789"
+                                    },
+                                    "appScheme": {
+                                      "type": "string",
+                                      "example": "evokeexchange://"
+                                    },
+                                    "forceUpdate": {
+                                      "type": "boolean",
+                                      "example": false
+                                    },
+                                    "universalLinkDomain": {
+                                      "type": "string",
+                                      "example": "app.evokeexchange.com"
+                                    }
+                                  }
+                                },
+                                "android": {
+                                  "type": "object",
+                                  "properties": {
+                                    "version": {
+                                      "type": "string",
+                                      "example": "1.0.0"
+                                    },
+                                    "minVersion": {
+                                      "type": "string",
+                                      "example": "1.0.0"
+                                    },
+                                    "storeUrl": {
+                                      "type": "string",
+                                      "example": "https://play.google.com/store/apps/details?id=com.evokeexchange.app"
+                                    },
+                                    "forceUpdate": {
+                                      "type": "boolean",
+                                      "example": false
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "api": {
+                          "type": "object",
+                          "properties": {
+                            "baseUrl": {
+                              "type": "string",
+                              "example": "https://api.evokeexchange.com"
+                            },
+                            "wsUrl": {
+                              "type": "string",
+                              "example": "wss://api.evokeexchange.com/ws"
+                            },
+                            "version": {
+                              "type": "string",
+                              "example": "v1"
+                            },
+                            "timeout": {
+                              "type": "integer",
+                              "example": 30000
+                            },
+                            "endpoints": {
+                              "type": "object",
+                              "properties": {
+                                "user": {
+                                  "type": "string",
+                                  "example": "/api/user"
+                                },
+                                "auth": {
+                                  "type": "string",
+                                  "example": "/api/auth"
+                                },
+                                "devices": {
+                                  "type": "string",
+                                  "example": "/api/user/devices"
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "security": {
+                          "type": "object",
+                          "properties": {
+                            "deviceRegistrationRequired": {
+                              "type": "boolean",
+                              "example": true
+                            },
+                            "sessionIdleTimeout": {
+                              "type": "integer",
+                              "example": 1800
+                            },
+                            "sessionAbsoluteTimeout": {
+                              "type": "integer",
+                              "example": 86400
+                            },
+                            "maxSessionsPerUser": {
+                              "type": "integer",
+                              "example": 5
+                            },
+                            "maxDevicesPerUser": {
+                              "type": "integer",
+                              "example": 5
+                            }
+                          }
+                        },
+                        "features": {
+                          "type": "object",
+                          "properties": {
+                            "twoFactorAuth": {
+                              "type": "object",
+                              "properties": {
+                                "enabled": {
+                                  "type": "boolean",
+                                  "example": true
+                                },
+                                "required": {
+                                  "type": "boolean",
+                                  "example": false
+                                },
+                                "methods": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string"
+                                  },
+                                  "example": [
+                                    "authenticator",
+                                    "email"
+                                  ]
+                                }
+                              }
+                            },
+                            "websocketSupport": {
+                              "type": "object",
+                              "properties": {
+                                "enabled": {
+                                  "type": "boolean",
+                                  "example": true
+                                },
+                                "events": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string"
+                                  },
+                                  "example": [
+                                    "balanceUpdated",
+                                    "orderStatusChanged"
+                                  ]
+                                }
+                              }
+                            },
+                            "currencies": {
+                              "type": "object",
+                              "properties": {
+                                "fiat": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string"
+                                  },
+                                  "example": [
+                                    "EUR",
+                                    "USD",
+                                    "CZK"
+                                  ]
+                                },
+                                "crypto": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string"
+                                  },
+                                  "example": [
+                                    "USDC",
+                                    "USDT",
+                                    "BTC",
+                                    "ETH"
+                                  ]
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "example": "Internal Server Error"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Failed to retrieve app configuration"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/contact": {
+      "post": {
+        "summary": "Submit contact form",
+        "description": "Sends a contact form message",
+        "operationId": "submitContactForm",
+        "tags": [
+          "Contact"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "email",
+                  "subject",
+                  "message"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "Name of the person submitting the form",
+                    "minLength": 2,
+                    "example": "John Doe"
+                  },
+                  "email": {
+                    "type": "string",
+                    "format": "email",
+                    "description": "Email address of the person",
+                    "example": "john.doe@example.com"
+                  },
+                  "subject": {
+                    "type": "string",
+                    "description": "Subject of the message",
+                    "minLength": 5,
+                    "example": "Question about services"
+                  },
+                  "message": {
+                    "type": "string",
+                    "description": "Content of the message",
+                    "minLength": 10,
+                    "example": "I would like to inquire about your cryptocurrency exchange services."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Message sent successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Your message has been sent successfully. We will get back to you soon."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Validation failed"
+                    },
+                    "errors": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "field": {
+                            "type": "string",
+                            "example": "email"
+                          },
+                          "message": {
+                            "type": "string",
+                            "example": "Invalid email address"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "There was an error sending your message. Please try again later."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/login": {
+      "post": {
+        "summary": "User login",
+        "description": "Authenticates a user and creates a session",
+        "operationId": "login",
+        "tags": [
+          "Authentication"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "username",
+                  "password"
+                ],
+                "properties": {
+                  "username": {
+                    "type": "string",
+                    "description": "Username",
+                    "example": "user123"
+                  },
+                  "password": {
+                    "type": "string",
+                    "format": "password",
+                    "description": "User password",
+                    "example": "SecurePassword123"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Login successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "requiresTwoFactor": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "user": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer",
+                          "example": 1
+                        },
+                        "username": {
+                          "type": "string",
+                          "example": "user123"
+                        },
+                        "isAdmin": {
+                          "type": "boolean",
+                          "example": false
+                        },
+                        "isEmployee": {
+                          "type": "boolean",
+                          "example": false
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Invalid username or password"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/register": {
+      "post": {
+        "summary": "User registration",
+        "description": "Creates a new user account",
+        "operationId": "register",
+        "tags": [
+          "Authentication"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "username",
+                  "email",
+                  "password",
+                  "fullName"
+                ],
+                "properties": {
+                  "username": {
+                    "type": "string",
+                    "description": "Username",
+                    "example": "newuser123"
+                  },
+                  "email": {
+                    "type": "string",
+                    "format": "email",
+                    "description": "Email address",
+                    "example": "newuser@example.com"
+                  },
+                  "password": {
+                    "type": "string",
+                    "format": "password",
+                    "description": "User password",
+                    "example": "SecurePassword123"
+                  },
+                  "fullName": {
+                    "type": "string",
+                    "description": "Full name of the user",
+                    "example": "John Doe"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Registration successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Registration successful"
+                    },
+                    "userId": {
+                      "type": "integer",
+                      "example": 123
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Registration failed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Username already exists"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/logout": {
+      "post": {
+        "summary": "User logout",
+        "description": "Logs out the current user and destroys the session",
+        "operationId": "logout",
+        "tags": [
+          "Authentication"
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Logout successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Logout successful"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/user/devices": {
+      "get": {
+        "summary": "Get user devices",
+        "description": "Returns all devices/sessions associated with the user",
+        "operationId": "getUserDevices",
+        "tags": [
+          "UserDevices"
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of user devices retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer",
+                            "example": 1
+                          },
+                          "deviceId": {
+                            "type": "string",
+                            "example": "device-uuid-12345"
+                          },
+                          "deviceName": {
+                            "type": "string",
+                            "example": "iPhone 13 Pro"
+                          },
+                          "deviceModel": {
+                            "type": "string",
+                            "example": "iPhone13,3"
+                          },
+                          "os": {
+                            "type": "string",
+                            "example": "iOS"
+                          },
+                          "osVersion": {
+                            "type": "string",
+                            "example": "15.4.1"
+                          },
+                          "lastActive": {
+                            "type": "string",
+                            "format": "date-time",
+                            "example": "2025-03-20T14:35:00Z"
+                          },
+                          "createdAt": {
+                            "type": "string",
+                            "format": "date-time",
+                            "example": "2025-03-15T10:20:00Z"
+                          },
+                          "isCurrentDevice": {
+                            "type": "boolean",
+                            "example": true
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authenticated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "example": "Unauthorized"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "You must be logged in to view your devices"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "example": "Internal Server Error"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Failed to get user devices"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/user/devices/current": {
+      "get": {
+        "summary": "Get current device",
+        "description": "Returns information about the current device/session",
+        "operationId": "getCurrentDevice",
+        "tags": [
+          "UserDevices"
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Current device information retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer",
+                          "example": 1
+                        },
+                        "deviceId": {
+                          "type": "string",
+                          "example": "device-uuid-12345"
+                        },
+                        "deviceName": {
+                          "type": "string",
+                          "example": "iPhone 13 Pro"
+                        },
+                        "deviceModel": {
+                          "type": "string",
+                          "example": "iPhone13,3"
+                        },
+                        "os": {
+                          "type": "string",
+                          "example": "iOS"
+                        },
+                        "osVersion": {
+                          "type": "string",
+                          "example": "15.4.1"
+                        },
+                        "lastActive": {
+                          "type": "string",
+                          "format": "date-time",
+                          "example": "2025-03-20T14:35:00Z"
+                        },
+                        "createdAt": {
+                          "type": "string",
+                          "format": "date-time",
+                          "example": "2025-03-15T10:20:00Z"
+                        },
+                        "isCurrentDevice": {
+                          "type": "boolean",
+                          "example": true
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authenticated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "example": "Unauthorized"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "You must be logged in to view your current device"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Current device not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "example": "Not Found"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Current device session not found"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/user/devices/register": {
+      "post": {
+        "summary": "Register a device",
+        "description": "Registers a new device or updates an existing one",
+        "operationId": "registerDevice",
+        "tags": [
+          "UserDevices"
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "deviceId",
+                  "model",
+                  "os",
+                  "osVersion",
+                  "appVersion"
+                ],
+                "properties": {
+                  "deviceId": {
+                    "type": "string",
+                    "description": "Unique identifier for the device",
+                    "example": "device-uuid-12345"
+                  },
+                  "deviceName": {
+                    "type": "string",
+                    "description": "User-friendly name for the device",
+                    "example": "My iPhone"
+                  },
+                  "model": {
+                    "type": "string",
+                    "description": "Device model",
+                    "example": "iPhone13,3"
+                  },
+                  "os": {
+                    "type": "string",
+                    "description": "Operating system",
+                    "example": "iOS"
+                  },
+                  "osVersion": {
+                    "type": "string",
+                    "description": "OS version",
+                    "example": "15.4.1"
+                  },
+                  "appVersion": {
+                    "type": "string",
+                    "description": "App version",
+                    "example": "1.0.0"
+                  },
+                  "pushToken": {
+                    "type": "string",
+                    "description": "Push notification token",
+                    "example": "examplePushToken123456"
+                  },
+                  "locale": {
+                    "type": "string",
+                    "description": "Device locale",
+                    "example": "en_US"
+                  },
+                  "timeZone": {
+                    "type": "string",
+                    "description": "Device time zone",
+                    "example": "America/New_York"
+                  },
+                  "carrier": {
+                    "type": "string",
+                    "description": "Mobile carrier",
+                    "example": "Verizon"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Device updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer",
+                          "example": 1
+                        },
+                        "deviceId": {
+                          "type": "string",
+                          "example": "device-uuid-12345"
+                        },
+                        "message": {
+                          "type": "string",
+                          "example": "Device updated successfully"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Device registered successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer",
+                          "example": 1
+                        },
+                        "deviceId": {
+                          "type": "string",
+                          "example": "device-uuid-12345"
+                        },
+                        "message": {
+                          "type": "string",
+                          "example": "Device registered successfully"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "example": "Bad Request"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Invalid device information"
+                    },
+                    "issues": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "code": {
+                            "type": "string",
+                            "example": "invalid_type"
+                          },
+                          "path": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            },
+                            "example": [
+                              "deviceId"
+                            ]
+                          },
+                          "message": {
+                            "type": "string",
+                            "example": "Required"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authenticated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "example": "Unauthorized"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "You must be logged in to register a device"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/user/devices/{id}/rename": {
+      "put": {
+        "summary": "Rename a device",
+        "description": "Changes the name of a user device",
+        "operationId": "renameDevice",
+        "tags": [
+          "UserDevices"
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of the device",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "deviceName"
+                ],
+                "properties": {
+                  "deviceName": {
+                    "type": "string",
+                    "description": "New name for the device",
+                    "example": "My Work iPhone"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Device renamed successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer",
+                          "example": 1
+                        },
+                        "deviceName": {
+                          "type": "string",
+                          "example": "My Work iPhone"
+                        },
+                        "message": {
+                          "type": "string",
+                          "example": "Device renamed successfully"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "example": "Bad Request"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Invalid device name"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authenticated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "example": "Unauthorized"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "You must be logged in to rename a device"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Device not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "example": "Not Found"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Device not found or does not belong to you"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/user/devices/{id}/remove": {
+      "delete": {
+        "summary": "Remove a device",
+        "description": "Removes a device and its associated session",
+        "operationId": "removeDevice",
+        "tags": [
+          "UserDevices"
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of the device",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Device removed successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer",
+                          "example": 1
+                        },
+                        "message": {
+                          "type": "string",
+                          "example": "Device removed successfully"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Cannot remove current device",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "example": "Bad Request"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Cannot remove current device. Please use logout instead."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authenticated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "example": "Unauthorized"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "You must be logged in to remove a device"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Device not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "example": "Not Found"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Device not found or does not belong to you"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/market/prices": {
+      "get": {
+        "summary": "Get cryptocurrency prices",
+        "description": "Returns current prices for cryptocurrencies",
+        "operationId": "getCryptoPrices",
+        "tags": [
+          "Market"
+        ],
+        "responses": {
+          "200": {
+            "description": "List of cryptocurrency prices",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "symbol": {
+                        "type": "string",
+                        "example": "BTC"
+                      },
+                      "price": {
+                        "type": "number",
+                        "format": "float",
+                        "example": 42138.75
+                      },
+                      "change24h": {
+                        "type": "number",
+                        "format": "float",
+                        "example": 2.5
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Failed to fetch cryptocurrency prices"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/market/rates": {
+      "get": {
+        "summary": "Get exchange rates",
+        "description": "Returns current exchange rates for supported currencies",
+        "operationId": "getExchangeRates",
+        "tags": [
+          "Market"
+        ],
+        "responses": {
+          "200": {
+            "description": "Exchange rates data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "base": {
+                      "type": "string",
+                      "example": "USD"
+                    },
+                    "rates": {
+                      "type": "object",
+                      "properties": {
+                        "EUR": {
+                          "type": "number",
+                          "example": 0.93
+                        },
+                        "GBP": {
+                          "type": "number",
+                          "example": 0.78
+                        },
+                        "CHF": {
+                          "type": "number",
+                          "example": 0.89
+                        }
+                      }
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "example": "2025-03-25T12:00:00Z"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Failed to fetch exchange rates"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/market/convert": {
+      "get": {
+        "summary": "Convert currency",
+        "description": "Converts an amount from one currency to another",
+        "operationId": "convertCurrency",
+        "tags": [
+          "Market"
+        ],
+        "parameters": [
+          {
+            "name": "amount",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "example": 100
+            }
+          },
+          {
+            "name": "from",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "USD"
+            }
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "EUR"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Converted amount",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "originalAmount": {
+                      "type": "number",
+                      "example": 100
+                    },
+                    "originalCurrency": {
+                      "type": "string",
+                      "example": "USD"
+                    },
+                    "convertedAmount": {
+                      "type": "number",
+                      "example": 93
+                    },
+                    "targetCurrency": {
+                      "type": "string",
+                      "example": "EUR"
+                    },
+                    "exchangeRate": {
+                      "type": "number",
+                      "example": 0.93
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Missing parameters. Required: amount, from, to"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/market/stats": {
+      "get": {
+        "summary": "Get market statistics",
+        "description": "Returns statistics about the market activity",
+        "operationId": "getMarketStats",
+        "tags": [
+          "Market"
+        ],
+        "responses": {
+          "200": {
+            "description": "Market statistics",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "total24h": {
+                      "type": "number",
+                      "example": 1250000
+                    },
+                    "transactions24h": {
+                      "type": "integer",
+                      "example": 432
+                    },
+                    "activeUsers": {
+                      "type": "integer",
+                      "example": 648
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Failed to fetch market statistics"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/deposits": {
+      "get": {
+        "summary": "Get user deposits",
+        "description": "Returns a list of deposits for the authenticated user",
+        "operationId": "getUserDeposits",
+        "tags": [
+          "Deposits"
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of deposits",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer",
+                        "example": 123
+                      },
+                      "amount": {
+                        "type": "string",
+                        "example": "1000.00"
+                      },
+                      "currency": {
+                        "type": "string",
+                        "example": "EUR"
+                      },
+                      "status": {
+                        "type": "string",
+                        "example": "completed"
+                      },
+                      "createdAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2025-03-25T12:00:00Z"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authenticated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Not authenticated"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/user": {
+      "get": {
+        "summary": "Get current user",
+        "description": "Returns details about the currently authenticated user",
+        "operationId": "getCurrentUser",
+        "tags": [
+          "User"
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "example": 123
+                    },
+                    "username": {
+                      "type": "string",
+                      "example": "user123"
+                    },
+                    "email": {
+                      "type": "string",
+                      "format": "email",
+                      "example": "user@example.com"
+                    },
+                    "fullName": {
+                      "type": "string",
+                      "example": "John Doe"
+                    },
+                    "isAdmin": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "isEmployee": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "kycStatus": {
+                      "type": "string",
+                      "example": "verified"
+                    },
+                    "balance": {
+                      "type": "number",
+                      "example": 10000.5
+                    },
+                    "balanceCurrency": {
+                      "type": "string",
+                      "example": "USD"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authenticated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "authenticated": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "User not authenticated"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/usdc/{id}": {
+      "patch": {
+        "summary": "Update USDC order status",
+        "description": "Updates the status of a specific USDC order (admin only)",
+        "operationId": "updateUsdcOrderStatus",
+        "tags": [
+          "Admin"
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 123
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "status"
+                ],
+                "properties": {
+                  "status": {
+                    "type": "string",
+                    "enum": [
+                      "pending",
+                      "processing",
+                      "successful",
+                      "completed",
+                      "failed"
+                    ],
+                    "description": "New status for the order",
+                    "example": "completed"
+                  },
+                  "txHash": {
+                    "type": "string",
+                    "description": "Optional transaction hash",
+                    "example": "0x1234567890abcdef"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Order updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "example": 123
+                    },
+                    "status": {
+                      "type": "string",
+                      "example": "completed"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "example": "2025-03-25T14:30:00Z"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Invalid status: Must be one of pending, processing, successful, completed, failed"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authenticated or not authorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Admin access required"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Order not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "USDC order not found"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/usdt/{id}": {
+      "patch": {
+        "summary": "Update USDT order status",
+        "description": "Updates the status of a specific USDT order (admin only)",
+        "operationId": "updateUsdtOrderStatus",
+        "tags": [
+          "Admin"
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 123
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "status"
+                ],
+                "properties": {
+                  "status": {
+                    "type": "string",
+                    "enum": [
+                      "pending",
+                      "processing",
+                      "successful",
+                      "completed",
+                      "failed"
+                    ],
+                    "description": "New status for the order",
+                    "example": "completed"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Order updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "example": 123
+                    },
+                    "status": {
+                      "type": "string",
+                      "example": "completed"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "example": "2025-03-25T14:30:00Z"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Invalid status: Must be one of pending, processing, successful, completed, failed"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authenticated or not authorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Admin access required"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Order not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "USDT order not found"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/kyc/document/{id}": {
+      "patch": {
+        "summary": "Update KYC document status",
+        "description": "Updates the status of a specific KYC document (admin only)",
+        "operationId": "updateKycDocumentStatus",
+        "tags": [
+          "Admin",
+          "KYC"
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 123
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "type": "string",
+                    "enum": [
+                      "pending",
+                      "approved",
+                      "rejected"
+                    ],
+                    "description": "New status for the document",
+                    "example": "approved"
+                  },
+                  "adminComment": {
+                    "type": "string",
+                    "description": "Optional comment from admin",
+                    "example": "Document verified successfully"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Document status updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "example": 123
+                    },
+                    "status": {
+                      "type": "string",
+                      "example": "approved"
+                    },
+                    "adminComment": {
+                      "type": "string",
+                      "example": "Document verified successfully"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Invalid document ID: Must be a positive number"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authenticated or not authorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Admin access required"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Document not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Document not found"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/employees": {
+      "get": {
+        "summary": "Get all employees",
+        "description": "Returns a list of all employees (admin only)",
+        "operationId": "getAllEmployees",
+        "tags": [
+          "Admin"
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of employees",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer",
+                        "example": 123
+                      },
+                      "username": {
+                        "type": "string",
+                        "example": "employee123"
+                      },
+                      "email": {
+                        "type": "string",
+                        "format": "email",
+                        "example": "employee@example.com"
+                      },
+                      "fullName": {
+                        "type": "string",
+                        "example": "John Smith"
+                      },
+                      "userGroup": {
+                        "type": "string",
+                        "example": "finance_emp"
+                      },
+                      "isActive": {
+                        "type": "boolean",
+                        "example": true
+                      },
+                      "createdAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2025-01-15T08:30:00Z"
+                      },
+                      "permissions": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "example": [
+                          "view_clients",
+                          "approve_kyc"
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authenticated or not authorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Admin access required"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create employee",
+        "description": "Creates a new employee account (admin only)",
+        "operationId": "createEmployee",
+        "tags": [
+          "Admin"
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "username",
+                  "email",
+                  "password",
+                  "fullName",
+                  "userGroup"
+                ],
+                "properties": {
+                  "username": {
+                    "type": "string",
+                    "example": "newemployee123"
+                  },
+                  "email": {
+                    "type": "string",
+                    "format": "email",
+                    "example": "newemployee@example.com"
+                  },
+                  "password": {
+                    "type": "string",
+                    "format": "password",
+                    "example": "SecurePassword123"
+                  },
+                  "fullName": {
+                    "type": "string",
+                    "example": "Jane Smith"
+                  },
+                  "userGroup": {
+                    "type": "string",
+                    "enum": [
+                      "kyc_employee",
+                      "finance_emp",
+                      "viewonly_employee",
+                      "second_admin"
+                    ],
+                    "example": "kyc_employee"
+                  },
+                  "permissions": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "example": [
+                      "view_clients",
+                      "approve_kyc"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Employee created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "example": 124
+                    },
+                    "username": {
+                      "type": "string",
+                      "example": "newemployee123"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Employee created successfully"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Username already exists"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authenticated or not authorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Admin access required"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/employee/dashboard/stats": {
+      "get": {
+        "summary": "Get employee dashboard statistics",
+        "description": "Returns statistics for the employee dashboard",
+        "operationId": "getEmployeeDashboardStats",
+        "tags": [
+          "Employee"
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Dashboard statistics",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "clientCount": {
+                      "type": "integer",
+                      "example": 120
+                    },
+                    "pendingKycCount": {
+                      "type": "integer",
+                      "example": 8
+                    },
+                    "recentTransactions": {
+                      "type": "integer",
+                      "example": 45
+                    },
+                    "dailyStats": {
+                      "type": "object",
+                      "properties": {
+                        "depositsAmount": {
+                          "type": "number",
+                          "example": 12500
+                        },
+                        "depositsCount": {
+                          "type": "integer",
+                          "example": 15
+                        },
+                        "ordersAmount": {
+                          "type": "number",
+                          "example": 8750
+                        },
+                        "ordersCount": {
+                          "type": "integer",
+                          "example": 23
+                        }
+                      }
+                    },
+                    "permissions": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "example": [
+                        "view_clients",
+                        "approve_kyc"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authenticated or not authorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Employee access required"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/employee/clients": {
+      "get": {
+        "summary": "Get clients list for employees",
+        "description": "Returns a list of clients accessible to the employee",
+        "operationId": "getEmployeeClientsList",
+        "tags": [
+          "Employee"
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of clients",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer",
+                        "example": 456
+                      },
+                      "username": {
+                        "type": "string",
+                        "example": "client456"
+                      },
+                      "email": {
+                        "type": "string",
+                        "format": "email",
+                        "example": "client456@example.com"
+                      },
+                      "fullName": {
+                        "type": "string",
+                        "example": "Client User"
+                      },
+                      "kycStatus": {
+                        "type": "string",
+                        "example": "pending"
+                      },
+                      "country": {
+                        "type": "string",
+                        "example": "Czech Republic"
+                      },
+                      "registeredAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2025-02-10T14:30:00Z"
+                      },
+                      "lastLogin": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2025-03-24T09:45:00Z"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authenticated or not authorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Employee access required"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/chat/test": {
+      "get": {
+        "summary": "Test chat service",
+        "description": "Tests if the chat service is properly configured",
+        "operationId": "testChatService",
+        "tags": [
+          "Chat"
+        ],
+        "responses": {
+          "200": {
+            "description": "Chat service test successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "ok"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "The chat service is working correctly"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Chat service error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "error"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Chat service is not configured"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/chat": {
+      "post": {
+        "summary": "Chat with AI assistant",
+        "description": "Send a message to the AI assistant",
+        "operationId": "chatWithAI",
+        "tags": [
+          "Chat"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "content",
+                  "sessionId"
+                ],
+                "properties": {
+                  "content": {
+                    "type": "string",
+                    "description": "Message content",
+                    "example": "What cryptocurrencies do you support?"
+                  },
+                  "sessionId": {
+                    "type": "string",
+                    "description": "Unique session identifier",
+                    "example": "session-123456"
+                  },
+                  "metadata": {
+                    "type": "object",
+                    "description": "Optional metadata",
+                    "example": {
+                      "source": "web"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "AI response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "ok"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "We support Bitcoin (BTC), Ethereum (ETH), and Tether (USDT) among others."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "error"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Invalid message format"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "error"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Failed to process chat message"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/news": {
+      "get": {
+        "summary": "Get news items",
+        "description": "Returns news items about cryptocurrencies and market updates",
+        "operationId": "getNewsItems",
+        "tags": [
+          "News"
+        ],
+        "responses": {
+          "200": {
+            "description": "List of news items",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer",
+                        "example": 1
+                      },
+                      "title": {
+                        "type": "string",
+                        "example": "Bitcoin Breaks New All-Time High"
+                      },
+                      "content": {
+                        "type": "string",
+                        "example": "Bitcoin has reached a new all-time high surpassing previous records."
+                      },
+                      "date": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2025-03-22T12:00:00Z"
+                      },
+                      "category": {
+                        "type": "string",
+                        "example": "market"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Failed to fetch news"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/usdt/orders": {
+      "get": {
+        "summary": "Get user's USDT orders",
+        "description": "Returns all USDT orders for the authenticated user",
+        "operationId": "getUserUsdtOrders",
+        "tags": [
+          "USDT"
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of user's USDT orders",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer",
+                        "example": 123
+                      },
+                      "userId": {
+                        "type": "integer",
+                        "example": 456
+                      },
+                      "amountUsd": {
+                        "type": "number",
+                        "example": 1000
+                      },
+                      "usdtAddress": {
+                        "type": "string",
+                        "example": "0x1234567890abcdef1234567890abcdef12345678"
+                      },
+                      "status": {
+                        "type": "string",
+                        "enum": [
+                          "pending",
+                          "processing",
+                          "successful",
+                          "completed",
+                          "failed"
+                        ],
+                        "example": "completed"
+                      },
+                      "createdAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2025-03-20T15:30:00Z"
+                      },
+                      "updatedAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2025-03-20T16:45:00Z"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authenticated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Not authenticated"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Failed to fetch orders"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/usdt/purchase": {
+      "post": {
+        "summary": "Purchase USDT",
+        "description": "Initiates a purchase of USDT for the authenticated user",
+        "operationId": "purchaseUsdt",
+        "tags": [
+          "USDT"
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "amountUsd",
+                  "usdtAddress"
+                ],
+                "properties": {
+                  "amountUsd": {
+                    "type": "number",
+                    "description": "Amount in USD to purchase",
+                    "example": 1000
+                  },
+                  "usdtAddress": {
+                    "type": "string",
+                    "description": "USDT wallet address",
+                    "example": "0x1234567890abcdef1234567890abcdef12345678"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "USDT purchase initiated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "example": 123
+                    },
+                    "status": {
+                      "type": "string",
+                      "example": "pending"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "USDT purchase initiated successfully"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Invalid input"
+                    },
+                    "details": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "example": [
+                        "Amount must be positive"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authenticated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Not authenticated"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Failed to process USDT purchase"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/usdc/orders": {
+      "get": {
+        "summary": "Get user's USDC orders",
+        "description": "Returns all USDC orders for the authenticated user",
+        "operationId": "getUserUsdcOrders",
+        "tags": [
+          "USDC"
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of user's USDC orders",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer",
+                        "example": 123
+                      },
+                      "userId": {
+                        "type": "integer",
+                        "example": 456
+                      },
+                      "amountUsd": {
+                        "type": "number",
+                        "example": 1000
+                      },
+                      "usdcAddress": {
+                        "type": "string",
+                        "example": "0x1234567890abcdef1234567890abcdef12345678"
+                      },
+                      "status": {
+                        "type": "string",
+                        "enum": [
+                          "pending",
+                          "processing",
+                          "successful",
+                          "completed",
+                          "failed"
+                        ],
+                        "example": "completed"
+                      },
+                      "txHash": {
+                        "type": "string",
+                        "example": "0xabcdef1234567890abcdef1234567890abcdef1234567890"
+                      },
+                      "createdAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2025-03-20T15:30:00Z"
+                      },
+                      "updatedAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2025-03-20T16:45:00Z"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authenticated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Not authenticated"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Failed to fetch orders"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/exchange/usdc-rate": {
+      "get": {
+        "summary": "Get USDC exchange rate",
+        "description": "Returns the current USDC to USD exchange rate",
+        "operationId": "getUsdcExchangeRate",
+        "tags": [
+          "USDC"
+        ],
+        "responses": {
+          "200": {
+            "description": "USDC exchange rate information",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "rate": {
+                      "type": "number",
+                      "example": 1.0002
+                    },
+                    "lastUpdate": {
+                      "type": "string",
+                      "format": "date-time",
+                      "example": "2025-03-25T12:00:00Z"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Failed to fetch USDC rate"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/verify-email": {
+      "get": {
+        "summary": "Verify email address",
+        "description": "Verifies a user's email address using a token",
+        "operationId": "verifyEmail",
+        "tags": [
+          "Authentication"
+        ],
+        "parameters": [
+          {
+            "name": "token",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Email verification token",
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+          },
+          {
+            "name": "userId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "User ID",
+            "example": "123"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Email verified successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Email verified successfully"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid verification request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Invalid or expired verification link. Please request a new one."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/kyc/status": {
+      "get": {
+        "summary": "Get KYC status",
+        "description": "Returns the current KYC status for the authenticated user",
+        "operationId": "getKycStatus",
+        "tags": [
+          "KYC"
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "KYC status information",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "not_started",
+                        "pending",
+                        "approved",
+                        "rejected"
+                      ],
+                      "example": "approved"
+                    },
+                    "full_name": {
+                      "type": "string",
+                      "example": "John Doe"
+                    },
+                    "email": {
+                      "type": "string",
+                      "format": "email",
+                      "example": "john.doe@example.com"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authenticated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Not authenticated"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "User not found"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/transactions": {
+      "get": {
+        "summary": "Get user transactions",
+        "description": "Returns all transactions for the authenticated user",
+        "operationId": "getUserTransactions",
+        "tags": [
+          "Transactions"
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of transactions",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer",
+                        "example": 123
+                      },
+                      "type": {
+                        "type": "string",
+                        "enum": [
+                          "deposit",
+                          "usdt_order",
+                          "usdc_order"
+                        ],
+                        "example": "deposit"
+                      },
+                      "amount": {
+                        "type": "number",
+                        "example": 1000.5
+                      },
+                      "currency": {
+                        "type": "string",
+                        "example": "USD"
+                      },
+                      "status": {
+                        "type": "string",
+                        "example": "completed"
+                      },
+                      "createdAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2025-03-20T15:30:00Z"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authenticated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Not authenticated"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/transactions": {
+      "get": {
+        "summary": "Get all transactions (admin)",
+        "description": "Returns all transactions with pagination (admin only)",
+        "operationId": "getAdminTransactions",
+        "tags": [
+          "Admin",
+          "Transactions"
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1
+            },
+            "description": "Page number"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 20
+            },
+            "description": "Items per page"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of all transactions",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer",
+                        "example": 123
+                      },
+                      "type": {
+                        "type": "string",
+                        "enum": [
+                          "deposit",
+                          "usdt_order",
+                          "usdc_order"
+                        ],
+                        "example": "deposit"
+                      },
+                      "userId": {
+                        "type": "integer",
+                        "example": 456
+                      },
+                      "username": {
+                        "type": "string",
+                        "example": "user456"
+                      },
+                      "email": {
+                        "type": "string",
+                        "format": "email",
+                        "example": "user456@example.com"
+                      },
+                      "amount": {
+                        "type": "number",
+                        "example": 1000.5
+                      },
+                      "currency": {
+                        "type": "string",
+                        "example": "USD"
+                      },
+                      "status": {
+                        "type": "string",
+                        "example": "completed"
+                      },
+                      "createdAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2025-03-20T15:30:00Z"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authenticated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Not authenticated"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Not authorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Access denied"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/employee/transactions": {
+      "get": {
+        "summary": "Get all transactions (employee)",
+        "description": "Returns all transactions with pagination (employee only)",
+        "operationId": "getEmployeeTransactions",
+        "tags": [
+          "Employee",
+          "Transactions"
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1
+            },
+            "description": "Page number"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 20
+            },
+            "description": "Items per page"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of all transactions",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer",
+                        "example": 123
+                      },
+                      "type": {
+                        "type": "string",
+                        "enum": [
+                          "deposit",
+                          "usdt_order",
+                          "usdc_order"
+                        ],
+                        "example": "deposit"
+                      },
+                      "userId": {
+                        "type": "integer",
+                        "example": 456
+                      },
+                      "username": {
+                        "type": "string",
+                        "example": "user456"
+                      },
+                      "email": {
+                        "type": "string",
+                        "format": "email",
+                        "example": "user456@example.com"
+                      },
+                      "amount": {
+                        "type": "number",
+                        "example": 1000.5
+                      },
+                      "currency": {
+                        "type": "string",
+                        "example": "USD"
+                      },
+                      "status": {
+                        "type": "string",
+                        "example": "completed"
+                      },
+                      "createdAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2025-03-20T15:30:00Z"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authenticated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Not authenticated"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Not authorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Access denied"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "sessionCookie": {
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "connect.sid",
+        "description": "Express session cookie for authentication"
+      }
+    },
+    "schemas": {
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 123
+          },
+          "username": {
+            "type": "string",
+            "example": "user123"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "example": "user@example.com"
+          },
+          "fullName": {
+            "type": "string",
+            "example": "John Doe"
+          },
+          "isAdmin": {
+            "type": "boolean",
+            "example": false
+          },
+          "isEmployee": {
+            "type": "boolean",
+            "example": false
+          },
+          "twoFactorEnabled": {
+            "type": "boolean",
+            "example": true
+          },
+          "kycStatus": {
+            "type": "string",
+            "example": "verified"
+          },
+          "balance": {
+            "type": "number",
+            "example": 10000.5
+          },
+          "balanceCurrency": {
+            "type": "string",
+            "example": "USD"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2025-01-15T08:30:00Z"
+          }
+        }
+      },
+      "UserDevice": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1
+          },
+          "deviceId": {
+            "type": "string",
+            "example": "device-uuid-12345"
+          },
+          "deviceName": {
+            "type": "string",
+            "example": "iPhone 13 Pro"
+          },
+          "deviceModel": {
+            "type": "string",
+            "example": "iPhone13,3"
+          },
+          "os": {
+            "type": "string",
+            "example": "iOS"
+          },
+          "osVersion": {
+            "type": "string",
+            "example": "15.4.1"
+          },
+          "appVersion": {
+            "type": "string",
+            "example": "1.0.0"
+          },
+          "pushToken": {
+            "type": "string",
+            "example": "examplePushToken123456"
+          },
+          "lastActive": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2025-03-20T14:35:00Z"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2025-03-15T10:20:00Z"
+          },
+          "isCurrentDevice": {
+            "type": "boolean",
+            "example": true
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "2FA",
+      "description": "Two-factor authentication operations"
+    },
+    {
+      "name": "Authentication",
+      "description": "Authentication and user management operations"
+    },
+    {
+      "name": "Contact",
+      "description": "Contact form operations"
+    },
+    {
+      "name": "Market",
+      "description": "Market data operations"
+    },
+    {
+      "name": "Deposits",
+      "description": "Deposit operations"
+    },
+    {
+      "name": "User",
+      "description": "User profile operations"
+    },
+    {
+      "name": "Chat",
+      "description": "AI chat operations"
+    },
+    {
+      "name": "News",
+      "description": "News and updates"
+    },
+    {
+      "name": "USDT",
+      "description": "USDT purchase operations"
+    },
+    {
+      "name": "USDC",
+      "description": "USDC purchase operations"
+    },
+    {
+      "name": "KYC",
+      "description": "Know Your Customer verification"
+    },
+    {
+      "name": "Transactions",
+      "description": "Transaction management"
+    },
+    {
+      "name": "Admin",
+      "description": "Admin-only operations"
+    },
+    {
+      "name": "Employee",
+      "description": "Employee-only operations"
+    },
+    {
+      "name": "AppConfig",
+      "description": "Application configuration for mobile apps"
+    },
+    {
+      "name": "UserDevices",
+      "description": "User device/session management operations"
+    }
+  ]
+}

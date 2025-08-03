@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Test</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f7fa;
+        }
+        h1 {
+            color: #263238;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .section {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        h2 {
+            margin-top: 0;
+            color: #455a64;
+            border-bottom: 1px solid #eceff1;
+            padding-bottom: 10px;
+        }
+        button {
+            background-color: #536dfe;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 16px;
+            font-size: 14px;
+            cursor: pointer;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            transition: background-color 0.2s;
+        }
+        button:hover {
+            background-color: #3d5afe;
+        }
+        pre {
+            background-color: #f5f7fa;
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+            margin-top: 15px;
+        }
+        .error {
+            color: #f44336;
+            font-weight: bold;
+        }
+        .success {
+            color: #4caf50;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>EvokeEssence API Test Dashboard</h1>
+    
+    <div class="section">
+        <h2>Basic API Connectivity</h2>
+        <button id="pingBtn">Test API Ping</button>
+        <button id="healthBtn">Check Health</button>
+        <div id="basicResult"></div>
+    </div>
+    
+    <div class="section">
+        <h2>Exchange Rates</h2>
+        <button id="exchangeRatesBtn">Get Exchange Rates</button>
+        <button id="commissionRateBtn">Get Commission Rate</button>
+        <div id="ratesResult"></div>
+    </div>
+    
+    <div class="section">
+        <h2>Market Prices</h2>
+        <button id="marketPricesBtn">Get Crypto Prices</button>
+        <div id="marketResult"></div>
+    </div>
+    
+    <div class="section">
+        <h2>Public Authentication Endpoints</h2>
+        <p>These endpoints do not require authentication and are useful for testing client-server connectivity.</p>
+        <button id="checkSessionBtn">Check Session Status</button>
+        <div id="authResult"></div>
+    </div>
+
+    <script>
+        // Helper to make API calls and handle errors consistently
+        async function callApi(endpoint) {
+            try {
+                const response = await fetch(endpoint);
+                const data = await response.json();
+                return { 
+                    success: true, 
+                    status: response.status, 
+                    data 
+                };
+            } catch (error) {
+                return { 
+                    success: false, 
+                    error: error.message 
+                };
+            }
+        }
+        
+        // Helper to display results
+        function displayResult(elementId, result) {
+            const element = document.getElementById(elementId);
+            
+            if (result.success) {
+                element.innerHTML = `
+                    <div class="success">Success (${result.status})</div>
+                    <pre>${JSON.stringify(result.data, null, 2)}</pre>
+                `;
+            } else {
+                element.innerHTML = `
+                    <div class="error">Error: ${result.error}</div>
+                `;
+            }
+        }
+
+        // ===== Basic Endpoints =====
+        document.getElementById('pingBtn').addEventListener('click', async () => {
+            const result = await callApi('/api/ping');
+            displayResult('basicResult', result);
+        });
+        
+        document.getElementById('healthBtn').addEventListener('click', async () => {
+            const result = await callApi('/health');
+            displayResult('basicResult', result);
+        });
+        
+        // ===== Exchange Rates =====
+        document.getElementById('exchangeRatesBtn').addEventListener('click', async () => {
+            const result = await callApi('/api/exchange-rates');
+            displayResult('ratesResult', result);
+        });
+        
+        document.getElementById('commissionRateBtn').addEventListener('click', async () => {
+            const result = await callApi('/api/settings/commission');
+            displayResult('ratesResult', result);
+        });
+        
+        // ===== Market Prices =====
+        document.getElementById('marketPricesBtn').addEventListener('click', async () => {
+            const result = await callApi('/api/market/prices');
+            displayResult('marketResult', result);
+        });
+        
+        // ===== Auth =====
+        document.getElementById('checkSessionBtn').addEventListener('click', async () => {
+            const result = await callApi('/api/auth/session');
+            displayResult('authResult', result);
+        });
+    </script>
+</body>
+</html>

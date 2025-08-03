@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fixes Verification</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+    h1 {
+      color: #2563eb;
+    }
+    .card {
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+    .success {
+      color: green;
+      font-weight: bold;
+    }
+    .failure {
+      color: red;
+      font-weight: bold;
+    }
+    button {
+      background-color: #2563eb;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background-color: #1d4ed8;
+    }
+    pre {
+      background-color: #f5f5f5;
+      padding: 10px;
+      border-radius: 4px;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Fixes Verification</h1>
+    
+    <div class="card">
+      <h2>Fix #1: Wouter Router Version</h2>
+      <p>Verifying if wouter is downgraded from 3.6.0 to 2.x.x to fix the "Missing router-decoder" error.</p>
+      <button id="checkWouter">Verify Wouter Fix</button>
+      <div id="wouterResult"></div>
+    </div>
+    
+    <div class="card">
+      <h2>Fix #2: PDF Async Generation</h2>
+      <p>Verifying if PDF generation properly uses await for QR code generation.</p>
+      <button id="checkPDF">Verify PDF Fix</button>
+      <div id="pdfResult"></div>
+    </div>
+    
+    <div class="card">
+      <h2>All Fixes Status</h2>
+      <div id="overallStatus">Click both verification buttons above to check overall status.</div>
+    </div>
+  </div>
+
+  <script>
+    // Track verification results
+    const results = {
+      wouter: null,
+      pdf: null
+    };
+    
+    // Update overall status
+    function updateOverallStatus() {
+      const statusEl = document.getElementById('overallStatus');
+      if (results.wouter === true && results.pdf === true) {
+        statusEl.innerHTML = '<span class="success">✅ All fixes are in place! The application should work correctly now.</span>';
+      } else if (results.wouter === false || results.pdf === false) {
+        statusEl.innerHTML = '<span class="failure">❌ Some fixes are missing. Please check the details above.</span>';
+      } else {
+        statusEl.innerHTML = 'Click both verification buttons above to check overall status.';
+      }
+    }
+    
+    // Wouter version check
+    document.getElementById('checkWouter').addEventListener('click', async () => {
+      const resultEl = document.getElementById('wouterResult');
+      resultEl.innerHTML = 'Checking wouter version...';
+      
+      try {
+        const response = await fetch('/package-lock.json');
+        const packageLock = await response.json();
+        
+        const wouterVersion = packageLock.packages['node_modules/wouter'].version;
+        
+        if (wouterVersion.startsWith('2.')) {
+          resultEl.innerHTML = `
+            <span class="success">✅ Wouter downgrade confirmed - version ${wouterVersion}</span>
+            <p>This fixes the "Missing router-decoder: htmlTransformer" error.</p>
+          `;
+          results.wouter = true;
+        } else {
+          resultEl.innerHTML = `
+            <span class="failure">❌ Wouter version is still ${wouterVersion}, not downgraded to v2.x</span>
+            <p>The router decoder issue might still occur.</p>
+          `;
+          results.wouter = false;
+        }
+      } catch (error) {
+        resultEl.innerHTML = `<span class="failure">Error checking wouter version: ${error.message}</span>`;
+        results.wouter = false;
+      }
+      
+      updateOverallStatus();
+    });
+    
+    // PDF fix check
+    document.getElementById('checkPDF').addEventListener('click', async () => {
+      const resultEl = document.getElementById('pdfResult');
+      resultEl.innerHTML = 'Checking PDF generation fix...';
+      
+      try {
+        const response = await fetch('/client/src/utils/pdf-generator.ts');
+        const pdfGeneratorCode = await response.text();
+        
+        // Check for key fixed patterns
+        const hasAwaitQrCode = pdfGeneratorCode.includes('await qrcode.toDataURL');
+        const hasProperErrorHandling = pdfGeneratorCode.includes('try {') && 
+                                     pdfGeneratorCode.includes('catch (error) {') && 
+                                     pdfGeneratorCode.includes('console.error');
+        
+        let resultHTML = '<ul>';
+        resultHTML += `<li>Async QR code generation: ${hasAwaitQrCode ? '✅ Found' : '❌ Not found'}</li>`;
+        resultHTML += `<li>Proper error handling: ${hasProperErrorHandling ? '✅ Found' : '❌ Not found'}</li>`;
+        resultHTML += '</ul>';
+        
+        if (hasAwaitQrCode && hasProperErrorHandling) {
+          resultHTML = `<span class="success">✅ PDF generation fix confirmed</span>${resultHTML}`;
+          results.pdf = true;
+        } else {
+          resultHTML = `<span class="failure">❌ PDF generation fix is incomplete</span>${resultHTML}`;
+          results.pdf = false;
+        }
+        
+        resultEl.innerHTML = resultHTML;
+      } catch (error) {
+        resultEl.innerHTML = `<span class="failure">Error checking PDF fix: ${error.message}</span>`;
+        results.pdf = false;
+      }
+      
+      updateOverallStatus();
+    });
+  </script>
+</body>
+</html>

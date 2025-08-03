@@ -1,0 +1,32 @@
+{
+  "expo": {
+    "name": "CryptoEvoke Exchange",
+    "slug": "cryptoevoke-exchange",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#6200ee"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.evokeessence.cryptoexchange"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#6200ee"
+      },
+      "package": "com.evokeessence.cryptoexchange"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
+  }
+}

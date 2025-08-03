@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contractor Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .card {
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 16px;
+      margin-bottom: 16px;
+      background-color: #f9f9f9;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .stat-card {
+      background-color: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      padding: 16px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    .stat-title {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 8px;
+    }
+    .stat-value {
+      font-size: 24px;
+      font-weight: bold;
+      color: #333;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      text-align: left;
+      padding: 12px 8px;
+      border-bottom: 1px solid #ddd;
+    }
+    th {
+      background-color: #f2f2f2;
+      font-weight: bold;
+    }
+    .button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 14px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .login-container {
+      text-align: center;
+      margin-top: 100px;
+    }
+    .login-form {
+      display: flex;
+      flex-direction: column;
+      max-width: 300px;
+      margin: 0 auto;
+    }
+    .login-form input {
+      margin-bottom: 10px;
+      padding: 8px;
+    }
+    .loading {
+      text-align: center;
+      padding: 40px;
+      font-style: italic;
+      color: #666;
+    }
+    .currency {
+      color: #666;
+      font-size: 0.8em;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div id="login-section" class="login-container">
+      <h2>Contractor Login</h2>
+      <div class="login-form">
+        <input type="text" id="username" placeholder="Username" value="andreavass">
+        <input type="password" id="password" placeholder="Password" value="Voss786.13">
+        <button class="button" onclick="login()">Login</button>
+      </div>
+    </div>
+    
+    <div id="dashboard-section" style="display: none;">
+      <div class="header">
+        <h1>Contractor Dashboard</h1>
+        <button class="button" onclick="logout()">Logout</button>
+      </div>
+      
+      <div class="card">
+        <h2>Your Referral Code: <span id="referral-code">Loading...</span></h2>
+        <p>Share this code with potential clients to earn commissions on their deposits.</p>
+        <p>Commission rate: <span id="commission-rate">Loading...</span>%</p>
+      </div>
+      
+      <div class="stats">
+        <div class="stat-card">
+          <div class="stat-title">Referred Clients</div>
+          <div class="stat-value" id="referred-clients-count">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-title">Total Referred Deposits</div>
+          <div class="stat-value">€<span id="referred-deposits-amount">0.00</span></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-title">Total Commission Earned</div>
+          <div class="stat-value">€<span id="total-commission">0.00</span></div>
+        </div>
+      </div>
+      
+      <div class="card">
+        <h3>Referred Clients</h3>
+        <table id="clients-table">
+          <thead>
+            <tr>
+              <th>Username</th>
+              <th>Name</th>
+              <th>Deposits</th>
+              <th>Total Amount</th>
+            </tr>
+          </thead>
+          <tbody id="clients-table-body">
+            <tr>
+              <td colspan="4" class="loading">Loading clients data...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+      <div class="card">
+        <h3>Referred Deposits</h3>
+        <table id="deposits-table">
+          <thead>
+            <tr>
+              <th>Client</th>
+              <th>Amount</th>
+              <th>Commission</th>
+              <th>Status</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody id="deposits-table-body">
+            <tr>
+              <td colspan="5" class="loading">Loading deposits data...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Helper function to format dates
+    function formatDate(dateString) {
+      const date = new Date(dateString);
+      return date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
+    }
+    
+    // Format currency
+    function formatCurrency(amount) {
+      return parseFloat(amount).toFixed(2);
+    }
+    
+    // Login function
+    async function login() {
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      
+      try {
+        const response = await fetch('/api/auth/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ 
+            username, 
+            password,
+            recaptchaResponse: 'BYPASS_KEY' // Development bypass
+          }),
+          credentials: 'include'
+        });
+        
+        if (response.ok) {
+          const data = await response.json();
+          console.log('Login successful:', data);
+          
+          if (!data.isContractor) {
+            alert('This account does not have contractor privileges.');
+            return;
+          }
+          
+          document.getElementById('login-section').style.display = 'none';
+          document.getElementById('dashboard-section').style.display = 'block';
+          
+          fetchContractorData();
+        } else {
+          const errorData = await response.json();
+          alert('Login failed: ' + (errorData.message || errorData.error || 'Unknown error'));
+        }
+      } catch (error) {
+        console.error('Login error:', error);
+        alert('Login failed. Please check your connection and try again.');
+      }
+    }
+    
+    // Logout function
+    function logout() {
+      fetch('/api/auth/logout', {
+        method: 'POST',
+        credentials: 'include'
+      }).then(() => {
+        document.getElementById('login-section').style.display = 'block';
+        document.getElementById('dashboard-section').style.display = 'none';
+      }).catch(error => {
+        console.error('Logout error:', error);
+      });
+    }
+    
+    // Fetch contractor data
+    async function fetchContractorData() {
+      try {
+        const response = await fetch('/api/contractor/analytics', {
+          credentials: 'include'
+        });
+        
+        if (response.ok) {
+          const data = await response.json();
+          console.log('Contractor data:', data);
+          
+          // Update dashboard with contractor data
+          document.getElementById('referral-code').textContent = data.referralCode || 'N/A';
+          document.getElementById('commission-rate').textContent = data.contractorCommissionRate * 100 || '0.85';
+          document.getElementById('referred-clients-count').textContent = data.referredClientsCount || 0;
+          document.getElementById('referred-deposits-amount').textContent = formatCurrency(data.totalReferredDeposits || 0);
+          document.getElementById('total-commission').textContent = formatCurrency(data.totalCommission || 0);
+          
+          // Update clients table
+          const clientsTableBody = document.getElementById('clients-table-body');
+          clientsTableBody.innerHTML = '';
+          
+          if (data.referredClients && data.referredClients.length > 0) {
+            data.referredClients.forEach(client => {
+              const row = document.createElement('tr');
+              row.innerHTML = `
+                <td>${client.username}</td>
+                <td>${client.fullName || 'N/A'}</td>
+                <td>${client.depositCount || 0}</td>
+                <td>€${formatCurrency(client.totalDeposited || 0)}</td>
+              `;
+              clientsTableBody.appendChild(row);
+            });
+          } else {
+            const row = document.createElement('tr');
+            row.innerHTML = `<td colspan="4" style="text-align: center;">No referred clients yet</td>`;
+            clientsTableBody.appendChild(row);
+          }
+          
+          // Update deposits table
+          const depositsTableBody = document.getElementById('deposits-table-body');
+          depositsTableBody.innerHTML = '';
+          
+          if (data.referredDeposits && data.referredDeposits.length > 0) {
+            data.referredDeposits.forEach(deposit => {
+              const row = document.createElement('tr');
+              row.innerHTML = `
+                <td>${deposit.username || 'Unknown'}</td>
+                <td>€${formatCurrency(deposit.amount || 0)} <span class="currency">${deposit.currency || 'EUR'}</span></td>
+                <td>€${formatCurrency(deposit.contractorCommission || 0)}</td>
+                <td>${deposit.status || 'Unknown'}</td>
+                <td>${formatDate(deposit.createdAt)}</td>
+              `;
+              depositsTableBody.appendChild(row);
+            });
+          } else {
+            const row = document.createElement('tr');
+            row.innerHTML = `<td colspan="5" style="text-align: center;">No referred deposits yet</td>`;
+            depositsTableBody.appendChild(row);
+          }
+        } else {
+          console.error('Failed to fetch contractor data:', response.status);
+        }
+      } catch (error) {
+        console.error('Error fetching contractor data:', error);
+      }
+    }
+  </script>
+</body>
+</html>
