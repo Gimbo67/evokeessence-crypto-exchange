@@ -1,0 +1,38 @@
+{
+  "expo": {
+    "name": "EvokeEssence",
+    "slug": "evokeessence-crypto",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0066FF"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "CY-Houdini.CY-3C58C36E-7E8B-11E8-96CD-60030B082F64.com.cheesecake",
+      "buildNumber": "1",
+      "infoPlist": {
+        "NSCameraUsageDescription": "This app uses the camera for document verification purposes.",
+        "NSPhotoLibraryUsageDescription": "This app requires access to your photo library for document uploads."
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#0066FF"
+      },
+      "package": "com.evokeessence.app",
+      "versionCode": 1
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
+  }
+}

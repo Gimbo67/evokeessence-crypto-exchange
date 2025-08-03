@@ -1,0 +1,1 @@
+// This file is being intentionally deleted as we're using direct URL redirection to SumSub instead of API integration

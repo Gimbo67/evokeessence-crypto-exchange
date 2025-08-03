@@ -1,0 +1,4 @@
+Contact: mailto:support@evo-exchange.com
+Expires: 2026-01-26T11:37:00Z
+Preferred-Languages: en, de
+Canonical: https://evo-exchange.com/.well-known/security.txt
