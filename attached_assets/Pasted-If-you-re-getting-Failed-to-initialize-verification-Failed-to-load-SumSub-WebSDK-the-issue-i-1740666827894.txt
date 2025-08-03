@@ -1,0 +1,104 @@
+If you're getting **"Failed to initialize verification: Failed to load SumSub WebSDK"**, the issue is likely one of the following:
+
+---
+
+## **1️⃣ Ensure SumSub WebSDK is Loaded Correctly**
+Make sure you're including the SumSub WebSDK **correctly** in your HTML file.
+
+**Correct Way to Load SDK (Recommended)**:
+```html
+<script src="https://static.sumsub.com/idensic/static/sumsub-kyc-sdk.js"></script>
+```
+
+**Check If SDK is Loaded:**
+- Open the browser console (`F12` → `Console`).
+- Run:
+  ```js
+  console.log(typeof SumSubKYC);
+  ```
+  - If it returns `"undefined"`, the SDK **did not load**.
+
+**How to Fix:**
+- Check if a **Content Security Policy (CSP)** is blocking external scripts in your Replit project.
+- Try adding this to **`<head>`** in your HTML:
+  ```html
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self' https://static.sumsub.com;">
+  ```
+
+---
+
+## **2️⃣ Fix Backend Token Endpoint (`/getAccessToken`)**
+Make sure your **server endpoint** for `getAccessToken` is working properly.
+
+### **Test the API Manually**
+Run this in the **Replit shell**:
+```bash
+curl -X GET "https://your-replit-project-url/getAccessToken"
+```
+- If this returns `{ "token": "..." }`, it's working.
+- If it fails, debug your backend.
+
+### **Fix Backend Token Code**
+Modify your **getAccessToken function**:
+```js
+app.get('/getAccessToken', async (req, res) => {
+    try {
+        const token = await getAccessToken("test_user_123"); // Replace with actual userId
+        res.json({ token });
+    } catch (error) {
+        console.error("Failed to get access token:", error.response?.data || error.message);
+        res.status(500).json({ error: "Failed to get access token" });
+    }
+});
+```
+
+---
+
+## **3️⃣ Ensure You're Calling `initSumsubSDK()` Properly**
+In your frontend **JavaScript**, make sure `initSumsubSDK()` is executed **after the SDK has loaded**.
+
+### **Correct Implementation**
+```html
+<script>
+  async function initSumsubSDK() {
+    try {
+      const response = await fetch('/getAccessToken');
+      const { token } = await response.json();
+
+      if (!token) throw new Error("No token received from backend");
+
+      console.log("Initializing SumSub with token:", token);
+
+      SumSubKYC.init({
+        accessToken: token,
+        lang: "en",
+        onMessage: (type, payload) => console.log("SumSub message:", type, payload),
+        onError: (error) => console.error("SumSub error:", error)
+      });
+    } catch (error) {
+      console.error("Failed to initialize SumSub WebSDK:", error);
+    }
+  }
+
+  window.onload = initSumsubSDK;
+</script>
+```
+
+---
+
+## **4️⃣ Debug Network Requests**
+1. Open **DevTools** (`F12` → `Network` → `XHR`).
+2. Look for requests to:
+   - **SumSub WebSDK (`https://static.sumsub.com/...`)**
+   - **Your backend (`/getAccessToken`)**
+3. If any request **fails**, check the error messages.
+
+---
+
+## **Final Steps**
+✅ **Check if SumSub WebSDK is loading (Console test)**  
+✅ **Verify `/getAccessToken` endpoint is working (Curl test)**  
+✅ **Ensure `initSumsubSDK()` runs correctly (JavaScript fix)**  
+✅ **Check network errors (DevTools)**  
+
+If you’re still stuck, send me the **exact console error message**, and I’ll help debug further! 🚀

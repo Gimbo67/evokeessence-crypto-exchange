@@ -1,0 +1,1228 @@
+import React, { useState, useEffect } from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { 
+  View, 
+  Text, 
+  TextInput, 
+  StyleSheet, 
+  TouchableOpacity, 
+  ActivityIndicator,
+  Alert,
+  ScrollView,
+  SafeAreaView
+} from 'react-native';
+import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+// API base URL - pointing to your live backend
+const API_URL = 'https://evo-exchange.com/api';
+
+// Create the stack navigator
+const Stack = createStackNavigator();
+
+// Login Screen Component
+function LoginScreen({ navigation }) {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const handleLogin = async () => {
+    console.log('Login button pressed');
+    if (!username || !password) {
+      Alert.alert('Error', 'Please enter both username and password');
+      return;
+    }
+
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      const response = await axios.post(`${API_URL}/auth/login`, {
+        username,
+        password
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+          'X-App-Platform': 'ios'
+        }
+      });
+      
+      console.log('Login response:', JSON.stringify(response.data));
+      
+      // Check if 2FA is required
+      if (response.data.requireTwoFactor) {
+        // Save the username for the 2FA screen
+        await AsyncStorage.setItem('temp_username', username);
+        Alert.alert('Two-Factor Authentication', 'Please enter your verification code to continue.');
+        navigation.navigate('TwoFactor', { username: username });
+        setIsLoading(false);
+        return;
+      }
+      
+      // Store the entire response for debugging
+      await AsyncStorage.setItem('last_login_response', JSON.stringify(response.data));
+      
+      // Store user data
+      const userData = response.data.user || response.data;
+      await AsyncStorage.setItem('user_data', JSON.stringify(userData));
+      
+      if (response.data.token) {
+        await AsyncStorage.setItem('auth_token', response.data.token);
+      }
+      
+      // Determine user type and navigate to the appropriate dashboard
+      let userType = 'default';
+      
+      if (userData.isAdmin) {
+        userType = 'admin';
+      } else if (userData.isEmployee) {
+        userType = 'employee';
+      } else if (userData.verificationLevel >= 2) {
+        userType = 'verified';
+      } else {
+        userType = 'unverified';
+      }
+      
+      console.log(`Navigating to dashboard for user type: ${userType}`);
+      await AsyncStorage.setItem('user_type', userType);
+      
+      // Force a hard navigation reset to ensure we leave the login screen
+      setTimeout(() => {
+        navigation.reset({
+          index: 0,
+          routes: [{ name: 'Dashboard', params: { userType } }],
+        });
+      }, 300);
+    } catch (err) {
+      console.error('Login error:', err.response?.data || err.message);
+      setError(err.response?.data?.message || 'Login failed. Please check your credentials.');
+      Alert.alert('Login Error', err.response?.data?.message || 'Login failed. Please check your credentials.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  return (
+    <SafeAreaView style={styles.container}>
+      <ScrollView contentContainerStyle={styles.scrollContent}>
+        <View style={styles.header}>
+          <View style={styles.logoContainer}>
+            <Text style={styles.logoText}>EE</Text>
+          </View>
+          <Text style={styles.title}>EvokeEssence</Text>
+          <Text style={styles.subtitle}>Login to your account</Text>
+        </View>
+
+        {error ? (
+          <View style={styles.errorContainer}>
+            <Text style={styles.errorText}>{error}</Text>
+          </View>
+        ) : null}
+
+        <View style={styles.form}>
+          <View style={styles.inputGroup}>
+            <Text style={styles.label}>Username</Text>
+            <TextInput
+              style={styles.input}
+              placeholder="Enter your username"
+              value={username}
+              onChangeText={setUsername}
+              autoCapitalize="none"
+              autoCorrect={false}
+            />
+          </View>
+
+          <View style={styles.inputGroup}>
+            <Text style={styles.label}>Password</Text>
+            <TextInput
+              style={styles.input}
+              placeholder="Enter your password"
+              value={password}
+              onChangeText={setPassword}
+              secureTextEntry
+            />
+          </View>
+
+          <TouchableOpacity
+            style={styles.loginButton}
+            onPress={handleLogin}
+            disabled={isLoading}
+          >
+            {isLoading ? (
+              <ActivityIndicator color="#fff" size="small" />
+            ) : (
+              <Text style={styles.loginButtonText}>Login</Text>
+            )}
+          </TouchableOpacity>
+
+          <View style={styles.registerContainer}>
+            <Text style={styles.registerText}>Don't have an account? </Text>
+            <TouchableOpacity onPress={() => navigation.navigate('Register')}>
+              <Text style={styles.registerLink}>Register</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </ScrollView>
+    </SafeAreaView>
+  );
+}
+
+// Register Screen Component
+function RegisterScreen({ navigation }) {
+  const [formData, setFormData] = useState({
+    username: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+    firstName: '',
+    lastName: '',
+    phone: '',
+    country: '',
+    referralCode: ''
+  });
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const handleChange = (field, value) => {
+    setFormData({ ...formData, [field]: value });
+  };
+
+  const handleRegister = async () => {
+    // Basic validation
+    if (!formData.username || !formData.email || !formData.password) {
+      Alert.alert('Error', 'Please fill in all required fields');
+      return;
+    }
+
+    if (formData.password !== formData.confirmPassword) {
+      Alert.alert('Error', 'Passwords do not match');
+      return;
+    }
+
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      const response = await axios.post(`${API_URL}/auth/register`, {
+        username: formData.username,
+        email: formData.email,
+        password: formData.password,
+        first_name: formData.firstName,
+        last_name: formData.lastName,
+        phone: formData.phone,
+        country: formData.country,
+        referral_code: formData.referralCode
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+          'X-App-Platform': 'ios'
+        }
+      });
+      
+      console.log('Registration successful:', response.data);
+      
+      Alert.alert(
+        'Registration Successful', 
+        'Your account has been created. Please check your email for verification instructions.',
+        [{ text: 'OK', onPress: () => navigation.navigate('Login') }]
+      );
+    } catch (err) {
+      console.error('Registration error:', err.response?.data || err.message);
+      setError(err.response?.data?.message || 'Registration failed. Please try again.');
+      Alert.alert('Registration Error', err.response?.data?.message || 'Registration failed. Please try again.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  return (
+    <SafeAreaView style={styles.container}>
+      <ScrollView contentContainerStyle={styles.scrollContent}>
+        <View style={styles.header}>
+          <View style={styles.logoContainer}>
+            <Text style={styles.logoText}>EE</Text>
+          </View>
+          <Text style={styles.title}>EvokeEssence</Text>
+          <Text style={styles.subtitle}>Create a new account</Text>
+        </View>
+
+        {error ? (
+          <View style={styles.errorContainer}>
+            <Text style={styles.errorText}>{error}</Text>
+          </View>
+        ) : null}
+
+        <View style={styles.form}>
+          <View style={styles.inputGroup}>
+            <Text style={styles.label}>Username<Text style={styles.required}>*</Text></Text>
+            <TextInput
+              style={styles.input}
+              placeholder="Choose a username"
+              value={formData.username}
+              onChangeText={(value) => handleChange('username', value)}
+              autoCapitalize="none"
+              autoCorrect={false}
+            />
+          </View>
+
+          <View style={styles.inputGroup}>
+            <Text style={styles.label}>Email<Text style={styles.required}>*</Text></Text>
+            <TextInput
+              style={styles.input}
+              placeholder="Enter your email"
+              value={formData.email}
+              onChangeText={(value) => handleChange('email', value)}
+              keyboardType="email-address"
+              autoCapitalize="none"
+              autoCorrect={false}
+            />
+          </View>
+
+          <View style={styles.rowContainer}>
+            <View style={[styles.inputGroup, styles.halfInput]}>
+              <Text style={styles.label}>First Name</Text>
+              <TextInput
+                style={styles.input}
+                placeholder="First name"
+                value={formData.firstName}
+                onChangeText={(value) => handleChange('firstName', value)}
+              />
+            </View>
+
+            <View style={[styles.inputGroup, styles.halfInput]}>
+              <Text style={styles.label}>Last Name</Text>
+              <TextInput
+                style={styles.input}
+                placeholder="Last name"
+                value={formData.lastName}
+                onChangeText={(value) => handleChange('lastName', value)}
+              />
+            </View>
+          </View>
+
+          <View style={styles.inputGroup}>
+            <Text style={styles.label}>Phone Number</Text>
+            <TextInput
+              style={styles.input}
+              placeholder="Enter your phone number"
+              value={formData.phone}
+              onChangeText={(value) => handleChange('phone', value)}
+              keyboardType="phone-pad"
+            />
+          </View>
+
+          <View style={styles.inputGroup}>
+            <Text style={styles.label}>Country</Text>
+            <TextInput
+              style={styles.input}
+              placeholder="Enter your country"
+              value={formData.country}
+              onChangeText={(value) => handleChange('country', value)}
+            />
+          </View>
+
+          <View style={styles.inputGroup}>
+            <Text style={styles.label}>Password<Text style={styles.required}>*</Text></Text>
+            <TextInput
+              style={styles.input}
+              placeholder="Choose a password"
+              value={formData.password}
+              onChangeText={(value) => handleChange('password', value)}
+              secureTextEntry
+            />
+          </View>
+
+          <View style={styles.inputGroup}>
+            <Text style={styles.label}>Confirm Password<Text style={styles.required}>*</Text></Text>
+            <TextInput
+              style={styles.input}
+              placeholder="Confirm your password"
+              value={formData.confirmPassword}
+              onChangeText={(value) => handleChange('confirmPassword', value)}
+              secureTextEntry
+            />
+          </View>
+
+          <View style={styles.inputGroup}>
+            <Text style={styles.label}>Referral Code</Text>
+            <TextInput
+              style={styles.input}
+              placeholder="Enter referral code (optional)"
+              value={formData.referralCode}
+              onChangeText={(value) => handleChange('referralCode', value)}
+              autoCapitalize="characters"
+            />
+          </View>
+
+          <TouchableOpacity
+            style={styles.registerButton}
+            onPress={handleRegister}
+            disabled={isLoading}
+          >
+            {isLoading ? (
+              <ActivityIndicator color="#fff" size="small" />
+            ) : (
+              <Text style={styles.registerButtonText}>Register</Text>
+            )}
+          </TouchableOpacity>
+
+          <View style={styles.loginContainer}>
+            <Text style={styles.loginText}>Already have an account? </Text>
+            <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+              <Text style={styles.loginLink}>Login</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </ScrollView>
+    </SafeAreaView>
+  );
+}
+
+// Dashboard Screen Component
+function DashboardScreen({ navigation, route }) {
+  const [user, setUser] = useState(null);
+  const [userType, setUserType] = useState('loading');
+  const [isLoading, setIsLoading] = useState(true);
+  const [debugInfo, setDebugInfo] = useState('Initializing dashboard...');
+
+  useEffect(() => {
+    console.log('Dashboard screen mounted with params:', route.params);
+    
+    // Load user data from storage
+    const loadUserData = async () => {
+      try {
+        setDebugInfo('Checking AsyncStorage for user data...');
+        const userData = await AsyncStorage.getItem('user_data');
+        const storedUserType = await AsyncStorage.getItem('user_type') || route.params?.userType || 'default';
+        const lastLoginResponse = await AsyncStorage.getItem('last_login_response');
+        
+        console.log('Last login response:', lastLoginResponse);
+        console.log('User type from storage/params:', storedUserType);
+        
+        setUserType(storedUserType);
+        
+        if (userData) {
+          try {
+            const parsedData = JSON.parse(userData);
+            console.log('User data loaded from storage:', JSON.stringify(parsedData));
+            setDebugInfo(`User data loaded: ${JSON.stringify(parsedData).substring(0, 50)}...`);
+            setUser(parsedData);
+            setIsLoading(false);
+          } catch (parseError) {
+            console.error('Error parsing user data:', parseError);
+            setDebugInfo(`Error parsing user data: ${parseError.message}`);
+            // Try to get session from server instead
+            fetchSessionData();
+          }
+        } else {
+          setDebugInfo('No user data in AsyncStorage, trying session check...');
+          // If no user data found, try to get session
+          fetchSessionData();
+        }
+      } catch (error) {
+        console.error('Error loading user data:', error);
+        setDebugInfo(`Error loading user data: ${error.message}`);
+        fetchSessionData();
+      }
+    };
+
+    const fetchSessionData = async () => {
+      try {
+        setDebugInfo('Fetching session from server...');
+        const response = await axios.get(`${API_URL}/auth/session`, {
+          headers: {
+            'Content-Type': 'application/json',
+            'X-App-Platform': 'ios'
+          }
+        });
+        
+        console.log('Session response:', JSON.stringify(response.data));
+        
+        if (response.data && response.data.authenticated) {
+          setDebugInfo('Session authenticated, storing user data');
+          
+          const userData = response.data.user;
+          setUser(userData);
+          await AsyncStorage.setItem('user_data', JSON.stringify(userData));
+          
+          // Determine user type
+          let detectedUserType = 'default';
+          if (userData.isAdmin) {
+            detectedUserType = 'admin';
+          } else if (userData.isEmployee) {
+            detectedUserType = 'employee';
+          } else if (userData.verificationLevel >= 2) {
+            detectedUserType = 'verified';
+          } else {
+            detectedUserType = 'unverified';
+          }
+          
+          setUserType(detectedUserType);
+          await AsyncStorage.setItem('user_type', detectedUserType);
+          
+          setIsLoading(false);
+        } else {
+          setDebugInfo('Session not authenticated, redirecting to login');
+          // Not authenticated, go back to login
+          redirectToLogin();
+        }
+      } catch (err) {
+        console.error('Session check error:', err);
+        setDebugInfo(`Session check error: ${err.message}`);
+        redirectToLogin();
+      }
+    };
+
+    const redirectToLogin = () => {
+      // Delay to allow seeing debug info
+      setTimeout(() => {
+        navigation.reset({
+          index: 0,
+          routes: [{ name: 'Login' }],
+        });
+      }, 1000);
+    };
+
+    loadUserData();
+  }, [navigation, route.params]);
+
+  const handleLogout = async () => {
+    setIsLoading(true);
+    setDebugInfo('Logging out...');
+    
+    try {
+      await axios.post(`${API_URL}/auth/logout`, {}, {
+        headers: {
+          'Content-Type': 'application/json',
+          'X-App-Platform': 'ios'
+        }
+      });
+      console.log('Logout successful');
+      setDebugInfo('Logout successful, clearing storage');
+    } catch (err) {
+      console.error('Logout error:', err);
+      setDebugInfo(`Logout error: ${err.message}`);
+    } finally {
+      // Clear all storage
+      await AsyncStorage.removeItem('user_data');
+      await AsyncStorage.removeItem('auth_token');
+      await AsyncStorage.removeItem('temp_username');
+      await AsyncStorage.removeItem('user_type');
+      await AsyncStorage.removeItem('last_login_response');
+      
+      setTimeout(() => {
+        navigation.reset({
+          index: 0,
+          routes: [{ name: 'Login' }],
+        });
+      }, 300);
+    }
+  };
+
+  if (isLoading) {
+    return (
+      <View style={styles.loadingContainer}>
+        <ActivityIndicator size="large" color="#6200ee" />
+        <Text style={styles.loadingText}>Loading dashboard...</Text>
+        <Text style={styles.debugText}>{debugInfo}</Text>
+      </View>
+    );
+  }
+
+  const renderDashboardContent = () => {
+    switch (userType) {
+      case 'admin':
+        return (
+          <View style={styles.dashboardContent}>
+            <Text style={styles.userTypeLabel}>Admin Dashboard</Text>
+            <View style={styles.adminCard}>
+              <Text style={styles.cardTitle}>Admin Controls</Text>
+              <TouchableOpacity style={styles.adminButton}>
+                <Text style={styles.adminButtonText}>Manage Users</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.adminButton}>
+                <Text style={styles.adminButtonText}>View Analytics</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.adminButton}>
+                <Text style={styles.adminButtonText}>Security Settings</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        );
+        
+      case 'employee':
+        return (
+          <View style={styles.dashboardContent}>
+            <Text style={styles.userTypeLabel}>Employee Dashboard</Text>
+            <View style={styles.employeeCard}>
+              <Text style={styles.cardTitle}>Client Management</Text>
+              <TouchableOpacity style={styles.employeeButton}>
+                <Text style={styles.employeeButtonText}>View Clients</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.employeeButton}>
+                <Text style={styles.employeeButtonText}>Pending Verifications</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        );
+        
+      case 'verified':
+        return (
+          <View style={styles.dashboardContent}>
+            <Text style={styles.userTypeLabel}>Verified Client Dashboard</Text>
+            <View style={styles.accountCard}>
+              <Text style={styles.cardTitle}>Account Overview</Text>
+              <View style={styles.balanceRow}>
+                <Text style={styles.balanceLabel}>Available Balance</Text>
+                <Text style={styles.balanceValue}>$0.00</Text>
+              </View>
+              
+              <TouchableOpacity style={styles.buyButton}>
+                <Text style={styles.buyButtonText}>Buy Crypto</Text>
+              </TouchableOpacity>
+            </View>
+            
+            <View style={styles.actionsCard}>
+              <Text style={styles.cardTitle}>Quick Actions</Text>
+              <View style={styles.actionButtonsRow}>
+                <TouchableOpacity style={styles.actionButton}>
+                  <Text style={styles.actionButtonText}>Deposit</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.actionButton}>
+                  <Text style={styles.actionButtonText}>Withdraw</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.actionButton}>
+                  <Text style={styles.actionButtonText}>Trade</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </View>
+        );
+        
+      case 'unverified':
+        return (
+          <View style={styles.dashboardContent}>
+            <Text style={styles.userTypeLabel}>Complete Your Verification</Text>
+            <View style={styles.verificationCard}>
+              <Text style={styles.cardTitle}>Verification Required</Text>
+              <Text style={styles.verificationText}>
+                To access all features, please complete your identity verification.
+              </Text>
+              <TouchableOpacity style={styles.verifyButton}>
+                <Text style={styles.verifyButtonText}>Start Verification</Text>
+              </TouchableOpacity>
+            </View>
+            
+            <View style={styles.featuresCard}>
+              <Text style={styles.cardTitle}>Available Features</Text>
+              <View style={styles.featureItem}>
+                <Text style={styles.featureText}>• View market prices</Text>
+              </View>
+              <View style={styles.featureItem}>
+                <Text style={styles.featureText}>• Update profile information</Text>
+              </View>
+            </View>
+          </View>
+        );
+        
+      default:
+        return (
+          <View style={styles.dashboardContent}>
+            <Text style={styles.userTypeLabel}>Client Dashboard</Text>
+            <View style={styles.accountCard}>
+              <Text style={styles.cardTitle}>Account Overview</Text>
+              <View style={styles.balanceRow}>
+                <Text style={styles.balanceLabel}>Available Balance</Text>
+                <Text style={styles.balanceValue}>$0.00</Text>
+              </View>
+              
+              <TouchableOpacity style={styles.buyButton}>
+                <Text style={styles.buyButtonText}>Buy Crypto</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        );
+    }
+  };
+
+  return (
+    <SafeAreaView style={styles.container}>
+      {/* Debug Info */}
+      <View style={styles.debugContainer}>
+        <Text style={styles.debugText}>Debug Info: {debugInfo}</Text>
+        <Text style={styles.debugText}>User Type: {userType}</Text>
+        <Text style={styles.debugText}>User: {user ? JSON.stringify(user).substring(0, 50) + '...' : 'No user data'}</Text>
+      </View>
+      
+      <View style={styles.header}>
+        <Text style={styles.title}>EvokeEssence</Text>
+        {user && (
+          <Text style={styles.welcomeText}>
+            Welcome, {user.username || user.email || 'User'}
+          </Text>
+        )}
+      </View>
+
+      <ScrollView style={styles.content}>
+        {renderDashboardContent()}
+        
+        <View style={styles.priceListContainer}>
+          <Text style={styles.cardTitle}>Cryptocurrency Prices</Text>
+          <Text>Market data coming soon...</Text>
+        </View>
+      </ScrollView>
+
+      <View style={styles.footer}>
+        <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
+          <Text style={styles.logoutButtonText}>Logout</Text>
+        </TouchableOpacity>
+      </View>
+    </SafeAreaView>
+  );
+}
+
+// Two Factor Screen Component
+function TwoFactorScreen({ navigation, route }) {
+  const [code, setCode] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [debugInfo, setDebugInfo] = useState('Enter verification code');
+  
+  useEffect(() => {
+    const checkUsername = async () => {
+      const storedUsername = await AsyncStorage.getItem('temp_username');
+      setDebugInfo(`Username from storage: ${storedUsername || 'none'}, from params: ${route.params?.username || 'none'}`);
+    };
+    
+    checkUsername();
+  }, [route.params]);
+  
+  const handleVerify = async () => {
+    if (!code.trim()) {
+      Alert.alert('Error', 'Please enter the verification code');
+      return;
+    }
+
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      // Get the username from route params or from AsyncStorage
+      const username = route.params?.username || await AsyncStorage.getItem('temp_username');
+      
+      if (!username) {
+        setError('Username not found. Please go back to login.');
+        setIsLoading(false);
+        return;
+      }
+      
+      console.log('Verifying 2FA for username:', username, 'with code:', code);
+      setDebugInfo(`Verifying 2FA for ${username} with code ${code}`);
+      
+      const response = await axios.post(`${API_URL}/auth/verify-2fa`, {
+        code,
+        username
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+          'X-App-Platform': 'ios'
+        }
+      });
+      
+      console.log('2FA verification response:', response.data);
+      setDebugInfo(`2FA verification successful: ${JSON.stringify(response.data).substring(0, 50)}...`);
+      
+      // Store the entire response for debugging
+      await AsyncStorage.setItem('last_login_response', JSON.stringify(response.data));
+      
+      // Store user data
+      const userData = response.data.user || response.data;
+      await AsyncStorage.setItem('user_data', JSON.stringify(userData));
+      
+      if (response.data.token) {
+        await AsyncStorage.setItem('auth_token', response.data.token);
+      }
+      
+      // Determine user type
+      let userType = 'default';
+      if (userData.isAdmin) {
+        userType = 'admin';
+      } else if (userData.isEmployee) {
+        userType = 'employee';
+      } else if (userData.verificationLevel >= 2) {
+        userType = 'verified';
+      } else {
+        userType = 'unverified';
+      }
+      
+      await AsyncStorage.setItem('user_type', userType);
+      
+      // Remove temp username
+      await AsyncStorage.removeItem('temp_username');
+      
+      // Navigate to dashboard with reset
+      setTimeout(() => {
+        navigation.reset({
+          index: 0,
+          routes: [{ name: 'Dashboard', params: { userType } }],
+        });
+      }, 300);
+    } catch (err) {
+      console.error('2FA verification error:', err.response?.data || err.message);
+      setDebugInfo(`2FA verification error: ${err.message}`);
+      setError(err.response?.data?.message || 'Invalid verification code');
+      Alert.alert('Verification Error', err.response?.data?.message || 'Invalid verification code');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  return (
+    <SafeAreaView style={styles.container}>
+      {/* Debug Info */}
+      <View style={styles.debugContainer}>
+        <Text style={styles.debugText}>{debugInfo}</Text>
+      </View>
+      
+      <View style={styles.content}>
+        <View style={styles.header}>
+          <View style={styles.logoContainer}>
+            <Text style={styles.logoText}>EE</Text>
+          </View>
+          <Text style={styles.title}>Two-Factor Authentication</Text>
+          <Text style={styles.subtitle}>
+            Please enter the 6-digit code from your authenticator app
+          </Text>
+        </View>
+
+        {error ? (
+          <View style={styles.errorContainer}>
+            <Text style={styles.errorText}>{error}</Text>
+          </View>
+        ) : null}
+
+        <View style={styles.form}>
+          <View style={styles.inputGroup}>
+            <Text style={styles.label}>Verification Code</Text>
+            <TextInput
+              style={[styles.input, styles.codeInput]}
+              placeholder="Enter 6-digit code"
+              value={code}
+              onChangeText={setCode}
+              keyboardType="number-pad"
+              maxLength={6}
+              autoFocus={true}
+            />
+          </View>
+
+          <TouchableOpacity
+            style={styles.loginButton}
+            onPress={handleVerify}
+            disabled={isLoading}
+          >
+            {isLoading ? (
+              <ActivityIndicator color="#fff" size="small" />
+            ) : (
+              <Text style={styles.loginButtonText}>Verify</Text>
+            )}
+          </TouchableOpacity>
+
+          <View style={styles.registerContainer}>
+            <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+              <Text style={styles.registerLink}>Back to Login</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </View>
+    </SafeAreaView>
+  );
+}
+
+// Main App component
+export default function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Login" screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="Register" component={RegisterScreen} />
+        <Stack.Screen name="TwoFactor" component={TwoFactorScreen} />
+        <Stack.Screen name="Dashboard" component={DashboardScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
+
+// Styles
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#f8f9fa',
+  },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#f8f9fa',
+  },
+  loadingText: {
+    marginTop: 10,
+    color: '#6200ee',
+    fontSize: 16,
+  },
+  scrollContent: {
+    flexGrow: 1,
+    padding: 20,
+  },
+  content: {
+    flex: 1,
+    padding: 20,
+  },
+  header: {
+    alignItems: 'center',
+    backgroundColor: '#6200ee',
+    padding: 20,
+    marginBottom: 20,
+  },
+  logoContainer: {
+    width: 80,
+    height: 80,
+    borderRadius: 40,
+    backgroundColor: 'white',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  logoText: {
+    fontSize: 28,
+    fontWeight: 'bold',
+    color: '#6200ee',
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: 'white',
+    marginBottom: 10,
+  },
+  subtitle: {
+    fontSize: 16,
+    color: 'rgba(255, 255, 255, 0.8)',
+    textAlign: 'center',
+    marginHorizontal: 10,
+  },
+  errorContainer: {
+    backgroundColor: '#ffebee',
+    borderRadius: 5,
+    padding: 10,
+    marginBottom: 20,
+  },
+  errorText: {
+    color: '#c62828',
+    fontSize: 14,
+    textAlign: 'center',
+  },
+  debugContainer: {
+    padding: 10,
+    backgroundColor: '#f0f0f0',
+    borderRadius: 5,
+    margin: 10,
+  },
+  debugText: {
+    fontSize: 12,
+    color: '#333',
+  },
+  form: {
+    width: '100%',
+  },
+  inputGroup: {
+    marginBottom: 20,
+  },
+  rowContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  halfInput: {
+    width: '48%',
+  },
+  label: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#333',
+    marginBottom: 8,
+  },
+  required: {
+    color: '#f44336',
+  },
+  input: {
+    backgroundColor: '#fff',
+    borderWidth: 1,
+    borderColor: '#ddd',
+    borderRadius: 5,
+    padding: 15,
+    fontSize: 16,
+  },
+  codeInput: {
+    textAlign: 'center',
+    letterSpacing: 8,
+    fontSize: 20,
+  },
+  loginButton: {
+    backgroundColor: '#6200ee',
+    borderRadius: 5,
+    padding: 15,
+    alignItems: 'center',
+    marginTop: 10,
+  },
+  loginButtonText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  registerButton: {
+    backgroundColor: '#6200ee',
+    borderRadius: 5,
+    padding: 15,
+    alignItems: 'center',
+    marginTop: 10,
+  },
+  registerButtonText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  registerContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginTop: 20,
+  },
+  registerText: {
+    color: '#666',
+    fontSize: 14,
+  },
+  registerLink: {
+    color: '#6200ee',
+    fontSize: 14,
+    fontWeight: 'bold',
+  },
+  loginContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginTop: 20,
+    marginBottom: 30,
+  },
+  loginText: {
+    color: '#666',
+    fontSize: 14,
+  },
+  loginLink: {
+    color: '#6200ee',
+    fontSize: 14,
+    fontWeight: 'bold',
+  },
+  // Dashboard styles
+  welcomeText: {
+    fontSize: 16,
+    color: 'white',
+  },
+  dashboardContent: {
+    marginBottom: 15,
+  },
+  userTypeLabel: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#666',
+    marginBottom: 10,
+  },
+  accountCard: {
+    backgroundColor: 'white',
+    borderRadius: 10,
+    padding: 20,
+    marginBottom: 15,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 2,
+  },
+  cardTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 15,
+    color: '#333',
+  },
+  balanceRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  balanceLabel: {
+    fontSize: 16,
+    color: '#666',
+  },
+  balanceValue: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#333',
+  },
+  buyButton: {
+    backgroundColor: '#4caf50',
+    borderRadius: 5,
+    padding: 12,
+    alignItems: 'center',
+  },
+  buyButtonText: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  priceListContainer: {
+    backgroundColor: 'white',
+    borderRadius: 10,
+    padding: 20,
+    marginBottom: 15,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 2,
+  },
+  footer: {
+    padding: 15,
+  },
+  logoutButton: {
+    backgroundColor: '#f44336',
+    borderRadius: 5,
+    padding: 12,
+    alignItems: 'center',
+  },
+  logoutButtonText: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  // Admin styles
+  adminCard: {
+    backgroundColor: 'white',
+    borderRadius: 10,
+    padding: 20,
+    marginBottom: 15,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 2,
+  },
+  adminButton: {
+    backgroundColor: '#6200ee',
+    borderRadius: 5,
+    padding: 12,
+    alignItems: 'center',
+    marginBottom: 10,
+  },
+  adminButtonText: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  // Employee styles
+  employeeCard: {
+    backgroundColor: 'white',
+    borderRadius: 10,
+    padding: 20,
+    marginBottom: 15,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 2,
+  },
+  employeeButton: {
+    backgroundColor: '#03a9f4',
+    borderRadius: 5,
+    padding: 12,
+    alignItems: 'center',
+    marginBottom: 10,
+  },
+  employeeButtonText: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  // Verified user styles
+  actionsCard: {
+    backgroundColor: 'white',
+    borderRadius: 10,
+    padding: 20,
+    marginBottom: 15,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 2,
+  },
+  actionButtonsRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  actionButton: {
+    backgroundColor: '#03a9f4',
+    borderRadius: 5,
+    padding: 12,
+    alignItems: 'center',
+    flex: 1,
+    marginHorizontal: 5,
+  },
+  actionButtonText: {
+    color: 'white',
+    fontSize: 14,
+    fontWeight: 'bold',
+  },
+  // Unverified user styles
+  verificationCard: {
+    backgroundColor: 'white',
+    borderRadius: 10,
+    padding: 20,
+    marginBottom: 15,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 2,
+  },
+  verificationText: {
+    fontSize: 14,
+    color: '#666',
+    marginBottom: 15,
+  },
+  verifyButton: {
+    backgroundColor: '#ff9800',
+    borderRadius: 5,
+    padding: 12,
+    alignItems: 'center',
+  },
+  verifyButtonText: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  featuresCard: {
+    backgroundColor: 'white',
+    borderRadius: 10,
+    padding: 20,
+    marginBottom: 15,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 2,
+  },
+  featureItem: {
+    marginBottom: 10,
+  },
+  featureText: {
+    fontSize: 14,
+    color: '#333',
+  },
+});

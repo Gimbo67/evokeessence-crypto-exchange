@@ -1,0 +1,329 @@
+import SwiftUI
+import Combine
+
+struct ProfileView: View {
+    @ObservedObject var authService = AuthService.shared
+    @StateObject private var viewModel = ProfileViewModel()
+    
+    var body: some View {
+        NavigationView {
+            ScrollView {
+                VStack(spacing: 20) {
+                    // Profile Header
+                    ProfileHeaderView(user: authService.currentUser)
+                    
+                    // Settings Sections
+                    VStack(spacing: 15) {
+                        // Account Settings
+                        SettingsSectionView(title: "Account") {
+                            NavigationLink(destination: PersonalInfoView()) {
+                                SettingsRowView(
+                                    icon: "person.fill",
+                                    iconColor: .blue,
+                                    title: "Personal Information"
+                                )
+                            }
+                            
+                            NavigationLink(destination: VerificationStatusView()) {
+                                SettingsRowView(
+                                    icon: "checkmark.shield.fill",
+                                    iconColor: .green,
+                                    title: "Verification Status"
+                                )
+                            }
+                            
+                            NavigationLink(destination: SecuritySettingsView()) {
+                                SettingsRowView(
+                                    icon: "lock.fill",
+                                    iconColor: .orange,
+                                    title: "Security"
+                                )
+                            }
+                        }
+                        
+                        // Preferences
+                        SettingsSectionView(title: "Preferences") {
+                            NavigationLink(destination: NotificationSettingsView()) {
+                                SettingsRowView(
+                                    icon: "bell.fill",
+                                    iconColor: .red,
+                                    title: "Notifications"
+                                )
+                            }
+                            
+                            NavigationLink(destination: AppearanceSettingsView()) {
+                                SettingsRowView(
+                                    icon: "paintbrush.fill",
+                                    iconColor: .purple,
+                                    title: "Appearance"
+                                )
+                            }
+                            
+                            NavigationLink(destination: LanguageSettingsView()) {
+                                SettingsRowView(
+                                    icon: "globe",
+                                    iconColor: .blue,
+                                    title: "Language"
+                                )
+                            }
+                        }
+                        
+                        // Support
+                        SettingsSectionView(title: "Support") {
+                            NavigationLink(destination: HelpCenterView()) {
+                                SettingsRowView(
+                                    icon: "questionmark.circle.fill",
+                                    iconColor: .green,
+                                    title: "Help Center"
+                                )
+                            }
+                            
+                            NavigationLink(destination: ContactSupportView()) {
+                                SettingsRowView(
+                                    icon: "message.fill",
+                                    iconColor: .blue,
+                                    title: "Contact Support"
+                                )
+                            }
+                        }
+                        
+                        // Account Actions
+                        Button(action: {
+                            viewModel.confirmLogout()
+                        }) {
+                            HStack {
+                                Image(systemName: "arrow.left.square.fill")
+                                    .foregroundColor(.red)
+                                
+                                Text("Logout")
+                                    .foregroundColor(.red)
+                            }
+                            .frame(maxWidth: .infinity, alignment: .center)
+                            .padding()
+                            .background(Color.red.opacity(0.1))
+                            .cornerRadius(10)
+                        }
+                        .padding(.top, 10)
+                    }
+                    .padding(.horizontal)
+                }
+                .padding(.top)
+            }
+            .navigationTitle("Profile")
+            .alert(isPresented: $viewModel.showLogoutAlert) {
+                Alert(
+                    title: Text("Logout"),
+                    message: Text("Are you sure you want to log out?"),
+                    primaryButton: .destructive(Text("Logout")) {
+                        viewModel.logout()
+                    },
+                    secondaryButton: .cancel()
+                )
+            }
+        }
+    }
+}
+
+struct ProfileHeaderView: View {
+    let user: User?
+    
+    var body: some View {
+        VStack(spacing: 15) {
+            // Avatar
+            Image(systemName: "person.crop.circle.fill")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 80, height: 80)
+                .foregroundColor(.blue)
+                .background(Circle().fill(Color.blue.opacity(0.1)).frame(width: 90, height: 90))
+            
+            // User name and email
+            VStack(spacing: 5) {
+                Text(user?.fullName ?? user?.username ?? "User")
+                    .font(.title2)
+                    .fontWeight(.bold)
+                
+                Text(user?.email ?? "")
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+            }
+            
+            // User type badge
+            if let user = user {
+                HStack {
+                    UserTypeBadge(
+                        text: userTypeText(user),
+                        color: userTypeColor(user)
+                    )
+                    
+                    if user.isContractor {
+                        UserTypeBadge(
+                            text: "Contractor",
+                            color: .purple
+                        )
+                    }
+                }
+                .padding(.top, 5)
+            }
+        }
+        .padding()
+        .background(Color(.systemBackground))
+        .cornerRadius(12)
+        .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 2)
+        .padding(.horizontal)
+    }
+    
+    private func userTypeText(_ user: User) -> String {
+        if user.isAdmin {
+            return "Admin"
+        } else if user.isEmployee {
+            return "Employee"
+        } else {
+            return "User"
+        }
+    }
+    
+    private func userTypeColor(_ user: User) -> Color {
+        if user.isAdmin {
+            return .red
+        } else if user.isEmployee {
+            return .orange
+        } else {
+            return .blue
+        }
+    }
+}
+
+struct UserTypeBadge: View {
+    let text: String
+    let color: Color
+    
+    var body: some View {
+        Text(text)
+            .font(.caption)
+            .fontWeight(.medium)
+            .foregroundColor(color)
+            .padding(.horizontal, 10)
+            .padding(.vertical, 5)
+            .background(color.opacity(0.1))
+            .cornerRadius(20)
+    }
+}
+
+struct SettingsSectionView<Content: View>: View {
+    let title: String
+    let content: Content
+    
+    init(title: String, @ViewBuilder content: () -> Content) {
+        self.title = title
+        self.content = content()
+    }
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Text(title)
+                .font(.headline)
+                .foregroundColor(.secondary)
+                .padding(.horizontal)
+            
+            VStack(spacing: 0) {
+                content
+            }
+            .background(Color(.systemBackground))
+            .cornerRadius(12)
+            .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 2)
+        }
+    }
+}
+
+struct SettingsRowView: View {
+    let icon: String
+    let iconColor: Color
+    let title: String
+    
+    var body: some View {
+        HStack {
+            Image(systemName: icon)
+                .foregroundColor(iconColor)
+                .frame(width: 24, height: 24)
+            
+            Text(title)
+                .foregroundColor(.primary)
+            
+            Spacer()
+            
+            Image(systemName: "chevron.right")
+                .font(.caption)
+                .foregroundColor(.secondary)
+        }
+        .padding()
+        .contentShape(Rectangle())
+    }
+}
+
+// Placeholder Settings Views
+struct PersonalInfoView: View {
+    var body: some View {
+        Text("Personal Information")
+    }
+}
+
+struct VerificationStatusView: View {
+    var body: some View {
+        Text("Verification Status")
+    }
+}
+
+struct SecuritySettingsView: View {
+    var body: some View {
+        Text("Security Settings")
+    }
+}
+
+struct NotificationSettingsView: View {
+    var body: some View {
+        Text("Notification Settings")
+    }
+}
+
+struct AppearanceSettingsView: View {
+    var body: some View {
+        Text("Appearance Settings")
+    }
+}
+
+struct LanguageSettingsView: View {
+    var body: some View {
+        Text("Language Settings")
+    }
+}
+
+struct HelpCenterView: View {
+    var body: some View {
+        Text("Help Center")
+    }
+}
+
+struct ContactSupportView: View {
+    var body: some View {
+        Text("Contact Support")
+    }
+}
+
+class ProfileViewModel: ObservableObject {
+    @Published var showLogoutAlert = false
+    
+    func confirmLogout() {
+        showLogoutAlert = true
+    }
+    
+    func logout() {
+        AuthService.shared.logout()
+    }
+}
+
+struct ProfileView_Previews: PreviewProvider {
+    static var previews: some View {
+        ProfileView()
+    }
+}Info.plist

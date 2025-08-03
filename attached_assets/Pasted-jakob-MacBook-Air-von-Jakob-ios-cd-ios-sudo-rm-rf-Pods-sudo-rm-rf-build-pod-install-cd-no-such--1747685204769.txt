@@ -1,0 +1,58 @@
+jakob@MacBook-Air-von-Jakob ios % cd ios
+sudo rm -rf Pods
+sudo rm -rf build
+pod install
+cd: no such file or directory: ios
+
+[!] Invalid `Podfile` file: syntax errors found
+   1 | import React from 'react';
+>  2 | import { SafeAreaView, Text, View } from 'react-native';
+     |          ^~~~~~~~~~~~~~~~~~~~~~~~ unexpected write target
+     |                                     ^~~~ unexpected local variable or method, expecting end-of-input
+   3 | 
+   4 | const App = () => {
+>  5 |   return (
+     |   ^~~~~~~~ unexpected void value expression
+     |           ^ expected a matching `)`
+>  6 |     <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
+     |     ^ unexpected '<', ignoring it
+     |     ^ unexpected '<', expecting end-of-input
+     |     ^ unexpected '<', ignoring it
+     |                  ^ expected a `=>` between the hash key and value
+     |                                                              ^ unexpected '}'; expected a value in the hash literal
+     |                                                              ^ expected a `=>` between the hash key and value
+>  7 |       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+     |       ^ unexpected '<'; expected an expression after the operator
+     |            ^ expected a `}` to close the hash literal
+     |             ^~~~~ unexpected local variable or method, expecting end-of-input
+     |                                                                               ^ unexpected '}'; expected a value in the hash literal
+     |                                                                               ^ expected a `=>` between the hash key and value
+>  8 |         <Text style={{ fontSize: 24, fontWeight: 'bold' }}>CryptoEvoke App</Text>
+     |         ^ unexpected '<'; expected an expression after the operator
+     |               ^~~~~ unexpected local variable or method, expecting end-of-input
+     |                                                          ^ unexpected '}'; expected a value in the hash literal
+     |                                                          ^ expected a `=>` between the hash key and value
+     |                                                                        ^~~ unexpected constant, expecting end-of-input
+>  9 | ... /Text>
+     |     ^~~~~ unknown regexp options - Tt
+> 10 |       </View>
+     |       ^ unexpected '<'; expected an expression after the operator
+> 11 |     </SafeAreaView>
+     |      ^~~~~~~~~~~~~ unknown regexp options - SafAraVw
+> 12 |   );
+     |   ^ unexpected ')', ignoring it
+     |   ^ unexpected ')', expecting end-of-input
+     |   ^ unexpected ')'; expected an expression after the operator
+> 13 | };
+     | ^ unexpected '}', ignoring it
+  14 | 
+  15 | export default App;
+.
+
+ #  from /Users/jakob/Projects/CryptoEvokeApp_Fresh/ios/Podfile:2
+ #  -------------------------------------------
+ #  import React from 'react';
+ >  import { SafeAreaView, Text, View } from 'react-native';
+ #  
+ #  -------------------------------------------
+jakob@MacBook-Air-von-Jakob ios % 

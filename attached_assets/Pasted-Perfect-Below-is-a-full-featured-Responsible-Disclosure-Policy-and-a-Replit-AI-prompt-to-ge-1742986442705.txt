@@ -1,0 +1,90 @@
+Perfect. Below is a full-featured **Responsible Disclosure Policy** and a **Replit AI prompt** to generate and host it for you. The content is tailored for a crypto exchange like **evo-exchange.com**.
+
+---
+
+### **Replit AI Prompt to Copy-Paste:**
+
+```
+Please create a new HTML file for a Responsible Disclosure Policy and host it at:
+
+  public/security-policy.html
+
+Use this full content inside the HTML file:
+
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Responsible Disclosure Policy - evo-exchange.com</title>
+</head>
+<body style="font-family: Arial, sans-serif; padding: 2rem; max-width: 800px; margin: auto;">
+  <h1>Responsible Disclosure Policy</h1>
+
+  <p>
+    At <strong>evo-exchange.com</strong>, we take security seriously and value the contributions of ethical hackers and researchers who help us protect our platform, our users, and their assets.
+  </p>
+
+  <h2>Reporting Security Vulnerabilities</h2>
+  <p>
+    If you discover a vulnerability, please report it to us immediately at
+    <a href="mailto:support@evo-exchange.com">support@evo-exchange.com</a>.
+  </p>
+  <p>
+    We encourage responsible disclosure and will work with you to verify and resolve the issue promptly.
+  </p>
+
+  <h2>What You Are Allowed to Test</h2>
+  <p>You may test:</p>
+  <ul>
+    <li>Public-facing API endpoints</li>
+    <li>Web application vulnerabilities (e.g., XSS, CSRF, injection flaws)</li>
+    <li>Authentication, session, and access control issues</li>
+  </ul>
+
+  <h2>Rules of Engagement</h2>
+  <p>Do <strong>NOT</strong> engage in the following:</p>
+  <ul>
+    <li>DDoS or spam attacks</li>
+    <li>Social engineering of our staff or users</li>
+    <li>Accessing or modifying user data without permission</li>
+    <li>Any physical or in-person attack vectors</li>
+    <li>Use of automated scanners that generate high traffic</li>
+  </ul>
+
+  <h2>Recognition</h2>
+  <p>
+    We’re happy to recognize and acknowledge responsible researchers who help us improve security.
+    Please let us know if you'd like to be credited on our acknowledgements page.
+  </p>
+
+  <h2>Legal</h2>
+  <p>
+    We will not pursue legal action against individuals who report vulnerabilities responsibly and follow this policy.
+    By submitting a report, you agree to handle all data and findings with confidentiality.
+  </p>
+
+  <p>Last updated: March 2025</p>
+</body>
+</html>
+
+---
+
+Then make sure Express serves this file correctly from the `public` folder. I want the file to be available at:
+
+  https://evo-exchange.com/security-policy
+```
+
+---
+
+### **After Replit AI creates it:**
+
+1. Visit `https://evo-exchange.com/security-policy` in your browser — confirm it works.
+2. In Cloudflare’s **Security.txt Settings**, add this under **Policy**:
+   ```
+   https://evo-exchange.com/security-policy
+   ```
+
+Done! Let me know if you also want an **Acknowledgements** page template or a **PGP key and upload instructions** for encryption.

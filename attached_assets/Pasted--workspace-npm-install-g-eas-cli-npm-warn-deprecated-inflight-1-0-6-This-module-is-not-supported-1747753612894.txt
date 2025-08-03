@@ -1,0 +1,35 @@
+~/workspace$ npm install -g eas-cli
+npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+npm warn deprecated rimraf@2.4.5: Rimraf versions prior to v4 are no longer supported
+npm warn deprecated glob@6.0.4: Glob versions prior to v9 are no longer supported
+npm warn deprecated @oclif/screen@3.0.8: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+npm warn deprecated lodash.get@4.4.2: This package is deprecated. Use the optional chaining (?.) operator instead.
+npm warn deprecated sudo-prompt@9.1.1: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+npm warn deprecated @xmldom/xmldom@0.7.13: this version is no longer supported, please update to at least 0.8.*
+
+added 446 packages in 14s
+
+55 packages are looking for funding
+  run `npm fund` for details
+~/workspace$ eas login
+Log in to EAS with email or username (exit and run eas login --help to see other login options)
+✔ Email or username … support@evo-exchange.com
+✔ Password … ************
+Logged in
+~/workspace$ eas build --platform ios
+✔ Generated eas.json. Learn more: https://docs.expo.dev/build-reference/eas-json/
+EAS project not configured.
+✔ Would you like to automatically create an EAS project for @supportadm1n/rest-express? … yes
+✔ Created @supportadm1n/rest-express: https://expo.dev/accounts/supportadm1n/projects/rest-express on EAS
+✔ Linked local project to EAS project fafb69f9-eb97-400d-b8dc-388f6e674f1b
+Resolved "production" environment for the build. Learn more: https://docs.expo.dev/eas/environment-variables/#setting-the-environment-for-your-builds
+No environment variables with visibility "Plain text" and "Sensitive" found for the "production" environment on EAS.
+
+📝  iOS Bundle Identifier Learn more: https://expo.fyi/bundle-identifier
+✔ What would you like your iOS bundle identifier to be? … com.supportadm1n.restexpress
+✔ iOS app only uses standard/exempt encryption? Learn more: https://developer.apple.com/documentation/Security/complying-with-encryption-export-regulations … yes
+Failed to read the app config from the project using "npx expo config" command: npx expo config --json --type introspect exited with non-zero code: 1.
+Falling back to the version of "@expo/config" shipped with the EAS CLI.
+Cannot find 'expo-modules-autolinking' package in your project, make sure that you have 'expo' package installed
+    Error: build command failed.
+~/workspace$ 

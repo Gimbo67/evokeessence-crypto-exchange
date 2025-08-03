@@ -1,0 +1,50 @@
+jakob@MacBook-Air-von-Jakob Projects % cd ~/Projects
+react-native init CryptoEvokeApp_New --version 0.72.4
+prompt: Directory CryptoEvokeApp_New already exists. Continue?:  (no) (node:40732) Warning: Accessing non-existent property 'padLevels' of module exports inside circular dependency
+prompt: Directory CryptoEvokeApp_New already exists. Continue?:  (no) yes
+This will walk you through creating a new React Native project in /Users/jakob/Projects/CryptoEvokeApp_New
+Installing react-native@0.72.4...
+Consider installing yarn to make this faster: https://yarnpkg.com
+npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+npm warn deprecated @babel/plugin-proposal-optional-catch-binding@7.18.6: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-optional-catch-binding instead.
+npm warn deprecated @babel/plugin-proposal-numeric-separator@7.18.6: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-numeric-separator instead.
+npm warn deprecated @babel/plugin-proposal-nullish-coalescing-operator@7.18.6: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-nullish-coalescing-operator instead.
+npm warn deprecated @babel/plugin-proposal-class-properties@7.18.6: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-class-properties instead.
+npm warn deprecated rimraf@2.6.3: Rimraf versions prior to v4 are no longer supported
+npm warn deprecated @babel/plugin-proposal-async-generator-functions@7.20.7: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-async-generator-functions instead.
+npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+npm warn deprecated @babel/plugin-proposal-optional-chaining@7.21.0: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-optional-chaining instead.
+npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+npm warn deprecated @babel/plugin-proposal-object-rest-spread@7.20.7: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-object-rest-spread instead.
+npm warn deprecated sudo-prompt@9.2.1: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+npm warn deprecated uglify-es@3.3.10: support for ECMAScript is superseded by `uglify-js` as of v3.13.0
+
+added 581 packages, and audited 582 packages in 11s
+
+43 packages are looking for funding
+  run `npm fund` for details
+
+5 high severity vulnerabilities
+
+To address all issues, run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+node:internal/readline/emitKeypressEvents:74
+            throw err;
+            ^
+
+TypeError: cli.init is not a function
+    at run (/opt/homebrew/lib/node_modules/react-native-cli/index.js:302:7)
+    at createProject (/opt/homebrew/lib/node_modules/react-native-cli/index.js:249:3)
+    at /opt/homebrew/lib/node_modules/react-native-cli/index.js:217:7
+    at /opt/homebrew/lib/node_modules/react-native-cli/node_modules/prompt/lib/prompt.js:316:32
+    at /opt/homebrew/lib/node_modules/react-native-cli/node_modules/async/lib/async.js:142:25
+    at assembler (/opt/homebrew/lib/node_modules/react-native-cli/node_modules/prompt/lib/prompt.js:313:9)
+    at /opt/homebrew/lib/node_modules/react-native-cli/node_modules/prompt/lib/prompt.js:322:32
+    at /opt/homebrew/lib/node_modules/react-native-cli/node_modules/prompt/lib/prompt.js:597:5
+    at Interface.onLine (/opt/homebrew/lib/node_modules/react-native-cli/node_modules/read/lib/read.js:111:5)
+    at Interface.emit (node:events:507:28)
+
+Node.js v23.11.0
+jakob@MacBook-Air-von-Jakob Projects % 

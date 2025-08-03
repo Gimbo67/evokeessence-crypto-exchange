@@ -1,0 +1,228 @@
+// Get user's SEPA deposits
+  app.get("/api/deposits", async (req, res) => {
+    if (!req.isAuthenticated()) {
+      return res.status(401).json({ message: "Not authenticated" });
+    }
+    try {
+      const userDeposits = await db.query.sepaDeposits.findMany({
+        where: eq(sepaDeposits.userId, req.user!.id),
+        orderBy: desc(sepaDeposits.createdAt),
+      });
+      res.json(userDeposits);
+    } catch (error) {
+      console.error('Error fetching deposits:', error);
+      res.status(500).json({ message: "Failed to fetch deposits" });
+    }
+  });
+  // Client deposit creation endpoint
+  app.post("/api/deposits", async (req, res) => {
+    if (!req.isAuthenticated()) {
+      return res.status(401).json({ message: "Not authenticated" });
+    }
+    try {
+      // Validate input
+      const result = depositSchema.safeParse(req.body);
+      if (!result.success) {
+        return res.status(400).json({
+          message: result.error.errors[0].message
+        });
+      }
+      const { amount, currency } = result.data;
+      // Get user's commission rate
+      const [user] = await db
+        .select()
+        .from(users)
+        .where(eq(users.id, req.user!.id))
+        .limit(1);
+      if (!user) {
+        return res.status(404).json({ message: "User not found" });
+      }
+      // Generate unique reference number using timestamp and user ID
+      const reference = `PAY-${req.user!.id}-${Date.now()}`;
+      const commissionRate = parseFloat(user.commissionFee?.toString() || "16.00") / 100;
+      const commissionFee = amount * commissionRate;
+      const finalAmount = amount - commissionFee;
+      // Create the deposit record
+      const [deposit] = await db
+        .insert(sepaDeposits)
+        .values({
+          userId: req.user!.id,
+          amount: finalAmount.toString(),
+          currency,
+          reference,
+          status: "pending",
+          commissionFee: commissionFee.toString(),
+          createdAt: new Date(),
+        })
+        .returning();
+      // Return deposit details along with bank information
+      const bankDetails = {
+        name: "EvokeEssence s.r.o",
+        iban: "CZ7527000000001234567890",
+        bic: "BACXCZPP",
+      };
+      res.json({
+        reference,
+        bankDetails,
+        amount: {
+          original: amount,
+          commission: commissionFee,
+          final: finalAmount,
+          currency
+        }
+      });
+    } catch (error) {
+      console.error('Error creating deposit:', error);
+      res.status(500).json({
+        message: error instanceof Error ? error.message : "Failed to create deposit",
+        details: error instanceof Error ? error.message : undefined
+      });
+    }
+  });
+  // Update SEPA deposit status (admin only)
+  app.patch("/api/admin/deposits/sepa-:id", requireAdmin, async (req, res) => {
+    const { id } = req.params;
+    const { status } = req.body;
+    console.log('Processing SEPA deposit status update:', { id, status });
+    try {
+      const depositId = parseInt(id);
+      if (isNaN(depositId) || depositId <= 0) {
+        console.log('Invalid deposit ID:', { id, parsed: depositId });
+        return res.status(400).json({
+          message: "Invalid deposit ID: Must be a positive number"
+        });
+      }
+      // Validate status value
+      const validStatuses = ['pending', 'successful', 'failed'];
+      if (!validStatuses.includes(status)) {
+        console.log('Invalid status provided:', { status, validStatuses });
+        return res.status(400).json({
+          message: "Invalid status: Must be 'pending', 'successful', or 'failed'"
+        });
+      }
+      await db.transaction(async (tx) => {
+        // Get current deposit
+        const [deposit] = await tx
+          .select()
+          .from(sepaDeposits)
+          .where(eq(sepaDeposits.id, depositId))
+          .limit(1);
+        if (!deposit) {
+          console.log('Deposit not found:', { depositId });
+          throw new Error("Deposit not found");
+        }
+        console.log('Found deposit:', {
+          id: deposit.id,
+          userId: deposit.userId,
+          amount: deposit.amount,
+          currency: deposit.currency,
+          currentStatus: deposit.status
+        });
+        const previousStatus = deposit.status;
+        // Update deposit status
+        await tx
+          .update(sepaDeposits)
+          .set({
+            status,
+            completedAt: status === 'successful' ? new Date() : null,
+          })
+          .where(eq(sepaDeposits.id, depositId));
+        // Only adjust balance when marking as successful for the first time
+        // or when reverting a successful status
+        if ((status === 'successful' && previousStatus !== 'successful') ||
+            (previousStatus === 'successful' && status !== 'successful')) {
+          // Get user with current balance
+          const [user] = await tx
+            .select()
+            .from(users)
+            .where(eq(users.id, deposit.userId))
+            .limit(1);
+          if (!user) {
+            console.log('User not found:', { userId: deposit.userId });
+            throw new Error("User not found");
+          }
+          // Calculate amounts using live exchange rates
+          const originalAmount = parseFloat(deposit.amount || '0');
+          const fromCurrency = deposit.currency || 'EUR';
+          const amounts = await calculateDepositAmounts(originalAmount, fromCurrency, 'USD');
+          console.log('Deposit calculation details:', amounts);
+          // Calculate new balance
+          const currentBalance = parseFloat(user.balance?.toString() || '0');
+          const balanceChange = status === 'successful' ? amounts.convertedAmount : -amounts.convertedAmount;
+          const newBalance = Number((currentBalance + balanceChange).toFixed(2));
+          console.log('Balance update calculation:', {
+            currentBalance,
+            balanceChange,
+            newBalance,
+            calculation: `${currentBalance} ${status === 'successful' ? '+' : '-'} ${Math.abs(balanceChange)} = ${newBalance}`
+          });
+          // Update user's balance
+          await tx
+            .update(users)
+            .set({
+              balance: newBalance.toString(),
+              updatedAt: new Date()
+            })
+            .where(eq(users.id, user.id));
+          console.log('User balance updated:', {
+            userId: user.id,
+            previousBalance: currentBalance,
+            depositAmount: `${originalAmount} ${fromCurrency}`,
+            commissionDeducted: amounts.commissionAmount,
+            convertedAmount: amounts.convertedAmount,
+            newBalance
+          });
+        }
+        // Get updated deposit for response
+        const [updatedDeposit] = await tx
+          .select()
+          .from(sepaDeposits)
+          .where(eq(sepaDeposits.id, depositId))
+          .limit(1);
+        console.log('SEPA deposit status updated successfully:', {
+          id: updatedDeposit.id,
+          previousStatus,
+          newStatus: updatedDeposit.status
+        });
+        res.json(updatedDeposit);
+      });
+    } catch (error) {
+      console.error('Error updating SEPA deposit:', {
+        id,
+        status,
+        error: error instanceof Error ? {
+          message: error.message,
+          stack: error.stack
+        } : error
+      });
+      res.status(500).json({
+        message: error instanceof Error ? error.message : "Failed to update deposit status",
+        details: error instanceof Error ? error.message : undefined
+      });
+    }
+  });
+  // Delete SEPA deposit (admin only, only pending deposits)
+  app.delete("/api/admin/deposits/:id", requireAdmin, async (req, res) => {
+    const { id } = req.params;
+    try {
+      // First check if deposit exists and is pending
+      const [deposit] = await db
+        .select()
+        .from(sepaDeposits)
+        .where(eq(sepaDeposits.id, parseInt(id)))
+        .limit(1);
+      if (!deposit) {
+        return res.status(404).json({ message: "Deposit not found" });
+      }
+      if (deposit.status !== "pending") {
+        return res.status(400).json({ message: "Only pending deposits can be deleted" });
+      }
+      // Delete the deposit
+      await db
+        .delete(sepaDeposits)
+        .where(eq(sepaDeposits.id, parseInt(id)));
+      res.json({ message: "Deposit deleted successfully" });
+    } catch (error) {
+      console.error('Error deleting deposit:', error);
+      res.status(500).js...
+[truncated]

@@ -1,0 +1,229 @@
+Last login: Tue May 20 13:39:55 on ttys000
+jakob@MacBook-Air-von-Jakob ~ % find . -name "Info.plist" -type f
+./.config/Wondershare/VirtualLocation/Drivers/UpdateHelper/UpdateHelper.app/Contents/Info.plist
+./.expo/ios-simulator-app-cache/Exponent-2.33.13.tar.app/FirebaseCore_Privacy.bundle/Info.plist
+./.expo/ios-simulator-app-cache/Exponent-2.33.13.tar.app/Stripe3DS2.bundle/Info.plist
+./.expo/ios-simulator-app-cache/Exponent-2.33.13.tar.app/ExpoSystemUI_privacy.bundle/Info.plist
+./.expo/ios-simulator-app-cache/Exponent-2.33.13.tar.app/LottiePrivacyInfo.bundle/Info.plist
+./.expo/ios-simulator-app-cache/Exponent-2.33.13.tar.app/StripePaymentsBundle.bundle/Info.plist
+./.expo/ios-simulator-app-cache/Exponent-2.33.13.tar.app/ReachabilitySwift.bundle/Info.plist
+./.expo/ios-simulator-app-cache/Exponent-2.33.13.tar.app/glog_privacy.bundle/Info.plist
+./.expo/ios-simulator-app-cache/Exponent-2.33.13.tar.app/FBLPromises_Privacy.bundle/Info.plist
+./.expo/ios-simulator-app-cache/Exponent-2.33.13.tar.app/PlugIns/ExpoNotificationServiceExtension.appex/Info.plist
+./.expo/ios-simulator-app-cache/Exponent-2.33.13.tar.app/ExpoLocalization_privacy.bundle/Info.plist
+./.expo/ios-simulator-app-cache/Exponent-2.33.13.tar.app/ExpoConstants_privacy.bundle/Info.plist
+./.expo/ios-simulator-app-cache/Exponent-2.33.13.tar.app/GoogleMapsPrivacy.bundle/Info.plist
+./.expo/ios-simulator-app-cache/Exponent-2.33.13.tar.app/Lottie_React_Native_Privacy.bundle/Info.plist
+./.expo/ios-simulator-app-cache/Exponent-2.33.13.tar.app/StripeBundle.bundle/Info.plist
+./.expo/ios-simulator-app-cache/Exponent-2.33.13.tar.app/FirebaseCoreInternal_Privacy.bundle/Info.plist
+./.expo/ios-simulator-app-cache/Exponent-2.33.13.tar.app/GoogleDataTransport_Privacy.bundle/Info.plist
+./.expo/ios-simulator-app-cache/Exponent-2.33.13.tar.app/React-cxxreact_privacy.bundle/Info.plist
+./.expo/ios-simulator-app-cache/Exponent-2.33.13.tar.app/nanopb_Privacy.bundle/Info.plist
+./.expo/ios-simulator-app-cache/Exponent-2.33.13.tar.app/FirebaseCoreExtension_Privacy.bundle/Info.plist
+./.expo/ios-simulator-app-cache/Exponent-2.33.13.tar.app/ExpoApplication_privacy.bundle/Info.plist
+./.expo/ios-simulator-app-cache/Exponent-2.33.13.tar.app/Base.lproj/LaunchScreen.storyboardc/Info.plist
+./.expo/ios-simulator-app-cache/Exponent-2.33.13.tar.app/RCT-Folly_privacy.bundle/Info.plist
+./.expo/ios-simulator-app-cache/Exponent-2.33.13.tar.app/FirebaseInstallations_Privacy.bundle/Info.plist
+./.expo/ios-simulator-app-cache/Exponent-2.33.13.tar.app/StripePaymentsUIBundle.bundle/Info.plist
+./.expo/ios-simulator-app-cache/Exponent-2.33.13.tar.app/GoogleUtilities_Privacy.bundle/Info.plist
+./.expo/ios-simulator-app-cache/Exponent-2.33.13.tar.app/EXConstants.bundle/Info.plist
+./.expo/ios-simulator-app-cache/Exponent-2.33.13.tar.app/SDWebImage.bundle/Info.plist
+./.expo/ios-simulator-app-cache/Exponent-2.33.13.tar.app/ExpoTaskManager_privacy.bundle/Info.plist
+./.expo/ios-simulator-app-cache/Exponent-2.33.13.tar.app/ExpoDevice_privacy.bundle/Info.plist
+./.expo/ios-simulator-app-cache/Exponent-2.33.13.tar.app/StripeUICoreBundle.bundle/Info.plist
+./.expo/ios-simulator-app-cache/Exponent-2.33.13.tar.app/ExpoNotifications_privacy.bundle/Info.plist
+./.expo/ios-simulator-app-cache/Exponent-2.33.13.tar.app/ExpoMediaLibrary_privacy.bundle/Info.plist
+./.expo/ios-simulator-app-cache/Exponent-2.33.13.tar.app/RNSVGFilters.bundle/Info.plist
+./.expo/ios-simulator-app-cache/Exponent-2.33.13.tar.app/ExpoFileSystem_privacy.bundle/Info.plist
+./.expo/ios-simulator-app-cache/Exponent-2.33.13.tar.app/boost_privacy.bundle/Info.plist
+./.expo/ios-simulator-app-cache/Exponent-2.33.13.tar.app/StripeFinancialConnectionsBundle.bundle/Info.plist
+./.expo/ios-simulator-app-cache/Exponent-2.33.13.tar.app/ReactNativeMapsPrivacy.bundle/Info.plist
+./.expo/ios-simulator-app-cache/Exponent-2.33.13.tar.app/Frameworks/hermes.framework/Info.plist
+./.expo/ios-simulator-app-cache/Exponent-2.33.13.tar.app/StripeCoreBundle.bundle/Info.plist
+./.expo/ios-simulator-app-cache/Exponent-2.33.13.tar.app/StripePaymentSheetBundle.bundle/Info.plist
+./.expo/ios-simulator-app-cache/Exponent-2.33.13.tar.app/FirebaseCrashlytics_Privacy.bundle/Info.plist
+./.expo/ios-simulator-app-cache/Exponent-2.33.13.tar.app/GoogleMapsResources.bundle/GoogleMaps.bundle/GMSCoreResources.bundle/Info.plist
+./.expo/ios-simulator-app-cache/Exponent-2.33.13.tar.app/GoogleMapsResources.bundle/GoogleMaps.bundle/Info.plist
+./.expo/ios-simulator-app-cache/Exponent-2.33.13.tar.app/GoogleMapsResources.bundle/Info.plist
+./.expo/ios-simulator-app-cache/Exponent-2.33.13.tar.app/Info.plist
+./.expo/ios-simulator-app-cache/Exponent-2.33.13.tar.app/RNCAsyncStorage_resources.bundle/Info.plist
+./.expo/ios-simulator-app-cache/Exponent-2.33.13.tar.app/React-Core_privacy.bundle/Info.plist
+./.expo/ios-simulator-app-cache/Exponent-2.33.13.tar.app/Promises_Privacy.bundle/Info.plist
+./Pictures/Photos Library.photoslibrary/scopes/cloudsharing/data/1651091462/5DA5D208-617E-4FF5-9DFE-207FEDB990D6/Info.plist
+./Pictures/Photos Library.photoslibrary/scopes/cloudsharing/data/1651091462/B1E7945E-AE69-4A9E-8439-A998BD555051/Info.plist
+./Desktop/EvoExchange/Info.plist
+./Library/Application Support/Google/GoogleUpdater/138.0.7156.0/GoogleUpdater.app/Contents/Helpers/GoogleSoftwareUpdate.bundle/Contents/Resources/GoogleSoftwareUpdateAgent.app/Contents/Info.plist
+./Library/Application Support/Google/GoogleUpdater/138.0.7156.0/GoogleUpdater.app/Contents/Helpers/GoogleSoftwareUpdate.bundle/Contents/Info.plist
+./Library/Application Support/Google/GoogleUpdater/138.0.7156.0/GoogleUpdater.app/Contents/Info.plist
+find: ./Library/Application Support/CallHistoryTransactions: Operation not permitted
+find: ./Library/Application Support/CloudDocs: Operation not permitted
+find: ./Library/Application Support/com.apple.sharedfilelist: Operation not permitted
+find: ./Library/Application Support/Knowledge: Operation not permitted
+find: ./Library/Application Support/com.apple.TCC: Operation not permitted
+find: ./Library/Application Support/FileProvider: Operation not permitted
+find: ./Library/Application Support/AddressBook: Operation not permitted
+find: ./Library/Application Support/FaceTime: Operation not permitted
+./Library/Application Support/WAF/Apps/1.4.1.12/Wondershare Passport.app/Contents/Frameworks/WAFCore.framework/Versions/A/Resources/Info.plist
+./Library/Application Support/WAF/Apps/1.4.1.12/Wondershare Passport.app/Contents/Info.plist
+find: ./Library/Application Support/DifferentialPrivacy: Operation not permitted
+find: ./Library/Application Support/com.apple.avfoundation/Frecents: Operation not permitted
+find: ./Library/Application Support/CallHistoryDB: Operation not permitted
+find: ./Library/Assistant/SiriVocabulary: Operation not permitted
+find: ./Library/Daemon Containers: Operation not permitted
+find: ./Library/Autosave Information: Operation not permitted
+find: ./Library/IdentityServices: Operation not permitted
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/Library/Application Support/PRBPosterExtensionDataStore/61/Extensions/com.apple.WallpaperKit.CollectionsPoster/descriptors/0FDAB3B7-5FD0-4C92-8BA3-7D9899C5AECC/versions/2/contents/7365.Stripe_Green.wallpaper/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/Library/Application Support/PRBPosterExtensionDataStore/61/Extensions/com.apple.WallpaperKit.CollectionsPoster/descriptors/076D2C47-2AB0-4869-9EA2-01F397A8E69B/versions/2/contents/5010.Multicolored.wallpaper/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/Library/LanguageModeling/de-dynamic.lm/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/Library/Keyboard/de-dynamic.lm/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/Library/Keyboard/mul-dynamic.lm/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_PlatformAssets/purpose_auto/8834caa0716e985e24f91981e7c514fed841375c.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_DialogAssets/purpose_auto/73c4740d9e18274cd84fe9c4e8657bb9e8d0d160.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_DialogAssets/purpose_auto/f3fd641febc381555943aa8a865334ddb41de547.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_DialogAssets/purpose_auto/5e03ed48f3e7fec0755f87d46058fd53902e1286.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_DialogAssets/purpose_auto/52e6343b92b1edab494a4dc9652e5fbf1e7b5bb1.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_DialogAssets/purpose_auto/97f15f675921ecf3448acae7e65604dfc382ef13.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_DialogAssets/purpose_auto/55ed004ea77e9c08b6dabba57a9eee25dc763252.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_DialogAssets/purpose_auto/4cefe32023b9007ba2724e84f423c3648d7891cb.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_DialogAssets/purpose_auto/dcd97d4c3210ae103e68688f9b7e1d7dbed7ce84.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_DialogAssets/purpose_auto/f06edff78af61160e3f156c65d9847ea98ec26af.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_DialogAssets/purpose_auto/6ef8993b6d332258779a0f697e3a92168050f66a.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_DialogAssets/purpose_auto/361b3e95eb4d9c53d62fa98cb96766ad879d4e62.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_DialogAssets/purpose_auto/9abbe378624d2e8c62ca9c622d11ee746632305b.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_DialogAssets/purpose_auto/28831f934d7dcb9d4673c63d6982e18cfcfa41cc.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_DialogAssets/purpose_auto/85d16fb8c07ede12d6e58d3d4c6c039b243a8ded.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_DialogAssets/purpose_auto/355a9406b5e2d7add6b970bdb2f1631a7a74204e.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_DialogAssets/purpose_auto/125c492330e1ff30055bc27c3823e8d8e9885dd1.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_DialogAssets/purpose_auto/5744c00768cb093ac2db01bb0c3f2ad13d1dbe41.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_DialogAssets/purpose_auto/0f38307f5e99d306172f5aa9ec98068f19a44fff.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_DialogAssets/purpose_auto/12d67fbc8920cff05e8b522158259c4f4affde8d.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_DialogAssets/purpose_auto/91eb435536835518876339cfe78432b85de22677.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_DialogAssets/purpose_auto/7356e89dbe10152022ecf612bb3b3ba4166a0d01.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_DialogAssets/purpose_auto/8432b56bcd1e45e4ae42fbef07d5c62ae4dadf2a.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_DialogAssets/purpose_auto/a3672ccea578ccb9d13a9e6972c8d8c375bdc7a0.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_DialogAssets/purpose_auto/59d2a446bc5213ae78fac2e7621fe80a6288aa16.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_DialogAssets/purpose_auto/8c6ff8e7b6876426430dca4a7d2cce4c8a9f6bda.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_DialogAssets/purpose_auto/c21e3aaa402513c00f2defb078a0397f98debcea.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_DialogAssets/purpose_auto/169a932e866612ab3804d37c65f0bd8f9e6fd2ff.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_DialogAssets/purpose_auto/31db13797c16fc2c02d9c7e31688e818c837f79f.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_DialogAssets/purpose_auto/fd4f9d61b126fbb0e8fff8494a375f8292ebb7a9.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_DialogAssets/purpose_auto/ccee454f2bedd881ac7db42e6d9cf34a9ae09310.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_DialogAssets/purpose_auto/4f3e8084708f7b39dfc534846d4f8e9dc3750591.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_DialogAssets/purpose_auto/42f68ab0c999326b7c010d4da6889225e12d6fca.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_DialogAssets/purpose_auto/022297d597a3055e20af4f03fc1b2ba327d1dd79.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_DialogAssets/purpose_auto/3c4c2f43207dafb5d937ba033f3dd06477dda613.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_DialogAssets/purpose_auto/6353116255ecba1282f18aeb55b1758975854590.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_DialogAssets/purpose_auto/65a6e42b548e2424af879827d47eb023499331a0.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_DialogAssets/purpose_auto/f50063b27913f76c06d224b5a0f355a97d26dcdd.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_DialogAssets/purpose_auto/4423731fa3fd99fbe5e53e15946ffc22fb6d8887.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_DialogAssets/purpose_auto/45061fa53aea1e4c6c0b7237b0bd5102ccb15c75.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_DialogAssets/purpose_auto/18534febf04a31dd46095a20d9f91e34c7587c9a.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_DialogAssets/purpose_auto/437fc4d2be269e1d9de978e26270b863c51ed2d6.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_DialogAssets/purpose_auto/f31118ccb493a96fcdb591d2f314d51536ecac6a.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_DialogAssets/purpose_auto/9817b5008f28efa0a76f2b1750162946d34b6f65.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_DialogAssets/purpose_auto/b9a214d0c8128a990e0af211120bc09314d52161.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_DialogAssets/purpose_auto/b4b35e82efafd3f8f7ac153664872b98f4978854.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_DialogAssets/purpose_auto/c5a33e1f2bd4402905bda6722f0f8661ec27108c.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_DialogAssets/purpose_auto/78294c708d9d842b0f6ab7367738a40a70d6755e.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_DialogAssets/purpose_auto/5826e9735bbc3b9530b52ff67c1b6937a6f70b3a.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_DialogAssets/purpose_auto/9897bfe2e7580bfcaf1d3fff4b003b0be866a3b1.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_DialogAssets/purpose_auto/ec27d179e7378d6a53e76bdf8852422fb457b1b2.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_DialogAssets/purpose_auto/e39f14a76747bc6496bcd286d044534ca99a2447.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_DialogAssets/purpose_auto/900006a5894e52762da3d978dbd05ecc220bc27c.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_DialogAssets/purpose_auto/b90b67ceb2daf7fb78c1f6e7c4609b717a137cf4.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_DialogAssets/purpose_auto/2db27be830fcb204b136b5274a57a8281cc869b6.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_DialogAssets/purpose_auto/116660a8c660cb0b3a4f91eea4c7d0587644b53d.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_DialogAssets/purpose_auto/8ceefdacca4c705565764e21196fcc408c136e53.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_DialogAssets/purpose_auto/f91ad407c2ddd8af6db4a618d1e52dbae4e3549c.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_DialogAssets/purpose_auto/eb648722a812f9405d7734fd81f57f8344373cf8.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_DialogAssets/purpose_auto/600479ef91aa394628b12c0d49b531c06b7a9061.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_DialogAssets/purpose_auto/3f03c1dcea2e4f06f068b4331a288dae590d8be9.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_DialogAssets/purpose_auto/3152ea08549d5c662b2ace809744fecdaefc985d.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_DialogAssets/purpose_auto/d75108c865feb6daba8f9b3e25ea85a034c1826c.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_DialogAssets/purpose_auto/33723c99140aa8331cad0019b72e8a50381fcff9.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_DialogAssets/purpose_auto/40ace3d559f3c3a0cf5f8e579e32979ce91295e5.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_DialogAssets/purpose_auto/a4a1cf5ad109c2bec54180a22949ce36ddbc0c8a.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_DialogAssets/purpose_auto/92b3672cee4cc38c70833e7108cef87d9c7a952b.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_DialogAssets/purpose_auto/f836cd6cb95fbd4ba46bc659bbf8dd02b018367e.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_DialogAssets/purpose_auto/6c05ab3c2cbbdcf141dd554ab13b554d18931c9d.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_DialogAssets/purpose_auto/76f349aee2fb27c829556dbf24143eac6e2bc7c3.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_GeoPolygonDataAssets/d92ca13041bd6a6a00b3ce6a68ee0af289a4e904.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_GeoPolygonDataAssets/52defaa6e459e671efdca41ab1059bc6cef75c1c.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_UnderstandingASRHammer/purpose_auto/245b7b7160f32ba1f4f34861b8c433f7fdfed6e6.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_UnderstandingASRHammer/purpose_auto/5021de1db9e46fbe25e9f3c9830f781f0e43eb2a.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_SharingDeviceAssets/b9febb9aacdb8752b526f1cc41863ec699519aed.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_FindMyConfigurationFiles/purpose_auto/5af710a7743432d8168ffc72054f8d1dd9ebd035.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_SecExperimentAssets/d3ab95a975f264d2a21f718061622cb5846df4fe.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_SubscriptionOptimizerTimingModels/10fb9dc46f00a4a20835966cbd53d79e466483e8.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_PKITrustStore/purpose_auto/6dd55b0d06633a00de6f57ccb910a66a5ba2409a.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_Understanding/purpose_auto/1611f35f0af8c9ac4a6053757fa1349b61880768.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_Understanding/purpose_auto/5197a240b49849d284160576b061ef76194f6c82.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_Understanding/purpose_auto/f443bca2e27d5d4d1ff454ab019ea0181d76dfce.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_Understanding/purpose_auto/6b939d4d6a9baff421ce2b0975ce8790b4fbd87d.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_Understanding/purpose_auto/eff22231773a2678672a135a9a5c631b4b895ad8.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_UAF_Siri_Understanding/purpose_auto/8a69389c27c8c47b819b482718223fe212bed75c.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_TTSAXResourceModelAssets/9a08425b3749656c5f0931d6e29e235e7e5ce54c.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_TTSAXResourceModelAssets/b07b0da3d87d77b068d85e8c7bfbf355b801cd44.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_GameController_DB1/1d1c22f6c962c7c64eedd1c64a6830bbe33fdf32.asset/AssetData/GameControllers-Custom.bundle/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_GameController_DB1/1d1c22f6c962c7c64eedd1c64a6830bbe33fdf32.asset/AssetData/GameControllers-SDL.bundle/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_GameController_DB1/1d1c22f6c962c7c64eedd1c64a6830bbe33fdf32.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_LinguisticData/9118b3a3343e4750377fd6a0d339b3d38a2e7c3a.asset/AssetData/char.lm/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_LinguisticData/9118b3a3343e4750377fd6a0d339b3d38a2e7c3a.asset/AssetData/searchquery.lm/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_LinguisticData/9118b3a3343e4750377fd6a0d339b3d38a2e7c3a.asset/AssetData/sentiment.bundle/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_LinguisticData/9118b3a3343e4750377fd6a0d339b3d38a2e7c3a.asset/AssetData/de.lm/blocklist.bundle/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_LinguisticData/9118b3a3343e4750377fd6a0d339b3d38a2e7c3a.asset/AssetData/de.lm/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_LinguisticData/9118b3a3343e4750377fd6a0d339b3d38a2e7c3a.asset/AssetData/Siri-de.lm/blocklist.bundle/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_LinguisticData/9118b3a3343e4750377fd6a0d339b3d38a2e7c3a.asset/AssetData/Siri-de.lm/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_LinguisticData/9118b3a3343e4750377fd6a0d339b3d38a2e7c3a.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_CarExperienceAssets/8438eb3409b7ba2b6d0d152a3e946c0e4e90dcbe.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_ContextKit/e6d1cf617c72e8245e81a67448e9b0e2355a8c99.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_ContextKit/b0142d90542342bbd5593905cb33c911e5fcb992.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_ContextKit/27765fc917187c613c00c3b6fd9ee6c11b98b118.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_Trial_Siri_SiriTextToSpeech/purpose_auto/aafc8deb95ddc1ccb665ade16737c43c60185d1e.asset/AssetData/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_Trial_Siri_SiriTextToSpeech/purpose_auto/aafc8deb95ddc1ccb665ade16737c43c60185d1e.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_Trial_Siri_SiriTextToSpeech/purpose_auto/2c6634c76c54e75fd81421a863f6d2b75d78496c.asset/AssetData/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_Trial_Siri_SiriTextToSpeech/purpose_auto/2c6634c76c54e75fd81421a863f6d2b75d78496c.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_CoreSuggestionsModels/34d0ea390efe3db38ae4203c11ceaf0b4fe58de3.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/private/var/MobileAsset/AssetsV2/com_apple_MobileAsset_CoreSuggestions/b6c1e982da476d9971dfb16633a0cad78130d6c4.asset/Info.plist
+./Library/Developer/Xcode/UserData/Previews/Simulator Devices/9322C957-C676-489A-92CD-5C61EA6F1B5C/data/Containers/Bundle/Application/EF69645B-5CA7-4DC0-B460-F40D7DBC80DE/EvoExchangeApp.app/Info.plist
+./Library/Developer/Xcode/DerivedData/SymbolCache.noindex/iPhoneSimulator18.2.sdk iphonesimulator (22C146)/Info.plist
+./Library/Developer/Xcode/DerivedData/CryptoEvokeApp-axuikileyfrpizctsaoydywxpvnf/Build/Products/Debug-iphonesimulator/CryptoEvokeApp.app/Info.plist
+find: ./Library/Calendars: Operation not permitted
+find: ./Library/Messages: Operation not permitted
+find: ./Library/HomeKit: Operation not permitted
+find: ./Library/Sharing: Operation not permitted
+find: ./Library/com.apple.aiml.instrumentation: Operation not permitted
+find: ./Library/Mail: Operation not permitted
+find: ./Library/Trial: Operation not permitted
+./Library/Google/GoogleSoftwareUpdate/GoogleSoftwareUpdate.bundle/Contents/Resources/GoogleSoftwareUpdateAgent.app/Contents/Info.plist
+./Library/Google/GoogleSoftwareUpdate/GoogleSoftwareUpdate.bundle/Contents/Info.plist
+./Library/LanguageModeling/fr-dynamic.lm/Info.plist
+./Library/LanguageModeling/pl-dynamic.lm/Info.plist
+./Library/LanguageModeling/fi-dynamic.lm/Info.plist
+./Library/LanguageModeling/en-dynamic.lm/Info.plist
+./Library/LanguageModeling/ro-dynamic.lm/Info.plist
+./Library/LanguageModeling/de-dynamic.lm/Info.plist
+./Library/LanguageModeling/nb-dynamic.lm/Info.plist
+./Library/LanguageModeling/vi-dynamic.lm/Info.plist
+./Library/LanguageModeling/mul-dynamic.lm/Info.plist
+./Library/LanguageModeling/it-dynamic.lm/Info.plist
+./Library/LanguageModeling/hu-dynamic.lm/Info.plist
+./Library/LanguageModeling/cs-dynamic.lm/Info.plist
+./Library/LanguageModeling/tr-dynamic.lm/Info.plist
+./Library/LanguageModeling/nl-dynamic.lm/Info.plist
+./Library/LanguageModeling/pt-dynamic.lm/Info.plist
+./Library/LanguageModeling/es-dynamic.lm/Info.plist
+./Library/LanguageModeling/da-dynamic.lm/Info.plist
+./Library/LanguageModeling/is-dynamic.lm/Info.plist
+./Library/LanguageModeling/sv-dynamic.lm/Info.plist
+./Library/ResponseKit/de-dynamic.lm/Info.plist
+./Library/ResponseKit/tr-dynamic.lm/Info.plist
+find: ./Library/AppleMediaServices: Operation not permitted
+find: ./Library/DuetExpertCenter: Operation not permitted
+find: ./Library/Accounts: Operation not permitted
+find: ./Library/Safari: Operation not permitted
+find: ./Library/Biome: Operation not permitted
+find: ./Library/IntelligencePlatform: Operation not permitted
+find: ./Library/Shortcuts: Operation not permitted
+./Library/Mobile Documents/Q43DRF894U~com~kdanmobile~PDFReader/Documents/MacBook Pro/lghub_installer.app/Contents/Info.plist
+

@@ -1,0 +1,369 @@
+Last login: Mon May 19 16:59:16 on ttys000
+jakob@MacBook-Air-von-Jakob ~ % cd ~/Downloads/CryptoEvokeApp
+
+cd: no such file or directory: /Users/jakob/Downloads/CryptoEvokeApp
+jakob@MacBook-Air-von-Jakob ~ % cd ~/Downloads
+jakob@MacBook-Air-von-Jakob Downloads % ls -la
+total 211504
+drwx------+ 156 jakob  staff      4992 19 Mai 17:05 .
+drwxr-x---+  27 jakob  staff       864 19 Mai 17:07 ..
+-rw-r--r--@   1 jakob  staff     10244 19 Mai 17:07 .DS_Store
+-rw-r--r--    1 jakob  staff         0  1 Jan  1970 .localized
+-rw-------@   1 jakob  staff    202758  7 Mai 21:30 2025-05-07 21.30.31.jpg
+-rw-------@   1 jakob  staff    220809  7 Mai 21:30 2025-05-07 21.30.39.jpg
+-rw-------@   1 jakob  staff    206790  7 Mai 21:29 2025-05-07 21.30.43.jpg
+-rw-------@   1 jakob  staff    220201  7 Mai 21:30 2025-05-07 21.33.07.jpg
+-rw-------@   1 jakob  staff    208507  7 Mai 21:33 2025-05-07 21.33.12.jpg
+-rw-r--r--@   1 jakob  staff     60222 30 Jan 19:28 2192170008538833_2025-01-30_2025-01-30.pdf
+-rw-r--r--@   1 jakob  staff     60348 31 Jan 17:15 2192170008538833_2025-01-31_2025-01-31.pdf
+-rw-r--r--@   1 jakob  staff     60161 30 Jan 14:25 2192170008538833_PENDING_PAYMENT-2.pdf
+-rw-r--r--@   1 jakob  staff     60162 30 Jan 14:25 2192170008538833_PENDING_PAYMENT.pdf
+-rw-r--r--@   1 jakob  staff    292781 26 Feb 16:20 29346237-germany-passport.jpg
+-rw-r--r--@   1 jakob  staff     92669  9 Mär 01:49 5188814574.pdf
+-rw-r--r--@   1 jakob  staff   5370110 17 Mär 15:17 6405_PaymentsAssociation_Membership_Brochure_2025_V5_NoPrices-1.pdf
+drwxr-xr-x@   9 jakob  staff       288 28 Apr 13:04 AML & risk
+-rw-r--r--@   1 jakob  staff     22578 10 Apr 18:56 A_ZEN.COM - VASP Sanctions Exposure Questionnaire.xlsx
+-rw-r--r--@   1 jakob  staff     41058 16 Apr 12:21 A_ZEN.COM IBAN - VASP questionnaire 2024 2 (1) (1).xlsx
+-rw-r--r--@   1 jakob  staff     41058 15 Apr 12:30 A_ZEN.COM IBAN - VASP questionnaire 2024 2 (1).xlsx
+-rw-r--r--@   1 jakob  staff     33694 10 Apr 18:57 A_ZEN.COM IBAN - VASP questionnaire 2024 2.xlsx
+-rw-r--r--@   1 jakob  staff      9501 24 Jan 16:41 Affidavit,  EvokeEssence .docx
+-rw-r--r--@   1 jakob  staff       257 31 Mär 18:43 AuthKey_V3B76T4F2W.p8
+-rw-r--r--@   1 jakob  staff      1691 26 Mär 15:15 Cloudflare_Info@prime-exchange.com's account_SecurityInsights_20250326_1515.csv
+-rw-r--r--@   1 jakob  staff     15309 24 Jan 16:41 Company activity description form.docx
+drwx------@  12 jakob  staff       384 19 Mai 17:07 CryptoEvokeApp-iOS-FINAL
+-rw-r--r--@   1 jakob  staff     26596 19 Mai 17:05 CryptoEvokeApp-iOS-FINAL.zip
+-rw-------@   1 jakob  staff   1644997  9 Apr 17:49 Crypto_Exchange_Flowchart.pdf
+-rw-r--r--@   1 jakob  staff   1387012 29 Apr 13:16 Declaration_Source_of_Funds_EvokeEssence (1) (1).pdf
+-rw-r--r--@   1 jakob  staff   1387012 28 Apr 12:58 Declaration_Source_of_Funds_EvokeEssence (1).pdf
+-rw-r--r--@   1 jakob  staff   1349948 23 Apr 15:03 Declaration_Source_of_Funds_EvokeEssence.pdf
+-rw-r--r--@   1 jakob  staff     28273 29 Apr 12:59 Dezember.pdf
+-rw-------@   1 jakob  staff   5273416 19 Mär 15:15 Ermittlungsakte der STA Berlin.pdf
+drwx------@   5 jakob  staff       160 31 Mär 18:19 EvoBrandingAssets
+-rw-r--r--@   1 jakob  staff      3460 31 Mär 18:17 EvoBrandingAssets.zip
+drwxr-xr-x@   8 jakob  staff       256 31 Mär 13:41 EvoExchangeApp_Batch3
+-rw-r--r--@   1 jakob  staff      3066 31 Mär 13:40 EvoExchangeApp_Batch3.zip
+drwxr-xr-x@   5 jakob  staff       160 31 Mär 13:43 EvoExchangeApp_Batch4
+-rw-r--r--@   1 jakob  staff      3250 31 Mär 13:43 EvoExchangeApp_Batch4.zip
+drwxr-xr-x@   4 jakob  staff       128 31 Mär 13:45 EvoExchangeApp_Batch5
+-rw-r--r--@   1 jakob  staff      4044 31 Mär 13:44 EvoExchangeApp_Batch5.zip
+-rw-r--r--@   1 jakob  staff     11546 24 Jan 16:41 EvokeEssence power of attorney.docx
+-rw-r--r--@   1 jakob  staff   1107589  3 Apr 17:02 EvokeEssence_Contractor_Agreement_Michael_Lindner.pdf
+-rw-r--r--@   1 jakob  staff   1107967  3 Apr 19:11 EvokeEssence_Contractor_Agreement_Michael_Lindner_Final_Tirana.pdf
+-rw-r--r--@   1 jakob  staff   1107964  3 Apr 19:09 EvokeEssence_Contractor_Agreement_Michael_Lindner_Signed_Today.pdf
+-rw-r--r--@   1 jakob  staff   1107964  3 Apr 19:02 EvokeEssence_Contractor_Agreement_Michael_Lindner_Updated.pdf
+-rw-r--r--@   1 jakob  staff   1107806  3 Apr 16:53 EvokeEssence_Director_Contract.pdf
+-rw-r--r--@   1 jakob  staff   1107796  3 Apr 16:54 EvokeEssence_Director_Contract_Corrected.pdf
+-rw-r--r--@   1 jakob  staff   1106886 23 Apr 14:48 EvokeEssence_PrivacyPolicy.pdf
+-rw-r--r--@   1 jakob  staff   1107242 23 Apr 14:49 EvokeEssence_PrivacyPolicy_Final.pdf
+-rw-r--r--@   1 jakob  staff     10541 10 Mär 13:16 EvokeEssence_Statement_2025-03-10 (1).pdf
+-rw-r--r--@   1 jakob  staff     11779 10 Mär 13:19 EvokeEssence_Statement_2025-03-10 (2).pdf
+-rw-r--r--@   1 jakob  staff     11779 10 Mär 13:26 EvokeEssence_Statement_2025-03-10 (3).pdf
+-rw-r--r--@   1 jakob  staff     13154 10 Mär 14:24 EvokeEssence_Statement_2025-03-10 (4).pdf
+-rw-r--r--@   1 jakob  staff     13160 10 Mär 14:29 EvokeEssence_Statement_2025-03-10 (5).pdf
+-rw-r--r--@   1 jakob  staff     10541 10 Mär 13:10 EvokeEssence_Statement_2025-03-10.pdf
+-rw-r--r--@   1 jakob  staff      7670 10 Mär 15:04 EvokeEssence_Statement_DE_2025-03-10.pdf
+-rw-r--r--@   1 jakob  staff     17283 10 Mär 17:33 EvokeEssence_TransactionHistory_65_20250310 (1).pdf
+-rw-r--r--@   1 jakob  staff     17662 10 Mär 17:53 EvokeEssence_TransactionHistory_65_20250310 (2).pdf
+-rw-r--r--@   1 jakob  staff     17650 10 Mär 18:22 EvokeEssence_TransactionHistory_65_20250310 (3).pdf
+-rw-r--r--@   1 jakob  staff     17650 10 Mär 18:25 EvokeEssence_TransactionHistory_65_20250310 (4).pdf
+-rw-r--r--@   1 jakob  staff     17826 10 Mär 16:44 EvokeEssence_TransactionHistory_65_20250310.pdf
+-rw-r--r--@   1 jakob  staff     14559 31 Mär 02:31 EvokeEssence_TransactionHistory_87_20250331.pdf
+-rw-r--r--@   1 jakob  staff     88469 17 Mai 15:41 FH48HJ3249MM_RTPE_1024844114_20250517.pdf
+-rw-r--r--@   1 jakob  staff     23962 29 Apr 12:59 Februar.pdf
+-rw-r--r--@   1 jakob  staff     30010 29 Jan 16:50 Finom_payment_29012025.pdf
+-rw-r--r--@   1 jakob  staff    477105  5 Apr 15:16 IMG_0478.PNG
+-rw-r--r--@   1 jakob  staff   1808767 16 Jun  2024 IMG_6347.heic
+-rw-r--r--@   1 jakob  staff     38022  8 Mär 22:51 Independent_Contractor_Agreement.docx
+-rw-r--r--@   1 jakob  staff   1136876  8 Apr 19:29 Independent_Contractor_Agreement_EvokeEssence_AndreaVass.pdf
+-rw-r--r--@   1 jakob  staff   1140236  8 Apr 19:37 Independent_Contractor_Agreement_EvokeEssence_AndreaVass_3Page.pdf
+-rw-r--r--@   1 jakob  staff   1141166  8 Apr 19:32 Independent_Contractor_Agreement_EvokeEssence_AndreaVass_Cleaned.pdf
+-rw-r--r--@   1 jakob  staff   1141160  8 Apr 19:30 Independent_Contractor_Agreement_EvokeEssence_AndreaVass_Corrected.pdf
+-rw-r--r--@   1 jakob  staff   1141468  8 Apr 19:35 Independent_Contractor_Agreement_EvokeEssence_AndreaVass_Final_Fixed.pdf
+-rw-r--r--@   1 jakob  staff   1137611  8 Apr 19:24 Independent_Contractor_Agreement_EvokeEssence_Final.pdf
+-rw-r--r--@   1 jakob  staff   1140529 10 Apr 14:17 Independent_Contractor_Agreement_PerformanceBased_AndreaVass_Final.pdf
+-rw-r--r--@   1 jakob  staff     52712 29 Apr 12:57 Invoice INV-EVOEXC-2025-04-01-101 (1).pdf
+-rw-r--r--@   1 jakob  staff     52712 24 Mär 12:56 Invoice INV-EVOEXC-2025-04-01-101.pdf
+-rw-r--r--@   1 jakob  staff     13302 24 Jan 16:41 Jakob Volkenhoff AML.docx
+-rw-r--r--@   1 jakob  staff     24539 29 Apr 12:59 Januar.pdf
+-rw-r--r--@   1 jakob  staff    214053 29 Apr 12:46 MONETUM - CRYPTO_Merchant Questionnaire_.docx
+-rw-r--r--@   1 jakob  staff     42875 29 Apr 12:59 März 2.pdf
+-rw-r--r--@   1 jakob  staff     42850 28 Apr 13:23 März.pdf
+-rw-r--r--@   1 jakob  staff    654912 29 Apr 12:54 Monetum - KYC QUESTIONNAIRE - (Corporate).docx
+-rw-r--r--@   1 jakob  staff     20777 29 Apr 13:00 November.pdf
+-rw-r--r--@   1 jakob  staff     30699 29 Apr 13:00 Oktober.pdf
+-rw-r--r--@   1 jakob  staff    173797 19 Mär 17:53 PHOTO-2025-03-19-17-53-35 2.jpg
+-rw-r--r--@   1 jakob  staff    218974 19 Mär 17:53 PHOTO-2025-03-19-17-53-35.jpg
+-rw-------@   1 jakob  staff   1550116 12 Feb 17:46 Piccolo57-FFM-67a60d077f64a.pdf
+-rw-r--r--@   1 jakob  staff      2853 27 Feb 20:52 PostmanCollection-main.zip
+-rw-r--r--@   1 jakob  staff       167  1 Apr 17:32 PricesListView.swift
+-rw-r--r--@   1 jakob  staff   4148942 29 Apr 13:17 Privacy policy internal .pdf
+-rw-r--r--@   1 jakob  staff     31529  1 Mai 15:36 Receipt-2120-6036.pdf
+-rw-r--r--@   1 jakob  staff     31447 30 Mär 15:25 Receipt-2731-3714.pdf
+-rw-r--r--@   1 jakob  staff     31692 26 Feb 15:31 Receipt-2905-5729.pdf
+-rw-r--r--@   1 jakob  staff     92407 17 Mai 15:40 SummaryTickets__20250517_1440.pdf
+-rw-r--r--@   1 jakob  staff     94349  9 Apr 17:06 TRUSTEE_PLUS_CARD_TXS_RECEIPT 2.pdf
+-rw-r--r--@   1 jakob  staff     82111  9 Apr 17:10 TRUSTEE_PLUS_CARD_TXS_RECEIPT 2.pdf.pdf
+-rw-r--r--@   1 jakob  staff    934717 28 Apr 12:55 TRUSTEE_PLUS_REPORT (1).xlsx
+-rw-r--r--@   1 jakob  staff    934717 29 Apr 13:16 TRUSTEE_PLUS_REPORT (2).xlsx
+-rw-r--r--@   1 jakob  staff    934717 28 Apr 12:54 TRUSTEE_PLUS_REPORT.xlsx
+-rw-r--r--@   1 jakob  staff    175068 17 Mai 15:40 TicketsFull__20250517_1440.pdf
+-rw-r--r--@   1 jakob  staff    175068 17 Mai 20:37 TicketsFull__20250517_1937.pdf
+-rw-------@   1 jakob  staff     62833 10 Apr 22:18 Transaction_Flow_Chart_EvokeEssence.png
+-rw-r--r--@   1 jakob  staff    146099 10 Apr 14:01 UBO form Satchel.pdf
+-rw-r--r--@   1 jakob  staff  45765789 12 Feb 20:33 Zoom.pkg
+-rw-r--r--@   1 jakob  staff       267  1 Mai 15:32 account_activities_202505.csv
+-rw-r--r--@   1 jakob  staff        79 26 Mär 15:21 cloudflare-info@prime-exchange.com-2025.03.26.txt
+-rw-r--r--@   1 jakob  staff     37804 18 Mär 17:35 crypto_exchange_proposal.docx
+-rw-r--r--@   1 jakob  staff     37801 18 Mär 17:30 crypto_exchange_proposal.pages
+-rw-r--r--@   1 jakob  staff    241094 18 Mär 16:48 crypto_exchange_proposal.pdf
+-rw-r--r--@   1 jakob  staff     38781 18 Mär 17:38 crypto_exchange_proposal_complete.docx
+-rw-r--r--@   1 jakob  staff    272997 18 Mär 17:09 crypto_exchange_proposal_complete.pdf
+-rw-r--r--@   1 jakob  staff    413847 18 Mär 16:59 crypto_exchange_proposal_final.pdf
+-rw-r--r--@   1 jakob  staff    274535 18 Mär 17:18 crypto_exchange_proposal_final_complete.pdf
+-rw-r--r--@   1 jakob  staff    274065 18 Mär 17:25 crypto_exchange_proposal_final_complete_visible.pdf
+-rw-r--r--@   1 jakob  staff    146681 18 Mär 17:21 crypto_exchange_proposal_final_fully_visible.pdf
+-rw-r--r--@   1 jakob  staff    146571 18 Mär 17:06 crypto_exchange_proposal_final_readable.pdf
+-rw-r--r--@   1 jakob  staff    146272 18 Mär 17:02 crypto_exchange_proposal_full.pdf
+-rw-r--r--@   1 jakob  staff    273265 18 Mär 17:14 crypto_exchange_proposal_full_landscape.pdf
+-rw-r--r--@   1 jakob  staff    526478 18 Mär 16:55 crypto_exchange_proposal_updated.pdf
+-rw-r--r--@   1 jakob  staff    282804 26 Feb 17:06 duy.HEIC
+-rw-r--r--@   1 jakob  staff    112350  2 Mär 03:30 duy.jpg
+-rw-r--r--@   1 jakob  staff      1462 17 Apr 13:59 enterprise.protection.outlook.com!evo-exchange.com!1744675200!1744761600.xml
+-rw-r--r--@   1 jakob  staff       603 17 Apr 13:59 enterprise.protection.outlook.com!evo-exchange.com!1744675200!1744761600.xml.gz
+-rw-r--r--@   1 jakob  staff    127494 26 Mär 19:23 evo-exchange-com-2025-03-26.pdf
+-rw-rw-r--@   1 jakob  staff      1281  5 Apr 09:29 google.com!evo-exchange.com!1743724800!1743811199.xml
+-rw-r--r--@   1 jakob  staff       733  5 Apr 14:38 google.com!evo-exchange.com!1743724800!1743811199.zip
+-rw-r--r--@   1 jakob  staff    294668 26 Feb 17:02 jakob.HEIC
+-rw-r--r--@   1 jakob  staff    114658  2 Mär 03:30 jakob.jpg
+-rw-r--r--@   1 jakob  staff   1158817  3 Apr 16:52 logo evokeessence 2.PNG
+-rw-r--r--@   1 jakob  staff   1158817  3 Apr 16:52 logo evokeessence.png
+-rw-r--r--@   1 jakob  staff   1242945 12 Feb 17:43 ocr_piccolo57-ffm-67a60d077f64a.pdf
+-rw-r--r--@   1 jakob  staff     68013 25 Mär 23:50 openapi-schema (1).yaml
+-rw-r--r--@   1 jakob  staff     93172 31 Mär 15:30 openapi-schema (2).yaml
+-rw-r--r--@   1 jakob  staff    102459  5 Apr 15:02 openapi-schema (3).yaml
+-rw-r--r--@   1 jakob  staff    104301  1 Mai 21:54 openapi-schema (4).yaml
+-rw-r--r--@   1 jakob  staff    104301  1 Mai 21:57 openapi-schema (5).yaml
+-rw-r--r--@   1 jakob  staff     95155  1 Mai 22:13 openapi-schema (6).yaml
+-rw-r--r--@   1 jakob  staff     10625 25 Mär 23:35 openapi-schema.yaml
+-rw-r--r--@   1 jakob  staff   1112565 10 Apr 23:18 podkladovy nz 240-2025 (1).pdf
+-rw-r--r--@   1 jakob  staff   1112565 14 Apr 13:49 podkladovy nz 240-2025 (2).pdf
+-rw-r--r--@   1 jakob  staff   1112565  1 Mai 12:24 podkladovy nz 240-2025 (3).pdf
+-rw-r--r--@   1 jakob  staff   1112565 10 Apr 13:00 podkladovy nz 240-2025.pdf
+-rw-r--r--@   1 jakob  staff     19350 28 Apr 12:57 signature.png
+-rw-r--r--@   1 jakob  staff        24 21 Apr 14:31 stripe_backup_code.txt
+-rw-r--r--@   1 jakob  staff    228772 27 Feb 18:13 sven.HEIC
+-rw-r--r--@   1 jakob  staff    111425  2 Mär 03:30 sven.jpg
+drwxrwxr-x@   3 jakob  staff        96 12 Feb 12:41 tronideBackup
+-rw-r--r--@   1 jakob  staff    337193 12 Feb 13:41 tronideBackup.zip
+drwxr-xr-x    3 jakob  staff        96 31 Mär 20:22 untitled folder
+-rw-r--r--@   1 jakob  staff       775  6 Mai 16:02 user-65-export.json
+-rw-r--r--@   1 jakob  staff       353 10 Mär 15:47 user-66-export (1).json
+-rw-r--r--@   1 jakob  staff       353 10 Mär 15:47 user-66-export.json
+-rw-r--r--@   1 jakob  staff    178864  7 Apr 17:41 vypis-1263907 (1).pdf
+-rw-r--r--@   1 jakob  staff    181206  7 Apr 17:41 vypis-1263907.pdf
+jakob@MacBook-Air-von-Jakob Downloads % cd ~/Downloads/CryptoEvokeApp-iOS-FINAL
+
+jakob@MacBook-Air-von-Jakob CryptoEvokeApp-iOS-FINAL % npm install
+
+npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+npm warn deprecated @babel/plugin-proposal-optional-catch-binding@7.18.6: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-optional-catch-binding instead.
+npm warn deprecated @babel/plugin-proposal-numeric-separator@7.18.6: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-numeric-separator instead.
+npm warn deprecated @babel/plugin-proposal-nullish-coalescing-operator@7.18.6: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-nullish-coalescing-operator instead.
+npm warn deprecated @babel/plugin-proposal-class-properties@7.18.6: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-class-properties instead.
+npm warn deprecated rimraf@2.6.3: Rimraf versions prior to v4 are no longer supported
+npm warn deprecated @humanwhocodes/config-array@0.13.0: Use @eslint/config-array instead
+npm warn deprecated @babel/plugin-proposal-optional-chaining@7.21.0: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-optional-chaining instead.
+npm warn deprecated @babel/plugin-proposal-async-generator-functions@7.20.7: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-async-generator-functions instead.
+npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+npm warn deprecated @humanwhocodes/object-schema@2.0.3: Use @eslint/object-schema instead
+npm warn deprecated sudo-prompt@9.2.1: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+npm warn deprecated @babel/plugin-proposal-object-rest-spread@7.20.7: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-object-rest-spread instead.
+npm warn deprecated uglify-es@3.3.10: support for ECMAScript is superseded by `uglify-js` as of v3.13.0
+npm warn deprecated eslint@8.57.1: This version is no longer supported. Please see https://eslint.org/version-support for other options.
+
+added 953 packages, and audited 954 packages in 32s
+
+154 packages are looking for funding
+  run `npm fund` for details
+
+5 high severity vulnerabilities
+
+To address all issues, run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+jakob@MacBook-Air-von-Jakob CryptoEvokeApp-iOS-FINAL % cd ios
+pod install
+cd ..
+Auto-linking React Native modules for target `CryptoEvokeApp`: RNCAsyncStorage, RNGestureHandler, RNScreens, and react-native-safe-area-context
+Framework build type is static library
+[Codegen] Generating ./build/generated/ios/React-Codegen.podspec.json
+Analyzing dependencies
+
+――― MARKDOWN TEMPLATE ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――
+
+### Command
+
+```
+/opt/homebrew/Cellar/cocoapods/1.16.2_1/libexec/bin/pod install
+```
+
+### Report
+
+* What did you do?
+
+* What did you expect to happen?
+
+* What happened instead?
+
+
+### Stack
+
+```
+   CocoaPods : 1.16.2
+        Ruby : ruby 3.4.4 (2025-05-14 revision a38531fd3f) +PRISM [arm64-darwin24]
+    RubyGems : 3.6.9
+        Host : macOS 15.0 (24A335)
+       Xcode : 16.2 (16C5032a)
+         Git : git version 2.39.5 (Apple Git-154)
+Ruby lib dir : /opt/homebrew/Cellar/ruby/3.4.4/lib
+Repositories : trunk - CDN - https://cdn.cocoapods.org/
+```
+
+### Plugins
+
+```
+cocoapods-deintegrate : 1.0.5
+cocoapods-plugins     : 1.0.0
+cocoapods-search      : 1.0.1
+cocoapods-trunk       : 1.6.0
+cocoapods-try         : 1.2.0
+```
+
+### Podfile
+
+```ruby
+require_relative '../node_modules/react-native/scripts/react_native_pods'
+require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
+
+platform :ios, min_ios_version_supported
+prepare_react_native_project!
+
+# If you are using a `react-native-flipper` your iOS build will fail when `NO_FLIPPER=1` is set.
+# because `react-native-flipper` depends on (FlipperKit,...) that will be excluded
+#
+# To fix this you can also exclude `react-native-flipper` using a `react-native.config.js`
+# ```js
+# module.exports = {
+#   dependencies: {
+#     ...(process.env.NO_FLIPPER ? { 'react-native-flipper': { platforms: { ios: null } } } : {}),
+# ```
+flipper_config = ENV['NO_FLIPPER'] == "1" ? FlipperConfiguration.disabled : FlipperConfiguration.enabled
+
+linkage = ENV['USE_FRAMEWORKS']
+if linkage != nil
+  Pod::UI.puts "Configuring Pod with #{linkage}ally linked Frameworks".green
+  use_frameworks! :linkage => linkage.to_sym
+end
+
+target 'CryptoEvokeApp' do
+  config = use_native_modules!
+
+  # Flags change depending on the env values.
+  flags = get_default_flags()
+
+  use_react_native!(
+    :path => config[:reactNativePath],
+    # Hermes is now enabled by default. Disable by setting this flag to false.
+    :hermes_enabled => flags[:hermes_enabled],
+    :fabric_enabled => flags[:fabric_enabled],
+    # Enables Flipper.
+    #
+    # Note that if you have use_frameworks! enabled, Flipper will not work and
+    # you should disable the next line.
+    :flipper_configuration => flipper_config,
+    # An absolute path to your application root.
+    :app_path => "#{Pod::Config.instance.installation_root}/.."
+  )
+
+  post_install do |installer|
+    # https://github.com/facebook/react-native/blob/main/packages/react-native/scripts/react_native_pods.rb#L197-L202
+    react_native_post_install(
+      installer,
+      config[:reactNativePath],
+      :mac_catalyst_enabled => false
+    )
+    __apply_Xcode_12_5_M1_post_install_workaround(installer)
+  end
+end
+```
+
+### Error
+
+```
+Nanaimo::Reader::ParseError - [!] Unexpected end of string while parsing
+ #  -------------------------------------------
+1>  
+    ^
+ #  -------------------------------------------
+
+/opt/homebrew/Cellar/cocoapods/1.16.2_1/libexec/gems/nanaimo-0.4.0/lib/nanaimo/reader.rb:284:in 'Nanaimo::Reader#raise_parser_error'
+/opt/homebrew/Cellar/cocoapods/1.16.2_1/libexec/gems/nanaimo-0.4.0/lib/nanaimo/reader.rb:130:in 'Nanaimo::Reader#parse_object'
+/opt/homebrew/Cellar/cocoapods/1.16.2_1/libexec/gems/nanaimo-0.4.0/lib/nanaimo/reader.rb:107:in 'Nanaimo::Reader#parse!'
+/opt/homebrew/Cellar/cocoapods/1.16.2_1/libexec/gems/xcodeproj-1.27.0/lib/xcodeproj/plist.rb:27:in 'Xcodeproj::Plist.read_from_path'
+/opt/homebrew/Cellar/cocoapods/1.16.2_1/libexec/gems/xcodeproj-1.27.0/lib/xcodeproj/project.rb:211:in 'Xcodeproj::Project#initialize_from_file'
+/opt/homebrew/Cellar/cocoapods/1.16.2_1/libexec/gems/xcodeproj-1.27.0/lib/xcodeproj/project.rb:113:in 'Xcodeproj::Project.open'
+/opt/homebrew/Cellar/cocoapods/1.16.2_1/libexec/gems/cocoapods-1.16.2/lib/cocoapods/installer/analyzer.rb:1194:in 'block (2 levels) in Pod::Installer::Analyzer#inspect_targets_to_integrate'
+/opt/homebrew/Cellar/cocoapods/1.16.2_1/libexec/gems/cocoapods-1.16.2/lib/cocoapods/installer/analyzer.rb:1193:in 'Hash#each'
+/opt/homebrew/Cellar/cocoapods/1.16.2_1/libexec/gems/cocoapods-1.16.2/lib/cocoapods/installer/analyzer.rb:1193:in 'block in Pod::Installer::Analyzer#inspect_targets_to_integrate'
+/opt/homebrew/Cellar/cocoapods/1.16.2_1/libexec/gems/cocoapods-1.16.2/lib/cocoapods/user_interface.rb:64:in 'Pod::UserInterface.section'
+/opt/homebrew/Cellar/cocoapods/1.16.2_1/libexec/gems/cocoapods-1.16.2/lib/cocoapods/installer/analyzer.rb:1188:in 'Pod::Installer::Analyzer#inspect_targets_to_integrate'
+/opt/homebrew/Cellar/cocoapods/1.16.2_1/libexec/gems/cocoapods-1.16.2/lib/cocoapods/installer/analyzer.rb:107:in 'Pod::Installer::Analyzer#analyze'
+/opt/homebrew/Cellar/cocoapods/1.16.2_1/libexec/gems/cocoapods-1.16.2/lib/cocoapods/installer.rb:422:in 'Pod::Installer#analyze'
+/opt/homebrew/Cellar/cocoapods/1.16.2_1/libexec/gems/cocoapods-1.16.2/lib/cocoapods/installer.rb:244:in 'block in Pod::Installer#resolve_dependencies'
+/opt/homebrew/Cellar/cocoapods/1.16.2_1/libexec/gems/cocoapods-1.16.2/lib/cocoapods/user_interface.rb:64:in 'Pod::UserInterface.section'
+/opt/homebrew/Cellar/cocoapods/1.16.2_1/libexec/gems/cocoapods-1.16.2/lib/cocoapods/installer.rb:243:in 'Pod::Installer#resolve_dependencies'
+/opt/homebrew/Cellar/cocoapods/1.16.2_1/libexec/gems/cocoapods-1.16.2/lib/cocoapods/installer.rb:162:in 'Pod::Installer#install!'
+/opt/homebrew/Cellar/cocoapods/1.16.2_1/libexec/gems/cocoapods-1.16.2/lib/cocoapods/command/install.rb:52:in 'Pod::Command::Install#run'
+/opt/homebrew/Cellar/cocoapods/1.16.2_1/libexec/gems/claide-1.1.0/lib/claide/command.rb:334:in 'CLAide::Command.run'
+/opt/homebrew/Cellar/cocoapods/1.16.2_1/libexec/gems/cocoapods-1.16.2/lib/cocoapods/command.rb:52:in 'Pod::Command.run'
+/opt/homebrew/Cellar/cocoapods/1.16.2_1/libexec/gems/cocoapods-1.16.2/bin/pod:55:in '<top (required)>'
+/opt/homebrew/Cellar/cocoapods/1.16.2_1/libexec/bin/pod:25:in 'Kernel#load'
+/opt/homebrew/Cellar/cocoapods/1.16.2_1/libexec/bin/pod:25:in '<main>'
+```
+
+――― TEMPLATE END ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――
+
+[!] Oh no, an error occurred.
+
+Search for existing GitHub issues similar to yours:
+https://github.com/CocoaPods/CocoaPods/search?q=%5B%21%5D+Unexpected+end+of+string+while+parsing%0A+%23++-------------------------------------------%0A1%3E++%0A++++%5E%0A+%23++-------------------------------------------%0A&type=Issues
+
+If none exists, create a ticket, with the template displayed above, on:
+https://github.com/CocoaPods/CocoaPods/issues/new
+
+Be sure to first read the contributing guide for details on how to properly submit a ticket:
+https://github.com/CocoaPods/CocoaPods/blob/master/CONTRIBUTING.md
+
+Don't forget to anonymize any private data!
+
+Looking for related issues on cocoapods/cocoapods...
+ - Installing pod fails - Nanaimo::Reader::ParseError - [!] Unexpected end of string while parsing
+   https://github.com/CocoaPods/CocoaPods/issues/12773 [open] [1 comment]
+   09 Mar 2025
+
+ - Usage of pods static library in user's project.
+   https://github.com/CocoaPods/CocoaPods/issues/1 [closed] [10 comments]
+   30 Sep 2014
+
+ - [error report] pod install /w m1 pro macbook -> JSON::ParserError - Failed to parse JSON
+   https://github.com/CocoaPods/CocoaPods/issues/12121 [open] [11 comments]
+   27 Dec 2023
+
+and 7 more at:
+https://github.com/cocoapods/cocoapods/search?q=%5B%21%5D%20Unexpected%20end%20of%20string%20while%20parsing%0A%20%23%20%20-------------------------------------------%0A1%3E%20%20%0A%20%20%20%20%5E%0A%20%23%20%20-------------------------------------------%0A&type=Issues&utf8=✓
+jakob@MacBook-Air-von-Jakob CryptoEvokeApp-iOS-FINAL % open ios/CryptoEvokeApp.xcworkspace
+
+The file /Users/jakob/Downloads/CryptoEvokeApp-iOS-FINAL/ios/CryptoEvokeApp.xcworkspace does not exist.
+jakob@MacBook-Air-von-Jakob CryptoEvokeApp-iOS-FINAL % 

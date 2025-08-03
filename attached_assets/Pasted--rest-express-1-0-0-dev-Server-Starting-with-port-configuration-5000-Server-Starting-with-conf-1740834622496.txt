@@ -1,0 +1,426 @@
+> rest-express@1.0.0 dev
+[Server] Starting with port configuration: 5000
+[Server] Starting with configuration: {
+  port: 5000,
+  healthCheckPort: 'integrated with main server',
+  env: undefined,
+  database: 'configured',
+  timestamp: '2025-03-01T13:09:09.966Z'
+}
+[Server] Starting initialization...
+[Server] Testing database connection...
+Database connection successful
+[Server] Database connection successful
+[Server] Creating HTTP server and registering routes...
+[Server] Setting up Vite development server...
+[Server] Attempting to start server on port 5000...
+[2025-03-01T13:09:10.261Z] Server is successfully listening on port 5000
+[Server] Ready to accept connections: {
+  port: 5000,
+  env: 'development',
+  nodeEnv: 'development',
+  timestamp: '2025-03-01T13:09:10.262Z'
+}
+[2025-03-01T13:09:10.293Z] GET / 204 3ms [Port: 5000]
+[2025-03-01T13:09:10.559Z] GET / 200 31ms [Port: 5000]
+[2025-03-01T13:09:12.009Z] GET / 200 617ms [Port: 5000]
+[2025-03-01T13:09:12.181Z] GET / 200 777ms [Port: 5000]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1:09:12 PM [vite] warning: Duplicate key "forgot_password" in object literal
+373|      verification_time: "How long does verification take?",
+374|      how_to_withdraw: "How do I withdraw funds?",
+375|      forgot_password: "What should I do if I forget my password?",
+   |      ^
+376|      customer_support: "How do you handle customer support?",
+377|      // Team page translations
+
+  Plugin: vite:esbuild
+  File: /home/runner/workspace/client/src/lib/i18n.ts
+1:09:12 PM [vite] warning: Duplicate key "email_placeholder" in object literal
+395|      name: "Name",
+396|      name_placeholder: "Your name",
+397|      email_placeholder: "Your email",
+   |      ^
+398|      // FAQ Questions
+399|      faq_what_is: "What is EvokeEssence?",
+
+  Plugin: vite:esbuild
+  File: /home/runner/workspace/client/src/lib/i18n.ts
+1:09:12 PM [vite] warning: Duplicate key "kyc_pending" in object literal
+436|      kyc_verification_description: "Complete your identity verification to unlock full platform access",
+437|      kyc_rejected_message: "Your verification was not approved. Please start a new verification process.",
+438|      kyc_pending: "Pending Verification",
+   |      ^
+439|      kyc_approved: "Verified",
+440|      kyc_rejected: "Verification Failed",
+
+  Plugin: vite:esbuild
+  File: /home/runner/workspace/client/src/lib/i18n.ts
+1:09:12 PM [vite] warning: Duplicate key "kyc_approved" in object literal
+437|      kyc_rejected_message: "Your verification was not approved. Please start a new verification process.",
+438|      kyc_pending: "Pending Verification",
+439|      kyc_approved: "Verified",
+   |      ^
+440|      kyc_rejected: "Verification Failed",
+441|      kyc_not_started: "Not Started",
+
+  Plugin: vite:esbuild
+  File: /home/runner/workspace/client/src/lib/i18n.ts
+1:09:12 PM [vite] warning: Duplicate key "forgot_password" in object literal
+817|      verification_time: "Jak dlouho trvá ověření?",
+818|      how_to_withdraw: "Jak mohu vybrat prostředky?",
+819|      forgot_password: "Co mám dělat, když zapomenu heslo?",
+   |      ^
+820|      customer_support: "Jak funguje zákaznická podpora?",
+821|      our_team: "Náš vedoucí tým",
+
+  Plugin: vite:esbuild
+  File: /home/runner/workspace/client/src/lib/i18n.ts
+1:09:12 PM [vite] warning: Duplicate key "email_placeholder" in object literal
+838|      name: "Jméno",
+839|      name_placeholder: "Vaše jméno",
+840|      email_placeholder: "Váš email",
+   |      ^
+841|      // FAQ Questions
+842|      faq_what_is: "Co je EvokeEssence?",
+
+  Plugin: vite:esbuild
+  File: /home/runner/workspace/client/src/lib/i18n.ts
+1:09:12 PM [vite] warning: Duplicate key "faq_kyc_requirements" in object literal
+842|      faq_what_is: "Co je EvokeEssence?",
+843|      faq_get_started: "Jak začít?",
+844|      faq_kyc_requirements: "Jaké jsou požadavky na KYC?",
+   |      ^
+845|      faq_deposit_funds: "Jak mohu vložit prostředky?",
+846|      faq_fees: "Jaké jsou poplatky?",
+
+  Plugin: vite:esbuild
+  File: /home/runner/workspace/client/src/lib/i18n.ts
+1:09:12 PM [vite] warning: Duplicate key "kyc_pending" in object literal
+860|      kyc_verification_description: "Dokončete ověření identity pro odemknutí plného přístupu k platformě",
+861|      kyc_rejected_message: "Vaše ověření nebylo schváleno. Prosím, začněte nový proces ověření.",
+862|      kyc_pending: "Probíhá Ověření",
+   |      ^
+863|      kyc_approved: "Ověřeno",
+864|      kyc_rejected: "Ověření Selhalo",
+
+  Plugin: vite:esbuild
+  File: /home/runner/workspace/client/src/lib/i18n.ts
+1:09:12 PM [vite] warning: Duplicate key "kyc_approved" in object literal
+861|      kyc_rejected_message: "Vaše ověření nebylo schváleno. Prosím, začněte nový proces ověření.",
+862|      kyc_pending: "Probíhá Ověření",
+863|      kyc_approved: "Ověřeno",
+   |      ^
+864|      kyc_rejected: "Ověření Selhalo",
+865|      kyc_not_started: "Nezahájeno",
+
+  Plugin: vite:esbuild
+  File: /home/runner/workspace/client/src/lib/i18n.ts
+1:09:12 PM [vite] warning: Duplicate key "forgot_password" in object literal
+1241|      verification_time: "Wie lange dauert die Verifizierung?",
+1242|      how_to_withdraw: "Wie kann ich Geld abheben?",
+1243|      forgot_password: "Was soll ich tun, wenn ich mein Passwort vergesse?",
+   |      ^
+1244|      customer_support: "Wie funktioniert der Kundenservice?",
+1245|      our_team: "Unser Führungsteam",
+
+  Plugin: vite:esbuild
+  File: /home/runner/workspace/client/src/lib/i18n.ts
+1:09:12 PM [vite] warning: Duplicate key "email_placeholder" in object literal
+1262|      name: "Name",
+1263|      name_placeholder: "Ihr Name",
+1264|      email_placeholder: "Ihre E-Mail",
+   |      ^
+1265|      // FAQ Questions
+1266|      faq_what_is: "Was ist EvokeEssence?",
+
+  Plugin: vite:esbuild
+  File: /home/runner/workspace/client/src/lib/i18n.ts
+1:09:12 PM [vite] warning: Duplicate key "faq_deposit_funds" in object literal
+1267|      faq_get_started: "Wie fange ich an?",
+1268|      faq_kyc_requirements: "Was sind die KYC-Anforderungen?",
+1269|      faq_deposit_funds: "Wie kann ich Geld einzahlen?",
+   |      ^
+1270|      faq_fees: "Welche Gebühren fallen an?",
+1271|      faq_account_security: "Wie sicher ist mein Konto?",
+
+  Plugin: vite:esbuild
+  File: /home/runner/workspace/client/src/lib/i18n.ts
+1:09:12 PM [vite] warning: Duplicate key "faq_fees" in object literal
+1268|      faq_kyc_requirements: "Was sind die KYC-Anforderungen?",
+1269|      faq_deposit_funds: "Wie kann ich Geld einzahlen?",
+1270|      faq_fees: "Welche Gebühren fallen an?",
+   |      ^
+1271|      faq_account_security: "Wie sicher ist mein Konto?",
+1272|      // Client Dashboard
+
+  Plugin: vite:esbuild
+  File: /home/runner/workspace/client/src/lib/i18n.ts
+1:09:12 PM [vite] warning: Duplicate key "faq_account_security" in object literal
+1269|      faq_deposit_funds: "Wie kann ich Geld einzahlen?",
+1270|      faq_fees: "Welche Gebühren fallen an?",
+1271|      faq_account_security: "Wie sicher ist mein Konto?",
+   |      ^
+1272|      // Client Dashboard
+1273|      deposit_funds: "Geld einzahlen",
+
+  Plugin: vite:esbuild
+  File: /home/runner/workspace/client/src/lib/i18n.ts
+[2025-03-01T13:09:12.359Z] GET /src/main.tsx 200 1ms [Port: 5000]
+[2025-03-01T13:09:12.445Z] GET /@vite/client 304 83ms [Port: 5000]
+[2025-03-01T13:09:12.544Z] GET /src/main.tsx 200 0ms [Port: 5000]
+[2025-03-01T13:09:12.629Z] GET /@vite/client 304 0ms [Port: 5000]
+[2025-03-01T13:09:13.354Z] GET /@fs/home/runner/workspace/node_modules/vite/dist/client/env.mjs 304 0ms [Port: 5000]
+[2025-03-01T13:09:13.355Z] GET /@react-refresh 304 0ms [Port: 5000]
+[2025-03-01T13:09:13.359Z] GET /src/index.css 200 1ms [Port: 5000]
+[2025-03-01T13:09:13.360Z] GET /src/App.tsx 200 1ms [Port: 5000]
+[2025-03-01T13:09:13.520Z] GET /src/App.tsx 200 0ms [Port: 5000]
+[2025-03-01T13:09:13.533Z] GET /src/index.css 200 1ms [Port: 5000]
+[2025-03-01T13:09:13.540Z] GET /@fs/home/runner/workspace/node_modules/vite/dist/client/env.mjs 304 1ms [Port: 5000]
+[2025-03-01T13:09:13.704Z] GET /@react-refresh 304 1ms [Port: 5000]
+[2025-03-01T13:09:13.723Z] GET /src/components/ui/toaster.tsx 304 0ms [Port: 5000]
+[2025-03-01T13:09:13.735Z] GET /src/lib/language-context.tsx 304 1ms [Port: 5000]
+[2025-03-01T13:09:13.884Z] GET /src/lib/queryClient.ts 304 1ms [Port: 5000]
+[2025-03-01T13:09:13.906Z] GET /src/pages/team.tsx 304 0ms [Port: 5000]
+[2025-03-01T13:09:13.913Z] GET /src/hooks/use-auth.tsx 304 0ms [Port: 5000]
+[2025-03-01T13:09:14.063Z] GET /src/hooks/use-user.ts 304 0ms [Port: 5000]
+[2025-03-01T13:09:14.085Z] GET /src/pages/contact.tsx 304 0ms [Port: 5000]
+[2025-03-01T13:09:14.089Z] GET /src/pages/home.tsx 304 0ms [Port: 5000]
+[2025-03-01T13:09:14.091Z] GET /src/pages/faq.tsx 304 0ms [Port: 5000]
+[2025-03-01T13:09:14.240Z] GET /src/pages/legal.tsx 304 1ms [Port: 5000]
+[2025-03-01T13:09:14.243Z] GET /src/pages/auth-page.tsx 304 0ms [Port: 5000]
+[2025-03-01T13:09:14.269Z] GET /src/pages/not-found.tsx 304 0ms [Port: 5000]
+[2025-03-01T13:09:14.270Z] GET /src/pages/dashboard.tsx 304 0ms [Port: 5000]
+[2025-03-01T13:09:14.272Z] GET /src/pages/support.tsx 304 0ms [Port: 5000]
+[2025-03-01T13:09:14.372Z] GET /src/pages/admin/clients.tsx 304 0ms [Port: 5000]
+[2025-03-01T13:09:14.419Z] GET /src/pages/admin/transactions.tsx 304 1ms [Port: 5000]
+[2025-03-01T13:09:14.423Z] GET /src/pages/admin/dashboard.tsx 304 0ms [Port: 5000]
+[2025-03-01T13:09:14.449Z] GET /src/components/ui/toaster.tsx 304 0ms [Port: 5000]
+[2025-03-01T13:09:14.452Z] GET /src/hooks/use-toast.ts 304 0ms [Port: 5000]
+[2025-03-01T13:09:14.456Z] GET /src/components/ui/toast.tsx 304 0ms [Port: 5000]
+[2025-03-01T13:09:14.552Z] GET /src/lib/language-context.tsx 304 1ms [Port: 5000]
+[2025-03-01T13:09:14.598Z] GET /src/lib/i18n.ts 304 1ms [Port: 5000]
+[2025-03-01T13:09:14.603Z] GET /src/lib/queryClient.ts 304 1ms [Port: 5000]
+[2025-03-01T13:09:14.628Z] GET /src/pages/team.tsx 304 0ms [Port: 5000]
+[2025-03-01T13:09:14.636Z] GET /src/hooks/use-auth.tsx 304 0ms [Port: 5000]
+[2025-03-01T13:09:14.639Z] GET /src/components/layout/header.tsx 304 1ms [Port: 5000]
+[2025-03-01T13:09:14.731Z] GET /src/components/layout/footer.tsx 304 0ms [Port: 5000]
+[2025-03-01T13:09:14.778Z] GET /src/components/ui/card.tsx 304 0ms [Port: 5000]
+[2025-03-01T13:09:14.783Z] GET /src/components/ui/avatar.tsx 304 0ms [Port: 5000]
+[2025-03-01T13:09:14.807Z] GET /src/components/ui/button.tsx 304 1ms [Port: 5000]
+[2025-03-01T13:09:14.819Z] GET /src/hooks/use-user.ts 304 1ms [Port: 5000]
+[2025-03-01T13:09:14.822Z] GET /src/pages/contact.tsx 304 1ms [Port: 5000]
+[2025-03-01T13:09:14.912Z] GET /src/pages/faq.tsx 304 0ms [Port: 5000]
+[2025-03-01T13:09:14.957Z] GET /src/pages/home.tsx 304 0ms [Port: 5000]
+[2025-03-01T13:09:14.963Z] GET /src/components/ui/input.tsx 304 0ms [Port: 5000]
+[2025-03-01T13:09:14.986Z] GET /src/components/ui/textarea.tsx 304 1ms [Port: 5000]
+[2025-03-01T13:09:15.003Z] GET /src/components/ui/form.tsx 304 1ms [Port: 5000]
+[2025-03-01T13:09:15.004Z] GET /src/components/ui/accordion.tsx 304 0ms [Port: 5000]
+[2025-03-01T13:09:15.092Z] GET /src/components/sections/hero.tsx 304 0ms [Port: 5000]
+[2025-03-01T13:09:15.135Z] GET /src/components/sections/about.tsx 304 0ms [Port: 5000]
+[2025-03-01T13:09:15.143Z] GET /src/components/sections/market-overview.tsx 304 1ms [Port: 5000]
+[2025-03-01T13:09:15.166Z] GET /src/components/sections/trust-news.tsx 304 1ms [Port: 5000]
+[2025-03-01T13:09:15.187Z] GET /src/components/sections/contact.tsx 304 1ms [Port: 5000]
+[2025-03-01T13:09:15.188Z] GET /src/components/sections/faq.tsx 304 0ms [Port: 5000]
+[2025-03-01T13:09:15.272Z] GET /src/components/sections/getting-started.tsx 304 1ms [Port: 5000]
+[2025-03-01T13:09:15.314Z] GET /src/components/sections/team.tsx 304 1ms [Port: 5000]
+[2025-03-01T13:09:15.322Z] GET /src/pages/legal.tsx 304 0ms [Port: 5000]
+[2025-03-01T13:09:15.345Z] GET /src/pages/auth-page.tsx 304 0ms [Port: 5000]
+[2025-03-01T13:09:15.372Z] GET /src/components/ui/select.tsx 304 0ms [Port: 5000]
+[2025-03-01T13:09:15.373Z] GET /src/components/ui/tabs.tsx 304 1ms [Port: 5000]
+[2025-03-01T13:09:15.452Z] GET /src/components/ui/input-otp.tsx 304 0ms [Port: 5000]
+[2025-03-01T13:09:15.492Z] GET /src/pages/dashboard.tsx 304 1ms [Port: 5000]
+[2025-03-01T13:09:15.503Z] GET /src/components/dashboard/UnverifiedDashboard.tsx 200 0ms [Port: 5000]
+[2025-03-01T13:09:15.524Z] GET /src/components/dashboard/VerifiedDashboard.tsx 200 0ms [Port: 5000]
+[2025-03-01T13:09:15.556Z] GET /src/pages/not-found.tsx 304 0ms [Port: 5000]
+[2025-03-01T13:09:15.556Z] GET /src/pages/support.tsx 304 0ms [Port: 5000]
+[2025-03-01T13:09:15.632Z] GET /src/components/ui/scroll-area.tsx 200 1ms [Port: 5000]
+[2025-03-01T13:09:15.670Z] GET /src/pages/admin/clients.tsx 304 0ms [Port: 5000]
+[2025-03-01T13:09:15.687Z] GET /src/components/ui/table.tsx 200 1ms [Port: 5000]
+[2025-03-01T13:09:15.739Z] GET /src/pages/admin/transactions.tsx 304 0ms [Port: 5000]
+[2025-03-01T13:09:15.740Z] GET /src/components/ui/badge.tsx 200 0ms [Port: 5000]
+[2025-03-01T13:09:15.751Z] GET /src/pages/admin/dashboard.tsx 304 0ms [Port: 5000]
+[2025-03-01T13:09:15.849Z] GET /src/hooks/use-toast.ts 304 1ms [Port: 5000]
+[2025-03-01T13:09:15.866Z] GET /src/components/ui/toast.tsx 304 1ms [Port: 5000]
+[2025-03-01T13:09:15.871Z] GET /src/lib/utils.ts 200 1ms [Port: 5000]
+[2025-03-01T13:09:15.924Z] GET /src/lib/i18n.ts 304 1ms [Port: 5000]
+[2025-03-01T13:09:15.925Z] GET /src/components/layout/header.tsx 304 0ms [Port: 5000]
+[2025-03-01T13:09:15.930Z] GET /src/components/ui/sheet.tsx 200 1ms [Port: 5000]
+[2025-03-01T13:09:16.028Z] GET /src/components/layout/footer.tsx 304 1ms [Port: 5000]
+[2025-03-01T13:09:16.046Z] GET /src/components/ui/card.tsx 304 1ms [Port: 5000]
+[2025-03-01T13:09:16.055Z] GET /src/components/ui/avatar.tsx 304 1ms [Port: 5000]
+[2025-03-01T13:09:16.108Z] GET /src/components/ui/button.tsx 304 0ms [Port: 5000]
+[2025-03-01T13:09:16.109Z] GET /src/components/ui/input.tsx 304 0ms [Port: 5000]
+[2025-03-01T13:09:16.137Z] GET /src/components/ui/textarea.tsx 304 0ms [Port: 5000]
+[2025-03-01T13:09:16.206Z] GET /src/components/ui/form.tsx 304 0ms [Port: 5000]
+[2025-03-01T13:09:16.226Z] GET /src/components/ui/accordion.tsx 304 1ms [Port: 5000]
+[2025-03-01T13:09:16.234Z] GET /src/components/ui/label.tsx 200 1ms [Port: 5000]
+[2025-03-01T13:09:16.292Z] GET /src/components/sections/about.tsx 304 0ms [Port: 5000]
+[2025-03-01T13:09:16.293Z] GET /src/components/sections/hero.tsx 304 0ms [Port: 5000]
+[2025-03-01T13:09:16.317Z] GET /src/components/sections/market-overview.tsx 304 0ms [Port: 5000]
+[2025-03-01T13:09:16.385Z] GET /src/components/sections/trust-news.tsx 304 0ms [Port: 5000]
+[2025-03-01T13:09:16.405Z] GET /src/components/sections/contact.tsx 304 0ms [Port: 5000]
+[2025-03-01T13:09:16.419Z] GET /src/components/sections/faq.tsx 304 0ms [Port: 5000]
+[2025-03-01T13:09:16.476Z] GET /src/components/sections/getting-started.tsx 304 0ms [Port: 5000]
+[2025-03-01T13:09:16.477Z] GET /src/components/sections/team.tsx 304 1ms [Port: 5000]
+[2025-03-01T13:09:16.496Z] GET /src/components/ui/select.tsx 304 0ms [Port: 5000]
+[2025-03-01T13:09:16.564Z] GET /src/components/ui/tabs.tsx 304 1ms [Port: 5000]
+[2025-03-01T13:09:16.586Z] GET /src/components/ui/input-otp.tsx 304 1ms [Port: 5000]
+[2025-03-01T13:09:16.601Z] GET /src/components/dashboard/UnverifiedDashboard.tsx 304 1ms [Port: 5000]
+[2025-03-01T13:09:16.661Z] GET /src/components/dashboard/tabs/ProfileTab.tsx 200 1ms [Port: 5000]
+[2025-03-01T13:09:16.662Z] GET /src/components/dashboard/VerifiedDashboard.tsx 304 1ms [Port: 5000]
+[2025-03-01T13:09:16.676Z] GET /src/components/dashboard/tabs/DepositTab.tsx 200 0ms [Port: 5000]
+[2025-03-01T13:09:16.742Z] GET /src/components/dashboard/tabs/UsdcTab.tsx 200 0ms [Port: 5000]
+[2025-03-01T13:09:16.765Z] GET /src/components/dashboard/tabs/HistoryTab.tsx 200 0ms [Port: 5000]
+[2025-03-01T13:09:16.780Z] GET /src/components/ui/scroll-area.tsx 304 0ms [Port: 5000]
+[2025-03-01T13:09:16.846Z] GET /src/components/ui/table.tsx 304 0ms [Port: 5000]
+[2025-03-01T13:09:16.872Z] GET /src/components/ui/badge.tsx 304 0ms [Port: 5000]
+[2025-03-01T13:09:16.902Z] GET /src/lib/utils.ts 304 0ms [Port: 5000]
+[2025-03-01T13:09:16.941Z] GET /src/components/ui/sheet.tsx 304 1ms [Port: 5000]
+[2025-03-01T13:09:16.960Z] GET /src/components/ui/label.tsx 304 1ms [Port: 5000]
+[2025-03-01T13:09:16.985Z] GET /src/components/dashboard/tabs/ProfileTab.tsx 304 0ms [Port: 5000]
+[2025-03-01T13:09:17.029Z] GET /src/components/dashboard/tabs/DepositTab.tsx 304 0ms [Port: 5000]
+[2025-03-01T13:09:17.056Z] GET /src/components/dashboard/tabs/UsdcTab.tsx 304 0ms [Port: 5000]
+[2025-03-01T13:09:17.082Z] GET /src/components/dashboard/tabs/HistoryTab.tsx 304 1ms [Port: 5000]
+User info request: { isAuthenticated: false, user: null }
+[2025-03-01T13:09:17.121Z] GET /api/user 401 2ms [Port: 5000]
+User info request: { isAuthenticated: false, user: null }
+[2025-03-01T13:09:17.139Z] GET /api/user 401 0ms [Port: 5000]
+User info request: { isAuthenticated: false, user: null }
+[2025-03-01T13:09:17.168Z] GET /api/user 401 1ms [Port: 5000]
+User info request: { isAuthenticated: false, user: null }
+[2025-03-01T13:09:17.294Z] GET /api/user 401 1ms [Port: 5000]
+User info request: { isAuthenticated: false, user: null }
+[2025-03-01T13:09:17.295Z] GET /api/user 401 1ms [Port: 5000]
+User info request: { isAuthenticated: false, user: null }
+[2025-03-01T13:09:17.296Z] GET /api/user 401 1ms [Port: 5000]
+User info request: { isAuthenticated: false, user: null }
+[2025-03-01T13:09:18.309Z] GET /api/user 401 1ms [Port: 5000]
+User info request: { isAuthenticated: false, user: null }
+[2025-03-01T13:09:18.478Z] GET /api/user 401 1ms [Port: 5000]
+User info request: { isAuthenticated: false, user: null }
+[2025-03-01T13:09:18.520Z] GET /api/user 401 0ms [Port: 5000]
+[2025-03-01T13:09:18.547Z] GET / 200 4ms [Port: 5000]
+Error fetching cryptocurrency prices: Error: Failed to fetch cryptocurrency prices
+    at <anonymous> (/home/runner/workspace/server/routes/market.routes.ts:22:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[2025-03-01T13:09:18.608Z] GET /api/market/prices 200 87ms [Port: 5000]
+User info request: { isAuthenticated: false, user: null }
+[2025-03-01T13:09:18.745Z] GET /api/user 401 1ms [Port: 5000]
+Error fetching cryptocurrency prices: Error: Failed to fetch cryptocurrency prices
+    at <anonymous> (/home/runner/workspace/server/routes/market.routes.ts:22:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[2025-03-01T13:09:18.803Z] GET /api/market/prices 200 15ms [Port: 5000]
+User info request: { isAuthenticated: false, user: null }
+[2025-03-01T13:09:21.739Z] GET /api/user 401 1ms [Port: 5000]
+User info request: { isAuthenticated: false, user: null }
+[2025-03-01T13:09:21.924Z] GET /api/user 401 0ms [Port: 5000]
+User info request: { isAuthenticated: false, user: null }
+[2025-03-01T13:09:22.036Z] GET /api/user 401 1ms [Port: 5000]
+[2025-03-01T13:09:22.112Z] GET / 200 3ms [Port: 5000]
+Error fetching cryptocurrency prices: Error: Failed to fetch cryptocurrency prices
+    at <anonymous> (/home/runner/workspace/server/routes/market.routes.ts:22:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[2025-03-01T13:09:22.234Z] GET /api/market/prices 200 18ms [Port: 5000]
+User info request: { isAuthenticated: false, user: null }
+[2025-03-01T13:09:22.315Z] GET /api/user 401 1ms [Port: 5000]
+Error fetching cryptocurrency prices: Error: Failed to fetch cryptocurrency prices
+    at <anonymous> (/home/runner/workspace/server/routes/market.routes.ts:22:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[2025-03-01T13:09:22.438Z] GET /api/market/prices 200 17ms [Port: 5000]
+User info request: { isAuthenticated: false, user: null }
+[2025-03-01T13:09:23.223Z] GET /api/user 401 1ms [Port: 5000]
+User info request: { isAuthenticated: false, user: null }
+[2025-03-01T13:09:23.431Z] GET /api/user 401 0ms [Port: 5000]
+[2025-03-01T13:09:23.434Z] GET / 200 2ms [Port: 5000]
+User info request: { isAuthenticated: false, user: null }
+[2025-03-01T13:09:23.638Z] GET /api/user 401 1ms [Port: 5000]
+[2025-03-01T13:09:23.742Z] GET /api/market/prices 200 132ms [Port: 5000]
+User info request: { isAuthenticated: false, user: null }
+[2025-03-01T13:09:23.840Z] GET /api/user 401 1ms [Port: 5000]
+[2025-03-01T13:09:23.950Z] GET /api/market/prices 304 29ms [Port: 5000]
+User info request: { isAuthenticated: false, user: null }
+[2025-03-01T13:09:24.618Z] GET /api/user 401 1ms [Port: 5000]
+[2025-03-01T13:09:24.842Z] GET / 200 6ms [Port: 5000]
+User info request: { isAuthenticated: false, user: null }
+[2025-03-01T13:09:25.040Z] GET /api/user 401 0ms [Port: 5000]
+[2025-03-01T13:09:25.252Z] GET /api/market/prices 304 30ms [Port: 5000]
+User info request: { isAuthenticated: false, user: null }
+[2025-03-01T13:09:25.440Z] GET /api/user 401 1ms [Port: 5000]
+Error fetching cryptocurrency prices: Error: Failed to fetch cryptocurrency prices
+    at <anonymous> (/home/runner/workspace/server/routes/market.routes.ts:22:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[2025-03-01T13:09:25.640Z] GET /api/market/prices 200 19ms [Port: 5000]
+User info request: { isAuthenticated: false, user: null }
+[2025-03-01T13:09:25.821Z] GET /api/user 401 0ms [Port: 5000]
+User info request: { isAuthenticated: false, user: null }
+[2025-03-01T13:09:26.229Z] GET /api/user 401 0ms [Port: 5000]
+User info request: { isAuthenticated: false, user: null }
+[2025-03-01T13:09:26.431Z] GET /api/user 401 1ms [Port: 5000]
+[2025-03-01T13:09:26.615Z] GET / 200 4ms [Port: 5000]
+Error fetching cryptocurrency prices: Error: Failed to fetch cryptocurrency prices
+    at <anonymous> (/home/runner/workspace/server/routes/market.routes.ts:22:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[2025-03-01T13:09:26.754Z] GET /api/market/prices 200 17ms [Port: 5000]
+Error fetching cryptocurrency prices: Error: Failed to fetch cryptocurrency prices
+    at <anonymous> (/home/runner/workspace/server/routes/market.routes.ts:22:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[2025-03-01T13:09:26.949Z] GET /api/market/prices 200 16ms [Port: 5000]
+User info request: { isAuthenticated: false, user: null }
+[2025-03-01T13:09:27.010Z] GET /api/user 401 0ms [Port: 5000]
+User info request: { isAuthenticated: false, user: null }
+[2025-03-01T13:09:27.200Z] GET /api/user 401 0ms [Port: 5000]
+User info request: { isAuthenticated: false, user: null }
+[2025-03-01T13:09:27.618Z] GET /api/user 401 1ms [Port: 5000]
+User info request: { isAuthenticated: false, user: null }
+[2025-03-01T13:09:27.824Z] GET /api/user 401 1ms [Port: 5000]
+[2025-03-01T13:09:27.827Z] GET / 200 5ms [Port: 5000]
+Error fetching cryptocurrency prices: Error: Failed to fetch cryptocurrency prices
+    at <anonymous> (/home/runner/workspace/server/routes/market.routes.ts:22:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[2025-03-01T13:09:27.841Z] GET /api/market/prices 200 16ms [Port: 5000]
+Error fetching cryptocurrency prices: Error: Failed to fetch cryptocurrency prices
+    at <anonymous> (/home/runner/workspace/server/routes/market.routes.ts:22:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[2025-03-01T13:09:28.043Z] GET /api/market/prices 200 17ms [Port: 5000]

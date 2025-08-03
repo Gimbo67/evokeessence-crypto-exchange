@@ -1,0 +1,262 @@
+import Foundation
+import Combine
+
+class AuthService {
+    static let shared = AuthService()
+    
+    // Current authenticated user
+    @Published private(set) var currentUser: User?
+    @Published private(set) var isAuthenticated = false
+    @Published private(set) var isLoading = false
+    @Published private(set) var authError: String?
+    
+    private var cancellables = Set<AnyCancellable>()
+    
+    private init() {
+        // Check for existing session on app launch
+        checkAuthStatus()
+    }
+    
+    // Login with username and password
+    func login(username: String, password: String) -> AnyPublisher<User, NetworkError> {
+        isLoading = true
+        authError = nil
+        
+        let parameters: [String: Any] = [
+            "username": username,
+            "password": password,
+            "mobile_app": true
+        ]
+        
+        return APIClient.shared.request(
+            endpoint: .login,
+            method: .post,
+            parameters: parameters
+        )
+        .handleEvents(receiveOutput: { [weak self] response in
+            guard let self = self else { return }
+            
+            // Check if 2FA is required
+            if let requireTwoFactor = response.requireTwoFactor, requireTwoFactor {
+                // Handle 2FA requirement
+                self.authError = "Two-factor authentication required"
+                self.isLoading = false
+                return
+            }
+            
+            // Process successful login
+            if let userData = response.user {
+                self.currentUser = userData
+                self.isAuthenticated = true
+                
+                // Store user data
+                if let encodedData = try? JSONEncoder().encode(userData) {
+                    KeychainManager.shared.saveUserData(encodedData)
+                }
+                
+                // Store token if present
+                if let token = response.token {
+                    KeychainManager.shared.saveToken(token)
+                }
+                
+                // Store refresh token if present
+                if let refreshToken = response.refreshToken {
+                    KeychainManager.shared.saveRefreshToken(refreshToken)
+                }
+            }
+            
+            self.isLoading = false
+        }, receiveError: { [weak self] error in
+            guard let self = self else { return }
+            
+            switch error {
+            case .serverError(let message):
+                self.authError = message
+            case .unauthorized:
+                self.authError = "Invalid username or password"
+            default:
+                self.authError = "Login failed. Please try again."
+            }
+            
+            self.isLoading = false
+        })
+        .map { $0.user! }
+        .eraseToAnyPublisher()
+    }
+    
+    // Register new user
+    func register(userData: RegisterData) -> AnyPublisher<Bool, NetworkError> {
+        isLoading = true
+        authError = nil
+        
+        return APIClient.shared.request(
+            endpoint: .register,
+            method: .post,
+            parameters: userData.toDictionary()
+        )
+        .handleEvents(receiveOutput: { [weak self] response in
+            self?.isLoading = false
+        }, receiveError: { [weak self] error in
+            guard let self = self else { return }
+            
+            switch error {
+            case .serverError(let message):
+                self.authError = message
+            default:
+                self.authError = "Registration failed. Please try again."
+            }
+            
+            self.isLoading = false
+        })
+        .map { _ in true }
+        .eraseToAnyPublisher()
+    }
+    
+    // Verify 2FA code during login
+    func verifyTwoFactor(code: String, username: String) -> AnyPublisher<User, NetworkError> {
+        isLoading = true
+        authError = nil
+        
+        let parameters: [String: Any] = [
+            "code": code,
+            "username": username
+        ]
+        
+        return APIClient.shared.request(
+            endpoint: .verifyTwoFactor,
+            method: .post,
+            parameters: parameters
+        )
+        .handleEvents(receiveOutput: { [weak self] response in
+            guard let self = self else { return }
+            
+            if let userData = response.user {
+                self.currentUser = userData
+                self.isAuthenticated = true
+                
+                // Store user data
+                if let encodedData = try? JSONEncoder().encode(userData) {
+                    KeychainManager.shared.saveUserData(encodedData)
+                }
+                
+                // Store token if present
+                if let token = response.token {
+                    KeychainManager.shared.saveToken(token)
+                }
+            }
+            
+            self.isLoading = false
+        }, receiveError: { [weak self] error in
+            guard let self = self else { return }
+            
+            switch error {
+            case .serverError(let message):
+                self.authError = message
+            default:
+                self.authError = "Verification failed. Please try again."
+            }
+            
+            self.isLoading = false
+        })
+        .map { $0.user! }
+        .eraseToAnyPublisher()
+    }
+    
+    // Check current auth status
+    func checkAuthStatus() {
+        isLoading = true
+        
+        // First check if we have stored user data
+        if let userData = KeychainManager.shared.getUserData(),
+           let user = try? JSONDecoder().decode(User.self, from: userData) {
+            // We have stored user data, verify with server
+            APIClient.shared.request(endpoint: .userSession)
+                .sink(receiveCompletion: { [weak self] completion in
+                    guard let self = self else { return }
+                    
+                    if case .failure(let error) = completion {
+                        if case .unauthorized = error {
+                            // Session expired, clear data
+                            self.logout()
+                        }
+                    }
+                    
+                    self.isLoading = false
+                }, receiveValue: { [weak self] (response: SessionResponse) in
+                    guard let self = self else { return }
+                    
+                    if response.authenticated, let responseUser = response.user {
+                        // Update local user data with server data
+                        self.currentUser = responseUser
+                        self.isAuthenticated = true
+                        
+                        // Store updated user data
+                        if let encodedData = try? JSONEncoder().encode(responseUser) {
+                            KeychainManager.shared.saveUserData(encodedData)
+                        }
+                    } else {
+                        // Not authenticated anymore
+                        self.currentUser = nil
+                        self.isAuthenticated = false
+                        KeychainManager.shared.clearAuthData()
+                    }
+                })
+                .store(in: &cancellables)
+        } else {
+            // No stored user data, not authenticated
+            currentUser = nil
+            isAuthenticated = false
+            isLoading = false
+        }
+    }
+    
+    // Logout
+    func logout() {
+        isLoading = true
+        
+        // Call logout API
+        APIClient.shared.request(endpoint: .logout, method: .post)
+            .sink(receiveCompletion: { [weak self] completion in
+                guard let self = self else { return }
+                
+                // Clear local auth data regardless of API response
+                self.currentUser = nil
+                self.isAuthenticated = false
+                KeychainManager.shared.clearAuthData()
+                self.isLoading = false
+            }, receiveValue: { _ in })
+            .store(in: &cancellables)
+    }
+}
+
+// Response structures
+struct LoginResponse: Decodable {
+    let success: Bool
+    let user: User?
+    let token: String?
+    let refreshToken: String?
+    let requireTwoFactor: Bool?
+    let message: String?
+}
+
+struct SessionResponse: Decodable {
+    let authenticated: Bool
+    let user: User?
+    let message: String?
+}
+
+struct RegisterData {
+    let username: String
+    let email: String
+    let password: String
+    let fullName: String
+    
+    func toDictionary() -> [String: Any] {
+        return [
+            "username": username,
+            "email": email,
+            "password": password,
+            "fullName": fullName
+        ]
+    }
+}

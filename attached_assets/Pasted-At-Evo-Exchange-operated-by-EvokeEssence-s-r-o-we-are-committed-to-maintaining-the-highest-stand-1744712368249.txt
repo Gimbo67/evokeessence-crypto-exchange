@@ -1,0 +1,32 @@
+At Evo Exchange (operated by EvokeEssence s.r.o.), we are committed to maintaining the highest standards of security, system integrity, and operational resilience. This Assurance Testing Policy outlines our proactive approach to identifying, testing, and mitigating risks related to our platform and infrastructure.
+
+1. Purpose
+The purpose of this policy is to define the principles and practices that guide our assurance testing processes, ensuring that our systems remain secure, reliable, and compliant with industry best practices.
+
+2. Scope
+This policy applies to all production systems, critical components, APIs, and supporting infrastructure used to operate Evo Exchange. It also applies to third-party services and integrations where appropriate.
+
+3. Testing Procedures
+Penetration Testing
+We conduct regular penetration tests on our backend infrastructure, APIs, and web/mobile applications. These tests are performed quarterly and/or after any major feature release.
+
+Vulnerability Scanning
+Automated vulnerability scans are executed weekly to identify known issues in our environment. All findings are prioritized and addressed based on risk level.
+
+Code Reviews
+All code changes undergo mandatory peer review and are scanned for security vulnerabilities prior to deployment.
+
+Security Patch Management
+Security patches are applied promptly in accordance with internal SLA guidelines.
+
+Incident Response Testing
+Our incident response plan is tested at least twice a year through tabletop exercises and simulated breach scenarios.
+
+4. Third-Party Audits
+We engage independent security firms to perform external assessments and audits of our systems and practices at least once per year.
+
+5. Reporting & Documentation
+All test results, incidents, and remediation actions are documented internally and reviewed by our security team and senior management.
+
+6. Continuous Improvement
+This policy is reviewed and updated regularly to align with changes in threat landscapes, regulatory requirements, and technological advancements.

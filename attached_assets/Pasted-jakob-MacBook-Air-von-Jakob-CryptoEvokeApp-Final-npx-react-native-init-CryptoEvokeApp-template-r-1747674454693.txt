@@ -1,0 +1,39 @@
+jakob@MacBook-Air-von-Jakob CryptoEvokeApp-Final % npx react-native init CryptoEvokeApp --template react-native-template-typescript
+
+warn Ignoring custom template: 'react-native-template-typescript'. Starting from React Native v0.71 TypeScript is used by default.
+                                                          
+               ######                ######               
+             ###     ####        ####     ###             
+            ##          ###    ###          ##            
+            ##             ####             ##            
+            ##             ####             ##            
+            ##           ##    ##           ##            
+            ##         ###      ###         ##            
+             ##  ########################  ##             
+          ######    ###            ###    ######          
+      ###     ##    ##              ##    ##     ###      
+   ###         ## ###      ####      ### ##         ###   
+  ##           ####      ########      ####           ##  
+ ##             ###     ##########     ###             ## 
+  ##           ####      ########      ####           ##  
+   ###         ## ###      ####      ### ##         ###   
+      ###     ##    ##              ##    ##     ###      
+          ######    ###            ###    ######          
+             ##  ########################  ##             
+            ##         ###      ###         ##            
+            ##           ##    ##           ##            
+            ##             ####             ##            
+            ##             ####             ##            
+            ##          ###    ###          ##            
+             ###     ####        ####     ###             
+               ######                ######               
+                                                          
+
+                  Welcome to React Native!                
+                 Learn once, write anywhere               
+
+✔ Downloading template
+✖ Copying template
+error Couldn't find the "/var/folders/cq/23zw_v9j0zlbqxwb6d1bzzyw0000gn/T/rncli-init-template-439TeS/node_modules/react-native/template.config.js file inside "react-native" template. Please make sure the template is valid. Read more: https://github.com/react-native-community/cli/blob/master/docs/init.md#creating-custom-template.
+info Run CLI with --verbose flag for more details.
+jakob@MacBook-Air-von-Jakob CryptoEvokeApp-Final % 

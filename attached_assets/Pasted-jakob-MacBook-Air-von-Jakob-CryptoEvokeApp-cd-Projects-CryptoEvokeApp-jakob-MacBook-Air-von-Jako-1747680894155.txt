@@ -1,0 +1,41 @@
+jakob@MacBook-Air-von-Jakob CryptoEvokeApp % cd ~/Projects/CryptoEvokeApp
+jakob@MacBook-Air-von-Jakob CryptoEvokeApp % mkdir -p backup
+cp -r ios backup/ios
+jakob@MacBook-Air-von-Jakob CryptoEvokeApp % npx react-native@0.72.4 init TempProject
+
+                                                          
+               ######                ######               
+             ###     ####        ####     ###             
+            ##          ###    ###          ##            
+            ##             ####             ##            
+            ##             ####             ##            
+            ##           ##    ##           ##            
+            ##         ###      ###         ##            
+             ##  ########################  ##             
+          ######    ###            ###    ######          
+      ###     ##    ##              ##    ##     ###      
+   ###         ## ###      ####      ### ##         ###   
+  ##           ####      ########      ####           ##  
+ ##             ###     ##########     ###             ## 
+  ##           ####      ########      ####           ##  
+   ###         ## ###      ####      ### ##         ###   
+      ###     ##    ##              ##    ##     ###      
+          ######    ###            ###    ######          
+             ##  ########################  ##             
+            ##         ###      ###         ##            
+            ##           ##    ##           ##            
+            ##             ####             ##            
+            ##             ####             ##            
+            ##          ###    ###          ##            
+             ###     ####        ####     ###             
+               ######                ######               
+                                                          
+
+                  Welcome to React Native!                
+                 Learn once, write anywhere               
+
+error Cannot initialize new project because directory "TempProject" already exists.
+info Run CLI with --verbose flag for more details.
+jakob@MacBook-Air-von-Jakob CryptoEvokeApp % cp -r TempProject/ios/*.xcodeproj ios/
+zsh: no matches found: TempProject/ios/*.xcodeproj
+jakob@MacBook-Air-von-Jakob CryptoEvokeApp % 

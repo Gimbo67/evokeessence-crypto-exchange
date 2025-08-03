@@ -1,0 +1,268 @@
+// applicantCreated
+{
+  "applicantId": "5c9e177b0a975a6eeccf5960",
+  "inspectionId": "5c9e177b0a975a6eeccf5961",
+  "correlationId": "req-63f92830-4d68-4eee-98d5-875d53a12258",
+  "levelName": "id-and-liveness",
+  "externalUserId": "12672",
+  "type": "applicantCreated",
+  "sandboxMode": false,
+  "reviewStatus": "init",
+  "createdAtMs": "2020-02-21 13:23:19.002",
+  "clientId": "coolClientId"
+}
+
+// applicantPending
+{
+  "applicantId": "5c7791f80a975a1df426b9e9",
+  "inspectionId": "5c7791f80a975a1df426b9ea",
+  "applicantType": "individual",
+  "correlationId": "req-4af54c06-6a50-4cb9-a7dc-b94b2f5b07eb",
+  "levelName": "liveness-level",
+  "externalUserId": "12672",
+  "type": "applicantPending",
+  "sandboxMode": false,
+  "reviewStatus": "pending",
+  "createdAtMs": "2020-02-21 13:23:19.002",
+  "clientId": "coolClientId"
+}
+
+// applicantReviewed
+{
+  "applicantId": "5cb56e8e0a975a35f333cb83",
+  "inspectionId": "5cb56e8e0a975a35f333cb84",
+  "correlationId": "req-a260b669-4f14-4bb5-a4c5-ac0218acb9a4",
+  "externalUserId": "externalUserId",
+  "levelName": "id-and-liveness",
+  "type": "applicantReviewed",
+  "reviewResult": {
+    "reviewAnswer": "GREEN"
+  },
+  "reviewStatus": "completed",
+  "createdAtMs": "2020-02-21 13:23:19.321"
+}
+
+// applicantOnHold
+{
+  "applicantId": "5c7791f80a975a1df426b9e9",
+  "inspectionId": "5c7791f80a975a1df426b9ea",
+  "applicantType": "individual",
+  "correlationId": "req-4af54c06-6a50-4cb9-a7dc-b94b2f5b07eb",
+  "levelName": "liveness-level",
+  "externalUserId": "12672",
+  "type": "applicantOnHold",
+  "sandboxMode": false,
+  "reviewResult": {
+    "reviewAnswer": "GREEN"
+  },
+  "reviewStatus": "onHold",
+  "createdAtMs": "2020-02-21 13:23:19.002",
+  "clientId": "coolClientId"
+}
+
+// applicantActionPending
+{
+  "applicantId": "5dc158b109494c3cbf431e28",
+  "applicantActionId": "5dc2d80ce3cc9b1c1e389c4c",
+  "externalApplicantActionId": "id122424234-random-r7otyykndi",
+  "inspectionId": "5dc158b109494c3cbf431e29",
+  "applicantType": "individual",
+  "correlationId": "req-8fbf5a81-339f-43b6-a9a7-290080e9039c",
+  "levelName": "basic-action-level",
+  "externalUserId": "pid122424235",
+  "type": "applicantActionPending",
+  "reviewStatus": "completed",
+  "createdAtMs": "2020-02-21 13:23:16.001"
+}
+
+// applicantActionReviewed
+{
+  "applicantId": "5dc158b109494c3cbf431e28",
+  "applicantActionId": "5dc2d80ce3cc9b1c1e389c4c",
+  "externalApplicantActionId": "id122424234-random-r7otyykndi",
+  "inspectionId": "5dc158b109494c3cbf431e29",
+  "correlationId": "req-c9041677-e8dc-446b-ab8f-50b438a40aa8",
+  "levelName": "basic-action-level",
+  "externalUserId": "id122424234",
+  "type": "applicantActionReviewed",
+  "reviewResult": {
+    "reviewAnswer": "GREEN"
+  },
+  "reviewStatus": "completed",
+  "createdAtMs": "2020-02-21 13:23:19.001"
+}
+
+// applicantActionOnHold
+{
+  "applicantId": "5ea867a9772e27d66728c64b",
+  "applicantActionId": "5ea867c2772e27d66728c64f",
+  "inspectionId": "5ea867a9772e27d66728c64c",
+  "correlationId": "req-2c3cce19-c723-4fd0-a2f2-527789f95bcc",
+  "levelName": "basic-action-level",
+  "externalUserId": "random-4gguvx1oha",
+  "type": "applicantActionOnHold",
+  "reviewStatus": "init",
+  "createdAtMs": "2020-04-28 18:16:09.001"
+}
+
+// applicantPersonalInfoChanged
+{
+  "applicantId": "5ede51230a975a19a19ba5c1",
+  "inspectionId": "5ede51230a975a19a19ba5c2",
+  "applicantType": "individual",
+  "correlationId": "req-60103dee-79f1-43f4-bdcc-eb2554556afa",
+  "levelName": "id+liveness",
+  "externalUserId": "12672",
+  "type": "applicantPersonalInfoChanged",
+  "sandboxMode": false,
+  "reviewResult": {
+    "reviewAnswer": "GREEN"
+  },
+  "reviewStatus": "completed",
+  "createdAtMs": "2020-06-08 19:39:29.002",
+  "clientId": "coolClientId"
+}
+
+// applicantTagsChanged
+{
+  "applicantId": "5ede51230a975a19a19ba5c1",
+  "inspectionId": "5ede51230a975a19a19ba5c2",
+  "applicantType": "individual",
+  "correlationId": "req-60103dee-79f1-43f4-bdcc-eb2654556afa",
+  "levelName": "id-and-liveness",
+  "externalUserId": "12672",
+  "type": "applicantTagsChanged",
+  "sandboxMode": false,
+  "reviewResult": {
+    "reviewAnswer": "GREEN"
+  },
+  "reviewStatus": "completed",
+  "createdAtMs": "2023-06-08 19:39:29.002",
+  "clientId": "coolClientId"
+}
+
+// applicantActivated
+{
+  "applicantId": "5f194e74040c3f316bda271c",
+  "inspectionId": "5f194e74040c3f316bda271d",
+  "applicantType": "individual",
+  "correlationId": "req-d34c974c-5935-41b8-a0a9-cedd2407eada",
+  "levelName": "phone-level",
+  "externalUserId": "12672",
+  "type": "applicantActivated",
+  "sandboxMode": false,
+  "reviewStatus": "init",
+  "createdAtMs": "2020-07-23 11:18:33.002",
+  "clientId": "coolClientId"
+}
+
+// applicantDeactivated
+{
+  "applicantId": "5f194e74040c3f316bda271c",
+  "inspectionId": "5f194e74040c3f316bda271d",
+  "applicantType": "individual",
+  "correlationId": "req-d34c974c-5935-41b8-a0a9-cedd2407eada",
+  "levelName": "phone-level",
+  "externalUserId": "12672",
+  "type": "applicantDeactivated",
+  "sandboxMode": false,
+  "reviewStatus": "init",
+  "createdAtMs": "2020-07-23 11:18:33.002",
+  "clientId": "coolClientId"
+}
+
+// applicantDeleted
+{
+  "applicantId": "5f194e74040c3f316bda271c",
+  "inspectionId": "5f194e74040c3f316bda271d",
+  "applicantType": "individual",
+  "correlationId": "req-d34c974c-5935-41b8-a0a9-cedd2407eada",
+  "levelName": "phone-level",
+  "externalUserId": "12672",
+  "type": "applicantDeleted",
+  "sandboxMode": false,
+  "reviewStatus": "init",
+  "createdAtMs": "2020-07-23 11:18:33.002",
+  "clientId": "coolClientId"
+}
+
+// applicantReset
+{
+  "applicantId": "5f194e74040c3f316bda271c",
+  "inspectionId": "5f194e74040c3f316bda271d",
+  "applicantType": "individual",
+  "correlationId": "req-57fed49a-07b8-4413-bdaa-a1be903769e9",
+  "levelName": "id-and-liveness",
+  "externalUserId": "12672",
+  "type": "applicantReset",
+  "sandboxMode": false,
+  "reviewResult": {
+    "reviewAnswer": "GREEN"
+  },
+  "reviewStatus": "init",
+  "createdAtMs": "2021-03-01 11:34:51.104",
+  "clientId": "coolClientId"
+}
+
+// applicantLevelChanged
+{
+  "applicantId": "5f194e74040c3f316bda271c",
+  "inspectionId": "5f194e74040c3f316bda271d",
+  "applicantType": "individual",
+  "correlationId": "req-d34c974c-5935-41b8-a0a9-cedd2407eadd",
+  "levelName": "id-and-liveness",
+  "externalUserId": "12672",
+  "type": "applicantLevelChanged",
+  "sandboxMode": false,
+  "reviewStatus": "init",
+  "createdAtMs": "2020-07-23 11:19:33.002",
+  "clientId": "coolClientId"
+}
+
+// applicantWorkflowCompleted
+{
+  "applicantId": "64106d6b7d5a2d5159e6b01a",
+  "inspectionId": "64106d6b7d5a2d5159e6b01b",
+  "applicantType": "individual",
+  "correlationId": "req-57fed49a-07b8-4413-bdaa-a1be903769e9",
+  "levelName": "id-and-liveness",
+  "sandboxMode": false,
+  "externalUserId": "12672",
+  "type": "applicantWorkflowCompleted",
+  "reviewResult": {
+    "reviewAnswer": "RED",
+    "rejectLabels": [
+      "AGE_REQUIREMENT_MISMATCH"
+    ],
+    "reviewRejectType": "FINAL",
+    "buttonIds": []
+  },
+  "reviewStatus": "completed",
+  "createdAt": "2023-03-14 12:50:27+0000",
+  "createdAtMs": "2023-03-14 12:50:27.238",
+  "clientId": "coolClientId"
+}
+
+// applicantWorkflowFailed
+{
+  "applicantId": "64106d6b7d5a2d5159e6b01a",
+  "inspectionId": "64106d6b7d5a2d5159e6b01b",
+  "applicantType": "individual",
+  "correlationId": "req-57fed49a-07b8-4413-bdaa-a1be903769e9",
+  "levelName": "id-and-liveness",
+  "sandboxMode": false,
+  "externalUserId": "12672",
+  "type": "applicantWorkflowFailed",
+  "reviewResult": {
+    "reviewAnswer": "RED",
+    "rejectLabels": [
+      "AGE_REQUIREMENT_MISMATCH"
+    ],
+    "reviewRejectType": "FINAL",
+    "buttonIds": []
+  },
+  "reviewStatus": "completed",
+  "createdAt": "2023-03-14 12:50:27+0000",
+  "createdAtMs": "2023-03-14 12:50:27.238",
+  "clientId": "coolClientId"
+}

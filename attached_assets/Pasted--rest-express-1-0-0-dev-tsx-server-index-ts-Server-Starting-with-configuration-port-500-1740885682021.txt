@@ -1,0 +1,198 @@
+
+> rest-express@1.0.0 dev
+> tsx server/index.ts
+
+[Server] Starting with configuration: {
+  port: 5000,
+  host: '0.0.0.0',
+  env: undefined,
+  isDevelopment: false,
+  database: 'configured',
+  timestamp: '2025-03-02T03:20:23.262Z'
+}
+[Server] Starting initialization...
+[Database] Testing connection...
+Database connection successful
+[Database] Connection successful
+[Server] Creating HTTP server and registering routes...
+[Server] Setting up static file serving...
+[Server] Falling back to Vite development server due to missing build...
+[2025-03-02T03:20:23.593Z] Server listening on http://0.0.0.0:5000
+[Server] Ready to accept connections: {
+  host: '0.0.0.0',
+  port: 5000,
+  env: 'development',
+  nodeEnv: 'development',
+  timestamp: '2025-03-02T03:20:23.593Z'
+[Incoming Request] {
+  method: 'GET',
+  url: '/',
+  path: '/',
+  query: {},
+  headers: {
+    host: '36cd0449-8a19-4ac7-83ce-9890870ff30a-00-1c9uvdkcrs1wr.kirk.replit.dev',
+    'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
+    accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+    'accept-encoding': 'identity, gzip, deflate, br, zstd',
+    'accept-language': 'en-US,en;q=0.9,de;q=0.8',
+    cookie: '(filtered)',
+    referer: 'https://36cd0449-8a19-4ac7-83ce-9890870ff30a-00-1c9uvdkcrs1wr.kirk.replit.dev:5000/__replco/workspace_iframe.html?initialPath=%2F&id=%3Ar337%3A',
+    'sec-ch-ua': '"Google Chrome";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
+    'sec-ch-ua-mobile': '?0',
+    'sec-ch-ua-platform': '"macOS"',
+    'sec-fetch-dest': 'iframe',
+    'sec-fetch-mode': 'navigate',
+    'sec-fetch-site': 'same-origin',
+    'upgrade-insecure-requests': '1',
+    'x-forwarded-for': '141.98.141.217, 10.82.0.204',
+    'x-forwarded-proto': 'https',
+    'x-replit-user-bio': '',
+    'x-replit-user-id': '',
+    'x-replit-user-name': '',
+    'x-replit-user-profile-image': '',
+    'x-replit-user-roles': '',
+    'x-replit-user-teams': '',
+    'x-replit-user-url': ''
+  },
+  timestamp: '2025-03-02T03:20:25.145Z',
+  ip: '172.31.128.69',
+  protocol: 'http',
+  secure: false,
+  hostname: '36cd0449-8a19-4ac7-83ce-9890870ff30a-00-1c9uvdkcrs1wr.kirk.replit.dev'
+}
+[Session] Request session: {
+  hasSession: true,
+  isAuthenticated: undefined,
+  timestamp: '2025-03-02T03:20:25.150Z'
+}
+[Incoming Request] {
+  method: 'GET',
+  url: '/',
+  path: '/',
+  query: {},
+  headers: {
+    host: '36cd0449-8a19-4ac7-83ce-9890870ff30a-00-1c9uvdkcrs1wr.kirk.replit.dev',
+    'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
+    accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+    'accept-encoding': 'identity, gzip, deflate, br, zstd',
+    'accept-language': 'en-US,en;q=0.9,de;q=0.8',
+    cookie: '(filtered)',
+    referer: 'https://36cd0449-8a19-4ac7-83ce-9890870ff30a-00-1c9uvdkcrs1wr.kirk.replit.dev:5000/__replco/workspace_iframe.html?initialPath=%2F&id=%3Ar33k%3A',
+    'sec-ch-ua': '"Google Chrome";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
+    'sec-ch-ua-mobile': '?0',
+    'sec-ch-ua-platform': '"macOS"',
+    'sec-fetch-dest': 'iframe',
+    'sec-fetch-mode': 'navigate',
+    'sec-fetch-site': 'same-origin',
+    'upgrade-insecure-requests': '1',
+    'x-forwarded-for': '141.98.141.217, 10.82.2.75',
+    'x-forwarded-proto': 'https',
+    'x-replit-user-bio': '',
+    'x-replit-user-id': '',
+    'x-replit-user-name': '',
+    'x-replit-user-profile-image': '',
+    'x-replit-user-roles': '',
+    'x-replit-user-teams': '',
+    'x-replit-user-url': ''
+  },
+  timestamp: '2025-03-02T03:20:26.255Z',
+  ip: '172.31.128.69',
+  protocol: 'http',
+  secure: false,
+  hostname: '36cd0449-8a19-4ac7-83ce-9890870ff30a-00-1c9uvdkcrs1wr.kirk.replit.dev'
+}
+[Session] Request session: {
+  hasSession: true,
+  isAuthenticated: undefined,
+  timestamp: '2025-03-02T03:20:26.256Z'
+}
+[Incoming Request] {
+  method: 'GET',
+  url: '/@vite/client',
+  path: '/@vite/client',
+  query: {},
+  headers: {
+    host: '36cd0449-8a19-4ac7-83ce-9890870ff30a-00-1c9uvdkcrs1wr.kirk.replit.dev',
+    'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
+    accept: '*/*',
+    'accept-encoding': 'gzip, deflate, br, zstd',
+    'accept-language': 'en-US,en;q=0.9,de;q=0.8',
+    cookie: '(filtered)',
+    origin: 'https://36cd0449-8a19-4ac7-83ce-9890870ff30a-00-1c9uvdkcrs1wr.kirk.replit.dev:5000',
+    referer: 'https://36cd0449-8a19-4ac7-83ce-9890870ff30a-00-1c9uvdkcrs1wr.kirk.replit.dev:5000/',
+    'sec-ch-ua': '"Google Chrome";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
+    'sec-ch-ua-mobile': '?0',
+    'sec-ch-ua-platform': '"macOS"',
+    'sec-fetch-dest': 'script',
+    'sec-fetch-mode': 'cors',
+    'sec-fetch-site': 'same-origin',
+    'x-forwarded-for': '141.98.141.217, 10.82.3.22',
+    'x-forwarded-proto': 'https',
+    'x-replit-user-bio': '',
+    'x-replit-user-id': '',
+    'x-replit-user-name': '',
+    'x-replit-user-profile-image': '',
+    'x-replit-user-roles': '',
+    'x-replit-user-teams': '',
+    'x-replit-user-url': ''
+  },
+  timestamp: '2025-03-02T03:20:26.283Z',
+  ip: '172.31.128.69',
+  protocol: 'http',
+  secure: false,
+  hostname: '36cd0449-8a19-4ac7-83ce-9890870ff30a-00-1c9uvdkcrs1wr.kirk.replit.dev'
+}
+[Session] Request session: {
+  hasSession: true,
+  isAuthenticated: undefined,
+  timestamp: '2025-03-02T03:20:26.284Z'
+}
+[Incoming Request] {
+  method: 'GET',
+  url: '/src/main.tsx?v=bNiRLuhKpGk3RO1rwACym',
+  path: '/src/main.tsx',
+  query: { v: 'bNiRLuhKpGk3RO1rwACym' },
+  headers: {
+    host: '36cd0449-8a19-4ac7-83ce-9890870ff30a-00-1c9uvdkcrs1wr.kirk.replit.dev',
+    'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
+    accept: '*/*',
+    'accept-encoding': 'gzip, deflate, br, zstd',
+    'accept-language': 'en-US,en;q=0.9,de;q=0.8',
+    cookie: '(filtered)',
+    origin: 'https://36cd0449-8a19-4ac7-83ce-9890870ff30a-00-1c9uvdkcrs1wr.kirk.replit.dev:5000',
+    referer: 'https://36cd0449-8a19-4ac7-83ce-9890870ff30a-00-1c9uvdkcrs1wr.kirk.replit.dev:5000/',
+    'sec-ch-ua': '"Google Chrome";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
+    'sec-ch-ua-mobile': '?0',
+    'sec-ch-ua-platform': '"macOS"',
+    'sec-fetch-dest': 'script',
+    'sec-fetch-mode': 'cors',
+    'sec-fetch-site': 'same-origin',
+    'x-forwarded-for': '141.98.141.217, 10.82.0.204',
+    'x-forwarded-proto': 'https',
+    'x-replit-user-bio': '',
+    'x-replit-user-id': '',
+    'x-replit-user-name': '',
+    'x-replit-user-profile-image': '',
+    'x-replit-user-roles': '',
+    'x-replit-user-teams': '',
+    'x-replit-user-url': ''
+  },
+  timestamp: '2025-03-02T03:20:26.287Z',
+  ip: '172.31.128.69',
+  protocol: 'http',
+  secure: false,
+  hostname: '36cd0449-8a19-4ac7-83ce-9890870ff30a-00-1c9uvdkcrs1wr.kirk.replit.dev'
+}
+[Session] Request session: {
+  hasSession: true,
+  isAuthenticated: undefined,
+  timestamp: '2025-03-02T03:20:26.287Z'
+}
+3:20:26 AM [vite] Pre-transform error: Duplicate declaration "ChartContainer"
+  134 | );
+  135 |
+> 136 | const ChartContainer = ({ children }: { children: React.ReactElement }) => (
+      |       ^^^^^^^^^^^^^^
+  137 |   <div className="relative h-[400px] w-full">
+  138 |     <ResponsiveContainer width="100%" height="100%">
+  139 |       {children}

@@ -1,0 +1,146 @@
+Perfect — here’s your fully detailed and final instruction set for Replit AI. You can copy and paste this directly into Replit AI to let it finish building your iOS mobile app for CryptoEvokeExchange, ensuring that:
+	•	The website and app work together
+	•	GitHub is properly used
+	•	The Xcode project is 100% ready
+	•	All functionalities exactly match the website (excluding the landing page)
+
+⸻
+
+✅ Final Instructions for Replit AI
+
+Project: CryptoEvokeExchange iOS Mobile App (Standalone)
+
+⸻
+
+📁 1. Project Setup
+
+Create a brand new standalone React Native app for iOS only.
+	•	Do not modify or mix with the existing website project.
+	•	Create this project separately and store it in:
+👉 evokeessence/evokeessence-exchange-mobile
+	•	Use React Native (bare workflow), not Expo.
+	•	Project name: CryptoEvokeApp
+
+Command to start:
+
+npx react-native init CryptoEvokeApp --template react-native-template-typescript
+
+
+⸻
+
+🧱 2. Features to Build
+
+Build all screens and logic exactly as they exist on the CryptoEvokeExchange website, except for the landing page. Include the following:
+
+Screen / Module	Description
+✅ Splash Screen	Branded screen, uses LaunchScreen.storyboard + splash.png
+✅ Login Screen	Authenticates with backend using JWT, same as web
+✅ Register Screen	Matches web registration with all form logic and error handling
+✅ Dashboard: Verified	Shows for verified clients, all features same as web
+✅ Dashboard: Unverified	Shown until manually approved by admin, same logic as web
+✅ Dashboard: Admin	Full access to client management and manual verifications
+✅ Dashboard: Employee	Optional — same as employee portal from web
+✅ Role & Auth Routing	Redirect users based on role and isVerified exactly like website
+❌ Landing Page	Not needed in app
+
+
+⸻
+
+🔌 3. API Integration
+	•	Reuse same API endpoints as the website.
+	•	Use axios and @react-native-async-storage/async-storage for session tokens.
+	•	All cookies/sessions must mirror web behavior.
+
+⸻
+
+🔐 4. Client Verification
+	•	There is no third-party KYC (e.g., SumSub).
+	•	Admins manually verify users through their dashboard.
+	•	Clients see the correct dashboard based on backend flags.
+
+⸻
+
+🧰 5. Xcode Compatibility (Native iOS Support)
+
+Ensure these iOS-native files are present and functional:
+
+ios/
+├── CryptoEvokeApp.xcodeproj
+├── CryptoEvokeApp.xcworkspace
+├── AppDelegate.mm
+├── Info.plist
+├── LaunchScreen.storyboard
+├── Images.xcassets/
+Podfile
+
+Then run:
+
+cd ios && pod install && cd ..
+
+✅ This will allow the project to be opened and run in Xcode immediately.
+
+⸻
+
+📦 6. Dependencies to Install
+
+npm install @react-navigation/native @react-navigation/native-stack
+npm install axios @react-native-async-storage/async-storage
+npm install react-native-screens react-native-safe-area-context react-native-gesture-handler react-native-reanimated react-native-vector-icons
+npm install react-native-splash-screen
+cd ios && pod install && cd ..
+
+
+⸻
+
+📁 7. Project Structure
+
+CryptoEvokeApp/
+├── ios/                    ✅ Native iOS files for Xcode
+├── android/
+├── assets/                ✅ splash.png
+├── src/
+│   ├── screens/           ✅ All app screens
+│   ├── navigation/        ✅ React Navigation stack
+│   ├── api/               ✅ axios API logic
+│   ├── store/             ✅ Auth state and session
+│   └── utils/             ✅ Role handling, etc.
+├── App.tsx
+├── package.json
+└── README.md
+
+
+⸻
+
+🌐 8. GitHub Upload (Required)
+	•	✅ Push everything to:
+https://github.com/evokeessence/evokeessence-exchange-mobile
+	•	✅ Include all files required to open the app in Xcode
+	•	✅ Add a proper README.md with:
+	•	How to run locally
+	•	How to open in Xcode
+	•	Required Node/iOS version
+
+⸻
+
+🧪 9. What User Will Do After
+
+The app must be ready for the user to:
+	1.	Clone repo on Mac
+	2.	Run npm install + cd ios && pod install
+	3.	Open CryptoEvokeApp.xcworkspace in Xcode
+	4.	Add Apple Developer Team ID
+	5.	Build or export .ipa for App Store
+
+⸻
+
+✅ Summary Checklist for Replit AI
+
+Requirement	Must Do?
+Create new bare React Native iOS app	✅
+Keep separate from web project	✅
+Splash, Login, Register screens	✅
+Dashboards + manual client verification	✅
+All backend API logic mirrors web version	✅
+Includes all iOS native files	✅
+Upload full structure to GitHub	✅
+Xcode-ready project (.xcworkspace)	✅

@@ -1,0 +1,58 @@
+jakob@MacBook-Air-von-Jakob ios % cd ~/Downloads/CryptoEvokeApp-ios-fixed
+npx react-native init CryptoEvokeApp --version 0.72.6
+                                                          
+               ######                ######               
+             ###     ####        ####     ###             
+            ##          ###    ###          ##            
+            ##             ####             ##            
+            ##             ####             ##            
+            ##           ##    ##           ##            
+            ##         ###      ###         ##            
+             ##  ########################  ##             
+          ######    ###            ###    ######          
+      ###     ##    ##              ##    ##     ###      
+   ###         ## ###      ####      ### ##         ###   
+  ##           ####      ########      ####           ##  
+ ##             ###     ##########     ###             ## 
+  ##           ####      ########      ####           ##  
+   ###         ## ###      ####      ### ##         ###   
+      ###     ##    ##              ##    ##     ###      
+          ######    ###            ###    ######          
+             ##  ########################  ##             
+            ##         ###      ###         ##            
+            ##           ##    ##           ##            
+            ##             ####             ##            
+            ##             ####             ##            
+            ##          ###    ###          ##            
+             ###     ####        ####     ###             
+               ######                ######               
+                                                          
+
+                  Welcome to React Native!                
+                 Learn once, write anywhere               
+
+✔ Downloading template
+✔ Copying template
+✔ Processing template
+✔ Installing Ruby Gems
+✖ Installing CocoaPods dependencies (this may take a few minutes)
+error NameError: uninitialized constant ActiveSupport::LoggerThreadSafeLevel::Logger
+  /Users/jakob/Downloads/CryptoEvokeApp-ios-fixed/CryptoEvokeApp/vendor/bundle/ruby/2.6.0/gems/activesupport-6.1.7.10/lib/active_support/logger_thread_safe_level.rb:16:in `<module:LoggerThreadSafeLevel>'
+  /Users/jakob/Downloads/CryptoEvokeApp-ios-fixed/CryptoEvokeApp/vendor/bundle/ruby/2.6.0/gems/activesupport-6.1.7.10/lib/active_support/logger_thread_safe_level.rb:9:in `<module:ActiveSupport>'
+  /Users/jakob/Downloads/CryptoEvokeApp-ios-fixed/CryptoEvokeApp/vendor/bundle/ruby/2.6.0/gems/activesupport-6.1.7.10/lib/active_support/logger_thread_safe_level.rb:8:in `<top (required)>'
+  /Users/jakob/Downloads/CryptoEvokeApp-ios-fixed/CryptoEvokeApp/vendor/bundle/ruby/2.6.0/gems/activesupport-6.1.7.10/lib/active_support/logger_silence.rb:5:in `require'
+  /Users/jakob/Downloads/CryptoEvokeApp-ios-fixed/CryptoEvokeApp/vendor/bundle/ruby/2.6.0/gems/activesupport-6.1.7.10/lib/active_support/logger_silence.rb:5:in `<top (required)>'
+  /Users/jakob/Downloads/CryptoEvokeApp-ios-fixed/CryptoEvokeApp/vendor/bundle/ruby/2.6.0/gems/activesupport-6.1.7.10/lib/active_support/logger.rb:3:in `require'
+  /Users/jakob/Downloads/CryptoEvokeApp-ios-fixed/CryptoEvokeApp/vendor/bundle/ruby/2.6.0/gems/activesupport-6.1.7.10/lib/active_support/logger.rb:3:in `<top (required)>'
+  /Users/jakob/Downloads/CryptoEvokeApp-ios-fixed/CryptoEvokeApp/vendor/bundle/ruby/2.6.0/gems/activesupport-6.1.7.10/lib/active_support.rb:29:in `require'
+  /Users/jakob/Downloads/CryptoEvokeApp-ios-fixed/CryptoEvokeApp/vendor/bundle/ruby/2.6.0/gems/activesupport-6.1.7.10/lib/active_support.rb:29:in `<top (required)>'
+  /Users/jakob/Downloads/CryptoEvokeApp-ios-fixed/CryptoEvokeApp/vendor/bundle/ruby/2.6.0/gems/cocoapods-1.16.2/lib/cocoapods.rb:7:in `require'
+  /Users/jakob/Downloads/CryptoEvokeApp-ios-fixed/CryptoEvokeApp/vendor/bundle/ruby/2.6.0/gems/cocoapods-1.16.2/lib/cocoapods.rb:7:in `<top (required)>'
+  /Users/jakob/Downloads/CryptoEvokeApp-ios-fixed/CryptoEvokeApp/vendor/bundle/ruby/2.6.0/gems/cocoapods-1.16.2/bin/pod:36:in `require'
+  /Users/jakob/Downloads/CryptoEvokeApp-ios-fixed/CryptoEvokeApp/vendor/bundle/ruby/2.6.0/gems/cocoapods-1.16.2/bin/pod:36:in `<top (required)>'
+  /Users/jakob/Downloads/CryptoEvokeApp-ios-fixed/CryptoEvokeApp/vendor/bundle/ruby/2.6.0/bin/pod:23:in `load'
+  /Users/jakob/Downloads/CryptoEvokeApp-ios-fixed/CryptoEvokeApp/vendor/bundle/ruby/2.6.0/bin/pod:23:in `<top (required)>'
+✖ Installing CocoaPods dependencies (this may take a few minutes)
+error Looks like your iOS environment is not properly set. Please go to https://reactnative.dev/docs/environment-setup?os=macos&platform=android and follow the React Native CLI QuickStart guide for macOS and iOS.
+info Run CLI with --verbose flag for more details.
+jakob@MacBook-Air-von-Jakob CryptoEvokeApp-ios-fixed % 

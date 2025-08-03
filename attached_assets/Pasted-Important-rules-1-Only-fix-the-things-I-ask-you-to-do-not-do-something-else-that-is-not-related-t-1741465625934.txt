@@ -1,0 +1,20 @@
+Important rules: 1. Only fix the things I ask you to, do not do something else that is not related to these tasks. 2. follow the order of the task that I'm giving you. 3. Do not change code or functions that are not related to the tasks.
+
+We having multiple issue:
+Follow and complete following task to fix the issues:
+
+When client deposits euro (sepa) and admin changes status to successful, the systems adds the funds 1:1 meaning for example client deposits 10000 € comission (-16%) is deducted we are left with 8400€, so far correct but than its added to the balance and instead of using our api for currency exchange rate, the funds are added 1 € = 1$, meaning clients balance shows 8400€ = 8400$ which is wrong. fix it so we always use the conversion rate when adding funds and that balance is correctly displayed, base currency is always USD!
+
+from Dui Lam Doan we need to change name to Duy Lam Doan.
+
+in the admin dashboard when I disable 2fa for a client it shows successful, but it is not actually disabled fix this.
+
+(on the deployed website/app)we are still having issues with 2fa when client tries to set up 2fa and after scanning qr code with the google authenticater and putting in the correct code create by the google authenticater app he gets the error: Verification Failed Invalid backup codes format received from server
+
+we have wrong information in the faq:
+
+-What are the fees?: correct information would be that we charge 10-16% on deposited funds and for buying adn withdrawing crypto we do not charge any comission, we have no monthly fees, and the actual comission rate is shown in the client dashboard when making sepa deposit and is depending on clients volume.
+
+-What trading pairs are available ? : we do not have trading pairs, currently we only support to buy and withdraw usdc but we have more crypto currency that will be available in the near future
+
+-what are the trading limits? for basic verification its per transaction from 1000€ or 1000$ up to 200 000€ or 200 000$, Higher limits are availble upon request and require further verification.

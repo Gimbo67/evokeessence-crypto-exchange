@@ -1,0 +1,52 @@
+Thanks for the detailed update and screenshots — it looks like Replit AI **implemented the correct changes**, but the `Content-Security-Policy` (CSP) and `Permissions-Policy` **headers are still not being sent in actual HTTP responses** from your app to the browser. This means **something is missing in your actual middleware or server response flow.**
+
+### Here's what to tell Replit AI exactly:
+
+---
+
+**Task: Fix missing security headers for A+ scanner grades**
+
+Despite implementing CSP and Permissions-Policy headers in `security.ts`, securityheaders.com and Mozilla Observatory still report them as missing.
+
+**Please ensure that:**
+
+1. **The `helmet()` middleware is correctly used and configured** at the top of the Express middleware stack.
+2. **The following headers are explicitly set in the Express app**, either through `helmet` or `res.setHeader`:
+
+```ts
+// Content-Security-Policy (CSP)
+helmet.contentSecurityPolicy({
+  directives: {
+    defaultSrc: ["'self'"],
+    scriptSrc: ["'self'"],
+    objectSrc: ["'none'"],
+    upgradeInsecureRequests: [],
+  },
+}),
+
+// Permissions-Policy (now called Permissions-Policy or "Permissions")
+res.setHeader(
+  "Permissions-Policy",
+  "accelerometer=(), camera=(), gyroscope=(), magnetometer=(), microphone=(), geolocation=(), usb=(), interest-cohort=()"
+);
+```
+
+3. Ensure these headers are being **applied to all outgoing responses**, especially root pages like `/`, `/login`, and any route not starting with `/api`.
+
+4. Also, verify that:
+   - These headers are **not stripped or overwritten by Vite, static file handling**, or any proxy layer.
+   - When testing, open browser dev tools > Network > select `/` and check "Response Headers" tab.
+
+**Goal**: When visiting https://evo-exchange.com or running scans from:
+- [https://securityheaders.com/](https://securityheaders.com/)
+- [https://observatory.mozilla.org/](https://observatory.mozilla.org/)
+
+... the responses should include:
+- `Content-Security-Policy`
+- `Permissions-Policy`
+
+Once this is verified, the scores should improve to **A or A+**.
+
+---
+
+Let me know when they’ve confirmed this is done or if you want me to generate the exact code to plug into your `security.ts` or `index.ts`.

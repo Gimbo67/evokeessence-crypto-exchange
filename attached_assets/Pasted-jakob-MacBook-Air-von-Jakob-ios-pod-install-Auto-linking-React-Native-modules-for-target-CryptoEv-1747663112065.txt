@@ -1,0 +1,182 @@
+jakob@MacBook-Air-von-Jakob ios % pod install
+Auto-linking React Native modules for target `CryptoEvokeApp`: RNCAsyncStorage, RNGestureHandler, RNReanimated, RNScreens, RNVectorIcons, react-native-safe-area-context, and react-native-splash-screen
+Framework build type is static library
+[Codegen] Generating ./build/generated/ios/React-Codegen.podspec.json
+Analyzing dependencies
+Fetching podspec for `DoubleConversion` from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`
+[Codegen] Found FBReactNativeSpec
+Fetching podspec for `RCT-Folly` from `../node_modules/react-native/third-party-podspecs/RCT-Folly.podspec`
+[Codegen] Found rncore
+Fetching podspec for `boost` from `../node_modules/react-native/third-party-podspecs/boost.podspec`
+Fetching podspec for `glog` from `../node_modules/react-native/third-party-podspecs/glog.podspec`
+Fetching podspec for `hermes-engine` from `../node_modules/react-native/sdks/hermes-engine/hermes-engine.podspec`
+[Hermes] Using the release tarball from Maven Central
+Downloading dependencies
+Installing CocoaAsyncSocket (7.6.5)
+Installing DoubleConversion (1.1.6)
+Installing FBLazyVector (0.72.17)
+Installing FBReactNativeSpec (0.72.17)
+Installing Flipper (0.182.0)
+Installing Flipper-Boost-iOSX (1.76.0.1.11)
+Installing Flipper-DoubleConversion (3.2.0.1)
+Installing Flipper-Fmt (7.1.7)
+Installing Flipper-Folly (2.6.10)
+Installing Flipper-Glog (0.5.0.5)
+Installing Flipper-PeerTalk (0.0.4)
+Installing FlipperKit (0.182.0)
+Installing OpenSSL-Universal (1.1.1100)
+Installing RCT-Folly (2021.07.22.00)
+Installing RCTRequired (0.72.17)
+Installing RCTTypeSafety (0.72.17)
+Installing RNCAsyncStorage (1.24.0)
+Installing RNGestureHandler (2.25.0)
+Installing RNReanimated (2.17.0)
+Installing RNScreens (3.37.0)
+Installing RNVectorIcons (10.2.0)
+Installing React (0.72.17)
+Installing React-Codegen (0.72.17)
+Installing React-Core (0.72.17)
+Installing React-CoreModules (0.72.17)
+Installing React-NativeModulesApple (0.72.17)
+Installing React-RCTActionSheet (0.72.17)
+Installing React-RCTAnimation (0.72.17)
+Installing React-RCTAppDelegate (0.72.17)
+Installing React-RCTBlob (0.72.17)
+Installing React-RCTImage (0.72.17)
+Installing React-RCTLinking (0.72.17)
+Installing React-RCTNetwork (0.72.17)
+Installing React-RCTSettings (0.72.17)
+Installing React-RCTText (0.72.17)
+Installing React-RCTVibration (0.72.17)
+Installing React-callinvoker (0.72.17)
+Installing React-cxxreact (0.72.17)
+Installing React-debug (0.72.17)
+Installing React-hermes (0.72.17)
+Installing React-jsi (0.72.17)
+Installing React-jsiexecutor (0.72.17)
+Installing React-jsinspector (0.72.17)
+Installing React-logger (0.72.17)
+Installing React-perflogger (0.72.17)
+Installing React-rncore (0.72.17)
+Installing React-runtimeexecutor (0.72.17)
+Installing React-runtimescheduler (0.72.17)
+Installing React-utils (0.72.17)
+Installing ReactCommon (0.72.17)
+Installing SocketRocket (0.6.1)
+Installing Yoga (1.14.0)
+Installing YogaKit (1.18.1)
+Installing boost (1.76.0)
+Installing fmt (6.2.1)
+Installing glog (0.3.5)
+[!] /bin/bash -c 
+set -e
+#!/bin/bash
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+#
+# This source code is licensed under the MIT license found in the
+# LICENSE file in the root directory of this source tree.
+
+set -e
+
+PLATFORM_NAME="${PLATFORM_NAME:-iphoneos}"
+CURRENT_ARCH="${CURRENT_ARCH}"
+
+if [ -z "$CURRENT_ARCH" ] || [ "$CURRENT_ARCH" == "undefined_arch" ]; then
+    # Xcode 10 beta sets CURRENT_ARCH to "undefined_arch", this leads to incorrect linker arg.
+    # it's better to rely on platform name as fallback because architecture differs between simulator and device
+
+    if [[ "$PLATFORM_NAME" == *"simulator"* ]]; then
+        CURRENT_ARCH="x86_64"
+    else
+        CURRENT_ARCH="arm64"
+    fi
+fi
+
+# @lint-ignore-every TXT2 Tab Literal
+if [ "$CURRENT_ARCH" == "arm64" ]; then
+    cat <<\EOF >>fix_glog_0.3.5_apple_silicon.patch
+diff --git a/config.sub b/config.sub
+index 1761d8b..43fa2e8 100755
+--- a/config.sub
++++ b/config.sub
+@@ -1096,6 +1096,9 @@ case $basic_machine in
+ 		basic_machine=z8k-unknown
+ 		os=-sim
+ 		;;
++	arm64-*)
++		basic_machine=$(echo $basic_machine | sed 's/arm64/aarch64/')
++		;;
+ 	none)
+ 		basic_machine=none-none
+ 		os=-none
+EOF
+
+    patch -p1 config.sub fix_glog_0.3.5_apple_silicon.patch
+fi
+
+export CC="$(xcrun -find -sdk $PLATFORM_NAME cc) -arch $CURRENT_ARCH -isysroot $(xcrun -sdk $PLATFORM_NAME --show-sdk-path)"
+export CXX="$CC"
+
+# Remove automake symlink if it exists
+if [ -h "test-driver" ]; then
+    rm test-driver
+fi
+
+# Manually disable gflags include to fix issue https://github.com/facebook/react-native/issues/28446
+sed -i.bak -e 's/\@ac_cv_have_libgflags\@/0/' src/glog/logging.h.in && rm src/glog/logging.h.in.bak
+sed -i.bak -e 's/HAVE_LIB_GFLAGS/HAVE_LIB_GFLAGS_DISABLED/' src/config.h.in && rm src/config.h.in.bak
+
+./configure --host arm-apple-darwin
+
+cat << EOF >> src/config.h
+/* Add in so we have Apple Target Conditionals */
+#ifdef __APPLE__
+#include <TargetConditionals.h>
+#include <Availability.h>
+#endif
+
+/* Special configuration for ucontext */
+#undef HAVE_UCONTEXT_H
+#undef PC_FROM_UCONTEXT
+#if defined(__x86_64__)
+#define PC_FROM_UCONTEXT uc_mcontext->__ss.__rip
+#elif defined(__i386__)
+#define PC_FROM_UCONTEXT uc_mcontext->__ss.__eip
+#endif
+EOF
+
+# Prepare exported header include
+EXPORTED_INCLUDE_DIR="exported/glog"
+mkdir -p exported/glog
+cp -f src/glog/log_severity.h "$EXPORTED_INCLUDE_DIR/"
+cp -f src/glog/logging.h "$EXPORTED_INCLUDE_DIR/"
+cp -f src/glog/raw_logging.h "$EXPORTED_INCLUDE_DIR/"
+cp -f src/glog/stl_logging.h "$EXPORTED_INCLUDE_DIR/"
+cp -f src/glog/vlog_is_on.h "$EXPORTED_INCLUDE_DIR/"
+
+patching file config.sub
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether build environment is sane... yes
+checking for arm-apple-darwin-strip... no
+checking for strip... strip
+checking for a thread-safe mkdir -p... ./install-sh -c -d
+checking for gawk... no
+checking for mawk... no
+checking for nawk... no
+checking for awk... awk
+checking whether make sets $(MAKE)... yes
+checking whether make supports nested variables... yes
+checking for arm-apple-darwin-gcc... /Library/Developer/CommandLineTools/usr/bin/cc -arch arm64 -isysroot 
+checking whether the C compiler works... no
+xcrun: error: SDK "iphoneos" cannot be located
+xcrun: error: SDK "iphoneos" cannot be located
+xcrun: error: Failed to open property list '/Users/jakob/Library/Caches/CocoaPods/Pods/External/glog/2263bd123499e5b93b5efe24871be317-04b94/iphoneos/SDKSettings.plist'
+xcrun: error: SDK "iphoneos" cannot be located
+xcrun: error: SDK "iphoneos" cannot be located
+xcrun: error: unable to lookup item 'Path' in SDK 'iphoneos'
+/Users/jakob/Library/Caches/CocoaPods/Pods/External/glog/2263bd123499e5b93b5efe24871be317-04b94/missing: Unknown `--is-lightweight' option
+Try `/Users/jakob/Library/Caches/CocoaPods/Pods/External/glog/2263bd123499e5b93b5efe24871be317-04b94/missing --help' for more information
+configure: WARNING: 'missing' script is too old or missing
+configure: error: in `/Users/jakob/Library/Caches/CocoaPods/Pods/External/glog/2263bd123499e5b93b5efe24871be317-04b94':
+configure: error: C compiler cannot create executables
+See `config.log' for more details

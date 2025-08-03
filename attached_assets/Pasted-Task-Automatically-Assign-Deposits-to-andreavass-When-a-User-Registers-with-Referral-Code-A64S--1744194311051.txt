@@ -1,0 +1,69 @@
+Task: Automatically Assign Deposits to `andreavass` When a User Registers with Referral Code `A64S`
+
+---
+
+ Goal
+
+When a user **registers with referral code `A64S`**, they must be permanently marked as referred by `andreavass`, and **every deposit that user makes in the future** must automatically be credited to `andreavass` for commission and dashboard tracking.
+
+---
+
+### ✅ Requirements
+
+1. **User Registration Logic**
+   - When a user registers and enters referral code `A64S`:
+     - Save this in the user’s database record:
+       ```ts
+       referred_by = 'andreavass';
+       contractor_id = 97; // ID of andreavass
+       ```
+
+   > This ensures that we have a permanent link between the user and the contractor.
+
+2. **Deposit Creation Logic**
+   - When a deposit is made:
+     - Do **not** rely on the referral code being submitted again.
+     - Instead, fetch the user’s `contractor_id` from their profile and assign it to the deposit:
+       ```ts
+       deposit.contractor_id = user.contractor_id;
+       deposit.referred_by = user.referred_by;
+       ```
+
+   > This guarantees that **all future deposits** by users referred by `andreavass` are automatically assigned to her.
+
+3. **Contractor Dashboard Logic**
+   - When loading the contractor dashboard:
+     - Query all deposits where `contractor_id === 97` (for `andreavass`)
+     - Never rely on the referral code alone in the deposits
+
+---
+
+### 🛠 Optional: One-time Backfill Script
+
+To fix existing users who registered with code `A64S` but weren’t linked properly:
+
+```ts
+await db.users.updateMany(
+  { referral_code: 'A64S', contractor_id: { $exists: false } },
+  { $set: { referred_by: 'andreavass', contractor_id: 97 } }
+);
+```
+
+And to link their past deposits:
+
+```ts
+const userIds = await db.users.find({ contractor_id: 97 }).map(u => u._id);
+await db.deposits.updateMany(
+  { user_id: { $in: userIds } },
+  { $set: { contractor_id: 97, referred_by: 'andreavass' } }
+);
+```
+
+---
+
+### ✅ Summary (what must happen):
+
+- ✅ If a user registers with referral code `A64S` → they’re linked to `andreavass`
+- ✅ No matter when or how they deposit, all future deposits are automatically assigned to `andreavass`
+- ✅ `andreavass` sees these in her dashboard and gets correct commission
+

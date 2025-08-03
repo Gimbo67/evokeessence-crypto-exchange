@@ -1,0 +1,159 @@
+### **Replit AI Prompt:**
+
+```
+Please implement a full production-grade Express.js security suite for evo-exchange.com with these features:
+
+---
+
+### 1. Secure Headers Using `helmet`
+
+```js
+const helmet = require('helmet');
+app.use(helmet({
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'"],
+      styleSrc: ["'self'"],
+      imgSrc: ["'self'", "data:"],
+      connectSrc: ["'self'"],
+      frameAncestors: ["'none'"],
+      baseUri: ["'self'"]
+    }
+  },
+  crossOriginEmbedderPolicy: { policy: "require-corp" },
+  crossOriginOpenerPolicy: { policy: "same-origin" },
+  crossOriginResourcePolicy: { policy: "same-origin" },
+  referrerPolicy: { policy: "strict-origin-when-cross-origin" },
+  xContentTypeOptions: true,
+  xFrameOptions: { action: "SAMEORIGIN" },
+  hsts: {
+    maxAge: 15552000,
+    includeSubDomains: true,
+    preload: true
+  }
+}));
+```
+
+---
+
+### 2. Google reCAPTCHA v3 Setup
+
+- **Site Key:** `6LejmAArAAAAAJnUk3-5oIVgBILVWzhku_v2JIRP`  
+- **Secret Key:** `6LejmAArAAAAAGQCIXTNi13_PLoOFeQD7vfGgF7t`
+
+In the frontend HTML login page:
+
+```html
+<script src="https://www.google.com/recaptcha/api.js?render=6LejmAArAAAAAJnUk3-5oIVgBILVWzhku_v2JIRP"></script>
+<script>
+  grecaptcha.ready(function () {
+    grecaptcha.execute('6LejmAArAAAAAJnUk3-5oIVgBILVWzhku_v2JIRP', { action: 'login' }).then(function (token) {
+      document.getElementById('captcha-token').value = token;
+    });
+  });
+</script>
+<form method="POST" action="/login">
+  <input type="hidden" name="g-recaptcha-response" id="captcha-token" />
+  <!-- login fields -->
+  <button type="submit">Login</button>
+</form>
+```
+
+In backend `/login` route:
+
+```js
+const axios = require('axios');
+
+app.post('/login', async (req, res, next) => {
+  const token = req.body['g-recaptcha-response'];
+  const secret = '6LejmAArAAAAAGQCIXTNi13_PLoOFeQD7vfGgF7t';
+
+  const response = await axios.post('https://www.google.com/recaptcha/api/siteverify', null, {
+    params: {
+      secret,
+      response: token,
+      remoteip: req.ip
+    }
+  });
+
+  const { success, score, action } = response.data;
+
+  if (!success || score < 0.5 || action !== 'login') {
+    return res.status(403).send('reCAPTCHA verification failed');
+  }
+
+  next();
+});
+```
+
+---
+
+### 3. Abuse Detection
+
+- Max **5 login attempts/IP per 10 minutes**
+- IP auto-banned for 1 hour (saved to `banned-ips.json`)
+- All bans logged to `abuse.log` in format:
+  ```
+  [2025-03-26 16:43:12] Blocked IP 203.0.113.5 - Too many login attempts
+  ```
+
+- Create a global middleware that denies all requests from banned IPs
+
+---
+
+### 4. Admin Abuse Dashboard `/admin/dashboard`
+
+- View `abuse.log` entries in a readable table
+- Display currently banned IPs from `banned-ips.json`
+- Include search/filter functionality by IP/date
+
+---
+
+### 5. IP Unban Tool `/admin/unban`
+
+- Secure route (password protected or basic token auth)
+- Form or search bar to unban any IP manually
+- Removes the IP from `banned-ips.json` and updates the file
+- Logs the unban event in `abuse.log`:
+  ```
+  [2025-03-26 17:05:00] IP 203.0.113.5 unbanned by admin
+  ```
+
+---
+
+### 6. Alert System via `nodemailer`
+
+- Send alert to `noreply@evo-exchange.com` when an IP is banned:
+  - Subject: `Abuse Alert: IP Blocked`
+  - Body: `IP 203.0.113.5 was blocked after exceeding login attempts.`
+
+---
+
+### 7. Session-Based Fallback CAPTCHA (v2 checkbox)
+
+- After **3 failed logins**, store a flag in `req.session.showCaptcha = true`
+- On next login attempt, **require reCAPTCHA v2** checkbox instead of v3
+
+Frontend:
+```html
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<div class="g-recaptcha" data-sitekey="6LejmAArAAAAAJnUk3-5oIVgBILVWzhku_v2JIRP"></div>
+```
+
+Backend:
+- Verify using:
+```js
+POST to https://www.google.com/recaptcha/api/siteverify
+```
+with `secret`, `response`, and `remoteip` fields
+
+Reset session on successful login or after timeout
+
+---
+
+Make sure:
+- All protection middleware runs **before** `/login`
+- IP ban + abuse log is always updated atomically
+- Admin dashboard is **authenticated**
+```
