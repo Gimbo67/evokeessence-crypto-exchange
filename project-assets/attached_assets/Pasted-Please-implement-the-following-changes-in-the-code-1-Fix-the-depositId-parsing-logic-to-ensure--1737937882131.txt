@@ -1,0 +1,63 @@
+Please implement the following changes in the code:
+
+1. Fix the `depositId` parsing logic to ensure that the extracted ID from the URL is always an integer. Update the code as follows:
+
+```javascript
+const idPart = id.toString().split('-').pop() || '';
+const matchedId = idPart.match(/^\d+/);
+const depositId = matchedId ? parseInt(matchedId[0], 10) : NaN;
+
+console.log('Parsed depositId:', depositId); // Debugging log
+
+if (isNaN(depositId) || depositId <= 0) {
+  return res.status(400).json({ message: "Invalid deposit ID format: Must be a positive integer" });
+}
+```
+
+2. Ensure all database queries use the validated `depositId`. For example:
+
+```javascript
+const [deposit] = await db
+  .select()
+  .from(sepaDeposits)
+  .where(eq(sepaDeposits.id, depositId))
+  .limit(1);
+
+if (!deposit) {
+  throw new Error("Deposit not found");
+}
+```
+
+3. Validate the `status` field to allow only specific values (`'pending', 'successful', 'failed'`). Use the following validation logic:
+
+```javascript
+const validStatuses = ['pending', 'successful', 'failed'];
+if (!validStatuses.includes(status)) {
+  return res.status(400).json({ message: "Invalid status value: Must be 'pending', 'successful', or 'failed'" });
+}
+```
+
+4. Add debugging logs to track key variables and request parameters. For example:
+
+```javascript
+console.log('Request params:', req.params);
+console.log('Request body:', req.body);
+console.log('Parsed depositId:', depositId);
+```
+
+5. Handle edge cases such as invalid or decimal IDs, ensuring they return appropriate error messages. Test scenarios include:
+   - Valid ID: `/api/admin/deposits/sepa-2040`
+   - Decimal ID: `/api/admin/deposits/sepa-2040.16`
+   - Invalid ID: `/api/admin/deposits/sepa-invalid`
+
+6. Confirm that the database schema defines the `id` column in the `sepaDeposits` table as an `INTEGER` type to avoid invalid input issues.
+
+7. Add proper error handling for unexpected failures. For example:
+
+```javascript
+res.status(500).json({
+  message: error instanceof Error ? error.message : "Failed to update deposit status",
+});
+```
+
+8. Ensure the frontend properly validates and sends only valid IDs in the request URL to avoid passing decimals or invalid values. Let me know once these changes are implemented and tested.

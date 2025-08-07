@@ -1,0 +1,80 @@
+jakob@MacBook-Air-von-Jakob ios % cd ~/Downloads/CryptoEvokeApp-ios
+npx react-native-clean-project
+Need to install the following packages:
+react-native-clean-project@4.0.3
+Ok to proceed? (y) y
+
+Wipe iOS build folder? (Y/n) y
+Wipe iOS Pods folder? (Y/n) y
+Wipe system iOS Pods cache? (Y/n) y
+Wipe user iOS Pods cache? (Y/n) y
+Update pods? (Y/n) y
+Wipe android build folder? (Y/n) y
+Clean Android project? (Y/n) y
+Wipe node_modules folder? (Y/n) y
+Update brew? (Y/n) y
+
+ℹ️  STARTED: "watchman cache clear (if watchman is installed)"
+✅ FINISHED: "watchman cache clear (if watchman is installed)" task has finished running in 5s.
+
+ℹ️  STARTED: "wipe temporary caches"
+✅ FINISHED: "wipe temporary caches" task has finished running in 19ms.
+
+ℹ️  STARTED: "wipe iOS build artifacts"
+✅ FINISHED: "wipe iOS build artifacts" task has finished running in 6s.
+
+ℹ️  STARTED: "wipe iOS Pods folder"
+✅ FINISHED: "wipe iOS Pods folder" task has finished running in 2s.
+
+ℹ️  STARTED: "wipe system iOS Pods cache"
+✅ FINISHED: "wipe system iOS Pods cache" task has finished running in 4s.
+
+ℹ️  STARTED: "update iOS Pods"
+✅ FINISHED: "update iOS Pods" task has finished running in 179s.
+
+ℹ️  STARTED: "wipe user iOS Pods cache"
+✅ FINISHED: "wipe user iOS Pods cache" task has finished running in 190ms.
+
+ℹ️  STARTED: "wipe android build folder"
+✅ FINISHED: "wipe android build folder" task has finished running in 4ms.
+
+ℹ️  STARTED: "brew update"
+✅ FINISHED: "brew update" task has finished running in 4s.
+
+ℹ️  STARTED: "brew upgrade"
+✅ FINISHED: "brew upgrade" task has finished running in 16s.
+
+ℹ️  STARTED: "wipe node_modules"
+✅ FINISHED: "wipe node_modules" task has finished running in 2s.
+
+ℹ️  STARTED: "yarn cache clean (if yarn is installed)"
+✅ FINISHED: "yarn cache clean (if yarn is installed)" task has finished running in 3ms.
+
+ℹ️  STARTED: "npm ci"
+✅ FINISHED: "npm ci" task has finished running in 3s.
+
+ℹ️  STARTED: "yarn install (if yarn is installed)"
+✅ FINISHED: "yarn install (if yarn is installed)" task has finished running in 9ms.
+
+ℹ️  STARTED: "clean android project"
+/Users/jakob/.npm/_npx/7819efec56c4c663/node_modules/react-native-clean-project/source/internals/executor.js:40
+    throw new Error(
+          ^
+
+Error: 
+
+Task "clean android project" 
+Error: /bin/sh: line 0: cd: android: No such file or directory
+. 
+Exit code: 1
+
+
+    at executeTask (/Users/jakob/.npm/_npx/7819efec56c4c663/node_modules/react-native-clean-project/source/internals/executor.js:40:11)
+    at async main (/Users/jakob/.npm/_npx/7819efec56c4c663/node_modules/react-native-clean-project/source/index.js:58:5)
+
+Node.js v23.11.0
+jakob@MacBook-Air-von-Jakob CryptoEvokeApp-ios % open CryptoEvokeApp.xcworkspace
+The file /Users/jakob/Downloads/CryptoEvokeApp-ios/CryptoEvokeApp.xcworkspace does not exist.
+jakob@MacBook-Air-von-Jakob CryptoEvokeApp-ios % open CryptoEvokeApp.xcworkspace
+The file /Users/jakob/Downloads/CryptoEvokeApp-ios/CryptoEvokeApp.xcworkspace does not exist.
+jakob@MacBook-Air-von-Jakob CryptoEvokeApp-ios % 

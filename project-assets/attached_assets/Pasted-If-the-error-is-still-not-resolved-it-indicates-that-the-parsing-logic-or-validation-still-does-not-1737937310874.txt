@@ -1,0 +1,114 @@
+If the error is still not resolved, it indicates that the parsing logic or validation still does not fully account for the actual input format. Let's address the issue comprehensively.
+
+### Root Cause
+The error occurs because the `id` in the URL (`sepa-2040.16`) contains a decimal value (`2040.16`), which cannot be converted into an integer properly for database operations. The issue lies in:
+
+1. **Parsing Logic**:
+   - `parseInt(idPart.split('.')[0], 10)` may fail because of unexpected input formats or assumptions about the structure of the `id`.
+
+2. **Database Expectation**:
+   - The database expects a clean integer for `id`, but the backend is not fully sanitizing the `id` from the URL.
+
+---
+
+### Fixing the Code
+Here’s an updated approach to fix the issue with more robust logic:
+
+```typescript
+app.patch("/api/admin/deposits/:id", requireAdmin, async (req, res) => {
+    const { id } = req.params;
+    const { status } = req.body;
+
+    try {
+        // Extract the numeric ID from the URL
+        const idPart = id.toString().split('-').pop() || '';
+        
+        // Use a regular expression to extract only the numeric portion before any decimals
+        const matchedId = idPart.match(/^\d+/);
+        const depositId = matchedId ? parseInt(matchedId[0], 10) : NaN;
+
+        // Validate the extracted deposit ID
+        if (isNaN(depositId) || depositId <= 0) {
+            return res.status(400).json({ message: "Invalid deposit ID format: Must be a positive integer" });
+        }
+
+        // Validate the status value
+        const validStatuses = ['pending', 'successful', 'failed'];
+        if (!validStatuses.includes(status)) {
+            return res.status(400).json({ message: "Invalid status value: Must be 'pending', 'successful', or 'failed'" });
+        }
+
+        // Perform the database update
+        const result = await db.update(sepaDeposits)
+            .set({ status })
+            .where(eq(sepaDeposits.id, depositId))
+            .returning();
+
+        // Check if the update was successful
+        if (result.length === 0) {
+            return res.status(404).json({ message: "Deposit not found" });
+        }
+
+        return res.status(200).json({ message: "Deposit updated successfully", result });
+    } catch (error) {
+        console.error("Error updating deposit:", error);
+        return res.status(500).json({ message: "Internal server error" });
+    }
+});
+```
+
+---
+
+### Key Changes
+
+1. **Regex to Extract Integer Part**:
+   - The line `const matchedId = idPart.match(/^\d+/);` ensures that only the integer part of the `id` (before any decimals) is extracted. For example:
+     - Input: `sepa-2040.16`
+     - Output: `2040`
+
+2. **Validation of `depositId`**:
+   - If the extracted `depositId` is `NaN` or not a positive integer, an error is returned.
+
+3. **Improved Error Messages**:
+   - Specific error messages now help pinpoint what went wrong (e.g., invalid `id` or `status`).
+
+4. **Logging for Debugging**:
+   - Added `console.error` to capture unexpected errors during execution.
+
+---
+
+### Steps to Test the Fix
+1. **Valid Input**:
+   - Request: `PATCH /api/admin/deposits/sepa-2040.16` with body `{ "status": "successful" }`
+   - Expected: Deposit updated successfully.
+
+2. **Invalid ID (Non-numeric)**:
+   - Request: `PATCH /api/admin/deposits/sepa-xyz` with body `{ "status": "pending" }`
+   - Expected: `400 Bad Request` with message: `Invalid deposit ID format: Must be a positive integer`.
+
+3. **Invalid ID (Negative or Zero)**:
+   - Request: `PATCH /api/admin/deposits/sepa--5` with body `{ "status": "failed" }`
+   - Expected: `400 Bad Request` with message: `Invalid deposit ID format: Must be a positive integer`.
+
+4. **Invalid Status**:
+   - Request: `PATCH /api/admin/deposits/sepa-2040` with body `{ "status": "unknown" }`
+   - Expected: `400 Bad Request` with message: `Invalid status value: Must be 'pending', 'successful', or 'failed'`.
+
+5. **Missing Deposit**:
+   - Request: `PATCH /api/admin/deposits/sepa-99999` with body `{ "status": "pending" }` (assuming `99999` does not exist).
+   - Expected: `404 Not Found` with message: `Deposit not found`.
+
+---
+
+### Debugging Further
+If the error persists, verify the following:
+1. **Logs**:
+   - Check server logs (`console.error`) to see if the `depositId` is correctly parsed.
+
+2. **Database Query**:
+   - Validate the query execution using a debugger or logging the SQL statement being run.
+
+3. **Schema Mismatch**:
+   - Ensure that `sepaDeposits.id` is indeed an integer column in the database schema.
+
+Let me know if you need additional help!

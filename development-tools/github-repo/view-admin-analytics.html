@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Analytics Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .card {
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 16px;
+      margin-bottom: 16px;
+      background-color: #f9f9f9;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .stat-card {
+      background-color: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      padding: 16px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    .stat-title {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 8px;
+    }
+    .stat-value {
+      font-size: 24px;
+      font-weight: bold;
+      color: #333;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      text-align: left;
+      padding: 12px 8px;
+      border-bottom: 1px solid #ddd;
+    }
+    th {
+      background-color: #f2f2f2;
+      font-weight: bold;
+    }
+    .button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 14px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .login-container {
+      text-align: center;
+      margin-top: 100px;
+    }
+    .login-form {
+      display: flex;
+      flex-direction: column;
+      max-width: 300px;
+      margin: 0 auto;
+    }
+    .login-form input {
+      margin-bottom: 10px;
+      padding: 8px;
+    }
+    .loading {
+      text-align: center;
+      padding: 40px;
+      font-style: italic;
+      color: #666;
+    }
+    .currency {
+      color: #666;
+      font-size: 0.8em;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div id="login-section" class="login-container">
+      <h2>Admin Login</h2>
+      <div class="login-form">
+        <input type="text" id="username" placeholder="Username" value="admin">
+        <input type="password" id="password" placeholder="Password" value="Adm1nU2017">
+        <button class="button" onclick="login()">Login</button>
+      </div>
+    </div>
+    
+    <div id="dashboard-section" style="display: none;">
+      <div class="header">
+        <h1>Admin Analytics Dashboard</h1>
+        <button class="button" onclick="logout()">Logout</button>
+      </div>
+      
+      <div class="card">
+        <h2>Platform Analytics</h2>
+        
+        <div class="stats">
+          <div class="stat-card">
+            <div class="stat-title">Total Users</div>
+            <div class="stat-value" id="total-users">0</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-title">Total Deposits</div>
+            <div class="stat-value">€<span id="total-deposits">0.00</span></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-title">Platform Commission</div>
+            <div class="stat-value">€<span id="platform-commission">0.00</span></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-title">Commission Rate</div>
+            <div class="stat-value"><span id="commission-rate">0</span>%</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="card">
+        <h2>Contractor Analytics</h2>
+        
+        <div class="stats">
+          <div class="stat-card">
+            <div class="stat-title">Total Contractors</div>
+            <div class="stat-value" id="contractor-count">0</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-title">Referred Deposits</div>
+            <div class="stat-value" id="referred-deposits">0</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-title">Referred Amount</div>
+            <div class="stat-value">€<span id="referred-amount">0.00</span></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-title">Contractor Commissions</div>
+            <div class="stat-value">€<span id="commission-amount">0.00</span></div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="card">
+        <h3>Recent Deposits</h3>
+        <table id="deposits-table">
+          <thead>
+            <tr>
+              <th>User</th>
+              <th>Amount</th>
+              <th>Currency</th>
+              <th>Platform Commission</th>
+              <th>Contractor Comm.</th>
+              <th>Status</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody id="deposits-table-body">
+            <tr>
+              <td colspan="7" class="loading">Loading deposits data...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+      <div class="card">
+        <h3>Contractors</h3>
+        <table id="contractors-table">
+          <thead>
+            <tr>
+              <th>Username</th>
+              <th>Referral Code</th>
+              <th>Referred Clients</th>
+              <th>Total Referred</th>
+              <th>Commission Rate</th>
+              <th>Total Commission</th>
+            </tr>
+          </thead>
+          <tbody id="contractors-table-body">
+            <tr>
+              <td colspan="6" class="loading">Loading contractors data...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Helper function to format dates
+    function formatDate(dateString) {
+      const date = new Date(dateString);
+      return date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
+    }
+    
+    // Format currency
+    function formatCurrency(amount) {
+      return parseFloat(amount).toFixed(2);
+    }
+    
+    // Login function
+    async function login() {
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      
+      try {
+        const response = await fetch('/api/auth/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ 
+            username, 
+            password,
+            recaptchaResponse: 'BYPASS_KEY' // Development bypass
+          }),
+          credentials: 'include'
+        });
+        
+        if (response.ok) {
+          const data = await response.json();
+          console.log('Login successful:', data);
+          
+          if (!data.isAdmin) {
+            alert('This account does not have admin privileges.');
+            return;
+          }
+          
+          document.getElementById('login-section').style.display = 'none';
+          document.getElementById('dashboard-section').style.display = 'block';
+          
+          fetchAdminAnalytics();
+        } else {
+          const errorData = await response.json();
+          alert('Login failed: ' + (errorData.message || errorData.error || 'Unknown error'));
+        }
+      } catch (error) {
+        console.error('Login error:', error);
+        alert('Login failed. Please check your connection and try again.');
+      }
+    }
+    
+    // Logout function
+    function logout() {
+      fetch('/api/auth/logout', {
+        method: 'POST',
+        credentials: 'include'
+      }).then(() => {
+        document.getElementById('login-section').style.display = 'block';
+        document.getElementById('dashboard-section').style.display = 'none';
+      }).catch(error => {
+        console.error('Logout error:', error);
+      });
+    }
+    
+    // Fetch admin analytics data
+    async function fetchAdminAnalytics() {
+      try {
+        const response = await fetch('/api/admin/analytics', {
+          credentials: 'include'
+        });
+        
+        if (response.ok) {
+          const data = await response.json();
+          console.log('Admin analytics data:', data);
+          
+          // Update platform analytics
+          document.getElementById('total-users').textContent = data.userCount || 0;
+          document.getElementById('total-deposits').textContent = formatCurrency(data.totalDeposits || 0);
+          document.getElementById('platform-commission').textContent = formatCurrency(data.platformCommission || 0);
+          document.getElementById('commission-rate').textContent = data.commissionRate * 100 || 0;
+          
+          // Update contractor analytics
+          document.getElementById('contractor-count').textContent = data.contractors?.count || 0;
+          document.getElementById('referred-deposits').textContent = data.contractors?.referredDeposits || 0;
+          document.getElementById('referred-amount').textContent = formatCurrency(data.contractors?.referredAmount || 0);
+          document.getElementById('commission-amount').textContent = formatCurrency(data.contractors?.commissionAmount || 0);
+          
+          // Fetch deposits and contractors for detailed tables
+          fetchDeposits();
+          fetchContractors();
+        } else {
+          console.error('Failed to fetch admin analytics:', response.status);
+        }
+      } catch (error) {
+        console.error('Error fetching admin analytics:', error);
+      }
+    }
+    
+    // Fetch deposit history
+    async function fetchDeposits() {
+      try {
+        const response = await fetch('/api/admin/deposits', {
+          credentials: 'include'
+        });
+        
+        if (response.ok) {
+          const data = await response.json();
+          console.log('Deposits data:', data);
+          
+          // Update deposits table
+          const depositsTableBody = document.getElementById('deposits-table-body');
+          depositsTableBody.innerHTML = '';
+          
+          if (data && data.length > 0) {
+            data.forEach(deposit => {
+              const row = document.createElement('tr');
+              row.innerHTML = `
+                <td>${deposit.username || 'Unknown'}</td>
+                <td>${formatCurrency(deposit.amount || 0)}</td>
+                <td>${deposit.currency || 'EUR'}</td>
+                <td>${formatCurrency(deposit.platformCommission || 0)}</td>
+                <td>${formatCurrency(deposit.contractorCommission || 0) || 'N/A'}</td>
+                <td>${deposit.status || 'Unknown'}</td>
+                <td>${formatDate(deposit.createdAt)}</td>
+              `;
+              depositsTableBody.appendChild(row);
+            });
+          } else {
+            const row = document.createElement('tr');
+            row.innerHTML = `<td colspan="7" style="text-align: center;">No deposits found</td>`;
+            depositsTableBody.appendChild(row);
+          }
+        } else {
+          console.error('Failed to fetch deposits:', response.status);
+        }
+      } catch (error) {
+        console.error('Error fetching deposits:', error);
+      }
+    }
+    
+    // Fetch contractors
+    async function fetchContractors() {
+      try {
+        const response = await fetch('/api/admin/contractors', {
+          credentials: 'include'
+        });
+        
+        if (response.ok) {
+          const data = await response.json();
+          console.log('Contractors data:', data);
+          
+          // Update contractors table
+          const contractorsTableBody = document.getElementById('contractors-table-body');
+          contractorsTableBody.innerHTML = '';
+          
+          if (data && data.length > 0) {
+            data.forEach(contractor => {
+              const row = document.createElement('tr');
+              row.innerHTML = `
+                <td>${contractor.username || 'Unknown'}</td>
+                <td>${contractor.referralCode || 'N/A'}</td>
+                <td>${contractor.referredClientsCount || 0}</td>
+                <td>€${formatCurrency(contractor.totalReferredAmount || 0)}</td>
+                <td>${formatCurrency(contractor.commissionRate * 100 || 0)}%</td>
+                <td>€${formatCurrency(contractor.totalCommission || 0)}</td>
+              `;
+              contractorsTableBody.appendChild(row);
+            });
+          } else {
+            const row = document.createElement('tr');
+            row.innerHTML = `<td colspan="6" style="text-align: center;">No contractors found</td>`;
+            contractorsTableBody.appendChild(row);
+          }
+        } else {
+          console.error('Failed to fetch contractors:', response.status);
+        }
+      } catch (error) {
+        console.error('Error fetching contractors:', error);
+      }
+    }
+  </script>
+</body>
+</html>

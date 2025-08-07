@@ -1,0 +1,68 @@
+Fix: Apply Global Security Headers to **All Routes**
+
+Ask Replit AI  to:
+
+#### **A. Add this CSP header globally:**
+```ts
+app.use((req, res, next) => {
+  res.setHeader("Content-Security-Policy", "default-src 'self'; script-src 'self'; object-src 'none'; upgrade-insecure-requests;");
+  next();
+});
+```
+
+> Make sure this middleware is placed **before** any routes or static file serving.
+
+---
+
+#### **B. Add Permissions-Policy header globally:**
+```ts
+app.use((req, res, next) => {
+  res.setHeader("Permissions-Policy", "accelerometer=(), camera=(), gyroscope=(), magnetometer=(), microphone=(), usb=()");
+  next();
+});
+```
+
+You can **combine** these into one middleware function, or stack them both.
+
+---
+
+### 2. Recheck Static File Handling
+
+If you’re serving static files before security middleware, security headers may not apply to them. Move `express.static()` *below* or apply headers explicitly to static files like so:
+
+```ts
+app.use('/public', express.static(path.join(__dirname, '../public'), {
+  setHeaders: (res) => {
+    res.setHeader("Content-Security-Policy", "default-src 'self'; script-src 'self'; object-src 'none'; upgrade-insecure-requests;");
+    res.setHeader("Permissions-Policy", "accelerometer=(), camera=(), gyroscope=(), magnetometer=(), microphone=(), usb=()");
+  }
+}));
+```
+
+---
+
+### 3. Disable Blocking in Cloudflare (403 error on scan)
+You're getting a **403** on scan tools. Whitelist their IPs or temporarily disable JS/Managed Challenges for `/`.
+
+---
+
+### Summary for Replit AI
+Copy this and give it to Replit AI:
+
+---
+
+**Please do the following:**
+
+1. Add the following middleware globally before any routes or static middleware:
+```ts
+app.use((req, res, next) => {
+  res.setHeader("Content-Security-Policy", "default-src 'self'; script-src 'self'; object-src 'none'; upgrade-insecure-requests;");
+  res.setHeader("Permissions-Policy", "accelerometer=(), camera=(), gyroscope=(), magnetometer=(), microphone=(), usb=()");
+  next();
+});
+```
+
+2. Make sure these headers also apply to static content served via `express.static`.
+
+3. Ensure `express.static(...)` is **after** security middleware, or use `setHeaders` inside the static config.
+

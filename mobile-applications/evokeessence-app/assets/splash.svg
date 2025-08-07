@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="2048" height="2048" viewBox="0 0 2048 2048">
+  <rect width="2048" height="2048" fill="#0066FF"/>
+  <g transform="translate(624, 624) scale(0.8)">
+    <!-- Cryptocurrency Symbol -->
+    <path d="M512 128L320 512L512 896L704 512L512 128Z" fill="#FFFFFF"/>
+    <path d="M512 640L320 512L512 384L704 512L512 640Z" fill="#FFFFFF"/>
+    <circle cx="512" cy="512" r="360" fill="none" stroke="#FFFFFF" stroke-width="36"/>
+    <circle cx="512" cy="512" r="240" fill="none" stroke="#FFFFFF" stroke-width="24"/>
+  </g>
+  
+  <!-- App Name -->
+  <text x="1024" y="1400" font-family="Arial" font-weight="bold" font-size="96" fill="#FFFFFF" text-anchor="middle">EvokeEssence</text>
+</svg>

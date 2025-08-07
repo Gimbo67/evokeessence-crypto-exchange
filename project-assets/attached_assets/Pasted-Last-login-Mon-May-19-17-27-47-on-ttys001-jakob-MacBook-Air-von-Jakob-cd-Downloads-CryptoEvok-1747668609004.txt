@@ -1,0 +1,91 @@
+Last login: Mon May 19 17:27:47 on ttys001
+jakob@MacBook-Air-von-Jakob ~ % cd ~/Downloads/CryptoEvokeApp-fresh
+npx @react-native-community/cli init CryptoEvokeApp --version 0.72.6
+Need to install the following packages:
+@react-native-community/cli@18.0.0
+Ok to proceed? (y) y
+
+                                                          
+               ######                ######               
+             ###     ####        ####     ###             
+            ##          ###    ###          ##            
+            ##             ####             ##            
+            ##             ####             ##            
+            ##           ##    ##           ##            
+            ##         ###      ###         ##            
+             ##  ########################  ##             
+          ######    ###            ###    ######          
+      ###     ##    ##              ##    ##     ###      
+   ###         ## ###      ####      ### ##         ###   
+  ##           ####      ########      ####           ##  
+ ##             ###     ##########     ###             ## 
+  ##           ####      ########      ####           ##  
+   ###         ## ###      ####      ### ##         ###   
+      ###     ##    ##              ##    ##     ###      
+          ######    ###            ###    ######          
+             ##  ########################  ##             
+            ##         ###      ###         ##            
+            ##           ##    ##           ##            
+            ##             ####             ##            
+            ##             ####             ##            
+            ##          ###    ###          ##            
+             ###     ####        ####     ###             
+               ######                ######               
+                                                          
+
+              Welcome to React Native 0.72.6!                
+                 Learn once, write anywhere               
+
+✔ Downloading template
+✔ Copying template
+✔ Processing template
+✔ Installing dependencies
+✔ Do you want to install CocoaPods now? Needed for running iOS project … yes
+✔ Installing Ruby Gems
+✖ Installing CocoaPods dependencies with New Architecture (this may take a few minutes)
+error NameError: uninitialized constant ActiveSupport::LoggerThreadSafeLevel::Logger
+  /Users/jakob/Downloads/CryptoEvokeApp-fresh/CryptoEvokeApp/vendor/bundle/ruby/2.6.0/gems/activesupport-6.1.7.10/lib/active_support/logger_thread_safe_level.rb:16:in `<module:LoggerThreadSafeLevel>'
+  /Users/jakob/Downloads/CryptoEvokeApp-fresh/CryptoEvokeApp/vendor/bundle/ruby/2.6.0/gems/activesupport-6.1.7.10/lib/active_support/logger_thread_safe_level.rb:9:in `<module:ActiveSupport>'
+  /Users/jakob/Downloads/CryptoEvokeApp-fresh/CryptoEvokeApp/vendor/bundle/ruby/2.6.0/gems/activesupport-6.1.7.10/lib/active_support/logger_thread_safe_level.rb:8:in `<top (required)>'
+  /Users/jakob/Downloads/CryptoEvokeApp-fresh/CryptoEvokeApp/vendor/bundle/ruby/2.6.0/gems/activesupport-6.1.7.10/lib/active_support/logger_silence.rb:5:in `require'
+  /Users/jakob/Downloads/CryptoEvokeApp-fresh/CryptoEvokeApp/vendor/bundle/ruby/2.6.0/gems/activesupport-6.1.7.10/lib/active_support/logger_silence.rb:5:in `<top (required)>'
+  /Users/jakob/Downloads/CryptoEvokeApp-fresh/CryptoEvokeApp/vendor/bundle/ruby/2.6.0/gems/activesupport-6.1.7.10/lib/active_support/logger.rb:3:in `require'
+  /Users/jakob/Downloads/CryptoEvokeApp-fresh/CryptoEvokeApp/vendor/bundle/ruby/2.6.0/gems/activesupport-6.1.7.10/lib/active_support/logger.rb:3:in `<top (required)>'
+  /Users/jakob/Downloads/CryptoEvokeApp-fresh/CryptoEvokeApp/vendor/bundle/ruby/2.6.0/gems/activesupport-6.1.7.10/lib/active_support.rb:29:in `require'
+  /Users/jakob/Downloads/CryptoEvokeApp-fresh/CryptoEvokeApp/vendor/bundle/ruby/2.6.0/gems/activesupport-6.1.7.10/lib/active_support.rb:29:in `<top (required)>'
+  /Users/jakob/Downloads/CryptoEvokeApp-fresh/CryptoEvokeApp/vendor/bundle/ruby/2.6.0/gems/cocoapods-1.16.2/lib/cocoapods.rb:7:in `require'
+  /Users/jakob/Downloads/CryptoEvokeApp-fresh/CryptoEvokeApp/vendor/bundle/ruby/2.6.0/gems/cocoapods-1.16.2/lib/cocoapods.rb:7:in `<top (required)>'
+  /Users/jakob/Downloads/CryptoEvokeApp-fresh/CryptoEvokeApp/vendor/bundle/ruby/2.6.0/gems/cocoapods-1.16.2/bin/pod:36:in `require'
+  /Users/jakob/Downloads/CryptoEvokeApp-fresh/CryptoEvokeApp/vendor/bundle/ruby/2.6.0/gems/cocoapods-1.16.2/bin/pod:36:in `<top (required)>'
+  /Users/jakob/Downloads/CryptoEvokeApp-fresh/CryptoEvokeApp/vendor/bundle/ruby/2.6.0/bin/pod:23:in `load'
+  /Users/jakob/Downloads/CryptoEvokeApp-fresh/CryptoEvokeApp/vendor/bundle/ruby/2.6.0/bin/pod:23:in `<top (required)>'
+error Installing Cocoapods failed. This doesn't affect project initialization and you can safely proceed. However, you will need to install Cocoapods manually when running iOS, follow additional steps in "Run instructions for iOS" section.
+
+Error: Looks like your iOS environment is not properly set. Please go to https://reactnative.dev/docs/environment-setup?os=macos&platform=ios&guide=native and follow the React Native CLI QuickStart guide for macOS and iOS.
+
+info 💡 To enable automatic CocoaPods installation when building for iOS you can create react-native.config.js with automaticPodsInstallation field. 
+For more details, see https://github.com/react-native-community/cli/blob/main/docs/projects.md#projectiosautomaticpodsinstallation
+            
+✔ Initializing Git repository
+
+  
+  Run instructions for Android:
+    • Have an Android emulator running (quickest way to get started), or a device connected.
+    • cd "/Users/jakob/Downloads/CryptoEvokeApp-fresh/CryptoEvokeApp" && npx react-native run-android
+  
+  Run instructions for iOS:
+    • cd "/Users/jakob/Downloads/CryptoEvokeApp-fresh/CryptoEvokeApp"
+    
+    • npx react-native run-ios
+    - or -
+    • Open CryptoEvokeApp/ios/CryptoEvokeApp.xcodeproj in Xcode or run "xed -b ios"
+    • Hit the Run button
+    
+  Run instructions for macOS:
+    • See https://aka.ms/ReactNativeGuideMacOS for the latest up-to-date instructions.
+    
+  
+jakob@MacBook-Air-von-Jakob CryptoEvokeApp-fresh % cd ios
+pod install
+cd ..
+open ios/CryptoEvokeApp.xcworkspace

@@ -1,0 +1,35 @@
+====================================================
+          BACKUP STORAGE ANALYSIS REPORT            
+====================================================
+Generated: 2025-03-24 13:31:43
+
+STORAGE SUMMARY
+----------------------------------------------------
+Total Backup Size:     0 B
+Database Backups:      0 B (0%)
+File Backups:          0 B (0%)
+Incremental Backups:   0 B (0%)
+Total Backup Count:    3
+Oldest Backup:         
+Newest Backup:         
+
+STORAGE AVAILABILITY
+----------------------------------------------------
+Available Storage:      KB
+Storage Growth Rate:   N/A
+Projected Size:        N/A
+Days Until Full:       N/A
+
+BACKUP TYPE DISTRIBUTION
+----------------------------------------------------
+Daily Backups:         0
+Weekly Backups:        0
+Monthly Backups:       0
+Yearly Backups:        0
+
+RECOMMENDATIONS
+----------------------------------------------------
+
+====================================================
+End of report
+====================================================

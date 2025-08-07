@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EvoExchange iOS WebSocket Tester</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1 {
+            color: #2563eb;
+        }
+        h2 {
+            color: #4b5563;
+            margin-top: 20px;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .card {
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        button {
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        button:hover {
+            background-color: #1d4ed8;
+        }
+        button:disabled {
+            background-color: #9ca3af;
+            cursor: not-allowed;
+        }
+        .log-container {
+            background-color: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 4px;
+            padding: 10px;
+            height: 300px;
+            overflow-y: auto;
+            font-family: monospace;
+            white-space: pre-wrap;
+        }
+        .log-entry {
+            margin-bottom: 5px;
+            border-bottom: 1px solid #f0f0f0;
+            padding-bottom: 5px;
+        }
+        .log-time {
+            color: #6b7280;
+            font-size: 12px;
+        }
+        .log-event {
+            font-weight: bold;
+            color: #2563eb;
+        }
+        .log-data {
+            color: #111827;
+        }
+        .event-balance {
+            color: #047857;
+        }
+        .event-order {
+            color: #7c3aed;
+        }
+        .event-kyc {
+            color: #f59e0b;
+        }
+        .event-deposit {
+            color: #0369a1;
+        }
+        .event-notification {
+            color: #dc2626;
+        }
+    </style>
+</head>
+<body>
+    <h1>EvoExchange iOS WebSocket Tester</h1>
+    <p>This tool helps test WebSocket connectivity and events between your iOS app and the EvoExchange backend.</p>
+    
+    <div class="container">
+        <div class="card">
+            <h2>1. Authentication</h2>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" placeholder="Enter your username">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password">
+            </div>
+            <button id="login-btn">Login</button>
+        </div>
+
+        <div class="card">
+            <h2>2. WebSocket Connection</h2>
+            <div class="form-group">
+                <label for="token">WebSocket Token</label>
+                <input type="text" id="token" placeholder="WebSocket auth token" readonly>
+            </div>
+            <button id="get-token-btn" disabled>Get WebSocket Token</button>
+            <button id="connect-btn" disabled>Connect WebSocket</button>
+            <button id="disconnect-btn" disabled>Disconnect</button>
+        </div>
+
+        <div class="card">
+            <h2>3. Test Events</h2>
+            <div class="form-group">
+                <label for="event-type">Event Type</label>
+                <select id="event-type" disabled>
+                    <option value="balanceUpdated">Balance Updated</option>
+                    <option value="kycStatusChanged">KYC Status Changed</option>
+                    <option value="serverNotification">Server Notification</option>
+                </select>
+            </div>
+            <button id="send-event-btn" disabled>Send Test Event</button>
+        </div>
+
+        <div class="card">
+            <h2>Event Log</h2>
+            <div class="log-container" id="log-container"></div>
+        </div>
+    </div>
+
+    <script>
+        // DOM elements
+        const usernameInput = document.getElementById('username');
+        const passwordInput = document.getElementById('password');
+        const loginBtn = document.getElementById('login-btn');
+        const tokenInput = document.getElementById('token');
+        const getTokenBtn = document.getElementById('get-token-btn');
+        const connectBtn = document.getElementById('connect-btn');
+        const disconnectBtn = document.getElementById('disconnect-btn');
+        const eventTypeSelect = document.getElementById('event-type');
+        const sendEventBtn = document.getElementById('send-event-btn');
+        const logContainer = document.getElementById('log-container');
+
+        // State
+        let wsConnection = null;
+        let authCookie = null;
+
+        // Log functions
+        function logMessage(event, data) {
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString();
+            
+            const logEntry = document.createElement('div');
+            logEntry.className = 'log-entry';
+            
+            const logTime = document.createElement('span');
+            logTime.className = 'log-time';
+            logTime.textContent = `[${timeStr}] `;
+            
+            const logEvent = document.createElement('span');
+            logEvent.className = `log-event event-${event.toLowerCase()}`;
+            logEvent.textContent = event;
+            
+            const logData = document.createElement('div');
+            logData.className = 'log-data';
+            logData.textContent = typeof data === 'object' ? JSON.stringify(data, null, 2) : data;
+            
+            logEntry.appendChild(logTime);
+            logEntry.appendChild(logEvent);
+            logEntry.appendChild(document.createElement('br'));
+            logEntry.appendChild(logData);
+            
+            logContainer.appendChild(logEntry);
+            logContainer.scrollTop = logContainer.scrollHeight;
+        }
+
+        // API functions
+        async function login() {
+            const username = usernameInput.value.trim();
+            const password = passwordInput.value.trim();
+            
+            if (!username || !password) {
+                logMessage('ERROR', 'Username and password are required');
+                return;
+            }
+            
+            try {
+                logMessage('INFO', `Attempting to login as ${username}...`);
+                
+                const response = await fetch('/api/auth/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'x-ios-app': 'true',
+                        'x-app-version': '1.0.0'
+                    },
+                    body: JSON.stringify({ username, password }),
+                    credentials: 'include'
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`Login failed: ${response.status} ${response.statusText}`);
+                }
+                
+                const userData = await response.json();
+                logMessage('SUCCESS', `Logged in as ${userData.username}`);
+                
+                // Enable WebSocket token button
+                getTokenBtn.disabled = false;
+                
+            } catch (error) {
+                logMessage('ERROR', error.message);
+            }
+        }
+
+        async function getWebSocketToken() {
+            try {
+                logMessage('INFO', 'Requesting WebSocket token...');
+                
+                const response = await fetch('/api/websocket/token', {
+                    method: 'GET',
+                    headers: {
+                        'x-ios-app': 'true',
+                        'x-app-version': '1.0.0'
+                    },
+                    credentials: 'include'
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`Failed to get token: ${response.status} ${response.statusText}`);
+                }
+                
+                const data = await response.json();
+                const token = data.data.token;
+                
+                tokenInput.value = token;
+                logMessage('SUCCESS', 'WebSocket token received');
+                
+                // Enable WebSocket connect button
+                connectBtn.disabled = false;
+                
+            } catch (error) {
+                logMessage('ERROR', error.message);
+            }
+        }
+
+        function connectWebSocket() {
+            const token = tokenInput.value.trim();
+            
+            if (!token) {
+                logMessage('ERROR', 'WebSocket token is required');
+                return;
+            }
+            
+            try {
+                logMessage('INFO', 'Connecting to WebSocket...');
+                
+                // Close existing connection if any
+                if (wsConnection) {
+                    wsConnection.close();
+                    wsConnection = null;
+                }
+                
+                // Create new WebSocket connection
+                const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+                const wsUrl = `${protocol}//${window.location.host}/ws?token=${token}`;
+                wsConnection = new WebSocket(wsUrl);
+                
+                wsConnection.onopen = () => {
+                    logMessage('CONNECTION', 'WebSocket connection opened');
+                    
+                    // Send initial ping
+                    const pingMessage = {
+                        type: 'ping',
+                        timestamp: new Date().toISOString()
+                    };
+                    wsConnection.send(JSON.stringify(pingMessage));
+                    
+                    // Enable disconnect and event buttons
+                    disconnectBtn.disabled = false;
+                    eventTypeSelect.disabled = false;
+                    sendEventBtn.disabled = false;
+                    connectBtn.disabled = true;
+                };
+                
+                wsConnection.onmessage = (event) => {
+                    try {
+                        const data = JSON.parse(event.data);
+                        const eventType = data.type || 'UNKNOWN';
+                        
+                        logMessage(eventType.toUpperCase(), data);
+                    } catch (error) {
+                        logMessage('ERROR', `Failed to parse WebSocket message: ${error.message}`);
+                    }
+                };
+                
+                wsConnection.onerror = (error) => {
+                    logMessage('ERROR', `WebSocket error: ${error.message || 'Unknown error'}`);
+                };
+                
+                wsConnection.onclose = () => {
+                    logMessage('CONNECTION', 'WebSocket connection closed');
+                    
+                    // Update button states
+                    disconnectBtn.disabled = true;
+                    connectBtn.disabled = false;
+                    eventTypeSelect.disabled = true;
+                    sendEventBtn.disabled = true;
+                    
+                    wsConnection = null;
+                };
+                
+            } catch (error) {
+                logMessage('ERROR', error.message);
+            }
+        }
+
+        function disconnectWebSocket() {
+            if (wsConnection) {
+                wsConnection.close();
+                wsConnection = null;
+                
+                // Update button states
+                disconnectBtn.disabled = true;
+                connectBtn.disabled = false;
+                eventTypeSelect.disabled = true;
+                sendEventBtn.disabled = true;
+                
+                logMessage('CONNECTION', 'WebSocket disconnected');
+            }
+        }
+
+        async function sendTestEvent() {
+            const eventType = eventTypeSelect.value;
+            
+            try {
+                let eventData = {};
+                
+                switch (eventType) {
+                    case 'balanceUpdated':
+                        eventData = {
+                            currency: 'USD',
+                            balance: 250.00,
+                            previous: 0
+                        };
+                        break;
+                    case 'kycStatusChanged':
+                        eventData = {
+                            status: 'in_progress'
+                        };
+                        break;
+                    case 'serverNotification':
+                        eventData = {
+                            title: 'iOS App Connected',
+                            message: 'Your iOS app successfully connected to your account',
+                            severity: 'success'
+                        };
+                        break;
+                }
+                
+                logMessage('REQUEST', `Sending test event: ${eventType}`);
+                
+                const response = await fetch('/api/test-websocket/notification', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'x-ios-app': 'true'
+                    },
+                    body: JSON.stringify({
+                        type: eventType,
+                        data: eventData
+                    }),
+                    credentials: 'include'
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`Failed to send event: ${response.status} ${response.statusText}`);
+                }
+                
+                const result = await response.json();
+                logMessage('SUCCESS', `Test event sent: ${result.message}`);
+                
+            } catch (error) {
+                logMessage('ERROR', error.message);
+            }
+        }
+
+        // Event listeners
+        loginBtn.addEventListener('click', login);
+        getTokenBtn.addEventListener('click', getWebSocketToken);
+        connectBtn.addEventListener('click', connectWebSocket);
+        disconnectBtn.addEventListener('click', disconnectWebSocket);
+        sendEventBtn.addEventListener('click', sendTestEvent);
+
+        // Initialize
+        logMessage('INFO', 'WebSocket tester initialized. Please login to start.');
+    </script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+jakob@MacBook-Air-von-Jakob ~ % ls -la src/
+total 0
+drwxr-xr-x   7 jakob  staff   224 19 Mai 23:31 .
+drwxr-x---+ 38 jakob  staff  1216 20 Mai 00:35 ..
+drwxr-xr-x   3 jakob  staff    96 19 Mai 23:31 api
+drwxr-xr-x   2 jakob  staff    64 19 Mai 23:31 assets
+drwxr-xr-x   3 jakob  staff    96 19 Mai 23:34 components
+drwxr-xr-x   3 jakob  staff    96 19 Mai 23:35 context
+drwxr-xr-x   7 jakob  staff   224 19 Mai 23:35 screens
+jakob@MacBook-Air-von-Jakob ~ % ls -la src/screens/
+total 8
+drwxr-xr-x  7 jakob  staff   224 19 Mai 23:35 .
+drwxr-xr-x  7 jakob  staff   224 19 Mai 23:31 ..
+-rw-r--r--@ 1 jakob  staff  1243 19 Mai 23:35 SplashScreen.js
+drwxr-xr-x  4 jakob  staff   128 19 Mai 23:38 auth
+drwxr-xr-x  3 jakob  staff    96 19 Mai 23:38 dashboard
+drwxr-xr-x  2 jakob  staff    64 19 Mai 23:31 markets
+drwxr-xr-x  2 jakob  staff    64 19 Mai 23:31 profile
+jakob@MacBook-Air-von-Jakob ~ % cat src/screens/LoginScreen.js
+cat: src/screens/LoginScreen.js: No such file or directory
+jakob@MacBook-Air-von-Jakob ~ % cat App.js
+import React from 'react';
+import { Text, View, Button } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { SafeAreaView } from 'react-native-safe-area-context';
+
+// Create navigators
+const Stack = createStackNavigator();
+
+// Simple Login Screen
+const LoginScreen = ({ navigation }) => {
+  return (
+    <SafeAreaView style={{ flex: 1 }}>
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 20 }}>
+        <Text style={{ fontSize: 28, fontWeight: 'bold', marginBottom: 30 }}>CryptoEvoke Exchange</Text>
+        <View style={{ width: '100%', marginBottom: 20 }}>
+          <Text style={{ fontSize: 16, marginBottom: 8 }}>Username</Text>
+          <View style={{ 
+            backgroundColor: '#f0f0f0', 
+            borderRadius: 8, 
+            padding: 12,
+            borderWidth: 1,
+            borderColor: '#e0e0e0',
+          }}>
+            <Text>Enter your username</Text>
+          </View>
+        </View>
+        
+        <View style={{ width: '100%', marginBottom: 30 }}>
+          <Text style={{ fontSize: 16, marginBottom: 8 }}>Password</Text>
+          <View style={{ 
+            backgroundColor: '#f0f0f0', 
+            borderRadius: 8, 
+            padding: 12,
+            borderWidth: 1,
+            borderColor: '#e0e0e0',
+          }}>
+            <Text>Enter your password</Text>
+          </View>
+        </View>
+        
+        <Button 
+          title="Login" 
+          onPress={() => navigation.navigate('Dashboard')}
+        />
+      </View>
+    </SafeAreaView>
+  );
+};
+
+// Simple Dashboard Screen
+const DashboardScreen = () => {
+  return (
+    <SafeAreaView style={{ flex: 1 }}>
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Text style={{ fontSize: 24, fontWeight: 'bold' }}>CryptoEvoke Dashboard</Text>
+        <View style={{ marginTop: 20 }}>
+          <Text style={{ fontSize: 18 }}>Welcome to your crypto dashboard!</Text>
+        </View>
+      </View>
+    </SafeAreaView>
+  );
+};
+
+// Main app component
+export default function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Login" screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="Dashboard" component={DashboardScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}%                                                                                                              jakob@MacBook-Air-von-Jakob ~ % 

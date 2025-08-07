@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin 2FA Management Test</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      line-height: 1.6;
+    }
+    h1, h2, h3 {
+      color: #333;
+    }
+    pre {
+      background-color: #f5f5f5;
+      padding: 10px;
+      border-radius: 5px;
+      overflow-x: auto;
+    }
+    .card {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+    .warning {
+      color: #c00;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Admin Two-Factor Authentication Management Test Page</h1>
+  
+  <div class="card">
+    <h2>Admin 2FA Component</h2>
+    <p>This test page simulates the admin interface for managing user 2FA settings in the production application.</p>
+    
+    <h3>Component Implementation</h3>
+    <p>The AdminTwoFactorManager component has been successfully implemented with the following features:</p>
+    <ul>
+      <li>Input field for user ID</li>
+      <li>Confirmation dialog with security warnings</li>
+      <li>Support for admin verification if the admin has 2FA enabled</li>
+      <li>Proper error handling and success messaging</li>
+      <li>Full internationalization support (EN, DE, CZ)</li>
+    </ul>
+  </div>
+  
+  <div class="card">
+    <h2>Server Endpoints</h2>
+    <p>The backend API supports the following endpoints for admin 2FA management:</p>
+    <pre>
+GET  /api/admin/2fa/status/:userId  - Check a user's 2FA status
+POST /api/admin/2fa/disable/:userId - Disable a user's 2FA
+    </pre>
+    
+    <h3>Server-Side Security</h3>
+    <p>The endpoints include:</p>
+    <ul>
+      <li>Authentication middleware to ensure only admins can access these endpoints</li>
+      <li>Validation of admin 2FA if enabled</li>
+      <li>Proper error handling and logging</li>
+      <li>Clear response messages</li>
+    </ul>
+  </div>
+  
+  <div class="card">
+    <h2>Integration with Admin Dashboard</h2>
+    <p>The 2FA management component has been integrated into the admin settings page with a tabbed interface:</p>
+    <pre>
+Tabs:
+- General
+- Security (contains the 2FA Management)
+- User Management
+    </pre>
+  </div>
+  
+  <div class="card">
+    <h2>Internationalization Support</h2>
+    <p>All user-facing text is fully internationalized in:</p>
+    <ul>
+      <li>English (en)</li>
+      <li>German (de)</li>
+      <li>Czech (cs)</li>
+    </ul>
+    <p>Key translations include:</p>
+    <pre>
+admin_2fa_management: "Two-Factor Authentication Management"
+admin_disable_user_2fa_description: "Manage two-factor authentication settings for users"
+admin_disable_user_2fa: "Disable User's 2FA"
+admin_disable_user_2fa_warning: "This is an administrative action that will remove the user's second authentication factor..."
+admin_disable_user_2fa_confirm: "Confirm Disable User's 2FA"
+user_details: "User Details"
+admin_2fa_disabled_success: "Two-factor authentication has been successfully disabled for this user"
+admin_2fa_disable_failed: "Failed to disable two-factor authentication for this user"
+    </pre>
+  </div>
+  
+  <div class="card">
+    <h2>Test Instructions</h2>
+    <p class="warning">This is a test page. In the actual application, you need to:</p>
+    <ol>
+      <li>Log in as an admin user</li>
+      <li>Navigate to the Admin Dashboard</li>
+      <li>Click on "Settings" in the admin navigation</li>
+      <li>Select the "Security" tab</li>
+      <li>Use the "Two-Factor Authentication" card to manage user 2FA settings</li>
+    </ol>
+  </div>
+</body>
+</html>

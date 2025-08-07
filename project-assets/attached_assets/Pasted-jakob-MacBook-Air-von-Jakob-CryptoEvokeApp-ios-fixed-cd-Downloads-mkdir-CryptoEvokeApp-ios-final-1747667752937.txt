@@ -1,0 +1,41 @@
+jakob@MacBook-Air-von-Jakob CryptoEvokeApp-ios-fixed % cd ~/Downloads
+mkdir CryptoEvokeApp-ios-final
+cd CryptoEvokeApp-ios-final
+npx react-native init CryptoEvokeApp
+mkdir: CryptoEvokeApp-ios-final: File exists
+                                                          
+               ######                ######               
+             ###     ####        ####     ###             
+            ##          ###    ###          ##            
+            ##             ####             ##            
+            ##             ####             ##            
+            ##           ##    ##           ##            
+            ##         ###      ###         ##            
+             ##  ########################  ##             
+          ######    ###            ###    ######          
+      ###     ##    ##              ##    ##     ###      
+   ###         ## ###      ####      ### ##         ###   
+  ##           ####      ########      ####           ##  
+ ##             ###     ##########     ###             ## 
+  ##           ####      ########      ####           ##  
+   ###         ## ###      ####      ### ##         ###   
+      ###     ##    ##              ##    ##     ###      
+          ######    ###            ###    ######          
+             ##  ########################  ##             
+            ##         ###      ###         ##            
+            ##           ##    ##           ##            
+            ##             ####             ##            
+            ##             ####             ##            
+            ##          ###    ###          ##            
+             ###     ####        ####     ###             
+               ######                ######               
+                                                          
+
+                  Welcome to React Native!                
+                 Learn once, write anywhere               
+
+✔ Downloading template
+✖ Copying template
+error Couldn't find the "/var/folders/cq/23zw_v9j0zlbqxwb6d1bzzyw0000gn/T/rncli-init-template-8UeSfo/node_modules/react-native/template.config.js file inside "react-native" template. Please make sure the template is valid. Read more: https://github.com/react-native-community/cli/blob/master/docs/init.md#creating-custom-template.
+info Run CLI with --verbose flag for more details.
+jakob@MacBook-Air-von-Jakob CryptoEvokeApp-ios-final % 

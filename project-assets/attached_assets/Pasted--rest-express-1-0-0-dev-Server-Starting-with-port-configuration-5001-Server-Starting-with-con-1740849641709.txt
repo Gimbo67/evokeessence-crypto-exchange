@@ -1,0 +1,877 @@
+
+> rest-express@1.0.0 dev
+[Server] Starting with port configuration: 5001
+[Server] Starting with configuration: {
+  port: 5001,
+  healthCheckPort: 'integrated with main server',
+  env: undefined,
+  database: 'configured',
+  timestamp: '2025-03-01T17:19:43.149Z'
+}
+[Server] Starting initialization...
+[Server] Testing database connection...
+Database connection successful
+[Server] Database connection successful
+[Server] Creating HTTP server and registering routes...
+[Server] Setting up Vite development server...
+[Server] Attempting to start server on port 5001...
+[2025-03-01T17:19:44.101Z] Server is successfully listening on port 5001
+[Server] Ready to accept connections: {
+  port: 5001,
+  env: 'development',
+  nodeEnv: 'development',
+  timestamp: '2025-03-01T17:19:44.101Z'
+}
+[2025-03-01T17:19:48.874Z] GET / 200 31ms [Port: 5001]
+5:19:50 PM [vite] warning: Duplicate key "kyc_status_pending" in object literal
+448|      kyc_sdk_load_error: "Failed to load verification system",
+449|      kyc_status_not_started: "Not Started",
+450|      kyc_status_pending: "Pending Verification",
+   |      ^
+451|      kyc_status_approved: "Verified",
+452|      kyc_status_rejected: "Verification Failed"
+
+  Plugin: vite:esbuild
+  File: /home/runner/workspace/client/src/lib/i18n.ts
+5:19:50 PM [vite] warning: Duplicate key "kyc_status_approved" in object literal
+449|      kyc_status_not_started: "Not Started",
+450|      kyc_status_pending: "Pending Verification",
+451|      kyc_status_approved: "Verified",
+   |      ^
+452|      kyc_status_rejected: "Verification Failed"
+453|    },
+
+  Plugin: vite:esbuild
+  File: /home/runner/workspace/client/src/lib/i18n.ts
+5:19:50 PM [vite] warning: Duplicate key "kyc_status_rejected" in object literal
+450|      kyc_status_pending: "Pending Verification",
+451|      kyc_status_approved: "Verified",
+452|      kyc_status_rejected: "Verification Failed"
+   |      ^
+453|    },
+454|    cs: {
+
+  Plugin: vite:esbuild
+  File: /home/runner/workspace/client/src/lib/i18n.ts
+5:19:50 PM [vite] warning: Duplicate key "kyc_status_pending" in object literal
+873|      kyc_sdk_load_error: "Nepodařilo se načíst ověřovací systém",
+874|      kyc_status_not_started: "Nezahájeno",
+875|      kyc_status_pending: "Probíhá Ověření",
+   |      ^
+876|      kyc_status_approved: "Ověřeno",
+877|      kyc_status_rejected: "Ověření Selhalo"
+
+  Plugin: vite:esbuild
+  File: /home/runner/workspace/client/src/lib/i18n.ts
+5:19:50 PM [vite] warning: Duplicate key "kyc_status_approved" in object literal
+874|      kyc_status_not_started: "Nezahájeno",
+875|      kyc_status_pending: "Probíhá Ověření",
+876|      kyc_status_approved: "Ověřeno",
+   |      ^
+877|      kyc_status_rejected: "Ověření Selhalo"
+878|    },
+
+  Plugin: vite:esbuild
+  File: /home/runner/workspace/client/src/lib/i18n.ts
+5:19:50 PM [vite] warning: Duplicate key "kyc_status_rejected" in object literal
+875|      kyc_status_pending: "Probíhá Ověření",
+876|      kyc_status_approved: "Ověřeno",
+877|      kyc_status_rejected: "Ověření Selhalo"
+   |      ^
+878|    },
+879|    de: {
+
+  Plugin: vite:esbuild
+  File: /home/runner/workspace/client/src/lib/i18n.ts
+5:19:50 PM [vite] warning: Duplicate key "faq_deposit_funds" in object literal
+1270|      faq_get_started: "Wie fange ich an?",
+1271|      faq_kyc_requirements: "Was sind die KYC-Anforderungen?",
+1272|      faq_deposit_funds: "Wie kann ich Geld einzahlen?",
+   |      ^
+1273|      faq_fees: "Welche Gebühren fallen an?",
+1274|      faq_account_security: "Wie sicher ist mein Konto?",
+
+  Plugin: vite:esbuild
+  File: /home/runner/workspace/client/src/lib/i18n.ts
+5:19:50 PM [vite] warning: Duplicate key "faq_fees" in object literal
+1271|      faq_kyc_requirements: "Was sind die KYC-Anforderungen?",
+1272|      faq_deposit_funds: "Wie kann ich Geld einzahlen?",
+1273|      faq_fees: "Welche Gebühren fallen an?",
+   |      ^
+1274|      faq_account_security: "Wie sicher ist mein Konto?",
+1275|      // Client Dashboard
+
+  Plugin: vite:esbuild
+  File: /home/runner/workspace/client/src/lib/i18n.ts
+5:19:50 PM [vite] warning: Duplicate key "faq_account_security" in object literal
+1272|      faq_deposit_funds: "Wie kann ich Geld einzahlen?",
+1273|      faq_fees: "Welche Gebühren fallen an?",
+1274|      faq_account_security: "Wie sicher ist mein Konto?",
+   |      ^
+1275|      // Client Dashboard
+1276|      deposit_funds: "Geld einzahlen",
+
+  Plugin: vite:esbuild
+  File: /home/runner/workspace/client/src/lib/i18n.ts
+5:19:50 PM [vite] warning: Duplicate key "kyc_status_pending" in object literal
+1282|      faq_subtitle: "Finden Sie Antwortenauf häufige Fragen zu unseren Kryptowährungsbörsen-Services",
+1283|      kyc_status_not_started: "Nicht begonnen",
+1284|      kyc_status_pending: "Prüfung ausstehend",
+   |      ^
+1285|      kyc_status_approved: "Verifiziert",
+1286|      kyc_status_rejected: "Verifizierung fehlgeschlagen"
+
+  Plugin: vite:esbuild
+  File: /home/runner/workspace/client/src/lib/i18n.ts
+5:19:50 PM [vite] warning: Duplicate key "kyc_status_approved" in object literal
+1283|      kyc_status_not_started: "Nicht begonnen",
+1284|      kyc_status_pending: "Prüfung ausstehend",
+1285|      kyc_status_approved: "Verifiziert",
+   |      ^
+1286|      kyc_status_rejected: "Verifizierung fehlgeschlagen"
+1287|    }
+
+  Plugin: vite:esbuild
+  File: /home/runner/workspace/client/src/lib/i18n.ts
+5:19:50 PM [vite] warning: Duplicate key "kyc_status_rejected" in object literal
+1284|      kyc_status_pending: "Prüfung ausstehend",
+1285|      kyc_status_approved: "Verifiziert",
+1286|      kyc_status_rejected: "Verifizierung fehlgeschlagen"
+   |      ^
+1287|    }
+1288|  };
+
+  Plugin: vite:esbuild
+  File: /home/runner/workspace/client/src/lib/i18n.ts
+[2025-03-01T17:19:50.798Z] GET /@vite/client 200 242ms [Port: 5001]
+[2025-03-01T17:19:51.011Z] GET /src/main.tsx 200 1ms [Port: 5001]
+[2025-03-01T17:19:51.022Z] GET /@react-refresh 304 0ms [Port: 5001]
+[2025-03-01T17:19:51.027Z] GET /@fs/home/runner/workspace/node_modules/vite/dist/client/env.mjs 304 1ms [Port: 5001]
+[2025-03-01T17:19:51.198Z] GET /@fs/home/runner/workspace/node_modules/.vite/deps/react_jsx-dev-runtime.js 200 1ms [Port: 5001]
+[2025-03-01T17:19:51.201Z] GET /@fs/home/runner/workspace/node_modules/.vite/deps/react.js 200 0ms [Port: 5001]
+[2025-03-01T17:19:51.206Z] GET /@fs/home/runner/workspace/node_modules/.vite/deps/react-dom_client.js 200 1ms [Port: 5001]
+[2025-03-01T17:19:51.233Z] GET /src/App.tsx 200 0ms [Port: 5001]
+[2025-03-01T17:19:51.382Z] GET /src/index.css 200 1ms [Port: 5001]
+[2025-03-01T17:19:51.387Z] GET /@fs/home/runner/workspace/node_modules/.vite/deps/chunk-QCHXOAYK.js 200 1ms [Port: 5001]
+[2025-03-01T17:19:51.392Z] GET /@fs/home/runner/workspace/node_modules/.vite/deps/chunk-WOOG5QLI.js 200 0ms [Port: 5001]
+[2025-03-01T17:19:51.580Z] GET /@fs/home/runner/workspace/node_modules/.vite/deps/chunk-RPCDYKBN.js 200 5ms [Port: 5001]
+[2025-03-01T17:19:51.681Z] GET /@fs/home/runner/workspace/node_modules/.vite/deps/@tanstack_react-query.js 200 0ms [Port: 5001]
+[2025-03-01T17:19:52.011Z] GET /@fs/home/runner/workspace/node_modules/.vite/deps/wouter.js 200 1ms [Port: 5001]
+[2025-03-01T17:19:52.091Z] GET /src/pages/loading.tsx 200 0ms [Port: 5001]
+[2025-03-01T17:19:52.137Z] GET /src/pages/deposit/index.tsx 200 1ms [Port: 5001]
+[2025-03-01T17:19:52.141Z] GET /src/pages/market.tsx 200 0ms [Port: 5001]
+[2025-03-01T17:19:52.207Z] GET /src/pages/admin/layout.tsx 200 0ms [Port: 5001]
+[2025-03-01T17:19:52.273Z] GET /src/pages/contact.tsx 200 1ms [Port: 5001]
+[2025-03-01T17:19:52.325Z] GET /src/lib/language-context.tsx 200 1ms [Port: 5001]
+[2025-03-01T17:19:52.327Z] GET /src/hooks/use-auth.tsx 200 1ms [Port: 5001]
+[2025-03-01T17:19:52.391Z] GET /src/pages/home.tsx 200 1ms [Port: 5001]
+[2025-03-01T17:19:52.410Z] GET /src/lib/queryClient.ts 200 1ms [Port: 5001]
+[2025-03-01T17:19:52.484Z] GET /src/hooks/use-toast.ts 200 1ms [Port: 5001]
+[2025-03-01T17:19:52.513Z] GET /src/pages/team.tsx 200 1ms [Port: 5001]
+[2025-03-01T17:19:52.514Z] GET /src/pages/auth-page.tsx 200 0ms [Port: 5001]
+[2025-03-01T17:19:52.592Z] GET /src/pages/faq.tsx 200 0ms [Port: 5001]
+[2025-03-01T17:19:52.593Z] GET /src/pages/support.tsx 200 0ms [Port: 5001]
+[2025-03-01T17:19:52.672Z] GET /src/pages/not-found.tsx 200 1ms [Port: 5001]
+[2025-03-01T17:19:52.699Z] GET /src/pages/dashboard.tsx 200 1ms [Port: 5001]
+[2025-03-01T17:19:52.739Z] GET /src/pages/admin/dashboard.tsx 200 0ms [Port: 5001]
+[2025-03-01T17:19:52.784Z] GET /src/pages/legal.tsx 200 1ms [Port: 5001]
+[2025-03-01T17:19:52.855Z] GET /src/pages/admin/clients.tsx 200 1ms [Port: 5001]
+[2025-03-01T17:19:52.886Z] GET /src/pages/admin/users.tsx 200 1ms [Port: 5001]
+[2025-03-01T17:19:52.930Z] GET /src/pages/admin/employees.tsx 200 1ms [Port: 5001]
+[2025-03-01T17:19:52.958Z] GET /src/pages/admin/analytics.tsx 200 1ms [Port: 5001]
+[2025-03-01T17:19:52.974Z] GET /src/pages/admin/client-detail.tsx 200 1ms [Port: 5001]
+[2025-03-01T17:19:53.026Z] GET /src/pages/admin/transactions.tsx 200 1ms [Port: 5001]
+[2025-03-01T17:19:53.055Z] GET /src/pages/admin/documents.tsx 200 1ms [Port: 5001]
+[2025-03-01T17:19:53.076Z] GET /@fs/home/runner/workspace/node_modules/.vite/deps/chunk-KBTYAULA.js 200 1ms [Port: 5001]
+[2025-03-01T17:19:53.141Z] GET /@fs/home/runner/workspace/node_modules/.vite/deps/chunk-23HW6M6L.js 200 0ms [Port: 5001]
+[2025-03-01T17:19:53.263Z] GET /src/components/ui/card.tsx 200 1ms [Port: 5001]
+[2025-03-01T17:19:53.266Z] GET /@fs/home/runner/workspace/node_modules/.vite/deps/lucide-react.js 200 2ms [Port: 5001]
+[2025-03-01T17:19:53.330Z] GET /src/components/admin/command-search.tsx 200 1ms [Port: 5001]
+[2025-03-01T17:19:53.340Z] GET /src/components/ui/button.tsx 200 0ms [Port: 5001]
+[2025-03-01T17:19:53.345Z] GET /src/lib/i18n.ts 200 4ms [Port: 5001]
+[2025-03-01T17:19:53.453Z] GET /src/hooks/use-user.ts 200 1ms [Port: 5001]
+[2025-03-01T17:19:53.532Z] GET /src/components/ui/sheet.tsx 200 1ms [Port: 5001]
+[2025-03-01T17:19:53.536Z] GET /@fs/home/runner/workspace/node_modules/.vite/deps/@hookform_resolvers_zod.js 200 1ms [Port: 5001]
+[2025-03-01T17:19:53.540Z] GET /@fs/home/runner/workspace/node_modules/.vite/deps/react-hook-form.js 200 0ms [Port: 5001]
+[2025-03-01T17:19:53.601Z] GET /@fs/home/runner/workspace/node_modules/.vite/deps/zod.js 200 0ms [Port: 5001]
+[2025-03-01T17:19:53.610Z] GET /src/components/ui/textarea.tsx 200 0ms [Port: 5001]
+[2025-03-01T17:19:53.634Z] GET /src/components/layout/footer.tsx 200 0ms [Port: 5001]
+[2025-03-01T17:19:53.723Z] GET /src/components/ui/input.tsx 200 1ms [Port: 5001]
+[2025-03-01T17:19:53.724Z] GET /src/components/layout/header.tsx 200 0ms [Port: 5001]
+[2025-03-01T17:19:53.731Z] GET /src/components/ui/form.tsx 200 0ms [Port: 5001]
+[2025-03-01T17:19:53.782Z] GET /@fs/home/runner/workspace/node_modules/.vite/deps/axios.js 200 0ms [Port: 5001]
+[2025-03-01T17:19:53.799Z] GET /src/components/sections/contact.tsx 200 1ms [Port: 5001]
+[2025-03-01T17:19:53.817Z] GET /src/components/sections/hero.tsx 200 0ms [Port: 5001]
+[2025-03-01T17:19:53.912Z] GET /src/components/sections/about.tsx 200 1ms [Port: 5001]
+[2025-03-01T17:19:53.913Z] GET /src/components/sections/faq.tsx 200 0ms [Port: 5001]
+[2025-03-01T17:19:53.933Z] GET /src/components/sections/team.tsx 200 1ms [Port: 5001]
+[2025-03-01T17:19:53.985Z] GET /src/components/sections/market-overview.tsx 200 1ms [Port: 5001]
+[2025-03-01T17:19:53.990Z] GET /src/components/sections/getting-started.tsx 200 1ms [Port: 5001]
+[2025-03-01T17:19:54.008Z] GET /src/components/sections/trust-news.tsx 200 1ms [Port: 5001]
+[2025-03-01T17:19:54.106Z] GET /src/components/ui/avatar.tsx 200 0ms [Port: 5001]
+[2025-03-01T17:19:54.107Z] GET /@fs/home/runner/workspace/node_modules/.vite/deps/react-icons_si.js 200 9ms [Port: 5001]
+[2025-03-01T17:19:54.126Z] GET /src/components/ui/select.tsx 200 1ms [Port: 5001]
+[2025-03-01T17:19:54.170Z] GET /src/components/ui/tabs.tsx 200 1ms [Port: 5001]
+[2025-03-01T17:19:54.183Z] GET /src/components/ui/input-otp.tsx 200 1ms [Port: 5001]
+[2025-03-01T17:19:54.200Z] GET /src/components/ui/accordion.tsx 200 1ms [Port: 5001]
+[2025-03-01T17:19:54.300Z] GET /src/components/dashboard/UnverifiedDashboard.tsx 200 1ms [Port: 5001]
+[2025-03-01T17:19:54.339Z] GET /src/components/dashboard/VerifiedDashboard.tsx 200 1ms [Port: 5001]
+[2025-03-01T17:19:54.354Z] GET /src/components/ui/scroll-area.tsx 200 1ms [Port: 5001]
+[2025-03-01T17:19:54.384Z] GET /src/components/ui/badge.tsx 200 0ms [Port: 5001]
+[2025-03-01T17:19:54.386Z] GET /src/components/ui/table.tsx 200 1ms [Port: 5001]
+[2025-03-01T17:19:54.499Z] GET /@fs/home/runner/workspace/db/schema.ts 200 1ms [Port: 5001]
+[2025-03-01T17:19:54.542Z] GET /src/components/ui/switch.tsx 200 1ms [Port: 5001]
+[2025-03-01T17:19:54.556Z] GET /src/components/ui/label.tsx 200 1ms [Port: 5001]
+[2025-03-01T17:19:54.566Z] GET /src/components/ui/checkbox.tsx 200 0ms [Port: 5001]
+[2025-03-01T17:19:54.567Z] GET /src/components/dialogs/DocumentPreviewDialog.tsx 200 0ms [Port: 5001]
+[2025-03-01T17:19:54.580Z] GET /@fs/home/runner/workspace/node_modules/.vite/deps/recharts.js 200 6ms [Port: 5001]
+[2025-03-01T17:19:54.704Z] GET /src/components/ui/use-toast.tsx 200 1ms [Port: 5001]
+[2025-03-01T17:19:54.726Z] GET /src/lib/utils.ts 200 1ms [Port: 5001]
+[2025-03-01T17:19:54.743Z] GET /src/components/ui/dialog.tsx 200 1ms [Port: 5001]
+[2025-03-01T17:19:54.751Z] GET /@fs/home/runner/workspace/node_modules/.vite/deps/@radix-ui_react-slot.js 200 1ms [Port: 5001]
+[2025-03-01T17:19:54.757Z] GET /@fs/home/runner/workspace/node_modules/.vite/deps/class-variance-authority.js 200 0ms [Port: 5001]
+[2025-03-01T17:19:54.890Z] GET /src/components/ui/command.tsx 200 1ms [Port: 5001]
+[2025-03-01T17:19:54.907Z] GET /src/hooks/use-debounce.ts 200 0ms [Port: 5001]
+[2025-03-01T17:19:54.935Z] GET /@fs/home/runner/workspace/node_modules/.vite/deps/chunk-YABUFNLM.js 200 0ms [Port: 5001]
+[2025-03-01T17:19:54.940Z] GET /@fs/home/runner/workspace/node_modules/.vite/deps/@radix-ui_react-dialog.js 200 1ms [Port: 5001]
+[2025-03-01T17:19:54.942Z] GET /@fs/home/runner/workspace/node_modules/.vite/deps/chunk-HK4EEVDT.js 200 0ms [Port: 5001]
+[2025-03-01T17:19:55.087Z] GET /@fs/home/runner/workspace/node_modules/.vite/deps/framer-motion.js 200 2ms [Port: 5001]
+[2025-03-01T17:19:55.088Z] GET /@fs/home/runner/workspace/node_modules/.vite/deps/@radix-ui_react-avatar.js 200 0ms [Port: 5001]
+[2025-03-01T17:19:55.122Z] GET /@fs/home/runner/workspace/node_modules/.vite/deps/@radix-ui_react-select.js 200 2ms [Port: 5001]
+[2025-03-01T17:19:55.126Z] GET /@fs/home/runner/workspace/node_modules/.vite/deps/@radix-ui_react-tabs.js 200 1ms [Port: 5001]
+[2025-03-01T17:19:55.270Z] GET /@fs/home/runner/workspace/node_modules/.vite/deps/@radix-ui_react-accordion.js 200 1ms [Port: 5001]
+[2025-03-01T17:19:55.317Z] GET /@fs/home/runner/workspace/node_modules/.vite/deps/@radix-ui_react-scroll-area.js 200 1ms [Port: 5001]
+[2025-03-01T17:19:55.328Z] GET /src/components/dashboard/tabs/ProfileTab.tsx 200 1ms [Port: 5001]
+[2025-03-01T17:19:55.374Z] GET /src/components/dashboard/tabs/DepositTab.tsx 200 1ms [Port: 5001]
+[2025-03-01T17:19:55.458Z] GET /src/components/dashboard/tabs/UsdcTab.tsx 200 1ms [Port: 5001]
+[2025-03-01T17:19:55.505Z] GET /src/components/dashboard/tabs/HistoryTab.tsx 200 1ms [Port: 5001]
+[2025-03-01T17:19:55.527Z] GET /@fs/home/runner/workspace/node_modules/.vite/deps/drizzle-orm.js 200 1ms [Port: 5001]
+[2025-03-01T17:19:55.528Z] GET /@fs/home/runner/workspace/node_modules/.vite/deps/drizzle-orm_pg-core.js 200 1ms [Port: 5001]
+[2025-03-01T17:19:55.555Z] GET /@fs/home/runner/workspace/node_modules/.vite/deps/drizzle-zod.js 200 0ms [Port: 5001]
+[2025-03-01T17:19:55.636Z] GET /@fs/home/runner/workspace/node_modules/.vite/deps/@radix-ui_react-switch.js 200 1ms [Port: 5001]
+[2025-03-01T17:19:55.644Z] GET /@fs/home/runner/workspace/node_modules/.vite/deps/@radix-ui_react-label.js 200 0ms [Port: 5001]
+[2025-03-01T17:19:55.693Z] GET /@fs/home/runner/workspace/node_modules/.vite/deps/@radix-ui_react-checkbox.js 200 0ms [Port: 5001]
+[2025-03-01T17:19:55.709Z] GET /@fs/home/runner/workspace/node_modules/.vite/deps/clsx.js 200 1ms [Port: 5001]
+[2025-03-01T17:19:55.738Z] GET /@fs/home/runner/workspace/node_modules/.vite/deps/tailwind-merge.js 200 1ms [Port: 5001]
+[2025-03-01T17:19:55.766Z] GET /@fs/home/runner/workspace/node_modules/.vite/deps/date-fns.js 200 1ms [Port: 5001]
+[2025-03-01T17:19:55.823Z] GET /@fs/home/runner/workspace/node_modules/.vite/deps/chunk-UACHJROW.js 200 1ms [Port: 5001]
+[2025-03-01T17:19:55.824Z] GET /@fs/home/runner/workspace/node_modules/.vite/deps/cmdk.js 200 1ms [Port: 5001]
+[2025-03-01T17:19:55.879Z] GET /@fs/home/runner/workspace/node_modules/.vite/deps/chunk-DJJLKGFE.js 200 1ms [Port: 5001]
+[2025-03-01T17:19:55.888Z] GET /@fs/home/runner/workspace/node_modules/.vite/deps/chunk-442QBAZO.js 200 1ms [Port: 5001]
+[2025-03-01T17:19:55.923Z] GET /@fs/home/runner/workspace/node_modules/.vite/deps/chunk-JTHRLYFU.js 200 1ms [Port: 5001]
+[2025-03-01T17:19:56.009Z] GET /@fs/home/runner/workspace/node_modules/.vite/deps/chunk-NRN5YYFF.js 200 0ms [Port: 5001]
+[2025-03-01T17:19:56.012Z] GET /@fs/home/runner/workspace/node_modules/.vite/deps/chunk-5KJT6J3C.js 200 0ms [Port: 5001]
+[2025-03-01T17:19:56.018Z] GET /@fs/home/runner/workspace/node_modules/.vite/deps/chunk-BTIBV3P6.js 200 1ms [Port: 5001]
+[2025-03-01T17:19:56.065Z] GET /@fs/home/runner/workspace/node_modules/.vite/deps/chunk-OD433RWB.js 200 1ms [Port: 5001]
+[2025-03-01T17:19:56.083Z] GET /@fs/home/runner/workspace/node_modules/.vite/deps/chunk-LSQNWB54.js 200 0ms [Port: 5001]
+[2025-03-01T17:19:56.105Z] GET /@fs/home/runner/workspace/node_modules/.vite/deps/chunk-RLTE5R7I.js 200 1ms [Port: 5001]
+[2025-03-01T17:19:56.190Z] GET /@fs/home/runner/workspace/node_modules/.vite/deps/chunk-SGSAFNPX.js 200 0ms [Port: 5001]
+[2025-03-01T17:19:56.200Z] GET /@fs/home/runner/workspace/node_modules/.vite/deps/chunk-MRB2OOEX.js 200 1ms [Port: 5001]
+[2025-03-01T17:19:56.204Z] GET /@fs/home/runner/workspace/node_modules/.vite/deps/chunk-U7P2NEEE.js 200 1ms [Port: 5001]
+[2025-03-01T17:19:56.253Z] GET /@fs/home/runner/workspace/node_modules/.vite/deps/chunk-6ZMM2PAV.js 200 0ms [Port: 5001]
+[2025-03-01T17:19:56.266Z] GET /@fs/home/runner/workspace/node_modules/.vite/deps/chunk-24SPFCLG.js 200 1ms [Port: 5001]
+[2025-03-01T17:19:56.285Z] GET /@fs/home/runner/workspace/node_modules/.vite/deps/chunk-WWMHCPRN.js 200 1ms [Port: 5001]
+[2025-03-01T17:19:56.371Z] GET /@fs/home/runner/workspace/node_modules/.vite/deps/chunk-OHZHUKGL.js 200 1ms [Port: 5001]
+[2025-03-01T17:19:56.398Z] GET /@fs/home/runner/workspace/node_modules/.vite/deps/chunk-SQ3IR3DK.js 200 5ms [Port: 5001]
+User info request: { isAuthenticated: false, user: null }
+[2025-03-01T17:19:56.678Z] GET /api/user 401 2ms [Port: 5001]
+User info request: { isAuthenticated: false, user: null }
+[2025-03-01T17:19:56.863Z] GET /api/user 401 1ms [Port: 5001]
+[2025-03-01T17:19:57.228Z] GET /api/market/prices 200 179ms [Port: 5001]
+[2025-03-01T17:19:57.418Z] GET / 200 5ms [Port: 5001]
+[2025-03-01T17:19:57.637Z] GET /api/market/prices 304 33ms [Port: 5001]
+Login attempt: { username: 'admin' }
+Login attempt for username: admin
+User authenticated: {
+  id: 2,
+  username: 'admin',
+  isAdmin: true,
+  isEmployee: false,
+  userGroup: 'client_group_1'
+}
+Serializing user: 2
+Login successful for user: admin
+[2025-03-01T17:20:08.570Z] POST /api/auth/login 200 106ms [Port: 5001]
+Deserializing user: 2
+Deserializing user: 2
+User info request: {
+  isAuthenticated: true,
+  user: {
+    id: 2,
+    username: 'admin',
+    isAdmin: true,
+    isEmployee: undefined,
+    userGroup: 'client_group_1'
+  }
+}
+[2025-03-01T17:20:08.823Z] GET /api/user 200 33ms [Port: 5001]
+Deserializing user: 2
+Deserializing user: 2
+User info request: {
+  isAuthenticated: true,
+  user: {
+    id: 2,
+    username: 'admin',
+    isAdmin: true,
+    isEmployee: undefined,
+    userGroup: 'client_group_1'
+  }
+}
+[2025-03-01T17:20:09.074Z] GET /api/user 200 33ms [Port: 5001]
+Deserializing user: 2
+Deserializing user: 2
+[2025-03-01T17:20:09.329Z] GET / 200 37ms [Port: 5001]
+Deserializing user: 2
+Deserializing user: 2
+[2025-03-01T17:20:10.903Z] GET /src/main.tsx 200 32ms [Port: 5001]
+Deserializing user: 2
+Deserializing user: 2
+[2025-03-01T17:20:11.057Z] GET /@vite/client 304 32ms [Port: 5001]
+Deserializing user: 2
+Deserializing user: 2
+[2025-03-01T17:20:11.149Z] GET /@react-refresh 304 32ms [Port: 5001]
+Deserializing user: 2
+Deserializing user: 2
+[2025-03-01T17:20:11.303Z] GET /src/App.tsx 200 32ms [Port: 5001]
+Deserializing user: 2
+Deserializing user: 2
+[2025-03-01T17:20:11.398Z] GET /src/index.css 200 32ms [Port: 5001]
+Deserializing user: 2
+Deserializing user: 2
+[2025-03-01T17:20:11.491Z] GET /@fs/home/runner/workspace/node_modules/vite/dist/client/env.mjs 304 32ms [Port: 5001]
+Deserializing user: 2
+Deserializing user: 2
+Deserializing user: 2
+Deserializing user: 2
+Deserializing user: 2
+Deserializing user: 2
+Deserializing user: 2
+Deserializing user: 2
+Deserializing user: 2
+Deserializing user: 2
+Deserializing user: 2
+Deserializing user: 2
+[2025-03-01T17:20:11.975Z] GET /src/lib/language-context.tsx 304 186ms [Port: 5001]
+[2025-03-01T17:20:12.005Z] GET /src/lib/queryClient.ts 304 185ms [Port: 5001]
+[2025-03-01T17:20:12.036Z] GET /src/hooks/use-auth.tsx 304 186ms [Port: 5001]
+[2025-03-01T17:20:12.067Z] GET /src/pages/contact.tsx 304 186ms [Port: 5001]
+[2025-03-01T17:20:12.098Z] GET /src/hooks/use-toast.ts 304 186ms [Port: 5001]
+[2025-03-01T17:20:12.129Z] GET /src/pages/home.tsx 304 186ms [Port: 5001]
+Deserializing user: 2
+Deserializing user: 2
+Deserializing user: 2
+Deserializing user: 2
+Deserializing user: 2
+Deserializing user: 2
+[2025-03-01T17:20:12.253Z] GET /src/pages/legal.tsx 304 64ms [Port: 5001]
+Deserializing user: 2
+Deserializing user: 2
+Deserializing user: 2
+[2025-03-01T17:20:12.316Z] GET /src/pages/team.tsx 304 96ms [Port: 5001]
+Deserializing user: 2
+Deserializing user: 2
+[2025-03-01T17:20:12.408Z] GET /src/pages/faq.tsx 304 124ms [Port: 5001]
+Deserializing user: 2
+Deserializing user: 2
+[2025-03-01T17:20:12.470Z] GET /src/pages/auth-page.tsx 304 123ms [Port: 5001]
+Deserializing user: 2
+[2025-03-01T17:20:12.504Z] GET /src/pages/not-found.tsx 304 127ms [Port: 5001]
+[2025-03-01T17:20:12.533Z] GET /src/pages/support.tsx 304 95ms [Port: 5001]
+Deserializing user: 2
+Deserializing user: 2
+Deserializing user: 2
+[2025-03-01T17:20:12.625Z] GET /src/pages/dashboard.tsx 304 62ms [Port: 5001]
+Deserializing user: 2
+Deserializing user: 2
+Deserializing user: 2
+[2025-03-01T17:20:12.687Z] GET /src/pages/admin/dashboard.tsx 304 93ms [Port: 5001]
+Deserializing user: 2
+Deserializing user: 2
+[2025-03-01T17:20:12.752Z] GET /src/pages/admin/users.tsx 304 96ms [Port: 5001]
+Deserializing user: 2
+Deserializing user: 2
+Deserializing user: 2
+[2025-03-01T17:20:12.852Z] GET /src/pages/admin/clients.tsx 304 131ms [Port: 5001]
+Deserializing user: 2
+[2025-03-01T17:20:12.883Z] GET /src/pages/admin/transactions.tsx 304 94ms [Port: 5001]
+Deserializing user: 2
+Deserializing user: 2
+[2025-03-01T17:20:12.944Z] GET /src/pages/admin/employees.tsx 304 124ms [Port: 5001]
+Deserializing user: 2
+[2025-03-01T17:20:13.006Z] GET /src/pages/admin/analytics.tsx 304 93ms [Port: 5001]
+Deserializing user: 2
+Deserializing user: 2
+[2025-03-01T17:20:13.068Z] GET /src/pages/admin/client-detail.tsx 304 93ms [Port: 5001]
+Deserializing user: 2
+Deserializing user: 2
+Deserializing user: 2
+[2025-03-01T17:20:13.130Z] GET /src/pages/admin/documents.tsx 304 94ms [Port: 5001]
+Deserializing user: 2
+Deserializing user: 2
+[2025-03-01T17:20:13.192Z] GET /src/pages/loading.tsx 304 93ms [Port: 5001]
+Deserializing user: 2
+Deserializing user: 2
+[2025-03-01T17:20:13.254Z] GET /src/pages/deposit/index.tsx 304 93ms [Port: 5001]
+Deserializing user: 2
+Deserializing user: 2
+[2025-03-01T17:20:13.315Z] GET /src/pages/admin/layout.tsx 304 93ms [Port: 5001]
+Deserializing user: 2
+Deserializing user: 2
+[2025-03-01T17:20:13.377Z] GET /src/pages/market.tsx 304 93ms [Port: 5001]
+Deserializing user: 2
+Deserializing user: 2
+[2025-03-01T17:20:13.471Z] GET /src/lib/i18n.ts 304 125ms [Port: 5001]
+Deserializing user: 2
+Deserializing user: 2
+[2025-03-01T17:20:13.533Z] GET /src/components/layout/header.tsx 304 126ms [Port: 5001]
+Deserializing user: 2
+Deserializing user: 2
+Deserializing user: 2
+[2025-03-01T17:20:13.627Z] GET /src/components/ui/card.tsx 304 125ms [Port: 5001]
+Deserializing user: 2
+Deserializing user: 2
+[2025-03-01T17:20:13.692Z] GET /src/components/layout/footer.tsx 304 128ms [Port: 5001]
+Deserializing user: 2
+[2025-03-01T17:20:13.726Z] GET /src/components/ui/button.tsx 304 131ms [Port: 5001]
+Deserializing user: 2
+[2025-03-01T17:20:13.786Z] GET /src/components/ui/input.tsx 304 126ms [Port: 5001]
+Deserializing user: 2
+Deserializing user: 2
+[2025-03-01T17:20:13.851Z] GET /src/components/ui/textarea.tsx 304 98ms [Port: 5001]
+Deserializing user: 2
+Deserializing user: 2
+Deserializing user: 2
+[2025-03-01T17:20:13.914Z] GET /src/components/ui/form.tsx 304 98ms [Port: 5001]
+Deserializing user: 2
+Deserializing user: 2
+[2025-03-01T17:20:13.975Z] GET /src/components/sections/faq.tsx 304 93ms [Port: 5001]
+Deserializing user: 2
+Deserializing user: 2
+[2025-03-01T17:20:14.039Z] GET /src/components/sections/hero.tsx 304 95ms [Port: 5001]
+Deserializing user: 2
+Deserializing user: 2
+[2025-03-01T17:20:14.104Z] GET /src/components/sections/team.tsx 304 98ms [Port: 5001]
+Deserializing user: 2
+Deserializing user: 2
+[2025-03-01T17:20:14.166Z] GET /src/components/sections/market-overview.tsx 304 95ms [Port: 5001]
+Deserializing user: 2
+Deserializing user: 2
+[2025-03-01T17:20:14.227Z] GET /src/components/sections/trust-news.tsx 304 93ms [Port: 5001]
+Deserializing user: 2
+Deserializing user: 2
+[2025-03-01T17:20:14.289Z] GET /src/components/sections/about.tsx 304 93ms [Port: 5001]
+Deserializing user: 2
+[2025-03-01T17:20:14.350Z] GET /src/components/sections/getting-started.tsx 304 93ms [Port: 5001]
+Deserializing user: 2
+Deserializing user: 2
+Deserializing user: 2
+[2025-03-01T17:20:14.412Z] GET /src/components/sections/contact.tsx 304 93ms [Port: 5001]
+Deserializing user: 2
+Deserializing user: 2
+[2025-03-01T17:20:14.475Z] GET /src/components/ui/accordion.tsx 304 94ms [Port: 5001]
+Deserializing user: 2
+Deserializing user: 2
+[2025-03-01T17:20:14.539Z] GET /src/components/ui/avatar.tsx 304 96ms [Port: 5001]
+Deserializing user: 2
+Deserializing user: 2
+[2025-03-01T17:20:14.600Z] GET /src/components/ui/select.tsx 304 94ms [Port: 5001]
+Deserializing user: 2
+Deserializing user: 2
+[2025-03-01T17:20:14.662Z] GET /src/components/ui/tabs.tsx 304 93ms [Port: 5001]
+Deserializing user: 2
+Deserializing user: 2
+[2025-03-01T17:20:14.723Z] GET /src/components/ui/input-otp.tsx 304 92ms [Port: 5001]
+Deserializing user: 2
+Deserializing user: 2
+[2025-03-01T17:20:14.785Z] GET /src/hooks/use-user.ts 304 93ms [Port: 5001]
+Deserializing user: 2
+Deserializing user: 2
+[2025-03-01T17:20:14.847Z] GET /src/components/ui/scroll-area.tsx 304 93ms [Port: 5001]
+Deserializing user: 2
+Deserializing user: 2
+[2025-03-01T17:20:14.910Z] GET /src/components/dashboard/VerifiedDashboard.tsx 304 94ms [Port: 5001]
+Deserializing user: 2
+Deserializing user: 2
+[2025-03-01T17:20:14.973Z] GET /src/components/dashboard/UnverifiedDashboard.tsx 304 94ms [Port: 5001]
+Deserializing user: 2
+Deserializing user: 2
+[2025-03-01T17:20:15.035Z] GET /src/components/ui/table.tsx 304 94ms [Port: 5001]
+Deserializing user: 2
+[2025-03-01T17:20:15.097Z] GET /src/components/ui/switch.tsx 304 94ms [Port: 5001]
+Deserializing user: 2
+Deserializing user: 2
+Deserializing user: 2
+[2025-03-01T17:20:15.159Z] GET /@fs/home/runner/workspace/db/schema.ts 304 94ms [Port: 5001]
+Deserializing user: 2
+Deserializing user: 2
+[2025-03-01T17:20:15.221Z] GET /src/components/ui/badge.tsx 304 93ms [Port: 5001]
+Deserializing user: 2
+Deserializing user: 2
+[2025-03-01T17:20:15.284Z] GET /src/components/ui/dialog.tsx 304 95ms [Port: 5001]
+Deserializing user: 2
+Deserializing user: 2
+[2025-03-01T17:20:15.346Z] GET /src/components/ui/label.tsx 304 94ms [Port: 5001]
+Deserializing user: 2
+Deserializing user: 2
+[2025-03-01T17:20:15.408Z] GET /src/components/ui/checkbox.tsx 304 94ms [Port: 5001]
+Deserializing user: 2
+Deserializing user: 2
+[2025-03-01T17:20:15.470Z] GET /src/lib/utils.ts 304 94ms [Port: 5001]
+Deserializing user: 2
+Deserializing user: 2
+[2025-03-01T17:20:15.532Z] GET /src/components/ui/use-toast.tsx 304 94ms [Port: 5001]
+Deserializing user: 2
+Deserializing user: 2
+[2025-03-01T17:20:15.594Z] GET /src/components/dialogs/DocumentPreviewDialog.tsx 304 94ms [Port: 5001]
+Deserializing user: 2
+Deserializing user: 2
+[2025-03-01T17:20:15.656Z] GET /src/components/ui/sheet.tsx 304 94ms [Port: 5001]
+Deserializing user: 2
+Deserializing user: 2
+[2025-03-01T17:20:15.719Z] GET /src/components/admin/command-search.tsx 304 95ms [Port: 5001]
+Deserializing user: 2
+Deserializing user: 2
+[2025-03-01T17:20:15.780Z] GET /src/components/dashboard/tabs/ProfileTab.tsx 304 94ms [Port: 5001]
+Deserializing user: 2
+[2025-03-01T17:20:15.841Z] GET /src/components/dashboard/tabs/UsdcTab.tsx 304 92ms [Port: 5001]
+Deserializing user: 2
+Deserializing user: 2
+Deserializing user: 2
+[2025-03-01T17:20:15.902Z] GET /src/components/dashboard/tabs/DepositTab.tsx 304 92ms [Port: 5001]
+[2025-03-01T17:20:15.933Z] GET /src/components/dashboard/tabs/HistoryTab.tsx 304 62ms [Port: 5001]
+Deserializing user: 2
+Deserializing user: 2
+[2025-03-01T17:20:16.025Z] GET /src/components/ui/command.tsx 304 62ms [Port: 5001]
+[2025-03-01T17:20:16.056Z] GET /src/hooks/use-debounce.ts 304 62ms [Port: 5001]
+Deserializing user: 2
+Deserializing user: 2
+User info request: {
+  isAuthenticated: true,
+  user: {
+    id: 2,
+    username: 'admin',
+    isAdmin: true,
+    isEmployee: undefined,
+    userGroup: 'client_group_1'
+  }
+}
+[2025-03-01T17:20:16.330Z] GET /api/user 200 32ms [Port: 5001]
+Deserializing user: 2
+Deserializing user: 2
+User info request: {
+  isAuthenticated: true,
+  user: {
+    id: 2,
+    username: 'admin',
+    isAdmin: true,
+    isEmployee: undefined,
+    userGroup: 'client_group_1'
+  }
+}
+[2025-03-01T17:20:16.573Z] GET /api/user 200 33ms [Port: 5001]
+Deserializing user: 2
+Deserializing user: 2
+Admin access granted for user: {
+  userId: 2,
+  username: 'admin',
+  isAdmin: true,
+  userGroup: 'client_group_1',
+  hasAccess: true
+}
+Fetching clients for user: {
+  id: 2,
+  username: 'admin',
+  userGroup: 'client_group_1',
+  isAdmin: true
+}
+Found 5 clients
+Returning clients with metrics: 5
+[2025-03-01T17:20:21.284Z] GET /api/admin/clients 200 75ms [Port: 5001]
+Deserializing user: 2
+Deserializing user: 2
+Admin access granted for user: {
+  userId: 2,
+  username: 'admin',
+  isAdmin: true,
+  userGroup: 'client_group_1',
+  hasAccess: true
+}
+Fetching client details for ID: 4
+Error fetching client details: TypeError: Cannot convert undefined or null to object
+    at Function.entries (<anonymous>)
+    at orderSelectedFields (/home/runner/workspace/node_modules/src/utils.ts:77:16)
+    at <anonymous> (/home/runner/workspace/node_modules/src/utils.ts:88:19)
+    at Array.reduce (<anonymous>)
+    at orderSelectedFields (/home/runner/workspace/node_modules/src/utils.ts:77:32)
+    at <anonymous> (/home/runner/workspace/node_modules/src/pg-core/query-builders/select.ts:973:23)
+    at Object.startActiveSpan (/home/runner/workspace/node_modules/src/tracing.ts:27:11)
+    at PgSelectBase._prepare (/home/runner/workspace/node_modules/src/pg-core/query-builders/select.ts:972:17)
+    at <anonymous> (/home/runner/workspace/node_modules/src/pg-core/query-builders/select.ts:1003:16)
+    at Object.startActiveSpan (/home/runner/workspace/node_modules/src/tracing.ts:27:11)
+    at PgSelectBase.execute (/home/runner/workspace/node_modules/src/pg-core/query-builders/select.ts:1002:17)
+    at PgSelectBase.then (/home/runner/workspace/node_modules/src/query-promise.ts:31:15)
+    at <anonymous> (/home/runner/workspace/server/routes.ts:313:10)
+    at Layer.handle [as handle_request] (/home/runner/workspace/node_modules/express/lib/router/layer.js:95:5)
+    at next (/home/runner/workspace/node_modules/express/lib/router/route.js:149:13)
+    at requireAdminAccess (/home/runner/workspace/server/middleware/admin.ts:57:3)
+    at Layer.handle [as handle_request] (/home/runner/workspace/node_modules/express/lib/router/layer.js:95:5)
+    at next (/home/runner/workspace/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/home/runner/workspace/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/home/runner/workspace/node_modules/express/lib/router/layer.js:95:5)
+    at /home/runner/workspace/node_modules/express/lib/router/index.js:284:15
+    at param (/home/runner/workspace/node_modules/express/lib/router/index.js:365:14)
+    at param (/home/runner/workspace/node_modules/express/lib/router/index.js:376:14)
+    at Function.process_params (/home/runner/workspace/node_modules/express/lib/router/index.js:421:3)
+    at next (/home/runner/workspace/node_modules/express/lib/router/index.js:280:10)
+    at /home/runner/workspace/node_modules/express/lib/router/index.js:646:15
+    at next (/home/runner/workspace/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/home/runner/workspace/node_modules/express/lib/router/index.js:175:3)
+    at router (/home/runner/workspace/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/home/runner/workspace/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/home/runner/workspace/node_modules/express/lib/router/index.js:328:13)
+    at /home/runner/workspace/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/home/runner/workspace/node_modules/express/lib/router/index.js:346:12)
+    at Immediate.next (/home/runner/workspace/node_modules/express/lib/router/index.js:280:10)
+    at Immediate._onImmediate (/home/runner/workspace/node_modules/express/lib/router/index.js:646:15)
+    at process.processImmediate (node:internal/timers:485:21)
+[2025-03-01T17:20:25.689Z] GET /api/admin/clients/4 500 41ms [Port: 5001]
+Deserializing user: 2
+Deserializing user: 2
+Admin access granted for user: {
+  userId: 2,
+  username: 'admin',
+  isAdmin: true,
+  userGroup: 'client_group_1',
+  hasAccess: true
+}
+Fetching client details for ID: 4
+Error fetching client details: TypeError: Cannot convert undefined or null to object
+    at Function.entries (<anonymous>)
+    at orderSelectedFields (/home/runner/workspace/node_modules/src/utils.ts:77:16)
+    at <anonymous> (/home/runner/workspace/node_modules/src/utils.ts:88:19)
+    at Array.reduce (<anonymous>)
+    at orderSelectedFields (/home/runner/workspace/node_modules/src/utils.ts:77:32)
+    at <anonymous> (/home/runner/workspace/node_modules/src/pg-core/query-builders/select.ts:973:23)
+    at Object.startActiveSpan (/home/runner/workspace/node_modules/src/tracing.ts:27:11)
+    at PgSelectBase._prepare (/home/runner/workspace/node_modules/src/pg-core/query-builders/select.ts:972:17)
+    at <anonymous> (/home/runner/workspace/node_modules/src/pg-core/query-builders/select.ts:1003:16)
+    at Object.startActiveSpan (/home/runner/workspace/node_modules/src/tracing.ts:27:11)
+    at PgSelectBase.execute (/home/runner/workspace/node_modules/src/pg-core/query-builders/select.ts:1002:17)
+    at PgSelectBase.then (/home/runner/workspace/node_modules/src/query-promise.ts:31:15)
+    at <anonymous> (/home/runner/workspace/server/routes.ts:313:10)
+    at Layer.handle [as handle_request] (/home/runner/workspace/node_modules/express/lib/router/layer.js:95:5)
+    at next (/home/runner/workspace/node_modules/express/lib/router/route.js:149:13)
+    at requireAdminAccess (/home/runner/workspace/server/middleware/admin.ts:57:3)
+    at Layer.handle [as handle_request] (/home/runner/workspace/node_modules/express/lib/router/layer.js:95:5)
+    at next (/home/runner/workspace/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/home/runner/workspace/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/home/runner/workspace/node_modules/express/lib/router/layer.js:95:5)
+    at /home/runner/workspace/node_modules/express/lib/router/index.js:284:15
+    at param (/home/runner/workspace/node_modules/express/lib/router/index.js:365:14)
+    at param (/home/runner/workspace/node_modules/express/lib/router/index.js:376:14)
+    at Function.process_params (/home/runner/workspace/node_modules/express/lib/router/index.js:421:3)
+    at next (/home/runner/workspace/node_modules/express/lib/router/index.js:280:10)
+    at /home/runner/workspace/node_modules/express/lib/router/index.js:646:15
+    at next (/home/runner/workspace/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/home/runner/workspace/node_modules/express/lib/router/index.js:175:3)
+    at router (/home/runner/workspace/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/home/runner/workspace/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/home/runner/workspace/node_modules/express/lib/router/index.js:328:13)
+    at /home/runner/workspace/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/home/runner/workspace/node_modules/express/lib/router/index.js:346:12)
+    at Immediate.next (/home/runner/workspace/node_modules/express/lib/router/index.js:280:10)
+    at Immediate._onImmediate (/home/runner/workspace/node_modules/express/lib/router/index.js:646:15)
+    at process.processImmediate (node:internal/timers:485:21)
+[2025-03-01T17:20:25.939Z] GET /api/admin/clients/4 500 31ms [Port: 5001]
+Deserializing user: 2
+Deserializing user: 2
+Admin access granted for user: {
+  userId: 2,
+  username: 'admin',
+  isAdmin: true,
+  userGroup: 'client_group_1',
+  hasAccess: true
+}
+Fetching client details for ID: 4
+Error fetching client details: TypeError: Cannot convert undefined or null to object
+    at Function.entries (<anonymous>)
+    at orderSelectedFields (/home/runner/workspace/node_modules/src/utils.ts:77:16)
+    at <anonymous> (/home/runner/workspace/node_modules/src/utils.ts:88:19)
+    at Array.reduce (<anonymous>)
+    at orderSelectedFields (/home/runner/workspace/node_modules/src/utils.ts:77:32)
+    at <anonymous> (/home/runner/workspace/node_modules/src/pg-core/query-builders/select.ts:973:23)
+    at Object.startActiveSpan (/home/runner/workspace/node_modules/src/tracing.ts:27:11)
+    at PgSelectBase._prepare (/home/runner/workspace/node_modules/src/pg-core/query-builders/select.ts:972:17)
+    at <anonymous> (/home/runner/workspace/node_modules/src/pg-core/query-builders/select.ts:1003:16)
+    at Object.startActiveSpan (/home/runner/workspace/node_modules/src/tracing.ts:27:11)
+    at PgSelectBase.execute (/home/runner/workspace/node_modules/src/pg-core/query-builders/select.ts:1002:17)
+    at PgSelectBase.then (/home/runner/workspace/node_modules/src/query-promise.ts:31:15)
+    at <anonymous> (/home/runner/workspace/server/routes.ts:313:10)
+    at Layer.handle [as handle_request] (/home/runner/workspace/node_modules/express/lib/router/layer.js:95:5)
+    at next (/home/runner/workspace/node_modules/express/lib/router/route.js:149:13)
+    at requireAdminAccess (/home/runner/workspace/server/middleware/admin.ts:57:3)
+    at Layer.handle [as handle_request] (/home/runner/workspace/node_modules/express/lib/router/layer.js:95:5)
+    at next (/home/runner/workspace/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/home/runner/workspace/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/home/runner/workspace/node_modules/express/lib/router/layer.js:95:5)
+    at /home/runner/workspace/node_modules/express/lib/router/index.js:284:15
+    at param (/home/runner/workspace/node_modules/express/lib/router/index.js:365:14)
+    at param (/home/runner/workspace/node_modules/express/lib/router/index.js:376:14)
+    at Function.process_params (/home/runner/workspace/node_modules/express/lib/router/index.js:421:3)
+    at next (/home/runner/workspace/node_modules/express/lib/router/index.js:280:10)
+    at /home/runner/workspace/node_modules/express/lib/router/index.js:646:15
+    at next (/home/runner/workspace/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/home/runner/workspace/node_modules/express/lib/router/index.js:175:3)
+    at router (/home/runner/workspace/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/home/runner/workspace/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/home/runner/workspace/node_modules/express/lib/router/index.js:328:13)
+    at /home/runner/workspace/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/home/runner/workspace/node_modules/express/lib/router/index.js:346:12)
+    at Immediate.next (/home/runner/workspace/node_modules/express/lib/router/index.js:280:10)
+    at Immediate._onImmediate (/home/runner/workspace/node_modules/express/lib/router/index.js:646:15)
+    at process.processImmediate (node:internal/timers:485:21)
+[2025-03-01T17:20:26.183Z] GET /api/admin/clients/4 500 30ms [Port: 5001]
+Deserializing user: 2
+Deserializing user: 2
+Admin access granted for user: {
+  userId: 2,
+  username: 'admin',
+  isAdmin: true,
+  userGroup: 'client_group_1',
+  hasAccess: true
+}
+Fetching client details for ID: 13
+Error fetching client details: TypeError: Cannot convert undefined or null to object
+    at Function.entries (<anonymous>)
+    at orderSelectedFields (/home/runner/workspace/node_modules/src/utils.ts:77:16)
+    at <anonymous> (/home/runner/workspace/node_modules/src/utils.ts:88:19)
+    at Array.reduce (<anonymous>)
+    at orderSelectedFields (/home/runner/workspace/node_modules/src/utils.ts:77:32)
+    at <anonymous> (/home/runner/workspace/node_modules/src/pg-core/query-builders/select.ts:973:23)
+    at Object.startActiveSpan (/home/runner/workspace/node_modules/src/tracing.ts:27:11)
+    at PgSelectBase._prepare (/home/runner/workspace/node_modules/src/pg-core/query-builders/select.ts:972:17)
+    at <anonymous> (/home/runner/workspace/node_modules/src/pg-core/query-builders/select.ts:1003:16)
+    at Object.startActiveSpan (/home/runner/workspace/node_modules/src/tracing.ts:27:11)
+    at PgSelectBase.execute (/home/runner/workspace/node_modules/src/pg-core/query-builders/select.ts:1002:17)
+    at PgSelectBase.then (/home/runner/workspace/node_modules/src/query-promise.ts:31:15)
+    at <anonymous> (/home/runner/workspace/server/routes.ts:313:10)
+    at Layer.handle [as handle_request] (/home/runner/workspace/node_modules/express/lib/router/layer.js:95:5)
+    at next (/home/runner/workspace/node_modules/express/lib/router/route.js:149:13)
+    at requireAdminAccess (/home/runner/workspace/server/middleware/admin.ts:57:3)
+    at Layer.handle [as handle_request] (/home/runner/workspace/node_modules/express/lib/router/layer.js:95:5)
+    at next (/home/runner/workspace/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/home/runner/workspace/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/home/runner/workspace/node_modules/express/lib/router/layer.js:95:5)
+    at /home/runner/workspace/node_modules/express/lib/router/index.js:284:15
+    at param (/home/runner/workspace/node_modules/express/lib/router/index.js:365:14)
+    at param (/home/runner/workspace/node_modules/express/lib/router/index.js:376:14)
+    at Function.process_params (/home/runner/workspace/node_modules/express/lib/router/index.js:421:3)
+    at next (/home/runner/workspace/node_modules/express/lib/router/index.js:280:10)
+    at /home/runner/workspace/node_modules/express/lib/router/index.js:646:15
+    at next (/home/runner/workspace/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/home/runner/workspace/node_modules/express/lib/router/index.js:175:3)
+    at router (/home/runner/workspace/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/home/runner/workspace/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/home/runner/workspace/node_modules/express/lib/router/index.js:328:13)
+    at /home/runner/workspace/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/home/runner/workspace/node_modules/express/lib/router/index.js:346:12)
+    at Immediate.next (/home/runner/workspace/node_modules/express/lib/router/index.js:280:10)
+    at Immediate._onImmediate (/home/runner/workspace/node_modules/express/lib/router/index.js:646:15)
+    at process.processImmediate (node:internal/timers:485:21)
+[2025-03-01T17:20:27.945Z] GET /api/admin/clients/13 500 31ms [Port: 5001]
+Deserializing user: 2
+Deserializing user: 2
+Admin access granted for user: {
+  userId: 2,
+  username: 'admin',
+  isAdmin: true,
+  userGroup: 'client_group_1',
+  hasAccess: true
+}
+Fetching client details for ID: 13
+Error fetching client details: TypeError: Cannot convert undefined or null to object
+    at Function.entries (<anonymous>)
+    at orderSelectedFields (/home/runner/workspace/node_modules/src/utils.ts:77:16)
+    at <anonymous> (/home/runner/workspace/node_modules/src/utils.ts:88:19)
+    at Array.reduce (<anonymous>)
+    at orderSelectedFields (/home/runner/workspace/node_modules/src/utils.ts:77:32)
+    at <anonymous> (/home/runner/workspace/node_modules/src/pg-core/query-builders/select.ts:973:23)
+    at Object.startActiveSpan (/home/runner/workspace/node_modules/src/tracing.ts:27:11)
+    at PgSelectBase._prepare (/home/runner/workspace/node_modules/src/pg-core/query-builders/select.ts:972:17)
+    at <anonymous> (/home/runner/workspace/node_modules/src/pg-core/query-builders/select.ts:1003:16)
+    at Object.startActiveSpan (/home/runner/workspace/node_modules/src/tracing.ts:27:11)
+    at PgSelectBase.execute (/home/runner/workspace/node_modules/src/pg-core/query-builders/select.ts:1002:17)
+    at PgSelectBase.then (/home/runner/workspace/node_modules/src/query-promise.ts:31:15)
+    at <anonymous> (/home/runner/workspace/server/routes.ts:313:10)
+    at Layer.handle [as handle_request] (/home/runner/workspace/node_modules/express/lib/router/layer.js:95:5)
+    at next (/home/runner/workspace/node_modules/express/lib/router/route.js:149:13)
+    at requireAdminAccess (/home/runner/workspace/server/middleware/admin.ts:57:3)
+    at Layer.handle [as handle_request] (/home/runner/workspace/node_modules/express/lib/router/layer.js:95:5)
+    at next (/home/runner/workspace/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/home/runner/workspace/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/home/runner/workspace/node_modules/express/lib/router/layer.js:95:5)
+    at /home/runner/workspace/node_modules/express/lib/router/index.js:284:15
+    at param (/home/runner/workspace/node_modules/express/lib/router/index.js:365:14)
+    at param (/home/runner/workspace/node_modules/express/lib/router/index.js:376:14)
+    at Function.process_params (/home/runner/workspace/node_modules/express/lib/router/index.js:421:3)
+    at next (/home/runner/workspace/node_modules/express/lib/router/index.js:280:10)
+    at /home/runner/workspace/node_modules/express/lib/router/index.js:646:15
+    at next (/home/runner/workspace/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/home/runner/workspace/node_modules/express/lib/router/index.js:175:3)
+    at router (/home/runner/workspace/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/home/runner/workspace/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/home/runner/workspace/node_modules/express/lib/router/index.js:328:13)
+    at /home/runner/workspace/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/home/runner/workspace/node_modules/express/lib/router/index.js:346:12)
+    at Immediate.next (/home/runner/workspace/node_modules/express/lib/router/index.js:280:10)
+    at Immediate._onImmediate (/home/runner/workspace/node_modules/express/lib/router/index.js:646:15)
+    at process.processImmediate (node:internal/timers:485:21)
+[2025-03-01T17:20:28.189Z] GET /api/admin/clients/13 500 31ms [Port: 5001]
+Deserializing user: 2
+Deserializing user: 2
+Admin access granted for user: {
+  userId: 2,
+  username: 'admin',
+  isAdmin: true,
+  userGroup: 'client_group_1',
+  hasAccess: true
+}
+Fetching client details for ID: 13
+Error fetching client details: TypeError: Cannot convert undefined or null to object
+    at Function.entries (<anonymous>)
+    at orderSelectedFields (/home/runner/workspace/node_modules/src/utils.ts:77:16)
+    at <anonymous> (/home/runner/workspace/node_modules/src/utils.ts:88:19)
+    at Array.reduce (<anonymous>)
+    at orderSelectedFields (/home/runner/workspace/node_modules/src/utils.ts:77:32)
+    at <anonymous> (/home/runner/workspace/node_modules/src/pg-core/query-builders/select.ts:973:23)
+    at Object.startActiveSpan (/home/runner/workspace/node_modules/src/tracing.ts:27:11)
+    at PgSelectBase._prepare (/home/runner/workspace/node_modules/src/pg-core/query-builders/select.ts:972:17)
+    at <anonymous> (/home/runner/workspace/node_modules/src/pg-core/query-builders/select.ts:1003:16)
+    at Object.startActiveSpan (/home/runner/workspace/node_modules/src/tracing.ts:27:11)
+    at PgSelectBase.execute (/home/runner/workspace/node_modules/src/pg-core/query-builders/select.ts:1002:17)
+    at PgSelectBase.then (/home/runner/workspace/node_modules/src/query-promise.ts:31:15)
+    at <anonymous> (/home/runner/workspace/server/routes.ts:313:10)
+    at Layer.handle [as handle_request] (/home/runner/workspace/node_modules/express/lib/router/layer.js:95:5)
+    at next (/home/runner/workspace/node_modules/express/lib/router/route.js:149:13)
+    at requireAdminAccess (/home/runner/workspace/server/middleware/admin.ts:57:3)
+    at Layer.handle [as handle_request] (/home/runner/workspace/node_modules/express/lib/router/layer.js:95:5)
+    at next (/home/runner/workspace/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/home/runner/workspace/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/home/runner/workspace/node_modules/express/lib/router/layer.js:95:5)
+    at /home/runner/workspace/node_modules/express/lib/router/index.js:284:15
+    at param (/home/runner/workspace/node_modules/express/lib/router/index.js:365:14)
+    at param (/home/runner/workspace/node_modules/express/lib/router/index.js:376:14)
+    at Function.process_params (/home/runner/workspace/node_modules/express/lib/router/index.js:421:3)
+    at next (/home/runner/workspace/node_modules/express/lib/router/index.js:280:10)
+    at /home/runner/workspace/node_modules/express/lib/router/index.js:646:15
+    at next (/home/runner/workspace/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/home/runner/workspace/node_modules/express/lib/router/index.js:175:3)
+    at router (/home/runner/workspace/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/home/runner/workspace/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/home/runner/workspace/node_modules/express/lib/router/index.js:328:13)
+    at /home/runner/workspace/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/home/runner/workspace/node_modules/express/lib/router/index.js:346:12)
+    at Immediate.next (/home/runner/workspace/node_modules/express/lib/router/index.js:280:10)
+    at Immediate._onImmediate (/home/runner/workspace/node_modules/express/lib/router/index.js:646:15)
+    at process.processImmediate (node:internal/timers:485:21)
+[2025-03-01T17:20:28.428Z] GET /api/admin/clients/13 500 32ms [Port: 5001]

@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2FA Test Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      line-height: 1.6;
+    }
+    .card {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    button {
+      background-color: #4A6CF7;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+    button:hover {
+      background-color: #3854c8;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 8px;
+      margin: 5px 0 15px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    .code-box {
+      font-family: monospace;
+      background-color: #f5f5f5;
+      padding: 10px;
+      border-radius: 4px;
+      overflow-x: auto;
+      margin: 10px 0;
+    }
+    #response {
+      white-space: pre-wrap;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+    .success {
+      color: green;
+      font-weight: bold;
+    }
+    .error {
+      color: red;
+      font-weight: bold;
+    }
+    .tabs {
+      display: flex;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #ddd;
+    }
+    .tab {
+      padding: 10px 15px;
+      background-color: #f1f1f1;
+      border: 1px solid #ddd;
+      border-bottom: none;
+      border-radius: 5px 5px 0 0;
+      margin-right: 5px;
+      cursor: pointer;
+    }
+    .tab.active {
+      background-color: white;
+      border-bottom: 1px solid white;
+      margin-bottom: -1px;
+    }
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <h1>2FA Testing Interface</h1>
+  
+  <div class="tabs">
+    <div class="tab active" data-tab="setup">Setup 2FA</div>
+    <div class="tab" data-tab="verify">Verify 2FA</div>
+    <div class="tab" data-tab="disable">Disable 2FA</div>
+    <div class="tab" data-tab="status">2FA Status</div>
+  </div>
+  
+  <div id="setup" class="tab-content active">
+    <div class="card">
+      <h2>Setup Two-Factor Authentication</h2>
+      <p>Initialize 2FA setup to get a QR code and secret key.</p>
+      
+      <div>
+        <label for="userId">User ID (optional):</label>
+        <input type="number" id="setupUserId" placeholder="User ID">
+      </div>
+      
+      <button id="setupBtn">Setup 2FA</button>
+      
+      <h3>Response:</h3>
+      <div class="code-box">
+        <pre id="setupResponse">No response yet</pre>
+      </div>
+      
+      <div id="qrCodeContainer" style="display: none; text-align: center; margin-top: 20px;">
+        <h3>QR Code</h3>
+        <div id="qrCode"></div>
+        <p><strong>Secret Key:</strong> <span id="secretKey"></span></p>
+      </div>
+    </div>
+  </div>
+  
+  <div id="verify" class="tab-content">
+    <div class="card">
+      <h2>Verify Two-Factor Authentication</h2>
+      <p>Verify a 2FA token during the setup process.</p>
+      
+      <div>
+        <label for="verifyUserId">User ID (optional):</label>
+        <input type="number" id="verifyUserId" placeholder="User ID">
+      </div>
+      
+      <div>
+        <label for="verifyToken">Verification Token (6 digits):</label>
+        <input type="text" id="verifyToken" placeholder="Enter 6-digit token" maxlength="6">
+      </div>
+      
+      <button id="verifyBtn">Verify Token</button>
+      
+      <h3>Response:</h3>
+      <div class="code-box">
+        <pre id="verifyResponse">No response yet</pre>
+      </div>
+      
+      <div id="backupCodesContainer" style="display: none; margin-top: 20px;">
+        <h3>Backup Codes</h3>
+        <div class="code-box">
+          <pre id="backupCodes"></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div id="disable" class="tab-content">
+    <div class="card">
+      <h2>Disable Two-Factor Authentication</h2>
+      <p>Disable 2FA for a user account.</p>
+      
+      <div>
+        <label for="disableUserId">User ID (optional):</label>
+        <input type="number" id="disableUserId" placeholder="User ID">
+      </div>
+      
+      <div>
+        <label for="disableToken">Verification Token (6 digits):</label>
+        <input type="text" id="disableToken" placeholder="Enter 6-digit token" maxlength="6">
+      </div>
+      
+      <button id="disableBtn">Disable 2FA</button>
+      
+      <h3>Response:</h3>
+      <div class="code-box">
+        <pre id="disableResponse">No response yet</pre>
+      </div>
+    </div>
+  </div>
+  
+  <div id="status" class="tab-content">
+    <div class="card">
+      <h2>2FA Status Check</h2>
+      <p>Check if 2FA is enabled for a user account.</p>
+      
+      <div>
+        <label for="statusUserId">User ID (optional):</label>
+        <input type="number" id="statusUserId" placeholder="User ID">
+      </div>
+      
+      <button id="statusBtn">Check Status</button>
+      
+      <h3>Response:</h3>
+      <div class="code-box">
+        <pre id="statusResponse">No response yet</pre>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Tab functionality
+    document.querySelectorAll('.tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        // Remove active class from all tabs
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        
+        // Add active class to clicked tab and corresponding content
+        tab.classList.add('active');
+        const tabId = tab.getAttribute('data-tab');
+        document.getElementById(tabId).classList.add('active');
+      });
+    });
+    
+    // Helper function to stringify JSON responses
+    function formatResponse(data) {
+      try {
+        if (typeof data === 'string') {
+          // Try to parse it as JSON first
+          try {
+            const parsed = JSON.parse(data);
+            return JSON.stringify(parsed, null, 2);
+          } catch (e) {
+            // If not valid JSON, return as is
+            return data;
+          }
+        }
+        return JSON.stringify(data, null, 2);
+      } catch (error) {
+        return `Error formatting response: ${error.message}`;
+      }
+    }
+    
+    // Helper function to make API requests
+    async function makeRequest(endpoint, method, body) {
+      try {
+        const response = await fetch(endpoint, {
+          method: method,
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          credentials: 'include',
+          body: body ? JSON.stringify(body) : undefined
+        });
+        
+        // Try to parse as JSON
+        let data;
+        try {
+          const text = await response.text();
+          try {
+            data = JSON.parse(text);
+          } catch (e) {
+            // If not valid JSON, use text
+            data = text;
+          }
+        } catch (error) {
+          throw new Error(`Failed to parse response: ${error.message}`);
+        }
+        
+        return {
+          status: response.status,
+          ok: response.ok,
+          data: data
+        };
+      } catch (error) {
+        return {
+          status: 0,
+          ok: false,
+          data: { error: `Request failed: ${error.message}` }
+        };
+      }
+    }
+    
+    // Setup 2FA
+    document.getElementById('setupBtn').addEventListener('click', async () => {
+      const userId = document.getElementById('setupUserId').value;
+      const setupResponse = document.getElementById('setupResponse');
+      
+      setupResponse.innerHTML = 'Loading...';
+      
+      const requestBody = {};
+      if (userId) {
+        requestBody.userId = parseInt(userId);
+      }
+      
+      const response = await makeRequest('/api/2fa/setup', 'POST', requestBody);
+      
+      setupResponse.innerHTML = formatResponse(response.data);
+      setupResponse.className = response.ok ? 'success' : 'error';
+      
+      // Show QR code and secret if available
+      if (response.ok && response.data && response.data.qrCode) {
+        document.getElementById('qrCodeContainer').style.display = 'block';
+        document.getElementById('qrCode').innerHTML = response.data.qrCode;
+        document.getElementById('secretKey').textContent = response.data.secret;
+      } else {
+        document.getElementById('qrCodeContainer').style.display = 'none';
+      }
+    });
+    
+    // Verify 2FA token
+    document.getElementById('verifyBtn').addEventListener('click', async () => {
+      const userId = document.getElementById('verifyUserId').value;
+      const token = document.getElementById('verifyToken').value;
+      const verifyResponse = document.getElementById('verifyResponse');
+      
+      if (!token || token.length !== 6) {
+        verifyResponse.innerHTML = 'Error: Please enter a 6-digit token';
+        verifyResponse.className = 'error';
+        return;
+      }
+      
+      verifyResponse.innerHTML = 'Loading...';
+      
+      const requestBody = {
+        token: token
+      };
+      
+      if (userId) {
+        requestBody.userId = parseInt(userId);
+      }
+      
+      const response = await makeRequest('/api/2fa/validate', 'POST', requestBody);
+      
+      verifyResponse.innerHTML = formatResponse(response.data);
+      verifyResponse.className = response.ok ? 'success' : 'error';
+      
+      // Show backup codes if available
+      if (response.ok && response.data && response.data.backupCodes) {
+        document.getElementById('backupCodesContainer').style.display = 'block';
+        
+        let codes = response.data.backupCodes;
+        if (typeof codes === 'string') {
+          try {
+            codes = JSON.parse(codes);
+          } catch (e) {
+            // If string and not JSON, split by comma
+            codes = codes.split(',');
+          }
+        }
+        
+        if (Array.isArray(codes)) {
+          document.getElementById('backupCodes').textContent = codes.join('\n');
+        } else {
+          document.getElementById('backupCodes').textContent = 'Invalid backup codes format';
+        }
+      } else {
+        document.getElementById('backupCodesContainer').style.display = 'none';
+      }
+    });
+    
+    // Disable 2FA
+    document.getElementById('disableBtn').addEventListener('click', async () => {
+      const userId = document.getElementById('disableUserId').value;
+      const token = document.getElementById('disableToken').value;
+      const disableResponse = document.getElementById('disableResponse');
+      
+      if (!token || token.length !== 6) {
+        disableResponse.innerHTML = 'Error: Please enter a 6-digit token';
+        disableResponse.className = 'error';
+        return;
+      }
+      
+      disableResponse.innerHTML = 'Loading...';
+      
+      const requestBody = {
+        token: token
+      };
+      
+      if (userId) {
+        requestBody.userId = parseInt(userId);
+      }
+      
+      const response = await makeRequest('/api/2fa/disable', 'POST', requestBody);
+      
+      disableResponse.innerHTML = formatResponse(response.data);
+      disableResponse.className = response.ok ? 'success' : 'error';
+    });
+    
+    // Check 2FA status
+    document.getElementById('statusBtn').addEventListener('click', async () => {
+      const userId = document.getElementById('statusUserId').value;
+      const statusResponse = document.getElementById('statusResponse');
+      
+      statusResponse.innerHTML = 'Loading...';
+      
+      let url = '/api/2fa/status';
+      if (userId) {
+        url = `/api/2fa/status/${userId}`;
+      }
+      
+      const response = await makeRequest(url, 'GET');
+      
+      statusResponse.innerHTML = formatResponse(response.data);
+      statusResponse.className = response.ok ? 'success' : 'error';
+    });
+  </script>
+</body>
+</html>

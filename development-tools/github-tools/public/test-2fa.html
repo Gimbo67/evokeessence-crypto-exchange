@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>2FA API Test</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      max-width: 800px;
+    }
+    button {
+      margin: 5px;
+      padding: 8px 12px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    pre {
+      background-color: #f5f5f5;
+      padding: 10px;
+      border-radius: 4px;
+      overflow-x: auto;
+    }
+    .response {
+      margin-top: 10px;
+    }
+    input {
+      padding: 8px;
+      margin: 5px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    .endpoint-selector {
+      margin-bottom: 20px;
+      padding: 10px;
+      background-color: #f0f0f0;
+      border-radius: 4px;
+    }
+    .tab-button {
+      padding: 8px 16px;
+      margin-right: 5px;
+      background-color: #e0e0e0;
+      border: none;
+      border-radius: 4px 4px 0 0;
+      cursor: pointer;
+    }
+    .tab-button.active {
+      background-color: #4CAF50;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <h1>2FA API Test</h1>
+  
+  <div class="endpoint-selector">
+    <h3>Select API Endpoint:</h3>
+    <button class="tab-button active" id="standardEndpoint">Standard API</button>
+    <button class="tab-button" id="bypassEndpoint">Bypass API</button>
+    <div>
+      <span id="currentEndpoint">Using endpoint: /api/2fa/</span>
+    </div>
+  </div>
+  
+  <div>
+    <h2>Test 2FA Setup</h2>
+    <button id="setupBtn">Setup 2FA</button>
+    <div class="response">
+      <pre id="setupResponse">Response will appear here</pre>
+    </div>
+  </div>
+  
+  <div>
+    <h2>Test 2FA Status</h2>
+    <button id="statusBtn">Check 2FA Status</button>
+    <div class="response">
+      <pre id="statusResponse">Response will appear here</pre>
+    </div>
+  </div>
+  
+  <div>
+    <h2>Test 2FA Validation</h2>
+    <input type="text" id="username" placeholder="Enter username" value="test101">
+    <input type="text" id="validationToken" placeholder="Enter 6-digit code" value="123456">
+    <button id="validateBtn">Validate 2FA</button>
+    <div class="response">
+      <pre id="validateResponse">Response will appear here</pre>
+    </div>
+  </div>
+  
+  <script>
+    // Current API endpoint base URL
+    let apiBaseUrl = '/api/2fa';
+    
+    // Helper function to make API requests
+    async function makeRequest(endpoint, method, body) {
+      try {
+        // Build full URL (without leading slash on endpoint)
+        const url = `${apiBaseUrl}${endpoint.startsWith('/') ? endpoint : '/' + endpoint}`;
+        console.log(`Making ${method} request to: ${url}`);
+        
+        const options = {
+          method,
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'X-API-Request': 'true',
+            'X-Requested-With': 'XMLHttpRequest'
+          }
+        };
+        
+        if (body) {
+          options.body = JSON.stringify(body);
+          console.log('Request body:', body);
+        }
+        
+        const response = await fetch(url, options);
+        
+        // Log response metadata
+        console.log('Response status:', response.status);
+        console.log('Response content-type:', response.headers.get('Content-Type'));
+        
+        // Check for HTML response
+        const contentType = response.headers.get('Content-Type') || '';
+        if (contentType.includes('text/html')) {
+          const htmlText = await response.text();
+          return {
+            error: 'Received HTML instead of JSON',
+            htmlContent: htmlText.substring(0, 200) + '...' // Show only first 200 chars
+          };
+        }
+        
+        // Try to parse as JSON
+        return await response.json();
+      } catch (error) {
+        console.error('Error making request:', error);
+        return { error: error.message };
+      }
+    }
+    
+    // Toggle between API endpoints
+    document.getElementById('standardEndpoint').addEventListener('click', () => {
+      apiBaseUrl = '/api/2fa';
+      document.getElementById('currentEndpoint').textContent = `Using endpoint: ${apiBaseUrl}/`;
+      document.getElementById('standardEndpoint').classList.add('active');
+      document.getElementById('bypassEndpoint').classList.remove('active');
+    });
+    
+    document.getElementById('bypassEndpoint').addEventListener('click', () => {
+      apiBaseUrl = '/bypass/2fa';
+      document.getElementById('currentEndpoint').textContent = `Using endpoint: ${apiBaseUrl}/`;
+      document.getElementById('bypassEndpoint').classList.add('active');
+      document.getElementById('standardEndpoint').classList.remove('active');
+    });
+    
+    // Setup 2FA
+    document.getElementById('setupBtn').addEventListener('click', async () => {
+      const responseElement = document.getElementById('setupResponse');
+      responseElement.textContent = 'Loading...';
+      
+      try {
+        const result = await makeRequest('setup', 'POST');
+        responseElement.textContent = JSON.stringify(result, null, 2);
+      } catch (error) {
+        responseElement.textContent = `Error: ${error.message}`;
+      }
+    });
+    
+    // Check 2FA Status
+    document.getElementById('statusBtn').addEventListener('click', async () => {
+      const responseElement = document.getElementById('statusResponse');
+      responseElement.textContent = 'Loading...';
+      
+      try {
+        const result = await makeRequest('status', 'GET');
+        responseElement.textContent = JSON.stringify(result, null, 2);
+      } catch (error) {
+        responseElement.textContent = `Error: ${error.message}`;
+      }
+    });
+    
+    // Validate 2FA code
+    document.getElementById('validateBtn').addEventListener('click', async () => {
+      const responseElement = document.getElementById('validateResponse');
+      const token = document.getElementById('validationToken').value;
+      const username = document.getElementById('username').value;
+      
+      if (!token || token.length !== 6) {
+        responseElement.textContent = 'Error: Please enter a 6-digit code';
+        return;
+      }
+      
+      if (!username) {
+        responseElement.textContent = 'Error: Please enter a username';
+        return;
+      }
+      
+      responseElement.textContent = 'Loading...';
+      
+      try {
+        const result = await makeRequest('validate', 'POST', { token, username });
+        responseElement.textContent = JSON.stringify(result, null, 2);
+      } catch (error) {
+        responseElement.textContent = `Error: ${error.message}`;
+      }
+    });
+  </script>
+</body>
+</html>

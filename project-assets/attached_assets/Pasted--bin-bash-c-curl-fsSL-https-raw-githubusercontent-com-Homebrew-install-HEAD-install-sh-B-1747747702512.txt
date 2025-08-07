@@ -1,0 +1,50 @@
+#/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+# Backup the project file
+cp ./CryptoEvokeApp/CryptoEvokeApp.xcodeproj/project.pbxproj ./CryptoEvokeApp/CryptoEvokeApp.xcodeproj/project.pbxproj.backup
+
+# Function to convert a folder to a group
+convert_folder_to_group() {
+  folder_name=$1
+  # Find the folder reference
+  folder_line=$(grep -n "isa = PBXFileReference.*path = $folder_name;" ./CryptoEvokeApp/CryptoEvokeApp.xcodeproj/project.pbxproj | cut -d: -f1)
+  
+  if [ -n "$folder_line" ]; then
+    # Get the reference ID
+    reference_id=$(sed -n "${folder_line}p" ./CryptoEvokeApp/CryptoEvokeApp.xcodeproj/project.pbxproj | sed 's/^[ \t]*\([^ \t]*\).*/\1/')
+    
+    # Change isa = PBXFileReference to isa = PBXGroup
+    sed -i '' "${folder_line}s/isa = PBXFileReference;/isa = PBXGroup;/" ./CryptoEvokeApp/CryptoEvokeApp.xcodeproj/project.pbxproj
+    
+    echo "Changed $folder_name to a group (reference ID: $reference_id)"
+  else
+    echo "Could not find folder reference for $folder_name"
+  fi
+}
+
+# Convert each folder to a group
+convert_folder_to_group "API"
+convert_folder_to_group "Authentication"
+convert_folder_to_group "Components"
+convert_folder_to_group "Dashboards"
+convert_folder_to_group "Models"
+convert_folder_to_group "ViewModels"
+convert_folder_to_group "Views"
+zsh: no such file or directory: #/bin/bash
+zsh: command not found: #
+zsh: command not found: #
+zsh: command not found: #
+convert_folder_to_group:2: command not found: #
+Could not find folder reference for API
+convert_folder_to_group:2: command not found: #
+Could not find folder reference for Authentication
+convert_folder_to_group:2: command not found: #
+Could not find folder reference for Components
+convert_folder_to_group:2: command not found: #
+Could not find folder reference for Dashboards
+convert_folder_to_group:2: command not found: #
+Could not find folder reference for Models
+convert_folder_to_group:2: command not found: #
+Could not find folder reference for ViewModels
+convert_folder_to_group:2: command not found: #
+Could not find folder reference for Views
+jakob@MacBook-Air-von-Jakob CryptoEvokeApp % 

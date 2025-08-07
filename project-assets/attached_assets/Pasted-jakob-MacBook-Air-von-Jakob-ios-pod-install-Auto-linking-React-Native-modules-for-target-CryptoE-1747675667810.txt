@@ -1,0 +1,140 @@
+jakob@MacBook-Air-von-Jakob ios % pod install 
+Auto-linking React Native modules for target `CryptoEvokeApp`: RNCAsyncStorage, RNGestureHandler, RNScreens, and react-native-safe-area-context
+Framework build type is static library
+[Codegen] Generating ./build/generated/ios/React-Codegen.podspec.json
+Analyzing dependencies
+
+――― MARKDOWN TEMPLATE ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――
+
+### Command
+
+```
+/opt/homebrew/Cellar/cocoapods/1.16.2_1/libexec/bin/pod install
+```
+
+### Report
+
+* What did you do?
+
+* What did you expect to happen?
+
+* What happened instead?
+
+
+### Stack
+
+```
+   CocoaPods : 1.16.2
+        Ruby : ruby 3.4.4 (2025-05-14 revision a38531fd3f) +PRISM [arm64-darwin24]
+    RubyGems : 3.6.9
+        Host : macOS 15.0 (24A335)
+       Xcode : 16.2 (16C5032a)
+         Git : git version 2.39.5 (Apple Git-154)
+Ruby lib dir : /opt/homebrew/Cellar/ruby/3.4.4/lib
+Repositories : trunk - CDN - https://cdn.cocoapods.org/
+```
+
+### Plugins
+
+```
+cocoapods-deintegrate : 1.0.5
+cocoapods-plugins     : 1.0.0
+cocoapods-search      : 1.0.1
+cocoapods-trunk       : 1.6.0
+cocoapods-try         : 1.2.0
+```
+
+### Podfile
+
+```ruby
+require_relative '../node_modules/react-native/scripts/react_native_pods'
+require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
+
+platform :ios, '13.0'
+project 'CryptoEvokeApp.xcodeproj'
+prepare_react_native_project!
+
+# Fix for boost installation issues
+install! 'cocoapods', :deterministic_uuids => false
+
+# Skip boost installation problems
+pre_install do |installer|
+  installer.pod_targets.each do |pod|
+    if pod.name.start_with?('boost')
+      def pod.build_type
+        Pod::BuildType.static_library
+      end
+    end
+  end
+end
+
+target 'CryptoEvokeApp' do
+  config = use_native_modules!
+
+  # Flags change depending on the env values.
+  flags = get_default_flags()
+
+  use_react_native!(
+    :path => config[:reactNativePath],
+    # Hermes is now enabled by default. Disable by setting this flag to false.
+    :hermes_enabled => flags[:hermes_enabled],
+    :fabric_enabled => flags[:fabric_enabled],
+    # An absolute path to your application root.
+    :app_path => "#{Pod::Config.instance.installation_root}/.."
+  )
+
+  post_install do |installer|
+    react_native_post_install(
+      installer,
+      config[:reactNativePath],
+      :mac_catalyst_enabled => false
+    )
+    __apply_Xcode_12_5_M1_post_install_workaround(installer)
+    
+    # Fix for iOS 18+ compatibility
+    installer.pods_project.targets.each do |target|
+      target.build_configurations.each do |config|
+        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.0'
+      end
+    end
+  end
+end
+```
+
+### Error
+
+```
+Nanaimo::Reader::ParseError - [!] Unexpected end of string while parsing
+ #  -------------------------------------------
+1>  
+    ^
+ #  -------------------------------------------
+
+/opt/homebrew/Cellar/cocoapods/1.16.2_1/libexec/gems/nanaimo-0.4.0/lib/nanaimo/reader.rb:284:in 'Nanaimo::Reader#raise_parser_error'
+/opt/homebrew/Cellar/cocoapods/1.16.2_1/libexec/gems/nanaimo-0.4.0/lib/nanaimo/reader.rb:130:in 'Nanaimo::Reader#parse_object'
+/opt/homebrew/Cellar/cocoapods/1.16.2_1/libexec/gems/nanaimo-0.4.0/lib/nanaimo/reader.rb:107:in 'Nanaimo::Reader#parse!'
+/opt/homebrew/Cellar/cocoapods/1.16.2_1/libexec/gems/xcodeproj-1.27.0/lib/xcodeproj/plist.rb:27:in 'Xcodeproj::Plist.read_from_path'
+/opt/homebrew/Cellar/cocoapods/1.16.2_1/libexec/gems/xcodeproj-1.27.0/lib/xcodeproj/project.rb:211:in 'Xcodeproj::Project#initialize_from_file'
+/opt/homebrew/Cellar/cocoapods/1.16.2_1/libexec/gems/xcodeproj-1.27.0/lib/xcodeproj/project.rb:113:in 'Xcodeproj::Project.open'
+/opt/homebrew/Cellar/cocoapods/1.16.2_1/libexec/gems/cocoapods-1.16.2/lib/cocoapods/installer/analyzer.rb:1194:in 'block (2 levels) in Pod::Installer::Analyzer#inspect_targets_to_integrate'
+/opt/homebrew/Cellar/cocoapods/1.16.2_1/libexec/gems/cocoapods-1.16.2/lib/cocoapods/installer/analyzer.rb:1193:in 'Hash#each'
+/opt/homebrew/Cellar/cocoapods/1.16.2_1/libexec/gems/cocoapods-1.16.2/lib/cocoapods/installer/analyzer.rb:1193:in 'block in Pod::Installer::Analyzer#inspect_targets_to_integrate'
+/opt/homebrew/Cellar/cocoapods/1.16.2_1/libexec/gems/cocoapods-1.16.2/lib/cocoapods/user_interface.rb:64:in 'Pod::UserInterface.section'
+/opt/homebrew/Cellar/cocoapods/1.16.2_1/libexec/gems/cocoapods-1.16.2/lib/cocoapods/installer/analyzer.rb:1188:in 'Pod::Installer::Analyzer#inspect_targets_to_integrate'
+/opt/homebrew/Cellar/cocoapods/1.16.2_1/libexec/gems/cocoapods-1.16.2/lib/cocoapods/installer/analyzer.rb:107:in 'Pod::Installer::Analyzer#analyze'
+/opt/homebrew/Cellar/cocoapods/1.16.2_1/libexec/gems/cocoapods-1.16.2/lib/cocoapods/installer.rb:422:in 'Pod::Installer#analyze'
+/opt/homebrew/Cellar/cocoapods/1.16.2_1/libexec/gems/cocoapods-1.16.2/lib/cocoapods/installer.rb:244:in 'block in Pod::Installer#resolve_dependencies'
+/opt/homebrew/Cellar/cocoapods/1.16.2_1/libexec/gems/cocoapods-1.16.2/lib/cocoapods/user_interface.rb:64:in 'Pod::UserInterface.section'
+/opt/homebrew/Cellar/cocoapods/1.16.2_1/libexec/gems/cocoapods-1.16.2/lib/cocoapods/installer.rb:243:in 'Pod::Installer#resolve_dependencies'
+/opt/homebrew/Cellar/cocoapods/1.16.2_1/libexec/gems/cocoapods-1.16.2/lib/cocoapods/installer.rb:162:in 'Pod::Installer#install!'
+/opt/homebrew/Cellar/cocoapods/1.16.2_1/libexec/gems/cocoapods-1.16.2/lib/cocoapods/command/install.rb:52:in 'Pod::Command::Install#run'
+/opt/homebrew/Cellar/cocoapods/1.16.2_1/libexec/gems/claide-1.1.0/lib/claide/command.rb:334:in 'CLAide::Command.run'
+/opt/homebrew/Cellar/cocoapods/1.16.2_1/libexec/gems/cocoapods-1.16.2/lib/cocoapods/command.rb:52:in 'Pod::Command.run'
+/opt/homebrew/Cellar/cocoapods/1.16.2_1/libexec/gems/cocoapods-1.16.2/bin/pod:55:in '<top (required)>'
+/opt/homebrew/Cellar/cocoapods/1.16.2_1/libexec/bin/pod:25:in 'Kernel#load'
+/opt/homebrew/Cellar/cocoapods/1.16.2_1/libexec/bin/pod:25:in '<main>'
+```
+
+――― TEMPLATE END ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――
+
+[!] Oh no, an error occurred.

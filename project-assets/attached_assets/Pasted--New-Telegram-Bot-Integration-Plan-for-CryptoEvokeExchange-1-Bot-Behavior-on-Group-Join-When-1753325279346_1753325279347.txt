@@ -1,0 +1,76 @@
+ New Telegram Bot Integration Plan for CryptoEvokeExchange
+
+⸻
+
+1. Bot Behavior on Group Join
+	•	When the bot is added to a Telegram group:
+	•	It detects the group ID.
+	•	It generates one unique referral code for that group (e.g. TG-GRP-ABC123).
+	•	If the group already has a referral code, do not generate a new one.
+	•	The bot sends a request to our website backend to register this referral code and link it to the Telegram group ID.
+	•	After registration, the bot posts a welcome message in the group with:
+	•	Registration link: https://evo-exchange.com/auth?ref=ABC123
+	•	KYC requirements
+	•	10% commission information
+	•	Accepted client regions (EU countries)
+
+⸻
+
+2. Referral Code Handling
+	•	Each group can have only one referral code.
+	•	If the bot is re-added to the same group, it must use the previously generated code.
+	•	The backend must track which referral code belongs to which Telegram group.
+	•	Referral link format:
+https://evo-exchange.com/auth?ref=UNIQUECODE
+
+⸻
+
+3. Internal Backend Integration Only
+	•	No external webhook services (like Sumsub).
+	•	All updates are triggered only via internal API from our system to the bot.
+	•	The bot should handle the following user events:
+	•	New Registration:
+When a client registers using the referral code, the bot posts in the related group:
+“👤 John D. just registered using this group’s referral code.”
+	•	KYC Status Change:
+When a client passes KYC:
+“✅ John D. has passed KYC.”
+	•	Successful Transaction:
+When a transaction is completed:
+“💸 John D. completed a transaction of €5,000.”
+	•	Failed Transaction:
+When a transaction fails:
+“❌ John D.’s transaction of €3,200 failed.”
+	•	The group is determined by matching the referral code used at registration.
+
+⸻
+
+4. Command Access Control
+	•	Only one specific Telegram user (the owner, me) can control the bot.
+	•	No other group members or admins should be able to use commands.
+	•	Use Telegram User ID to whitelist access in the bot logic.
+
+⸻
+
+5. Admin-Only Commands 
+
+Available only to the owner:
+	•	/ref – Resend the group’s referral link
+	•	/stats – Show how many users registered, passed KYC, and total transaction volume
+	•	/help – Display summary of how it works
+	•	/groups – List all active groups the bot is tracking
+	•	/reset GROUPID – (optional) Reset referral code for a group
+
+⸻
+
+6. Bot Must Only Post in the Linked Group
+	•	All messages triggered by client activity (registration, KYC, transactions) must be posted only in the Telegram group that owns the referral code.
+
+⸻
+
+7. Summary
+	•	One referral code per group
+	•	Bot only posts based on internal system triggers
+	•	Full control limited to the owner
+	•	Automatic and secure backend communication
+	•	No webhooks or third-party SDKs

@@ -1,0 +1,16 @@
+jakob@MacBook-Air-von-Jakob ios % pod install
+
+Using Expo modules
+Found 7 modules for target `CryptoEvokeAppFresh`
+link_native_modules! {ios_packages: [{configurations: [], name: "@react-native-async-storage/async-storage", root: "/Users/jakob/Projects/CryptoEvokeApp_Fresh/node_modules/@react-native-async-storage/async-storage", path: "../node_modules/@react-native-async-storage/async-storage", podspec_path: "/Users/jakob/Projects/CryptoEvokeApp_Fresh/node_modules/@react-native-async-storage/async-storage/RNCAsyncStorage.podspec", script_phases: []}, {configurations: [], name: "expo", root: "/Users/jakob/Projects/CryptoEvokeApp_Fresh/node_modules/expo", path: "../node_modules/expo", podspec_path: "/Users/jakob/Projects/CryptoEvokeApp_Fresh/node_modules/expo/Expo.podspec", script_phases: []}, {configurations: [], name: "react-native-gesture-handler", root: "/Users/jakob/Projects/CryptoEvokeApp_Fresh/node_modules/react-native-gesture-handler", path: "../node_modules/react-native-gesture-handler", podspec_path: "/Users/jakob/Projects/CryptoEvokeApp_Fresh/node_modules/react-native-gesture-handler/RNGestureHandler.podspec", script_phases: []}, {configurations: [], name: "react-native-reanimated", root: "/Users/jakob/Projects/CryptoEvokeApp_Fresh/node_modules/react-native-reanimated", path: "../node_modules/react-native-reanimated", podspec_path: "/Users/jakob/Projects/CryptoEvokeApp_Fresh/node_modules/react-native-reanimated/RNReanimated.podspec", script_phases: []}, {configurations: [], name: "react-native-safe-area-context", root: "/Users/jakob/Projects/CryptoEvokeApp_Fresh/node_modules/react-native-safe-area-context", path: "../node_modules/react-native-safe-area-context", podspec_path: "/Users/jakob/Projects/CryptoEvokeApp_Fresh/node_modules/react-native-safe-area-context/react-native-safe-area-context.podspec", script_phases: []}, {configurations: [], name: "react-native-screens", root: "/Users/jakob/Projects/CryptoEvokeApp_Fresh/node_modules/react-native-screens", path: "../node_modules/react-native-screens", podspec_path: "/Users/jakob/Projects/CryptoEvokeApp_Fresh/node_modules/react-native-screens/RNScreens.podspec", script_phases: []}, {configurations: [], name: "react-native-vector-icons", root: "/Users/jakob/Projects/CryptoEvokeApp_Fresh/node_modules/react-native-vector-icons", path: "../node_modules/react-native-vector-icons", podspec_path: "/Users/jakob/Projects/CryptoEvokeApp_Fresh/node_modules/react-native-vector-icons/RNVectorIcons.podspec", script_phases: []}], ios_project_root_path: "/Users/jakob/Projects/CryptoEvokeApp_Fresh/ios", react_native_path: "../node_modules/react-native"}
+Auto-linking React Native modules for target `CryptoEvokeAppFresh`: Expo, RNCAsyncStorage, RNGestureHandler, RNScreens, RNVectorIcons, and react-native-safe-area-context
+
+[!] Invalid `Podfile` file: uninitialized constant Pod::Podfile::FlipperConfiguration.
+
+ #  from /Users/jakob/Projects/CryptoEvokeApp_Fresh/ios/Podfile:86
+ #  -------------------------------------------
+ #      # Disables the flipper to reduce complexity
+ >      :flipper_configuration => FlipperConfiguration.disabled,
+ #      # An absolute path to your application root.
+ #  -------------------------------------------
+jakob@MacBook-Air-von-Jakob ios % 

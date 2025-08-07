@@ -1,0 +1,66 @@
+
+Hi Replit AI, I’m building a native iOS app for my crypto exchange evo-exchange.com that uses the same backend and database. The app will connect via our existing API, so I need to ensure that everything syncs perfectly and works in real-time.
+
+Here are the tasks I need your help with:
+
+---
+
+🔌 1. Add WebSocket Support for Real-Time Updates
+
+Please implement a WebSocket server that:
+- Broadcasts user-specific events like:
+  - Balance updates
+  - Deposit status changes
+  - KYC verification status
+  - Order status (USDT/USDC)
+- Works with Express and integrates cleanly with our session-based auth
+- Emits events like: `balanceUpdated`, `orderStatusChanged`, `kycStatusChanged`
+
+---
+
+🌐 2. Add Webhook Triggers for Direct DB Changes
+
+Some changes like SEPA deposits or admin-triggered order updates happen directly in the database. Please:
+- Add webhook triggers or emit events when these happen
+- Create a system to notify the app (or a webhook URL) when these updates occur
+
+Example: When a SEPA deposit is marked successful and balance is updated, trigger a sync event or webhook call.
+
+---
+
+🔧 3. Standardize API Responses Across All Endpoints
+
+Please review the API endpoints and ensure all return a consistent JSON structure:
+```json
+{
+  "success": true,
+  "message": "Optional message",
+  "data": {},      // actual response data if applicable
+  "timestamp": "2025-03-30T12:00:00Z"
+}
+```
+This is needed for a stable mobile integration.
+
+---
+
+🛠 4. Add Public Endpoint for App Configuration
+
+Create a new endpoint:
+`GET /api/app-config`
+
+Response should include:
+- `maintenance`: boolean
+- `appVersion`: string
+- `announcement`: string (optional promo banner text)
+- `referralLink`: string
+- `supportedCurrencies`: array of symbols (e.g. ["USD", "EUR", "BTC"])
+
+---
+
+🔐 5. Add Session/Device Management API (Optional Security Feature)
+
+To allow users to view and manage devices:
+- `GET /api/user/devices`: Returns a list of active sessions with ID, device name, and login timestamp
+- `DELETE /api/user/devices/:id`: Ends a specific session (logs out that device)
+- (Optional) Allow setting a nickname for the current device
+

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>reCAPTCHA CSP Test</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    .container {
+      border: 1px solid #ccc;
+      padding: 1rem;
+      border-radius: 5px;
+      margin-bottom: 1rem;
+    }
+    .success {
+      color: green;
+      font-weight: bold;
+    }
+    .error {
+      color: red;
+      font-weight: bold;
+    }
+    pre {
+      background: #f5f5f5;
+      padding: 1rem;
+      overflow-x: auto;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body>
+  <h1>reCAPTCHA CSP Test</h1>
+  
+  <div class="container">
+    <h2>Current CSP Policy</h2>
+    <pre id="csp-output">Loading...</pre>
+  </div>
+  
+  <div class="container">
+    <h2>reCAPTCHA Test</h2>
+    <p>This tests if reCAPTCHA can load with the current Content-Security-Policy:</p>
+    <div id="recaptcha-container"></div>
+    <div id="recaptcha-status">Loading reCAPTCHA...</div>
+  </div>
+
+  <script>
+    // Display current CSP
+    const cspOutput = document.getElementById('csp-output');
+    const cspContent = document.querySelector('meta[http-equiv="Content-Security-Policy"]')?.content || 'No CSP meta tag found (using HTTP header)';
+    cspOutput.textContent = cspContent;
+    
+    // Function to be called when reCAPTCHA is loaded
+    function onRecaptchaLoad() {
+      document.getElementById('recaptcha-status').innerHTML = '<span class="success">✓ reCAPTCHA loaded successfully!</span>';
+      
+      // Render the reCAPTCHA widget
+      grecaptcha.render('recaptcha-container', {
+        'sitekey': '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI', // Test key from Google
+        'callback': function(response) {
+          document.getElementById('recaptcha-status').innerHTML += '<br><span class="success">✓ reCAPTCHA verification callback triggered!</span>';
+        }
+      });
+    }
+
+    // Handle errors
+    window.addEventListener('error', function(e) {
+      if (e.message.includes('grecaptcha') || e.message.includes('reCAPTCHA')) {
+        document.getElementById('recaptcha-status').innerHTML = 
+          '<span class="error">✗ reCAPTCHA failed to load: ' + e.message + '</span><br>' +
+          '<span>This indicates a CSP policy issue. Check that you have \'unsafe-inline\' and \'unsafe-eval\' in script-src.</span>';
+      }
+    });
+
+    // Load the reCAPTCHA script
+    setTimeout(function() {
+      const script = document.createElement('script');
+      script.src = 'https://www.google.com/recaptcha/api.js?onload=onRecaptchaLoad&render=explicit';
+      script.async = true;
+      script.defer = true;
+      script.onerror = function() {
+        document.getElementById('recaptcha-status').innerHTML = 
+          '<span class="error">✗ reCAPTCHA script failed to load</span><br>' +
+          '<span>This indicates a CSP policy issue with loading external scripts or connecting to Google domains.</span>';
+      };
+      document.head.appendChild(script);
+    }, 1000);
+  </script>
+</body>
+</html>

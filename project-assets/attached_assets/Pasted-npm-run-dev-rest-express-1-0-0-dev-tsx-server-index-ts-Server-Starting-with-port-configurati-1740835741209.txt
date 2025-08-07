@@ -1,0 +1,207 @@
+npm run dev
+
+> rest-express@1.0.0 dev
+> tsx server/index.ts
+
+[Server] Starting with port configuration: 5000
+[Server] Starting with configuration: {
+  port: 5000,
+  healthCheckPort: 'integrated with main server',
+  env: undefined,
+  database: 'configured',
+  timestamp: '2025-03-01T13:28:16.710Z'
+}
+[Server] Starting initialization...
+[Server] Testing database connection...
+Database connection successful
+[Server] Database connection successful
+[Server] Creating HTTP server and registering routes...
+[Server] Setting up Vite development server...
+[Server] Attempting to start server on port 5000...
+[2025-03-01T13:28:16.966Z] Server is successfully listening on port 5000
+[Server] Ready to accept connections: {
+  port: 5000,
+  env: 'development',
+  nodeEnv: 'development',
+  timestamp: '2025-03-01T13:28:16.966Z'
+}
+[2025-03-01T13:28:17.789Z] GET / 200 34ms [Port: 5000]
+[2025-03-01T13:28:18.128Z] GET /src/main.tsx 200 2ms [Port: 5000]
+[2025-03-01T13:28:19.340Z] GET /@vite/client 304 747ms [Port: 5000]
+1:28:19 PM [vite] warning: Duplicate key "kyc_status_pending" in object literal
+448|      kyc_sdk_load_error: "Failed to load verification system",
+449|      kyc_status_not_started: "Not Started",
+450|      kyc_status_pending: "Pending Verification",
+   |      ^
+451|      kyc_status_approved: "Verified",
+452|      kyc_status_rejected: "Verification Failed"
+
+  Plugin: vite:esbuild
+  File: /home/runner/workspace/client/src/lib/i18n.ts
+1:28:19 PM [vite] warning: Duplicate key "kyc_status_approved" in object literal
+449|      kyc_status_not_started: "Not Started",
+450|      kyc_status_pending: "Pending Verification",
+451|      kyc_status_approved: "Verified",
+   |      ^
+452|      kyc_status_rejected: "Verification Failed"
+453|    },
+
+  Plugin: vite:esbuild
+  File: /home/runner/workspace/client/src/lib/i18n.ts
+1:28:19 PM [vite] warning: Duplicate key "kyc_status_rejected" in object literal
+450|      kyc_status_pending: "Pending Verification",
+451|      kyc_status_approved: "Verified",
+452|      kyc_status_rejected: "Verification Failed"
+   |      ^
+453|    },
+454|    cs: {
+
+  Plugin: vite:esbuild
+  File: /home/runner/workspace/client/src/lib/i18n.ts
+1:28:19 PM [vite] warning: Duplicate key "kyc_status_pending" in object literal
+873|      kyc_sdk_load_error: "Nepodařilo se načíst ověřovací systém",
+874|      kyc_status_not_started: "Nezahájeno",
+875|      kyc_status_pending: "Probíhá Ověření",
+   |      ^
+876|      kyc_status_approved: "Ověřeno",
+877|      kyc_status_rejected: "Ověření Selhalo"
+
+  Plugin: vite:esbuild
+  File: /home/runner/workspace/client/src/lib/i18n.ts
+1:28:19 PM [vite] warning: Duplicate key "kyc_status_approved" in object literal
+874|      kyc_status_not_started: "Nezahájeno",
+875|      kyc_status_pending: "Probíhá Ověření",
+876|      kyc_status_approved: "Ověřeno",
+   |      ^
+877|      kyc_status_rejected: "Ověření Selhalo"
+878|    },
+
+  Plugin: vite:esbuild
+  File: /home/runner/workspace/client/src/lib/i18n.ts
+1:28:19 PM [vite] warning: Duplicate key "kyc_status_rejected" in object literal
+875|      kyc_status_pending: "Probíhá Ověření",
+876|      kyc_status_approved: "Ověřeno",
+877|      kyc_status_rejected: "Ověření Selhalo"
+   |      ^
+878|    },
+879|    de: {
+
+  Plugin: vite:esbuild
+  File: /home/runner/workspace/client/src/lib/i18n.ts
+1:28:19 PM [vite] warning: Duplicate key "faq_deposit_funds" in object literal
+1270|      faq_get_started: "Wie fange ich an?",
+1271|      faq_kyc_requirements: "Was sind die KYC-Anforderungen?",
+1272|      faq_deposit_funds: "Wie kann ich Geld einzahlen?",
+   |      ^
+1273|      faq_fees: "Welche Gebühren fallen an?",
+1274|      faq_account_security: "Wie sicher ist mein Konto?",
+
+  Plugin: vite:esbuild
+  File: /home/runner/workspace/client/src/lib/i18n.ts
+1:28:19 PM [vite] warning: Duplicate key "faq_fees" in object literal
+1271|      faq_kyc_requirements: "Was sind die KYC-Anforderungen?",
+1272|      faq_deposit_funds: "Wie kann ich Geld einzahlen?",
+1273|      faq_fees: "Welche Gebühren fallen an?",
+   |      ^
+1274|      faq_account_security: "Wie sicher ist mein Konto?",
+1275|      // Client Dashboard
+
+  Plugin: vite:esbuild
+  File: /home/runner/workspace/client/src/lib/i18n.ts
+1:28:19 PM [vite] warning: Duplicate key "faq_account_security" in object literal
+1272|      faq_deposit_funds: "Wie kann ich Geld einzahlen?",
+1273|      faq_fees: "Welche Gebühren fallen an?",
+1274|      faq_account_security: "Wie sicher ist mein Konto?",
+   |      ^
+1275|      // Client Dashboard
+1276|      deposit_funds: "Geld einzahlen",
+
+  Plugin: vite:esbuild
+  File: /home/runner/workspace/client/src/lib/i18n.ts
+1:28:19 PM [vite] warning: Duplicate key "kyc_status_pending" in object literal
+1282|      faq_subtitle: "Finden Sie Antwortenauf häufige Fragen zu unseren Kryptowährungsbörsen-Services",
+1283|      kyc_status_not_started: "Nicht begonnen",
+1284|      kyc_status_pending: "Prüfung ausstehend",
+   |      ^
+1285|      kyc_status_approved: "Verifiziert",
+1286|      kyc_status_rejected: "Verifizierung fehlgeschlagen"
+
+  Plugin: vite:esbuild
+  File: /home/runner/workspace/client/src/lib/i18n.ts
+1:28:19 PM [vite] warning: Duplicate key "kyc_status_approved" in object literal
+1283|      kyc_status_not_started: "Nicht begonnen",
+1284|      kyc_status_pending: "Prüfung ausstehend",
+1285|      kyc_status_approved: "Verifiziert",
+   |      ^
+1286|      kyc_status_rejected: "Verifizierung fehlgeschlagen"
+1287|    }
+
+  Plugin: vite:esbuild
+  File: /home/runner/workspace/client/src/lib/i18n.ts
+1:28:19 PM [vite] warning: Duplicate key "kyc_status_rejected" in object literal
+1284|      kyc_status_pending: "Prüfung ausstehend",
+1285|      kyc_status_approved: "Verifiziert",
+1286|      kyc_status_rejected: "Verifizierung fehlgeschlagen"
+   |      ^
+1287|    }
+1288|  };
+
+  Plugin: vite:esbuild
+  File: /home/runner/workspace/client/src/lib/i18n.ts
+[2025-03-01T13:28:19.855Z] GET /@react-refresh 200 1ms [Port: 5000]
+[2025-03-01T13:28:19.858Z] GET /@fs/home/runner/workspace/node_modules/vite/dist/client/env.mjs 200 2ms [Port: 5000]
+[2025-03-01T13:28:19.860Z] GET /src/App.tsx 200 1ms [Port: 5000]
+[2025-03-01T13:28:20.094Z] GET /src/index.css 200 2ms [Port: 5000]
+[2025-03-01T13:28:20.298Z] GET /src/pages/contact.tsx 200 1ms [Port: 5000]
+[2025-03-01T13:28:20.683Z] GET /src/pages/faq.tsx 200 1ms [Port: 5000]
+[2025-03-01T13:28:20.686Z] GET /src/pages/legal.tsx 200 0ms [Port: 5000]
+[2025-03-01T13:28:20.832Z] GET /src/pages/auth-page.tsx 200 2ms [Port: 5000]
+[2025-03-01T13:28:20.884Z] GET /src/pages/not-found.tsx 200 1ms [Port: 5000]
+[2025-03-01T13:28:20.886Z] GET /src/pages/dashboard.tsx 200 1ms [Port: 5000]
+[2025-03-01T13:28:21.073Z] GET /src/pages/support.tsx 200 1ms [Port: 5000]
+[2025-03-01T13:28:21.076Z] GET /src/pages/admin/dashboard.tsx 200 0ms [Port: 5000]
+[2025-03-01T13:28:21.083Z] GET /src/pages/admin/clients.tsx 200 0ms [Port: 5000]
+[2025-03-01T13:28:21.292Z] GET /src/pages/admin/transactions.tsx 200 1ms [Port: 5000]
+[2025-03-01T13:28:21.293Z] GET /src/components/ui/toaster.tsx 304 0ms [Port: 5000]
+[2025-03-01T13:28:21.477Z] GET /src/lib/language-context.tsx 304 0ms [Port: 5000]
+[2025-03-01T13:28:21.497Z] GET /src/lib/queryClient.ts 304 0ms [Port: 5000]
+[2025-03-01T13:28:21.498Z] GET /src/hooks/use-auth.tsx 304 0ms [Port: 5000]
+[2025-03-01T13:28:21.656Z] GET /src/hooks/use-user.ts 304 0ms [Port: 5000]
+[2025-03-01T13:28:21.682Z] GET /src/pages/home.tsx 304 0ms [Port: 5000]
+[2025-03-01T13:28:21.683Z] GET /src/pages/team.tsx 304 0ms [Port: 5000]
+[2025-03-01T13:28:21.836Z] GET /src/components/layout/header.tsx 200 1ms [Port: 5000]
+[2025-03-01T13:28:21.887Z] GET /src/components/layout/footer.tsx 200 1ms [Port: 5000]
+[2025-03-01T13:28:21.889Z] GET /src/lib/i18n.ts 200 2ms [Port: 5000]
+[2025-03-01T13:28:22.008Z] GET /src/components/ui/card.tsx 200 1ms [Port: 5000]
+[2025-03-01T13:28:22.044Z] GET /src/components/ui/button.tsx 200 1ms [Port: 5000]
+[2025-03-01T13:28:22.081Z] GET /src/components/ui/input.tsx 304 1ms [Port: 5000]
+[2025-03-01T13:28:22.110Z] GET /src/components/ui/textarea.tsx 304 1ms [Port: 5000]
+[2025-03-01T13:28:22.229Z] GET /src/components/ui/form.tsx 304 0ms [Port: 5000]
+[2025-03-01T13:28:22.272Z] GET /src/components/ui/accordion.tsx 304 1ms [Port: 5000]
+[2025-03-01T13:28:22.296Z] GET /src/hooks/use-toast.ts 200 1ms [Port: 5000]
+[2025-03-01T13:28:22.305Z] GET /src/components/ui/select.tsx 304 1ms [Port: 5000]
+[2025-03-01T13:28:22.397Z] GET /src/components/ui/tabs.tsx 304 1ms [Port: 5000]
+[2025-03-01T13:28:22.408Z] GET /src/components/ui/input-otp.tsx 304 0ms [Port: 5000]
+[2025-03-01T13:28:22.493Z] GET /src/components/dashboard/UnverifiedDashboard.tsx 304 0ms [Port: 5000]
+[2025-03-01T13:28:22.498Z] GET /src/components/dashboard/VerifiedDashboard.tsx 304 1ms [Port: 5000]
+[2025-03-01T13:28:22.499Z] GET /src/components/ui/scroll-area.tsx 304 1ms [Port: 5000]
+[2025-03-01T13:28:22.515Z] GET /src/components/ui/toast.tsx 200 2ms [Port: 5000]
+[2025-03-01T13:28:22.585Z] GET /src/components/ui/table.tsx 304 1ms [Port: 5000]
+[2025-03-01T13:28:22.590Z] GET /src/components/ui/badge.tsx 304 1ms [Port: 5000]
+[2025-03-01T13:28:22.678Z] GET /src/components/sections/hero.tsx 200 0ms [Port: 5000]
+[2025-03-01T13:28:22.682Z] GET /src/components/sections/team.tsx 200 1ms [Port: 5000]
+[2025-03-01T13:28:22.683Z] GET /src/components/sections/about.tsx 200 1ms [Port: 5000]
+[2025-03-01T13:28:22.781Z] GET /src/components/sections/contact.tsx 200 1ms [Port: 5000]
+[2025-03-01T13:28:22.782Z] GET /src/components/sections/faq.tsx 200 1ms [Port: 5000]
+[2025-03-01T13:28:22.783Z] GET /src/components/sections/market-overview.tsx 200 1ms [Port: 5000]
+[2025-03-01T13:28:22.880Z] GET /src/components/sections/getting-started.tsx 200 0ms [Port: 5000]
+[2025-03-01T13:28:22.981Z] GET /src/components/sections/trust-news.tsx 200 1ms [Port: 5000]
+[2025-03-01T13:28:22.999Z] GET /src/components/ui/avatar.tsx 200 1ms [Port: 5000]
+[2025-03-01T13:28:23.059Z] GET /@fs/home/runner/workspace/node_modules/.vite/deps/react-icons_si.js 200 10ms [Port: 5000]
+[2025-03-01T13:28:23.083Z] GET /src/components/ui/sheet.tsx 304 0ms [Port: 5000]
+[2025-03-01T13:28:23.085Z] GET /src/lib/utils.ts 304 1ms [Port: 5000]
+[2025-03-01T13:28:23.168Z] GET /src/components/ui/label.tsx 304 0ms [Port: 5000]
+[2025-03-01T13:28:23.185Z] GET /src/components/dashboard/tabs/UsdcTab.tsx 304 1ms [Port: 5000]
+[2025-03-01T13:28:23.200Z] GET /src/components/dashboard/tabs/DepositTab.tsx 304 1ms [Port: 5000]
+[2025-03-01T13:28:23.268Z] GET /src/components/dashboard/tabs/HistoryTab.tsx 304 0ms [Port: 5000]
+[2025-03-01T13:28:23.269Z] GET /src/components/dashboard/tabs/ProfileTab.tsx 304 0ms [Port: 5000]

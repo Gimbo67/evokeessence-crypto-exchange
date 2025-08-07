@@ -1,0 +1,80 @@
+jakob@MacBook-Air-von-Jakob CryptoEvokeApp_Expo % ls -la                
+total 1008
+drwxr-xr-x   22 jakob  staff     704 20 Mai 00:24 .
+drwxr-x---+  38 jakob  staff    1216 20 Mai 00:19 ..
+drwxr-xr-x    5 jakob  staff     160 20 Mai 00:05 .expo
+drwxr-xr-x   12 jakob  staff     384 20 Mai 00:26 .git
+-rw-r--r--    1 jakob  staff     411 26 Okt  1985 .gitignore
+drwxr-xr-x    3 jakob  staff      96 19 Mai 23:58 .vscode
+-rw-r--r--@   1 jakob  staff    2456 20 Mai 00:24 App.js
+-rw-r--r--    1 jakob  staff    1741 26 Okt  1985 README.md
+drwxr-xr-x    5 jakob  staff     160 19 Mai 23:58 app
+-rw-r--r--    1 jakob  staff     967 19 Mai 23:58 app.json
+drwxr-xr-x    4 jakob  staff     128 19 Mai 23:58 assets
+drwxr-xr-x   10 jakob  staff     320 19 Mai 23:58 components
+drwxr-xr-x    3 jakob  staff      96 19 Mai 23:58 constants
+-rw-r--r--    1 jakob  staff     237 26 Okt  1985 eslint.config.js
+-rw-r--r--    1 jakob  staff     110 20 Mai 00:25 expo-env.d.ts
+drwxr-xr-x    5 jakob  staff     160 19 Mai 23:58 hooks
+drwxr-xr-x  615 jakob  staff   19680 20 Mai 00:24 node_modules
+-rw-r--r--    1 jakob  staff  482324 20 Mai 00:24 package-lock.json
+-rw-r--r--    1 jakob  staff    1635 20 Mai 00:24 package.json
+drwxr-xr-x    3 jakob  staff      96 19 Mai 23:58 scripts
+drwxr-xr-x    7 jakob  staff     224 20 Mai 00:01 src
+-rw-r--r--    1 jakob  staff     242 26 Okt  1985 tsconfig.json
+jakob@MacBook-Air-von-Jakob CryptoEvokeApp_Expo % cat package.json
+{
+  "name": "cryptoevokeapp_expo",
+  "main": "expo-router/entry",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "expo start",
+    "reset-project": "node ./scripts/reset-project.js",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web",
+    "lint": "expo lint"
+  },
+  "dependencies": {
+    "@expo/vector-icons": "^14.1.0",
+    "@react-native-async-storage/async-storage": "2.1.2",
+    "@react-navigation/bottom-tabs": "^7.3.13",
+    "@react-navigation/elements": "^2.3.8",
+    "@react-navigation/native": "^7.1.9",
+    "@react-navigation/stack": "^7.3.2",
+    "axios": "^1.9.0",
+    "expo": "~53.0.9",
+    "expo-blur": "~14.1.4",
+    "expo-constants": "~17.1.6",
+    "expo-font": "~13.3.1",
+    "expo-haptics": "~14.1.4",
+    "expo-image": "~2.1.7",
+    "expo-linking": "~7.1.5",
+    "expo-router": "~5.0.6",
+    "expo-splash-screen": "~0.30.8",
+    "expo-status-bar": "~2.2.3",
+    "expo-symbols": "~0.4.4",
+    "expo-system-ui": "~5.0.7",
+    "expo-web-browser": "~14.1.6",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "react-native": "0.79.2",
+    "react-native-gesture-handler": "~2.24.0",
+    "react-native-reanimated": "~3.17.4",
+    "react-native-safe-area-context": "5.4.0",
+    "react-native-screens": "~4.10.0",
+    "react-native-vector-icons": "^10.2.0",
+    "react-native-web": "~0.20.0",
+    "react-native-webview": "13.13.5",
+    "react-navigation": "^5.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.25.2",
+    "@types/react": "~19.0.10",
+    "eslint": "^9.25.0",
+    "eslint-config-expo": "~9.2.0",
+    "typescript": "~5.8.3"
+  },
+  "private": true
+}
+jakob@MacBook-Air-von-Jakob CryptoEvokeApp_Expo % 

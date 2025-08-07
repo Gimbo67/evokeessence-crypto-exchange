@@ -1,0 +1,729 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Enhanced 2FA Test Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      max-width: 900px;
+      line-height: 1.5;
+    }
+    h1, h2, h3 { color: #333; }
+    .container {
+      margin-bottom: 20px;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background-color: #f9f9f9;
+    }
+    button {
+      margin: 5px;
+      padding: 8px 12px;
+      background-color: #4361ee;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    button:hover {
+      background-color: #3a56d4;
+    }
+    .test-btn {
+      background-color: #4CAF50;
+    }
+    .test-btn:hover {
+      background-color: #45a049;
+    }
+    .disable-btn {
+      background-color: #d62828;
+    }
+    .disable-btn:hover {
+      background-color: #b51d1d;
+    }
+    input {
+      padding: 10px;
+      margin: 5px 0;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      width: 200px;
+      font-size: 16px;
+    }
+    .input-group {
+      display: flex;
+      align-items: center;
+      margin: 10px 0;
+    }
+    .input-group label {
+      margin-right: 10px;
+      min-width: 100px;
+    }
+    pre {
+      background-color: #272822;
+      color: #f8f8f2;
+      padding: 15px;
+      border-radius: 4px;
+      overflow-x: auto;
+      font-family: monospace;
+      font-size: 14px;
+    }
+    .response {
+      margin-top: 10px;
+    }
+    .qr-code {
+      margin-top: 10px;
+      padding: 15px;
+      border: 1px solid #ddd;
+      display: inline-block;
+      background-color: white;
+    }
+    .tabs {
+      display: flex;
+      margin-bottom: 10px;
+    }
+    .tab {
+      padding: 10px 15px;
+      background-color: #e0e0e0;
+      border: 1px solid #ccc;
+      cursor: pointer;
+      border-bottom: none;
+      border-radius: 4px 4px 0 0;
+      margin-right: 2px;
+    }
+    .tab.active {
+      background-color: #f9f9f9;
+      border-bottom: 1px solid #f9f9f9;
+      font-weight: bold;
+    }
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+    }
+    .secret-display {
+      font-family: monospace;
+      background-color: #f0f0f0;
+      padding: 8px;
+      border-radius: 4px;
+      margin: 10px 0;
+      word-break: break-all;
+    }
+    .status {
+      padding: 8px 12px;
+      border-radius: 4px;
+      display: inline-block;
+      margin: 5px 0;
+      font-weight: bold;
+    }
+    .status-enabled {
+      background-color: #a7f3d0;
+      color: #065f46;
+    }
+    .status-disabled {
+      background-color: #fecaca;
+      color: #991b1b;
+    }
+  </style>
+</head>
+<body>
+  <h1>Enhanced 2FA Test Page</h1>
+  <p>This page communicates directly with the server to test Two-Factor Authentication functionality, bypassing Vite middleware.</p>
+  
+  <div class="tabs">
+    <div class="tab active" data-tab="test">Standard Testing</div>
+    <div class="tab" data-tab="advanced">Advanced Testing</div>
+    <div class="tab" data-tab="real">Real App Testing</div>
+  </div>
+  
+  <div class="tab-content active" id="tab-test">
+    <div class="container">
+      <h2>Basic 2FA Flow</h2>
+      
+      <div>
+        <h3>Step 1: Check 2FA Status</h3>
+        <p>Check if 2FA is currently enabled for your account.</p>
+        <button id="statusBtn">Check 2FA Status</button>
+        <div class="response">
+          <pre id="statusResponse">Response will appear here</pre>
+        </div>
+      </div>
+      
+      <div>
+        <h3>Step 2: Setup 2FA</h3>
+        <p>Generate a QR code and secret key for authenticator apps.</p>
+        <button id="setupBtn">Setup 2FA</button>
+        <div class="response">
+          <pre id="setupResponse">Response will appear here</pre>
+        </div>
+        <div id="qrCodeDisplay" class="qr-code"></div>
+        <div id="secretDisplay" class="secret-display"></div>
+      </div>
+      
+      <div>
+        <h3>Step 3: Verify and Enable 2FA</h3>
+        <p>Verify the setup by entering a code from your authenticator app.</p>
+        <div class="input-group">
+          <label for="verifyToken">6-digit code:</label>
+          <input type="text" id="verifyToken" placeholder="Enter 6-digit code" maxlength="6">
+        </div>
+        <button id="verifyBtn">Verify 2FA Setup</button>
+        <div class="response">
+          <pre id="verifyResponse">Response will appear here</pre>
+        </div>
+      </div>
+      
+      <div>
+        <h3>Step 4: Validate 2FA (Login)</h3>
+        <p>Simulate validating a 2FA code during login.</p>
+        <div class="input-group">
+          <label for="username">Username:</label>
+          <input type="text" id="username" placeholder="Enter username" value="test50">
+        </div>
+        <div class="input-group">
+          <label for="validationToken">6-digit code:</label>
+          <input type="text" id="validationToken" placeholder="Enter 6-digit code" maxlength="6">
+        </div>
+        <button id="validateBtn">Validate Login</button>
+        <button id="testCodeBtn" class="test-btn">Use Test Code (123456)</button>
+        <div class="response">
+          <pre id="validateResponse">Response will appear here</pre>
+        </div>
+      </div>
+      
+      <div>
+        <h3>Step 5: Disable 2FA</h3>
+        <p>Turn off 2FA for your account.</p>
+        <div class="input-group">
+          <label for="disableToken">6-digit code:</label>
+          <input type="text" id="disableToken" placeholder="Enter 6-digit code" maxlength="6">
+        </div>
+        <button id="disableBtn" class="disable-btn">Disable 2FA</button>
+        <div class="response">
+          <pre id="disableResponse">Response will appear here</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="tab-content" id="tab-advanced">
+    <div class="container">
+      <h2>Advanced 2FA Testing</h2>
+      
+      <div>
+        <h3>Backup Codes Management</h3>
+        <button id="regenerateCodesBtn">Regenerate Backup Codes</button>
+        <div class="response">
+          <pre id="regenerateResponse">Response will appear here</pre>
+        </div>
+      </div>
+      
+      <div>
+        <h3>Test Backup Code for Login</h3>
+        <div class="input-group">
+          <label for="backupUsername">Username:</label>
+          <input type="text" id="backupUsername" placeholder="Enter username" value="test50">
+        </div>
+        <div class="input-group">
+          <label for="backupCode">Backup Code:</label>
+          <input type="text" id="backupCode" placeholder="XXXX-XXXX">
+        </div>
+        <button id="validateBackupBtn">Validate Backup Code</button>
+        <div class="response">
+          <pre id="backupResponse">Response will appear here</pre>
+        </div>
+      </div>
+      
+      <div>
+        <h3>Admin: Disable User's 2FA</h3>
+        <div class="input-group">
+          <label for="targetUserId">User ID:</label>
+          <input type="number" id="targetUserId" placeholder="Enter user ID">
+        </div>
+        <button id="adminDisableBtn" class="disable-btn">Admin Disable 2FA</button>
+        <div class="response">
+          <pre id="adminDisableResponse">Response will appear here</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="tab-content" id="tab-real">
+    <div class="container">
+      <h2>Test with Real Authenticator App</h2>
+      <p>Use these tools to test with a real authenticator app like Google Authenticator, Microsoft Authenticator, or Authy.</p>
+      
+      <div>
+        <h3>Current Status</h3>
+        <div id="realStatusDisplay"></div>
+        <button id="realStatusBtn">Check Status</button>
+      </div>
+      
+      <div>
+        <h3>Setup with Real App</h3>
+        <p>Scan this QR code with your authenticator app:</p>
+        <button id="realSetupBtn">Generate New Setup</button>
+        <div id="realQrCodeDisplay" class="qr-code"></div>
+        <div id="realSecretDisplay" class="secret-display"></div>
+        <p>After scanning, enter the code from your app to verify:</p>
+        <div class="input-group">
+          <input type="text" id="realVerifyToken" placeholder="Enter 6-digit code" maxlength="6">
+          <button id="realVerifyBtn">Verify</button>
+        </div>
+        <div class="response">
+          <pre id="realVerifyResponse">Response will appear here</pre>
+        </div>
+      </div>
+      
+      <div>
+        <h3>Test Login with Real App</h3>
+        <p>Enter a code from your authenticator app to test login:</p>
+        <div class="input-group">
+          <input type="text" id="realValidateToken" placeholder="Enter 6-digit code" maxlength="6">
+          <button id="realValidateBtn">Validate</button>
+        </div>
+        <div class="response">
+          <pre id="realValidateResponse">Response will appear here</pre>
+        </div>
+      </div>
+      
+      <div>
+        <h3>Disable with Real App</h3>
+        <p>Enter a code from your authenticator app to disable 2FA:</p>
+        <div class="input-group">
+          <input type="text" id="realDisableToken" placeholder="Enter 6-digit code" maxlength="6">
+          <button id="realDisableBtn" class="disable-btn">Disable 2FA</button>
+        </div>
+        <div class="response">
+          <pre id="realDisableResponse">Response will appear here</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    // Tab switching logic
+    document.querySelectorAll('.tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        // Remove active class from all tabs
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        
+        // Add active class to current tab
+        tab.classList.add('active');
+        document.getElementById(`tab-${tab.dataset.tab}`).classList.add('active');
+      });
+    });
+    
+    // Helper function to make API requests
+    async function makeRequest(url, method, body) {
+      console.log('Making request to:', url, method, body);
+      
+      // Use specialized JSON-guaranteed endpoints for API requests
+      let targetUrl = url;
+      if (url === '/bypass/2fa/status') {
+        // Use the direct endpoint with JSON guaranteed
+        console.log('Using direct endpoint for 2FA status');
+        targetUrl = '/api/2fa/status-json';
+      } else if (url === '/bypass/2fa/validate') {
+        console.log('Using improved JSON validation endpoint');
+        targetUrl = '/api/2fa/validate-json';
+      } else if (url.startsWith('/api/')) {
+        // For any API endpoint, append -json to ensure proper JSON handling
+        if (!url.endsWith('-json')) {
+          targetUrl = `${url}-json`;
+          console.log('Converting API endpoint to JSON-guaranteed version:', targetUrl);
+        }
+      }
+      
+      try {
+        const options = {
+          method,
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'X-API-Request': 'true' // Special header to identify API requests
+          },
+          credentials: 'include' // Include credentials for session cookies
+        };
+        
+        if (body) {
+          options.body = JSON.stringify(body);
+        }
+        
+        const response = await fetch(targetUrl, options);
+        console.log('Response status:', response.status);
+        console.log('Response headers:', {
+          contentType: response.headers.get('Content-Type'),
+          contentLength: response.headers.get('Content-Length')
+        });
+        
+        try {
+          // Clone the response before reading its body
+          const responseClone = response.clone();
+          
+          try {
+            // First try to parse as JSON
+            return await response.json();
+          } catch (jsonError) {
+            // If JSON parsing fails, try to get the text content
+            console.error('Error parsing JSON response:', jsonError);
+            const text = await responseClone.text();
+            
+            // Check if this is an HTML response (Vite middleware intercepted)
+            if (text.includes('<!DOCTYPE html>')) {
+              console.error('Received HTML response instead of JSON. Middleware interference detected.');
+              
+              // Return a formatted error for better display
+              return {
+                error: 'HTML response instead of JSON',
+                status: response.status,
+                message: 'Middleware intercepted the API request. Try using a direct endpoint with -json suffix',
+                responsePreview: text.substring(0, 150) + '...'
+              };
+            }
+            
+            return {
+              error: 'JSON parse error',
+              status: response.status,
+              message: jsonError.message,
+              responseText: text.substring(0, 500) + (text.length > 500 ? '...' : '')
+            };
+          }
+        } catch (error) {
+          console.error('Error processing response:', error);
+          return {
+            error: 'Failed to process response',
+            status: response.status,
+            message: error.message
+          };
+        }
+      } catch (error) {
+        console.error('Error making request:', error);
+        return { error: error.message };
+      }
+    }
+    
+    // Update status display in the real app tab
+    function updateStatusDisplay(status) {
+      const display = document.getElementById('realStatusDisplay');
+      if (status.enabled) {
+        display.innerHTML = `<div class="status status-enabled">2FA is ENABLED (Method: ${status.method || 'unknown'})</div>`;
+        if (status.backupCodesCount) {
+          display.innerHTML += `<div>You have ${status.backupCodesCount} backup codes available.</div>`;
+        }
+      } else {
+        display.innerHTML = '<div class="status status-disabled">2FA is DISABLED</div>';
+      }
+    }
+    
+    // Check 2FA Status
+    document.getElementById('statusBtn').addEventListener('click', async () => {
+      const responseElement = document.getElementById('statusResponse');
+      responseElement.textContent = 'Loading...';
+      
+      try {
+        const result = await makeRequest('/bypass/2fa/status', 'GET');
+        responseElement.textContent = JSON.stringify(result, null, 2);
+      } catch (error) {
+        responseElement.textContent = "Error: " + error.message;
+      }
+    });
+    
+    // Setup 2FA
+    document.getElementById('setupBtn').addEventListener('click', async () => {
+      const responseElement = document.getElementById('setupResponse');
+      const qrCodeDisplay = document.getElementById('qrCodeDisplay');
+      const secretDisplay = document.getElementById('secretDisplay');
+      
+      responseElement.textContent = 'Loading...';
+      qrCodeDisplay.innerHTML = '';
+      secretDisplay.textContent = '';
+      
+      try {
+        const result = await makeRequest('/bypass/2fa/setup', 'POST');
+        responseElement.textContent = JSON.stringify(result, null, 2);
+        
+        // Display QR code if available
+        if (result.qrCode) {
+          qrCodeDisplay.innerHTML = result.qrCode;
+        }
+        
+        // Display secret key if available
+        if (result.secret) {
+          secretDisplay.textContent = `Secret key: ${result.secret}`;
+        }
+      } catch (error) {
+        responseElement.textContent = "Error: " + error.message;
+      }
+    });
+    
+    // Verify 2FA setup
+    document.getElementById('verifyBtn').addEventListener('click', async () => {
+      const responseElement = document.getElementById('verifyResponse');
+      const token = document.getElementById('verifyToken').value;
+      
+      if (!token || token.length !== 6 || !/^\d+$/.test(token)) {
+        responseElement.textContent = 'Error: Please enter a valid 6-digit code';
+        return;
+      }
+      
+      responseElement.textContent = 'Loading...';
+      
+      try {
+        const result = await makeRequest('/bypass/2fa/verify', 'POST', { token });
+        responseElement.textContent = JSON.stringify(result, null, 2);
+      } catch (error) {
+        responseElement.textContent = "Error: " + error.message;
+      }
+    });
+    
+    // Validate 2FA during login
+    document.getElementById('validateBtn').addEventListener('click', async () => {
+      const responseElement = document.getElementById('validateResponse');
+      const token = document.getElementById('validationToken').value;
+      const username = document.getElementById('username').value;
+      
+      if (!token || token.length !== 6 || !/^\d+$/.test(token)) {
+        responseElement.textContent = 'Error: Please enter a valid 6-digit code';
+        return;
+      }
+      
+      if (!username) {
+        responseElement.textContent = 'Error: Please enter a username';
+        return;
+      }
+      
+      responseElement.textContent = 'Loading...';
+      
+      try {
+        const result = await makeRequest('/bypass/2fa/validate', 'POST', { token, username });
+        responseElement.textContent = JSON.stringify(result, null, 2);
+      } catch (error) {
+        responseElement.textContent = "Error: " + error.message;
+      }
+    });
+    
+    // Use test code (123456)
+    document.getElementById('testCodeBtn').addEventListener('click', async () => {
+      const responseElement = document.getElementById('validateResponse');
+      const username = document.getElementById('username').value;
+      
+      if (!username) {
+        responseElement.textContent = 'Error: Please enter a username';
+        return;
+      }
+      
+      responseElement.textContent = 'Loading...';
+      
+      try {
+        const result = await makeRequest('/bypass/2fa/validate', 'POST', { token: '123456', username });
+        responseElement.textContent = JSON.stringify(result, null, 2);
+      } catch (error) {
+        responseElement.textContent = "Error: " + error.message;
+      }
+    });
+    
+    // Disable 2FA
+    document.getElementById('disableBtn').addEventListener('click', async () => {
+      const responseElement = document.getElementById('disableResponse');
+      const token = document.getElementById('disableToken').value;
+      
+      if (!token || token.length !== 6 || !/^\d+$/.test(token)) {
+        responseElement.textContent = 'Error: Please enter a valid 6-digit code';
+        return;
+      }
+      
+      responseElement.textContent = 'Loading...';
+      
+      try {
+        const result = await makeRequest('/bypass/2fa/disable', 'POST', { token });
+        responseElement.textContent = JSON.stringify(result, null, 2);
+      } catch (error) {
+        responseElement.textContent = "Error: " + error.message;
+      }
+    });
+    
+    // Regenerate backup codes
+    document.getElementById('regenerateCodesBtn').addEventListener('click', async () => {
+      const responseElement = document.getElementById('regenerateResponse');
+      responseElement.textContent = 'Loading...';
+      
+      try {
+        const result = await makeRequest('/bypass/2fa/backup-codes/regenerate', 'POST');
+        responseElement.textContent = JSON.stringify(result, null, 2);
+      } catch (error) {
+        responseElement.textContent = "Error: " + error.message;
+      }
+    });
+    
+    // Validate using backup code
+    document.getElementById('validateBackupBtn').addEventListener('click', async () => {
+      const responseElement = document.getElementById('backupResponse');
+      const backupCode = document.getElementById('backupCode').value;
+      const username = document.getElementById('backupUsername').value;
+      
+      if (!backupCode || !backupCode.includes('-')) {
+        responseElement.textContent = 'Error: Please enter a valid backup code (format: XXXX-XXXX)';
+        return;
+      }
+      
+      if (!username) {
+        responseElement.textContent = 'Error: Please enter a username';
+        return;
+      }
+      
+      responseElement.textContent = 'Loading...';
+      
+      try {
+        const result = await makeRequest('/bypass/2fa/validate', 'POST', { 
+          token: backupCode, 
+          username,
+          isBackupCode: true
+        });
+        responseElement.textContent = JSON.stringify(result, null, 2);
+      } catch (error) {
+        responseElement.textContent = "Error: " + error.message;
+      }
+    });
+    
+    // Admin disable 2FA
+    document.getElementById('adminDisableBtn').addEventListener('click', async () => {
+      const responseElement = document.getElementById('adminDisableResponse');
+      const userId = document.getElementById('targetUserId').value;
+      
+      if (!userId || isNaN(parseInt(userId))) {
+        responseElement.textContent = 'Error: Please enter a valid user ID';
+        return;
+      }
+      
+      responseElement.textContent = 'Loading...';
+      
+      try {
+        const result = await makeRequest(`/bypass/2fa/admin/disable/${userId}`, 'POST');
+        responseElement.textContent = JSON.stringify(result, null, 2);
+      } catch (error) {
+        responseElement.textContent = "Error: " + error.message;
+      }
+    });
+    
+    // Real App Testing: Check Status
+    document.getElementById('realStatusBtn').addEventListener('click', async () => {
+      try {
+        const result = await makeRequest('/bypass/2fa/status', 'GET');
+        updateStatusDisplay(result);
+      } catch (error) {
+        document.getElementById('realStatusDisplay').innerHTML = 
+          `<div class="status status-disabled">Error checking status: ${error.message}</div>`;
+      }
+    });
+    
+    // Real App Testing: Setup
+    document.getElementById('realSetupBtn').addEventListener('click', async () => {
+      const qrCodeDisplay = document.getElementById('realQrCodeDisplay');
+      const secretDisplay = document.getElementById('realSecretDisplay');
+      
+      qrCodeDisplay.innerHTML = 'Loading...';
+      secretDisplay.textContent = '';
+      
+      try {
+        const result = await makeRequest('/bypass/2fa/setup', 'POST');
+        
+        // Display QR code if available
+        if (result.qrCode) {
+          qrCodeDisplay.innerHTML = result.qrCode;
+        } else {
+          qrCodeDisplay.innerHTML = 'Error: No QR code received';
+        }
+        
+        // Display secret key if available
+        if (result.secret) {
+          secretDisplay.textContent = `Secret key: ${result.secret}`;
+        }
+      } catch (error) {
+        qrCodeDisplay.innerHTML = `Error: ${error.message}`;
+      }
+    });
+    
+    // Real App Testing: Verify Setup
+    document.getElementById('realVerifyBtn').addEventListener('click', async () => {
+      const responseElement = document.getElementById('realVerifyResponse');
+      const token = document.getElementById('realVerifyToken').value;
+      
+      if (!token || token.length !== 6 || !/^\d+$/.test(token)) {
+        responseElement.textContent = 'Error: Please enter a valid 6-digit code';
+        return;
+      }
+      
+      responseElement.textContent = 'Loading...';
+      
+      try {
+        const result = await makeRequest('/bypass/2fa/verify', 'POST', { token });
+        responseElement.textContent = JSON.stringify(result, null, 2);
+        
+        // Update status after verify
+        const statusResult = await makeRequest('/bypass/2fa/status', 'GET');
+        updateStatusDisplay(statusResult);
+      } catch (error) {
+        responseElement.textContent = "Error: " + error.message;
+      }
+    });
+    
+    // Real App Testing: Validate
+    document.getElementById('realValidateBtn').addEventListener('click', async () => {
+      const responseElement = document.getElementById('realValidateResponse');
+      const token = document.getElementById('realValidateToken').value;
+      
+      if (!token || token.length !== 6 || !/^\d+$/.test(token)) {
+        responseElement.textContent = 'Error: Please enter a valid 6-digit code';
+        return;
+      }
+      
+      responseElement.textContent = 'Loading...';
+      
+      try {
+        const result = await makeRequest('/bypass/2fa/validate', 'POST', { token });
+        responseElement.textContent = JSON.stringify(result, null, 2);
+      } catch (error) {
+        responseElement.textContent = "Error: " + error.message;
+      }
+    });
+    
+    // Real App Testing: Disable
+    document.getElementById('realDisableBtn').addEventListener('click', async () => {
+      const responseElement = document.getElementById('realDisableResponse');
+      const token = document.getElementById('realDisableToken').value;
+      
+      if (!token || token.length !== 6 || !/^\d+$/.test(token)) {
+        responseElement.textContent = 'Error: Please enter a valid 6-digit code';
+        return;
+      }
+      
+      responseElement.textContent = 'Loading...';
+      
+      try {
+        const result = await makeRequest('/bypass/2fa/disable', 'POST', { token });
+        responseElement.textContent = JSON.stringify(result, null, 2);
+        
+        // Update status after disable
+        const statusResult = await makeRequest('/bypass/2fa/status', 'GET');
+        updateStatusDisplay(statusResult);
+      } catch (error) {
+        responseElement.textContent = "Error: " + error.message;
+      }
+    });
+    
+    // Check status on page load
+    (async function checkInitialStatus() {
+      try {
+        const result = await makeRequest('/bypass/2fa/status', 'GET');
+        updateStatusDisplay(result);
+      } catch (error) {
+        console.error('Error checking initial status:', error);
+      }
+    })();
+  </script>
+</body>
+</html>

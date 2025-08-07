@@ -1,0 +1,65 @@
+jakob@MacBook-Air-von-Jakob CryptoEvokeApp % find . -type d -not -path "*/\.*" | sort
+.
+./CryptoEvokeApp
+./CryptoEvokeApp/API
+./CryptoEvokeApp/Authentication
+./CryptoEvokeApp/Components
+./CryptoEvokeApp/CryptoEvokeApp
+./CryptoEvokeApp/CryptoEvokeApp.xcodeproj
+./CryptoEvokeApp/CryptoEvokeApp.xcodeproj/project.xcworkspace
+./CryptoEvokeApp/CryptoEvokeApp.xcodeproj/project.xcworkspace/xcshareddata
+./CryptoEvokeApp/CryptoEvokeApp.xcodeproj/project.xcworkspace/xcshareddata/swiftpm
+./CryptoEvokeApp/CryptoEvokeApp.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/configuration
+./CryptoEvokeApp/CryptoEvokeApp.xcodeproj/project.xcworkspace/xcuserdata
+./CryptoEvokeApp/CryptoEvokeApp.xcodeproj/project.xcworkspace/xcuserdata/jakob.xcuserdatad
+./CryptoEvokeApp/CryptoEvokeApp.xcodeproj/xcuserdata
+./CryptoEvokeApp/CryptoEvokeApp.xcodeproj/xcuserdata/jakob.xcuserdatad
+./CryptoEvokeApp/CryptoEvokeApp.xcodeproj/xcuserdata/jakob.xcuserdatad/xcschemes
+./CryptoEvokeApp/CryptoEvokeApp/Assets.xcassets
+./CryptoEvokeApp/CryptoEvokeApp/Assets.xcassets/AccentColor.colorset
+./CryptoEvokeApp/CryptoEvokeApp/Assets.xcassets/AppIcon.appiconset
+./CryptoEvokeApp/CryptoEvokeApp/Preview Content
+./CryptoEvokeApp/CryptoEvokeApp/Preview Content/Preview Assets.xcassets
+./CryptoEvokeApp/CryptoEvokeAppTests
+./CryptoEvokeApp/CryptoEvokeAppUITests
+./CryptoEvokeApp/Dashboards
+./CryptoEvokeApp/Dashboards/AdminDashboard
+./CryptoEvokeApp/Dashboards/ContractorDashboard
+./CryptoEvokeApp/Dashboards/EmployeeDashboard
+./CryptoEvokeApp/Dashboards/UserDashboard
+./CryptoEvokeApp/Models
+./CryptoEvokeApp/ViewModels
+./CryptoEvokeApp/Views
+jakob@MacBook-Air-von-Jakob CryptoEvokeApp % find . -name "*.swift" | sort
+./CryptoEvokeApp/API/APIClient.swift
+./CryptoEvokeApp/API/Endpoints.swift
+./CryptoEvokeApp/API/Services.swift
+./CryptoEvokeApp/Authentication/AuthService.swift
+./CryptoEvokeApp/Authentication/KeychainManager.swift
+./CryptoEvokeApp/Authentication/LoginView.swift
+./CryptoEvokeApp/Authentication/RegisterView.swift
+./CryptoEvokeApp/Authentication/TwoFactorView.swift
+./CryptoEvokeApp/Components/TransakWebView.swift
+./CryptoEvokeApp/CryptoEvokeApp/CryptoEvokeAppApp.swift
+./CryptoEvokeApp/CryptoEvokeAppTests/CryptoEvokeAppTests.swift
+./CryptoEvokeApp/CryptoEvokeAppUITests/CryptoEvokeAppUITests.swift
+./CryptoEvokeApp/CryptoEvokeAppUITests/CryptoEvokeAppUITestsLaunchTests.swift
+./CryptoEvokeApp/Dashboards/AdminDashboard/AdminDashboardView.swift
+./CryptoEvokeApp/Dashboards/ContractorDashboard/ContractorDashboardView.swift
+./CryptoEvokeApp/Dashboards/EmployeeDashboard/EmployeeDashboardView.swift
+./CryptoEvokeApp/Dashboards/UserDashboard/UserDashboardView.swift
+./CryptoEvokeApp/Models/AuthModels.swift
+./CryptoEvokeApp/Models/Balance.swift
+./CryptoEvokeApp/Models/ContractorData.swift
+./CryptoEvokeApp/Models/MarketData.swift
+./CryptoEvokeApp/Models/Transaction.swift
+./CryptoEvokeApp/Models/User.swift
+./CryptoEvokeApp/ViewModels/AppViewModel.swift
+./CryptoEvokeApp/Views/ContentView.swift
+./CryptoEvokeApp/Views/MainTabView.swift
+./CryptoEvokeApp/Views/MarketView.swift
+./CryptoEvokeApp/Views/ProfileView.swift
+./CryptoEvokeApp/Views/WalletView.swift
+jakob@MacBook-Air-von-Jakob CryptoEvokeApp % grep -A 10 "PBXGroup" *.xcodeproj/project.pbxproj
+zsh: no matches found: *.xcodeproj/project.pbxproj
+jakob@MacBook-Air-von-Jakob CryptoEvokeApp % 

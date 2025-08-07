@@ -1,0 +1,84 @@
+Absolutely — here’s the complete, production-grade push notification setup request, fully ready to pass to Replit AI in one go:
+
+✅ Full Setup Instructions for Replit AI — Apple Push Notifications with Secure Endpoint
+I want to enable Apple Push Notifications for my iOS app using my .p8 Auth Key, and I want to expose a secure POST endpoint to trigger them from the app or admin panel.
+
+Please follow all of these steps:
+
+---
+
+🔐 1. SAVE THE .p8 FILE SECURELY
+
+- Create a `secrets/` folder in the project root
+- Save my key file as: `secrets/AuthKey.p8`
+- Add `secrets/AuthKey.p8` to `.gitignore` so it is never exposed publicly
+
+---
+
+📦 2. INSTALL DEPENDENCIES
+
+Run this in the Replit shell:
+npm install express apn
+---
+
+🛠 3. CREATE PUSH SERVICE
+
+Create a new file named `sendPush.js` with the following code:
+
+```js
+const apn = require('apn');
+const fs = require('fs');
+
+const options = {
+  token: {
+    key: fs.readFileSync('./secrets/AuthKey.p8'),
+    keyId: 'V3B76T4F2W',
+    teamId: '2P9BNEAMB9'
+  },
+  production: false // set to true when going live
+};
+
+const apnProvider = new apn.Provider(options);
+
+async function sendPushNotification(deviceToken, title, body) {
+  const notification = new apn.Notification();
+  notification.alert = { title, body };
+  notification.sound = 'default';
+  notification.topic = 'com.evo.exchange'; // ⚠️ Replace with the app's actual Bundle ID
+  notification.pushType = 'alert';
+
+  const result = await apnProvider.send(notification, deviceToken);
+  return result;
+}
+
+module.exports = sendPushNotification;
+
+🌐 4. ADD A PUSH ENDPOINT TO THE BACKEND
+In your main Express server file (e.g., index.js or server.js), do the following:
+const express = require('express');
+const app = express();
+const sendPushNotification = require('./sendPush');
+
+app.use(express.json());
+
+app.post('/api/push', async (req, res) => {
+  const { deviceToken, title, body } = req.body;
+
+  if (!deviceToken || !title || !body) {
+    return res.status(400).json({ error: 'Missing required fields' });
+  }
+
+  try {
+    const result = await sendPushNotification(deviceToken, title, body);
+    res.json({ success: true, result });
+  } catch (error) {
+    console.error('Push failed:', error);
+    res.status(500).json({ error: 'Push failed', detail: error.message });
+  }
+});
+
+✅ CONFIG DETAILS:
+* Apple Team ID: 2P9BNEAMB9
+* Apple Key ID: V3B76T4F2W
+* Apple Key File: ./secrets/AuthKey.p8
+* App Bundle ID: com.evo.exchange (must match the one in Xcode)

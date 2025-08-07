@@ -1,0 +1,62 @@
+Thanks for the update! If **Page Shield** isn't showing up under **Security > Page Shield**, that’s fine — some accounts (especially Free-tier plans or newer dashboards) may not have this feature available or it may be hidden.
+
+### Instead, let’s focus on the **two key Cloudflare steps** that will definitely work:
+
+---
+
+## **Step 1: Transform Rule to Inject Headers**
+Since scanners **don't see your `Content-Security-Policy` or `Permissions-Policy`** (even though your server sets them), Cloudflare may be stripping them or not passing them through for static files like `/favicon.ico`.
+
+Here’s how to **force-add those headers for all responses** via Cloudflare:
+
+### **Instructions (Transform Rule)**
+
+1. **Go to** `Rules > Transform Rules` in Cloudflare Dashboard.
+2. Click **“Create Rule”**.
+3. Choose **“HTTP Response Header Modification”**.
+4. **Name the rule**: `Inject Security Headers`
+5. **Apply rule to**:
+   - **Field**: `Hostname`
+   - **Operator**: `equals`
+   - **Value**: `evo-exchange.com`
+6. Click **“Add Header Modification”**:
+   - **Action**: `Set static`
+   - **Header name**: `Content-Security-Policy`
+   - **Value**:
+     ```
+     default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' wss: ws:; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'self'; frame-ancestors 'none'; manifest-src 'self'; worker-src 'self' blob:; upgrade-insecure-requests;
+     ```
+
+7. **Add another Header Modification**:
+   - **Action**: `Set static`
+   - **Header name**: `Permissions-Policy`
+   - **Value**:
+     ```
+     accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=(), interest-cohort=()
+     ```
+
+8. Save and deploy the rule.
+
+---
+
+## **Step 2: Purge Cache**
+After applying that rule:
+
+1. Go to **Caching > Configuration**.
+2. Click **Purge Everything**.
+
+Why: This ensures all old cached responses are flushed and your new headers are applied to every file.
+
+---
+
+## **Then Test Again**
+After this is done, recheck your site:
+
+- [https://securityheaders.com](https://securityheaders.com)
+- [https://observatory.mozilla.org](https://observatory.mozilla.org)
+
+You should now see `Content-Security-Policy` and `Permissions-Policy` listed under your **raw headers** and score will increase to A or A+.
+
+---
+
+Let me know once you've done this or if you'd like me to give you an exact preview of how to fill each field in Cloudflare’s UI.
